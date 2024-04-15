@@ -23,13 +23,11 @@
 #'    Computes support over unique parent sets of each variable, without encoding
 #'    zero-effects for non-descendants of the variables.
 #'@seealso [adjsets_from_dag]
-
 #' @export
 adjsets_support_from_dags <- function(adjsets, dags, support = rep(1/length(dags), length(dags)), checksize = NULL){
 
   # sort adjset for more eff computation / reusing large sets
   indx <- match(c("pa", "pa_min", "o", "o_min"), adjsets, nomatch = 0)
-  stopifnot(any(indx > 0))
   adjsets_ordered <- adjsets[indx]
 
   n <- dim(dags[[1]])[1]
@@ -47,9 +45,11 @@ adjsets_support_from_dags <- function(adjsets, dags, support = rep(1/length(dags
   dags <- unique_dags
   rm(unique_dags)
 
-  # init lists for storing unique adjustment sets and counts
-  tmp <- list(sets = matrix(list(), n, n),
-              support = matrix(list(), n, n))
+
+  # init sets as is full support for zero-effects
+  tmp <- list(sets = matrix(lapply(seqn, matrix), n, n, byrow = T),
+              support = matrix(list(1), n, n))
+  diag(tmp$sets) <- diag(tmp$support) <- list(NULL)
   out <- rep(list(tmp), length(adjsets))
   names(out) <- adjsets_ordered
 
@@ -85,40 +85,32 @@ adjsets_support_from_dags <- function(adjsets, dags, support = rep(1/length(dags
       for (y in De) { # for every descendant of x
         for (a in seqa){
           z <- tmp[[x, y, a]]
-
-          # find position of z in current list of unique sets
-          pos  <- match_vec(z, sets[[x, y, a]], lens[[x, y, a]], nomatch = 0)
-          if (pos > 0) {
-            supp[[x, y, a]][[pos]] <- supp[[x, y, a]][[pos]] + w
-          } else {
-            pos <- length(sets[[x, y, a]]) + 1
-            sets[[x, y, a]][[pos]] <- z
-            supp[[x, y, a]][pos] <- w
-            lens[[x, y, a]][pos] <- length(z)
+          if (! (length(z) == 1 && is.na(z)) ) {
+            # find position of z in current list of unique sets
+            pos  <- match_vec(z, sets[[x, y, a]], lens[[x, y, a]], nomatch = 0)
+            if (pos > 0) {
+              supp[[x, y, a]][[pos]] <- supp[[x, y, a]][[pos]] + w
+            } else {
+              pos <- length(sets[[x, y, a]]) + 1
+              sets[[x, y, a]][[pos]] <- z
+              supp[[x, y, a]][pos] <- w
+              lens[[x, y, a]][pos] <- length(z)
+            }
           }
         }
       }
     }
   }
-  rm(dags)
+  rm(dags, support)
   arp <- round(arp, 10)
 
   ## store sets in matrix
-  for (y in seqn) {
+  possEffects <- seqn[colSums(arp) > 0]
+  for (y in possEffects) {
 
-    # zero-effects:
-    # save memory by assigning same set and supp object to all non-causes
-    nonAnc <- arp[, y] == 0
-    if (any(nonAnc)) {
-      tmp  <- list(sets = list(matrix(y)),
-                   supp = list(1))
-      for (a in seqa) {
-        out[[a]]$sets[nonAnc, y] <- tmp$sets
-        out[[a]]$support[nonAnc, y] <- tmp$supp
-      }
-    }
+    possCauses <- seqn[-y][arp[-y, y] > 0]
 
-    for (x in seqn[-y][!nonAnc[-y]]) {
+    for (x in possCauses) {
 
       # add support for zero-effect
       w <- 1-arp[x, y]
@@ -130,28 +122,20 @@ adjsets_support_from_dags <- function(adjsets, dags, support = rep(1/length(dags
         }
       }
 
+
       for (a in seqa) {
 
-        w <- supp[[x, y, a]]
-
-        # remove NA-sets if any
-        pos <- match_vec(NA, sets[[x, y, a]], nomatch = 0)
-        if (pos > 0) {
-          if (pos == 1 && length(sets[[x, y, a]]) == 1) {
-            # if all sets are NA (too large) - return empty set with full support
-            out[[a]]$sets[[x, y]] <- matrix(NA, 1, 1)
-            out[[a]]$support[[x, y]] <- 1
-            next
-          } else {
-            # otherwise, remove NA-set and adjust support
-            sets[[x, y, a]][pos] <- NULL
-            w <- w[-pos]/(1-w[pos])
-          }
+        # if all sets are NA (too large) - return empty set with full support
+        if (length(sets[[x, y, a]]) == 0) {
+          out[[a]]$sets[[x, y]] <- matrix(NA, 1, 1)
+          out[[a]]$support[[x, y]] <- 1
+          next
         }
 
         # store as matrix
-        out[[a]]$sets[[x, y]] <- rbind_fill(sets[[x, y, a]])
+        w <- supp[[x, y, a]]
         out[[a]]$support[[x, y]] <- w/sum(w)
+        out[[a]]$sets[[x, y]] <- rbind_fill(sets[[x, y, a]])
 
         sets[x, y, a] <- supp[x, y, a] <- list(NULL)
       }
@@ -161,6 +145,84 @@ adjsets_support_from_dags <- function(adjsets, dags, support = rep(1/length(dags
   rm(sets)
   rm(supp)
   out <- out[adjsets] # re-order
+  return(out)
+}
+
+
+
+
+adjsets_support_from_dags_2 <- function(adjsets, dags, support = rep(1/length(dags), length(dags)), checksize = NULL){
+
+  # sort adjset for more eff computation / reusing large sets
+  indx <- match(c("pa", "pa_min", "o", "o_min"), adjsets, nomatch = 0)
+  stopifnot(any(indx>0))
+  adjsets_ordered <- adjsets[indx]
+
+  n <- dim(dags[[1]])[1]
+  seqn <- seq_len(n)
+
+  # ensure that list of dags are matrix (not sparseMatrix)
+  if (!is.matrix(dags[[1]])) {
+    dags <- lapply(dags, as.matrix)
+  }
+
+  # list unique dags
+  unique_dags <- unique(dags)
+  support <- rowsum_fast(support, dags, unique_dags)
+  dags <- unique_dags
+  rm(unique_dags)
+
+  dmats <- lapply(dags, descendants)
+  arp   <- round(Reduce("+", mapply("*", dmats, support, SIMPLIFY = FALSE)), 10)
+
+  possCauses  <- seqn[rowSums(arp) > 0]
+
+  # init sets as is full support for zero-effects
+  tmp <- list(sets = matrix(lapply(seqn, matrix), n, n, byrow = T),
+              support = matrix(list(1), n, n))
+  diag(tmp$sets) <- diag(tmp$support) <- list(NULL)
+
+  out <- rep(list(tmp), length(adjsets))
+  names(out) <- adjsets_ordered
+
+  seqn_dags <- seq_along(dags)
+
+  for (x in possCauses) {
+    possEffects <- seqn[-x][arp[x, -x] > 0]
+    sets <- lapply(seqn_dags,
+                   function(g) adjsets_from_dag(adjsets_ordered, dags[[g]], dmats[[g]],
+                                                xvars = x,
+                                                yvars = possEffects,
+                                                checksize = checksize,
+                                                simplify = T))
+    sets <- array(unlist(sets, recursive = F),
+                  dim = c(length(possEffects), length(adjsets), length(dags)))
+
+    for (yy in seq_along(possEffects)) {
+      y <- possEffects[yy]
+      for (a in seq_along(adjsets)) {
+
+        u <- unique(sets[yy, a, ])
+        w <- rowsum_fast(support, sets[yy, a, ], u)
+
+        # check for NAs
+        indx <- vapply(u, function(z) length(z) == 1 && is.na(z), logical(1))
+        if (any(indx)) {
+          if (length(u) == 1) {
+            out[[a]]$sets[[x, y]]    <- matrix(NA, 1, 1)  # encodes an empty adjustment set
+            out[[a]]$support[[x, y]] <- 1
+          } else {
+            u[indx] <- NULL
+            w <- w[indx]/(1-sum(w[indx]))
+          }
+        }
+
+        out[[a]]$sets[[x, y]] <- rbind_fill(u)
+        out[[a]]$support[[x, y]] <- w
+      }
+    }
+  }
+
   return(out)
 }
 
