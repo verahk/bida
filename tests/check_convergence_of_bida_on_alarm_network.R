@@ -37,4 +37,4 @@ for (i in seq_along(samplesizes)) {
 matplot(t(rmse$pdo), type = "l", col = "grey",
         xlab = "sample size", ylab = "RMSE", main = "Posterior mean, intervention probs")
 matplot(t(rmse$jsd), type = "l", col = "grey",
-        xlab = "sample size", ylab = "RMSE", main = "Posterior mean, jsd"))
+        xlab = "sample size", ylab = "RMSE", main = "Posterior mean, jsd")

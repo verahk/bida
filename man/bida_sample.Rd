@@ -9,7 +9,7 @@ bida_sample(
   dags,
   support = rep(1/length(dags), length(dags)),
   type = "categorical",
-  adjsets = "pa",
+  adjset = "pa",
   params = NULL
 )
 }
