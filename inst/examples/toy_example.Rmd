@@ -56,7 +56,7 @@ dags <- fit$traceadd$incidence
 Given a sample of DAGs and a class of backdoor adjustmnent sets, we apply`bida:::bida_sample` to estimate the posterior over the intervention distributions for each cause-effect pair.
 This function identifies and computes the support over the unique adjustment sets in the sample of DAGs and, subsequently, computes the posterior over intervention distribution through the backdoor formula.
 ```{r}
-fit  <- bida_sample(data, dags, type = "categorical", adjsets = "pa") 
+fit  <- bida_sample(data, dags, type = "categorical", adjset = "pa") 
 ```
 
 
