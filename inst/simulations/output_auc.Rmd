@@ -1,0 +1,191 @@
+---
+title: "Discovering strong effects"
+output: 
+  html_document:
+    number_sections: true
+    toc: true
+date: "2024-01-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE, results = "hold")
+
+```
+
+# PREP
+## Set paths
+```{r}
+## paths ---
+here::i_am("inst/simulations/output_auc.Rmd")
+```
+
+## Set params
+```{r}
+selected_networks <- c("Child (n=20)", "Alarm (n=37)", "Win95pts (n=76)")
+selected_methods <- c("BIDA+o-min", "IDA+o", "IDA+pa", "BIDA-R+o-min", "ARP")
+doExport <- T
+```
+
+## Load functions and import data
+```{r message=FALSE, warning=FALSE}
+## packages -----
+library(bida)
+library(doSNOW)
+library(dplyr)
+library(ggplot2)
+library(here)
+
+files <- list.files(here::here("./inst/simulations/R"), full.names = T)
+sapply(files, "source")
+
+
+
+files <- list.files(here("../simres"), "*auc.rds", full.names = T)
+#readRDS(files[1])
+imp <- lapply(files, function(f) readRDS(f))
+
+```
+
+Store as data frame
+```{r}
+df <- reshape2::melt(imp) %>% 
+  filter(!is.na(value))
+df$th <- gsub(".80%", "", df$th)
+
+# collect simulation settings from filenames
+par <- stringr::str_split(files, ".+/|_|.rds", simplify = T)[, 2:5]
+colnames(par) <- c("network", "N", "r", "slearn")
+df <- cbind(par[df$L1, ], df) 
+df$L1 <- NULL
+
+df_all <- df %>% 
+  prettify_df() %>% 
+  filter(!(slearn == "MCMCPC" & !(adjset %in% c("o-min", "pa")))) %>%  
+  filter(!(method == "arp" & !(slearn == "MCMCPC" & adjset %in% c("o-min")))) %>% # arp is the same for o, o-min, pa-min. Filter also arps implied by parent sets.
+  mutate(procedure = case_when(slearn == "MCMCPC" & method == "value" ~ paste0("BIDA+", adjset),
+                               slearn == "MCMCPC" & method == "rank" ~ paste0("BIDA-R+", adjset),
+                               method == "arp" ~ "ARP",
+                               slearn == "unadjusted" & method == "value" ~ adjset,
+                               slearn == "PC05" ~ paste0("IDA+", adjset))) %>% 
+  mutate(procedure = factor(procedure, c("cond.", "marg.", "IDA+pa", "IDA+o",  
+                                         paste0("BIDA+", c("pa", "o-min")),
+                                         paste0("BIDA-R+", c("pa", "o-min")),
+                                         "ARP")))
+
+distinct(df_all, slearn, method, adjset,  procedure) 
+```
+
+
+## Check that ...
+### ... number of simulations is 30
+```{r}
+df_all %>% 
+  group_by(network, slearn) %>% 
+  distinct(r) %>% 
+  count() %>% 
+  tidyr::pivot_wider(names_from = "slearn", values_from = "n")
+```
+
+### ... that AUC = 1 when true DAG is known
+
+```{r}
+df_all %>% 
+  group_by(th, slearn, network, adjset) %>% 
+  filter(th == "pos", slearn == "KNOWN", adjset == "pa-min", value != 1) %>% 
+  arrange(value) %>% 
+  slice(1, n())
+
+```
+
+Fails due to rounding when computing true errors
+```{r}
+
+bn <- readRDS(here("inst/data/hepar2.rds"))
+r <- 1
+N <- 3000
+
+set.seed(r+N)
+data <- bida:::sample_data_from_bn(bn, N)
+truth <- compute_ground_truth(bn)
+all(truth$ace > 0)
+cbind(truth$desc, truth$ace)[rowSums(truth$ace) == 0, ]
+
+# compare with exact
+# truth$pdo[2452]
+# exact <- interv_probs_from_bn(bn, "exact")
+# exact[2452]
+```
+
+# Box-plots 
+
+```{r}
+
+df <- df_all %>%
+      filter(slearn != "KNOWN") %>% 
+      # compute percentiles for box_plots
+      group_by(across(-all_of(c("r", "value")))) %>% 
+      summarise_box_plot() %>% 
+      ungroup()
+
+head(df)
+```
+
+#### Selected networks
+```{r}
+for (v in c("jsd")) {
+
+  plot <- df %>%
+    filter(variable == v,
+           network %in% selected_networks,
+           procedure  %in% selected_methods) %>%  
+    mutate(th = ifelse(th == "pos", "Positive effects", "Top effects")) %>% 
+    ggplot(aes(N, color = procedure, fill = procedure, group = interaction(N, procedure))) +
+      geom_boxplot_no_points(width = .55) +
+      plot_adjust_theme(axis.text.x = element_text(), xlab = "sample size", ylab = "AUC-PR", col_values = col_scheme[["method"]]) +
+      facet_grid(th ~network, scales = "free_y")
+  
+  print(plot)
+  if (doExport) {
+    file <- here::here(outpath, "graphs", paste0("avgppv_box_plot_3_networks.png"))
+    ggsave(file, plot = plot, height = 7, width = 8)
+  }
+}
+
+
+```
+
+
+#### All networks
+```{r}
+ylabs = c(pos = "Positive effects                ",
+          top = "Top effects                     ")
+
+for (t in c("pos", "top")) {
+  for (v in c("jsd")) {
+    # plot box plot
+    plot <- df %>%
+      filter(variable == v) %>% 
+      filter(th == t) %>% #distinct(slearn, adjset, procedure) %>% print(n = 1000)
+      filter(!procedure == "BIDA-R+pa") %>% 
+      ggplot(aes(N, color = procedure, fill = procedure, group = interaction(N, procedure))) +
+      geom_boxplot_no_points(width = .6) +
+      plot_adjust_theme(axis.text.x = element_text(), xlab = "sample size", ylab = "AUC-PR", col_values = col_scheme[["method"]]) +
+      facet_wrap(.~network, scales = "free_y")
+    
+    # add label on the right
+    plot <- ggpubr::annotate_figure(plot, right = ylabs[[t]])
+    
+    # print and export
+    print(plot)
+    if (doExport) {
+        file <- here::here("inst/simulations/graphs", paste("avgppv_box_plot_all_networks", t, ".png", sep = "_"))
+        ggsave(file, plot = plot, height = 9, width = 7)
+    }
+  }
+}
+
+```
+
+
+
+

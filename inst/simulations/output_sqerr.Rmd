@@ -1,0 +1,409 @@
+---
+title: "Squared errors"
+output: 
+  html_document:
+    number_sections: true
+    toc: true
+date: "2024-01-16"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE, results = "hold")
+here::i_am("inst/simulations/output_sqerr.Rmd")
+```
+
+
+## Set params
+```{r}
+selected_networks <- c("Child (n=20)", "Alarm (n=37)", "Win95pts (n=76)")
+selected_methods <- c("BIDA+o-min", "IDA+o", "IDA+pa")
+doExport <- T
+```
+
+## Load functions and import data
+```{r message=FALSE, warning=FALSE}
+## packages -----
+library(bida)
+library(doSNOW)
+library(dplyr)
+library(ggplot2)
+library(here)
+library(foreach)
+
+
+
+files <- list.files(here::here("./inst/simulations/R"), full.names = T)
+sapply(files, "source")
+
+files <- list.files(here("../simres"), "*sqerr.rds", full.names = T)
+#readRDS(files[1])
+
+ncores <- 4
+cl <- parallel::makeCluster(ncores, type="SOCK", outfile = "")
+doSNOW::registerDoSNOW(cl)
+imp <- foreach(f = files) %dopar% readRDS(f)
+
+```
+
+Store in data frame.
+```{r}
+# collect simulation settings from filenames
+par <- stringr::str_split(files, ".+/|_|.rds", simplify = T)[, 2:5]
+colnames(par) <- c("network", "N", "r", "slearn")
+
+# store in data frame
+indx <- rep.int(seq_along(imp), lengths(imp))
+df <- data.frame(par[indx, ], reshape2::melt(imp))
+df$L1 <- NULL
+
+
+df_all <- prettify_df(df) 
+   # df <- mutate(df, procedure = case_when(slearn == "MCMCPC" & method == "value" ~ paste0("BIDA+", adjset),
+   #                                         slearn == "MCMCPC" & method == "rank" ~ paste0("BIDA-R+", adjset),
+   #                                         slearn == "MCMCPC" & method == "arp" ~ paste0("ARP+", adjset),
+   #                                         slearn == "unadjusted" ~ paste0(adjset, "."),
+   #                                         slearn == "PC05" ~ paste0("IDA+", adjset)))
+head(df_all)
+```
+
+
+
+## Number of simulation results
+```{r}
+# count rows within each simulation setting
+df_all %>%
+  group_by(network, slearn, N, adjset) %>%
+  arrange(network, slearn, N, adjset) %>% 
+ # distinct(r) %>%
+  count() %>%
+  tidyr::pivot_wider(names_from = "network", values_from = "n") %>% 
+  print(n = 100)
+```
+
+
+# Overall MSE
+Aggregate squared errors over true descendant and non-descendant. 
+First compute number of params from the true network, then the (weighted) average over descendant status.
+```{r, cache = TRUE}
+
+bnnames <- unique(par[, "network"])
+counts <- list()
+for (bnname in bnnames) {
+  bn <- readRDS(here::here("./inst/data/", paste0(bnname, ".rds")))
+  nlev <- vapply(bn, function(x) dim(x$prob)[1], integer(1))
+  dmat <- bida:::descendants(bn)
+
+  # sum number of pairs and number of intervention-prob-table params by descendant
+  counts[[bnname]] <- rowsum(cbind(npair = 1, npar = c(outer(nlev, nlev))), c(dmat))
+}
+
+
+df_counts <- data.frame(network = rep(bnnames, each = 2), 
+                  descendant = rep(c(FALSE, TRUE), length(bnnames)),
+                  do.call(rbind, counts)) %>% 
+             prettify_df()
+
+# overall mse - sum over descendant status, divide by number of params
+df <- df_all
+indx <- names(df) %in% c("descendant", "value")
+df_mse <- aggregate(df["value"], df[!indx], "sum") %>% 
+          left_join(aggregate(df_counts[, -c(1:2)], df_counts["network"], "sum"), by = "network") %>% 
+          mutate(value = 1000*value/ifelse(variable == "pdo", npar, npair))
+
+```
+
+
+## Box-plots
+Compute summarise statistics for box-plots.
+```{r}
+df_box <- df_mse %>% 
+  filter(N != 10000) %>% 
+  group_by(network, slearn, adjset, N, variable) %>% 
+  summarise_box_plot() %>% 
+  ungroup()
+head(df_box)
+```
+
+
+### Compare adjustment sets
+#### Selected networks
+To limit y-axis, plot for each network separately, and combine plots using 'ggpubr::ggarrange'
+```{r}
+
+for (v in c("pdo", "jsd")) {
+  for (s in c("MCMCPC", "KNOWN")) {
+    
+    plots <- list()
+    label <- ifelse(s == "MCMCPC", "unknown", "known")
+    
+    for (bnname in selected_networks) {
+      tmp <- df_box %>% 
+              filter(N != 10000) %>% 
+              filter(network == bnname) %>% 
+              filter(slearn == s) %>% 
+              filter(variable == v)
+                
+      if (nrow(tmp) == 0) next
+      ylim <- c(0, max(tmp$ymax)*2/3)
+        
+      plot <- ggplot(tmp, aes(N, color = adjset, fill = adjset, group = group)) +
+                geom_boxplot_no_points(width = .75) +
+                plot_adjust_theme(axis.text.x = element_text(), ylab = "", xlab = "sample size", col_scheme[["adjset"]]) +
+                facet_wrap(.~network, nrow = 1, scales = "free_y") +
+                coord_cartesian(ylim = ylim)
+        
+      plots[[bnname]] <- plot
+    }
+    
+    # combine plotw for each level of slearn
+    plot <- ggpubr::ggarrange(plotlist = plots, nrow = 1,  common.legend = T, legend = "bottom")
+    plot <- ggpubr::annotate_figure(plot,
+                                    right = paste(rep.int(c(" ", label, " "), c(0, 1, 10)), collapse = ""),
+                                    left = paste(rep.int(c(" ", "MSE * 1000", " "), c(15, 1, 0)), collapse = ""))
+    
+    # print
+    print(ggpubr::annotate_figure(plot, top = paste("Variable: ", v, "G is:", label)))
+    
+    # export
+    if (doExport) {
+      filename <- paste("sqerr_box_plot_adjust_3", v, label, ".png", sep = "_")
+      ggsave(here::here("inst/simulations/graphs/", filename), plot, height = 3.5, width = 8)
+    }
+    
+  }
+}
+```
+
+
+
+
+#### All networks
+```{r, out.width = "100%"}
+for (v in c("jsd")) {
+  plot <- df_box %>%
+    filter(variable == v) %>%
+    filter(slearn %in%  c("KNOWN", "MCMCPC")) %>%
+    mutate(slearn = ifelse(slearn == "MCMCPC", "unknown", "known")) %>%
+  ggplot(aes(N, color = adjset, fill = adjset, group = group)) +
+      geom_boxplot_no_points(width = .75) +
+      plot_adjust_theme(axis.text.x = element_text(angle = 90),
+                        ylab = "", xlab = "", col_scheme[["adjset"]]) +
+      facet_wrap(slearn~network, nrow = 2, scales = "free") +
+      scale_y_continuous(limits = c(0, NA))
+
+  # print
+  print(plot + ggtitle(sprintf("Variable: %s", v)))
+
+  # export
+  if (doExport) {
+     filename <- paste("sqerr_box_plot_adjust_all_", v , ".png", sep = "_")
+     ggsave(file = here("./inst/simulations/graphs", filename), plot = plot, height = 4, width = 6)
+     }
+}
+
+
+
+
+```
+#### Relative MSE
+
+```{r}
+df_mse %>% 
+  filter(variable == "jsd") %>% 
+  filter(slearn %in% c("KNOWN", "MCMCPC")) %>% 
+  tidyr::pivot_wider(names_from = "adjset") %>% 
+  mutate(slearn = ifelse(slearn == "MCMCPC", "unknown", "known"), 
+         across(c("pa", "o", "pa-min", "o-min"), ~.x/`o-min`)) %>% 
+  select(-`o-min`) %>% 
+  tidyr::pivot_longer(c("pa","o", "pa-min"), names_to = "adjset") %>% 
+  mutate(adjset = factor(adjset, c("pa", "pa-min", "o"))) %>% 
+  group_by(network, slearn, adjset, N, variable) %>% 
+  summarise_box_plot() %>% #ungroup() %>% distinct(slearn)
+    ggplot(aes(N, color = adjset, fill = adjset, group = group)) +
+        geom_abline(slope = 0, intercept = 1, linewidth = .25) +
+        geom_boxplot_no_points(width = .75) +
+        plot_adjust_theme(axis.text.x = element_text(angle = 90), 
+                          ylab = "", xlab = "", col_scheme[["adjset"]]) +
+        facet_wrap(slearn~network, nrow = 2, scales = "free_y") +
+        coord_cartesian(ylim = c(0, 3))
+```
+
+
+
+### Compare BIDA and IDA
+```{r}
+# filter data
+df <- df_box %>% 
+  filter(N != 10000) %>% 
+  filter(slearn %in% c("unadjusted", "MCMCPC", "PC05")) %>% 
+  filter(!(slearn == "MCMCPC" & !adjset %in% c("pa", "o-min"))) %>% 
+  mutate(procedure = case_when(slearn == "MCMCPC" ~ paste0("BIDA+", adjset),
+                               slearn == "unadjusted" ~ adjset,
+                               slearn == "PC05" ~ paste0("IDA+", adjset))) %>% 
+  mutate(procedure = factor(procedure, c("cond.", "marg.", "IDA+pa", "IDA+o",  "BIDA+pa", "BIDA+o-min")))
+# check 
+distinct(ungroup(df), slearn, adjset, variable, procedure)
+```
+
+#### Selected networks
+```{r}
+plot <- df %>% 
+  filter(variable == "jsd") %>% 
+  filter(network %in% selected_networks) %>% 
+  filter(procedure %in% selected_methods) %>% 
+  ggplot(aes(N, color = procedure, fill = procedure, group = interaction(N, procedure))) +
+      geom_boxplot_no_points(width = .6) +
+      plot_adjust_theme(axis.text.x = element_text(), ylab = "MSE * 1000", xlab = "sample size", col_scheme[["method"]]) +
+      facet_wrap(network~., scales = "free") 
+
+print(plot)
+if(doExport) {
+  filename <- paste0("sqerr_box_plot_jsd_3.png")
+  ggsave(file = here("./inst/simulations/graphs", filename), plot = plot, height = 4, width = 8)
+}
+
+```
+
+#### All networks
+```{r}
+
+plot <- df %>% 
+  filter(variable == "jsd") %>% 
+  ggplot(aes(N, color = procedure, fill = procedure, group = interaction(N, procedure))) +
+      geom_boxplot_no_points(width = .6) +
+      plot_adjust_theme(axis.text.x = element_text(), ylab = "MSE * 1000", xlab = "sample size", col_scheme[["method"]]) +
+      facet_wrap(network~., scales = "free") 
+
+print(plot)
+if(doExport) {
+  filename <- paste0("sqerr_box_plot_jsd_all.png")
+  ggsave(file = here("./inst/simulations/graphs", filename), plot = plot, height = 9, width = 7)
+}
+
+```
+
+### Intervention probabilities
+```{r}
+# filter data
+plot <- df %>% 
+  filter(variable == "pdo") %>% 
+  ggplot(aes(N, color = procedure, fill = procedure, group = interaction(N, procedure))) +
+      geom_boxplot_no_points(width = .6) +
+      plot_adjust_theme(axis.text.x = element_text(), ylab = "MSE * 1000", xlab = "sample size", col_scheme[["method"]]) +
+      facet_wrap(network~., scales = "free") 
+
+print(plot)
+if(doExport) {
+  filename <- paste0("sqerr_box_plot_pdo_all.png")
+  ggsave(file = here("./inst/simulations/graphs", filename), plot = plot, height = 9, width = 7)
+}
+
+```
+
+
+
+## Scatter plots
+```{r}
+plot_scatter <- function(df, v, x, y, facets = formula("adjset~network")) {
+  vv <- sym(v)
+  xx <- sym(x)
+  yy <- sym(y)
+  
+  df %>% 
+    filter(!! vv %in% c(x, y)) %>% 
+    tidyr::pivot_wider(names_from = v) %>% 
+    ggplot(aes(!! xx, !! yy, color = N)) +
+    facet_grid(facets, scales = "free") + 
+    geom_abline(slope = 1, intercept = 0) +
+    geom_point() -> plot
+  
+  return(plot)
+}
+```
+
+### Compare squared errors when G is known and unknwon
+```{r, results = "hide", fig.keep = "all"}
+group_by(df_mse, estimator, ace) %>% 
+  group_split() %>% 
+  lapply(function(x) plot_scatter(x, v = "slearn", x = "G", y = "MCMCPC", formula("adjset~estimator+ace+network")))
+
+```
+
+### Posterior mean JSD vs JSD of posterior mean CPTs
+Compare the point-estimates obtained as the posterior mean (smpl_jsd) and those obtained as the JSD of the posterior mean of the intervention probabilities (cond_jsd)
+
+```{r, results = "hide", fig.keep = "all"}
+df_mse %>% 
+  filter(slearn %in% c("G", "MCMCPC", "exact")) %>% 
+  filter(ace == "jsd") %>% 
+  group_by(slearn) %>%
+  group_split() %>% 
+  lapply(function(x) plot_scatter(x, v = "estimator", x = "cond", y = "smpl", formula("adjset~slearn+network")))
+```
+
+### Minimal vs maximal adjustment set 
+```{r, results = "hide", fig.keep = "all"}
+df_mse %>% 
+  filter(slearn %in% c("G", "MCMCPC")) %>%
+  filter(adjset %in% c("pa", "pa-min", "o", "o-min")) %>% 
+  mutate(minimal = ifelse(grepl("min", adjset), "minimal", "full"), 
+         adjset = ifelse(grepl("pa", adjset), "pa", "o")) %>% 
+  group_by(slearn, estimator) %>%
+  group_split() %>% 
+  lapply(function(x) plot_scatter(x, v = "minimal", x = "minimal", y = "full", formula("adjset~estimator+slearn+network")))
+
+```
+
+# MSE by true descendant status
+Aggregate squared errors over true descendant only
+```{r, cache = TRUE}
+df_mse <- df_all %>% 
+  filter(desc == TRUE) %>% 
+  group_by(network, slearn, N, r, measure, adjset, estimator, ace, desc) %>% 
+  summarize(value = 1000*sum(value)/sum(n), .groups = "keep")
+head(df_mse)
+
+```
+
+## Box-plots
+```{r}
+df_mse %>% 
+  # keep right learner-adjset pairs and learner-estimator-pair
+  filter(slearn %in% c("-", "MCMCPC", "PC05")) %>% 
+  filter(ace == "jsd",
+         !(slearn == "MCMCPC" & !estimator == "smpl"),
+         !(slearn == "MCMCPC" & !adjset %in% c("pa", "o-min"))) %>% 
+  left_join(lookup_method, by = c("slearn", "adjset", "estimator")) %>% 
+  group_by(network, slearn, adjset, estimator, ace, N, method) %>% 
+  summarise_box_plot() %>% 
+  arrange(method) %>% 
+      ggplot(aes(N, color = method, fill = method, group = group)) +
+        geom_boxplot_no_points() +
+        plot_adjust_theme(axis.text.x = element_text(), ylab = "MSE * 1000", xlab = "sample size", col_scheme[["method"]]) +
+        facet_wrap(network~., scales = "free") 
+
+
+  
+```
+
+## Compare child network to samples 
+```{r}
+bnname <- "child"
+N <- 1000
+r <- 1
+
+filepath <- here::here("./inst/data/", paste0(bnname, ".rds"))
+bn <- readRDS(filepath)
+dag <- bnlearn::amat(bn)
+nlev <- vapply(bn, function(x) dim(x$prob)[1], integer(1))
+dindx <- .row(dim(dag)) == .col(dim(dag))
+truth <- compute_ground_truth(bn)
+set.seed(r+N)
+data <- bida:::sample_data_from_bn(bn, N)
+ps   <- parent_support_from_dags(list(dag))
+bp   <- bida:::bida(ps, data, "categorical", params = list(nlev = nlev, ess = 1))
+set.seed(007)
+indx <- vapply(bp, function(x) is.null(x) || x$zerosupp == 1, logical(1))
+smpl <- vapply(bp[!indx], posterior_sample, ace_funs =list(jsd = bida:::avg_jsd_array),n = 10**3, numeric(10**3))
+tau  <- colMeans(smpl)
+```
