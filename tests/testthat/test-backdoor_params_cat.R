@@ -25,7 +25,7 @@ test_that("constructor works", {
   expect_equal(dim(par), k, ignore_attr = T)
 
   par <- backdoor_params_cat(data2, 2, 1, 3:5, nlev, min_sparse = 0)
-  expect_equal(par, counts[counts > 0], ignore_attr = T)
+  expect_equal(par$value, counts[counts > 0], ignore_attr = T)
   expect_equal(par$dim, k, ignore_attr = T)
 
 
