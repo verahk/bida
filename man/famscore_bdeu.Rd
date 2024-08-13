@@ -2,18 +2,40 @@
 % Please edit documentation in R/famscore_bdeu.R
 \name{famscore_bdeu}
 \alias{famscore_bdeu}
-\title{Compute BDeu family score for categorical data}
+\alias{famscore_bdeu_byrow}
+\alias{famscore_bdeu_1row}
+\title{Compute family score for categorical data (BDeu-score)}
 \usage{
-famscore_bdeu(m, ess = 1)
+famscore_bdeu(m, ess = 1, r = ncol(m), q = nrow(m))
+
+famscore_bdeu_byrow(m, ess, r = ncol(m), q = nrow(m), s = 1)
+
+famscore_bdeu_1row(x, ess, r = length(x), q = 1, s = 1)
 }
 \arguments{
-\item{m}{a \code{kx}-by-\code{kpa} matrix with counts (a frequency table).}
+\item{m}{(matrix) a \code{q-by-r} matrix with counts (a frequency table)}
 
 \item{ess}{equivalent sample size parameter.}
+
+\item{r}{cardinality of outcome variable}
+
+\item{q}{cardinality of parent set}
+
+\item{s}{number of parent outcomes in each row of \code{x}. Default to 1.}
+
+\item{x}{(array) an \code{1-by-r} matrix or vector of length \code{r} with counts.}
 }
 \value{
-family score.
+the bdeu score
 }
 \description{
-Compute BDeu family score for categorical data
+Compute family score for categorical data (BDeu-score)
 }
+\details{
+\itemize{
+\item \code{famscore_bdeu} assumes \code{x} is a matrix (due to \code{rowSums}, the functions fails if \code{dim(x) = NULL})
+\item \code{famscore_bdeu_1row} assumes \code{x} is an 1-by-\code{r}or array. Faster than \code{famscore_bdeu} in this case. Used in \link{optimize_partition}.
+\item \code{famscore_bdeu_byrow} assumes \code{x} is a matrix and returns a vector with the scores of each row of \code{x}. Used in \link{optimize_partition}.
+}
+}
+\keyword{internal}

@@ -1,23 +1,43 @@
-#' Compute BDeu family score for categorical data
-#' @param m a \code{kx}-by-\code{kpa} matrix with counts (a frequency table).
+
+#' Compute family score for categorical data (BDeu-score)
+#' @param m (matrix) a `q-by-r` matrix with counts (a frequency table)
+#' @param x (array) an `1-by-r` matrix or vector of length `r` with counts.
 #' @param ess equivalent sample size parameter.
-#' @returns family score.
+#' @param r cardinality of outcome variable
+#' @param q cardinality of parent set
+#' @param s number of parent outcomes in each row of `x`. Default to 1.
+#' @details
+#' - `famscore_bdeu` assumes `x` is a matrix (due to `rowSums`, the functions fails if `dim(x) = NULL`)
+#' - `famscore_bdeu_1row` assumes `x` is an 1-by-`r`or array. Faster than `famscore_bdeu` in this case. Used in [optimize_partition].
+#' - `famscore_bdeu_byrow` assumes `x` is a matrix and returns a vector with the scores of each row of `x`. Used in [optimize_partition].
 #'
+#' @returns the bdeu score
+#' @keywords internal
+#' @example
 #'
-famscore_bdeu <- function(m, ess = 1){
-
-  kx  <- ncol(m)     # cardinality of x
-  kpa <- nrow(m)     # cardinality of parent set
-  a  <- ess/(kx*kpa) # bdeu prior for each p(x|pa = u)
-
-  kpa*lgamma(kx*a) - sum(lgamma(kx*a+rowSums(m))) + sum(lgamma(a+m)) - kx*kpa*lgamma(a)
+#' m <- matrix(1:4, 2, 2)
+#' ess <- 1
+#' famscore_bdeu(m, ess)
+#' famscore_bdeu(m, ess) == sum(famscore_bdeu_byrow(m, ess))
+#' famscore_bdeu_byrow(m, ess) == apply(m, 1, function(x) famscore_bdeu_1row(x, ess, q = nrow(m)))
+#'
+famscore_bdeu <- function(m, ess = 1, r = ncol(m), q = nrow(m)){
+  a <- ess/(r*q)
+  q*lgamma(r*a) - r*q*lgamma(a) + sum(lgamma(a+m)) - sum(lgamma(r*a+rowSums(m)))
 }
 
-famscore_bdeu_part <- function(m, s, q = sum(s), ess = 1) {
-  r    <- ncol(m)    # cardinality of x
-  aji  <- ess/q*s    # bdeu prior for each context p(pa = u)
-  ajil <- aji/r      # bdeu prior for each p(x|pa = u)
-
-
-  sum(lgamma(aji) - lgamma(rowSums(m)+aji) - r*lgamma(ajil)) + sum(lgamma(ajil+m))
+#' @rdname famscore_bdeu
+famscore_bdeu_byrow <- function(m, ess, r = ncol(m), q = nrow(m), s = 1) {
+  ralpha <- ess*s/q
+  alpha <- ralpha/r
+  lgamma(ralpha) - r*lgamma(alpha) + rowSums(lgamma(alpha + m)) - lgamma(ralpha + rowSums(m))
 }
+
+#' @rdname famscore_bdeu
+famscore_bdeu_1row <- function(x, ess, r = length(x), q = 1, s = 1) {
+  ralpha <- ess*s/q
+  alpha <- ralpha/r
+  lgamma(ralpha) - r*lgamma(alpha) + sum(lgamma(alpha + x)) - lgamma(ralpha + sum(x))
+}
+
+

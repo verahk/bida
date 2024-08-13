@@ -1,0 +1,245 @@
+
+
+#' Class: `bida_bdeu`
+#'
+#' Parameters of a Dirichlet distribution over a conditional probability table (CPT),
+#' assuming a BDeu-prior.
+#'
+#'
+#' @name bida_bdeu
+#' @param counts
+#' @param ess
+#' @param partition
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#' nlev <- 2:4
+#' data <- rbind(c(0, 0, 0),
+#'               c(1, 2, 3))
+#'
+#' j <- 1
+#' parentnodes <- 2:length(nlev)
+#' bdeu <- bida_bdeu(data, j, parentnodes, ess = 1, nlev)
+#'
+#' # optimize partition of parent space
+#' opt <- optimize_bdeu(obj, method = "tree", regular = F)
+#' opt$partition
+#' bdeu_part <- replace(bdeu, "partition", list(opt$partition))
+#'
+#' # compute score
+#' score_bdeu(bdeu)
+#' score_bdeu(bdeu_part)
+#'
+#' # update hyperparams
+#' update_bdeu(bdeu)
+#' update_bdeu(bdeu_part)
+#'
+#' # posterior mean
+#' mean_bdeu(bdeu)
+#' mean_bdeu(bdeu_part, reduced = T)  # means of reduced CPT
+#' mean_bdeu(bdeu_part, reduced = F)  # means of full CPT
+#'
+#' # posterior sample
+#' dim(sample_bdeu(1000, bdeu_part))
+#' dim(sample_bdeu(1000, bdeu_part, reduced = F))
+#'
+#'
+#'
+bida_bdeu <- function(data, j, parentnodes, ess, nlev, partition = NULL) {
+  subset <- c(j, parentnodes)
+  counts <- counts_from_data_matrix(data[, subset, drop = FALSE], nlev[subset], sparse = T)
+  structure(list(counts = counts,
+                 partition = partition,
+                 ess = ess),
+            class = "bida_bdeu")
+}
+
+
+optimize_bdeu <- function(obj, method, ...) {
+
+  dims <- get_dim(obj$counts)
+  if (length(dims) < 2) return(NULL)
+  counts <- as.array(obj$counts)
+  ess <- obj$ess
+
+  # represent counts in q-by-r matrix
+  r <- dims[1]
+  q <- prod(dims[-1])
+  counts <- matrix(counts, q, r, byrow = T)
+
+  # optimize partitition
+  levels <- lapply(dims[-1]-1, seq.int, from = 0)
+  optimize_partition(counts, levels, ess, method, ...)
+}
+
+
+#' @rdname bdeu_par
+#' @details
+#' - `update_bdeu`: updates BDeu-hyper parameters.
+#'    If `is.null(obj$partition)`, returns a full (non-sparse) array with the same
+#'    dimensions as `obj$counts`. Otherwise a `r-by-nparts` matrix, where `r` is
+#'    the cardinality of the outcome and `nparts` the size of the partition of the
+#'    parent space.
+#' @export
+update_bdeu <- function(obj, parent_config = NULL) {
+  if (is.null(parent_config)) {
+
+    counts <- as.array(obj$counts)
+    ess <- obj$ess
+    partition <- obj$partition
+
+    if (is.null(partition)) {
+      ess/length(counts) + counts
+    } else {
+      r <- dim(counts)[1]         # cardinality of outcome variable
+      q <- prod(dim(counts)[-1])  # cardinality of parent variables
+
+      # represent counts in q-by-r matrix for rowsum
+      counts <- matrix(counts, q, r, byrow = T)
+
+      # compute posterior hyperparameters
+      parts <- get_parts(partition)
+      alpha <- ess/(r*q)*lengths(partition) + rowsum_fast(counts, parts, seq_along(partition))
+      attr(alpha, "parts") <- parts
+      t(alpha)
+    }
+  } else {
+    stop()
+  }
+}
+
+#' @rdname bdeu_par
+#' @details
+#' - `score_bdeu` computes the Bayesian score of the CPT
+#' @export
+score_bdeu <- function(obj) {
+
+  dims <- get_dim(obj)
+  ess <- obj$ess
+  r <- dims[1]
+  q <- prod(dims[-1])
+
+  # represent counts in q-by-r matrix for scoring functions
+  counts <- as.array(obj$counts)
+  counts <- matrix(counts, q, r, byrow = T)
+
+  if (is.null(obj$partition)) {
+    famscore_bdeu(counts, ess, r, q)
+  } else {
+
+    # aggregate counts
+    parts <- get_parts(obj$partition)
+    agg <- rowsum_fast(counts, parts, seq_along(obj$partition))
+
+    # compute family score
+    sum(famscore_bdeu_byrow(agg, ess, r, q, lengths(obj$partition)))
+  }
+}
+
+#' @rdname bdeu_par
+#' @details
+#' - `mean_bdeu` computes the (posterior) mean of the CPT
+#' @export
+mean_bdeu <- function(obj, reduced = TRUE) {
+  alpha <- p <- update_bdeu(obj)
+  if (length(dim(alpha)) < 2) {
+    return(alpha/sum(alpha))
+  } else {
+    dims <- get_dim(obj)
+    p <- alpha/rep(colSums(alpha), each = dims[1])
+  }
+
+  if (reduced || is.null(obj$partition)) {
+    return(p)
+  } else {
+    parts <- attr(alpha, "parts")
+    array(p[ , parts], dims)
+  }
+}
+
+#' @rdname bdeu_par
+#' @details
+#' `sample_bdeu` samples CPTs from the posterior
+#' @export
+sample_bdeu <- function(size, obj, reduced = TRUE) {
+
+  alpha <- update_bdeu(obj)
+
+  if (is.null(dim(alpha))) {
+    t(rDirichlet(n, alpha))
+  } else {
+    dims <- get_dim(obj)
+
+    # sample joint probabilities
+    p <- array(t(bida:::rDirichlet(size, alpha)), c(dim(alpha), size))
+
+    # compute conditional probabilities
+    p <- p/rep(colSums(p), each = dims[1])
+
+    if (reduced || is.null(obj$partition)) {
+      return(p)
+    } else {
+      # replicate and return as array
+      parts <- attr(alpha, "parts")
+      array(p[ , parts, ], c(dims, size))
+    }
+  }
+}
+
+#' @rdname bdeu_par
+#' @export
+backdoor_mean_bdeu <- function(obj) {
+  dims <- get_dim(obj)
+  if (length(dims) < 2) {
+    mean_bdeu(obj)
+  } else {
+
+    ess <- obj$ess
+
+    # compute conditional means
+    py.xz <- mean_bdeu(obj, reduced = F)
+
+    # compute counts over adjustment sets
+    Nyxz <- as.array(obj$counts)
+    az <- colSums(Nyxz, dims = 2) + ess/prod(dims[-c(1:2)])
+
+    # sum out z
+    rowSums(py.xz*rep(az, each = prod(dims[1:2])), dims = 2)/sum(az)
+  }
+}
+
+#' @rdname bdeu_par
+#' @export
+backdoor_sample_bdeu <- function(size, obj, digits = 10e-16) {
+
+  dims <- get_dim(obj)
+  if (length(dims) < 2) {
+    round(sample_bdeu(size, obj), digits)
+  } else {
+
+    ess <- obj$ess
+    k <- prod(dims)
+    kxy <- prod(dims[1:2])
+    kz  <- k/kxy
+
+    # force 3-dim array
+    obj$counts$dim <- c(dims[1:2], kz)
+
+    # compute counts over adjustment sets
+    z <- obj$counts$index%/%kxy
+    az <- rowsum_fast(obj$counts$value, z, seq_len(kz)-1) + ess/kz
+
+    # sample distributions over adjustment set
+    pz <- round(rDirichlet(size, az, length(az)), digits)
+
+    # sample conditional means
+    py.xz <- round(sample_bdeu(size, obj, reduced = F), digits)
+
+    rowSums(aperm(py.xz, c(1, 2, 4, 3))*rep(pz, each = kxy), dims = 3)
+  }
+}
+
+

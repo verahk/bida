@@ -71,7 +71,7 @@ backdoor_params_cat <- function(data, x, y, z, nlev, min_sparse = 2**10) {
         tmp  <- tabulate(match(yxz, uyxz), length(uyxz))
         nyxz <- new_bida_sparse_array(tmp,
                                       index = uyxz,
-                                      dims  = dims)
+                                      dim  = dims)
       }
     }
   }
@@ -94,8 +94,7 @@ backdoor_params_cat <- function(data, x, y, z, nlev, min_sparse = 2**10) {
 #'    i.e. a conditional probability table where element (x, y) equals is $P(Y = y| do(X = x))$
 #' @export
 posterior_mean.backdoor_params_cat <- function(nyxz, ess, kx) {
-  #NextMethod()
-  if (is.array(nyxz)) {
+  if (is.array(nyxz) || length(nyxz$dim) < 3) {
     posterior_mean.backdoor_params_cat_array(nyxz, ess, kx)
   } else {
     posterior_mean.backdoor_params_cat_sparse(nyxz, ess, kx)
@@ -125,13 +124,13 @@ posterior_mean.backdoor_params_cat_array <- function(nyxz, ess, kx = 1) {
 
 
 
-posterior_mean.backdoor_params_cat_sparse <- function(nyxz, ess, kx = 1) {
+posterior_mean.backdoor_params_cat_sparse <- function(obj, ess, kx = 1) {
 
-  dims <- dim(nyxz)
+  dims <- obj$dim
 
   if (length(dims) < 3) {
     # if there is no adjustment variables, convert to array
-    posterior_mean.backdoor_params_cat_array(as.array(nyxz), ess, kx)
+    posterior_mean.backdoor_params_cat_array(as.array(obj), ess, kx)
   } else {
 
     # cardinality of (sets of) variables
@@ -139,7 +138,7 @@ posterior_mean.backdoor_params_cat_sparse <- function(nyxz, ess, kx = 1) {
     kyx  <- kyxz%/%dims[3]
 
     # find observed levels of adjustment set z
-    yxz <- attr(nyxz, "index")
+    yxz <- nyxz$index
     yx  <- yxz%%kyx     # observed levels of (y, x)
     z   <- yxz%/%kyx    # observed levels of z
     uz  <- unique(z)    # unique levels
@@ -155,7 +154,7 @@ posterior_mean.backdoor_params_cat_sparse <- function(nyxz, ess, kx = 1) {
     } else {
       upd  <- yxz
     }
-    ayxz[upd+1] <- ess/kyxz + nyxz
+    ayxz[upd+1] <- ess/kyxz + obj$counts
     axz <- colSums(ayxz)
     az  <- colSums(axz)
 
@@ -166,7 +165,7 @@ posterior_mean.backdoor_params_cat_sparse <- function(nyxz, ess, kx = 1) {
     p <- p + (1-nuz/dims[3])*1/dims[1]
 
     # normalize
-    p <- p/(ess+sum(nyxz))
+    p <- p/(ess+sum(obj$counts))
     return(t(p))
   }
 }
@@ -245,15 +244,15 @@ posterior_sample.backdoor_params_cat_array <- function(nyxz, samplesize, ess, kx
 
 
 
-posterior_sample.backdoor_params_cat_sparse <- function(nyxz, samplesize, ess, kx){
+posterior_sample.backdoor_params_cat_sparse <- function(obj, samplesize, ess, kx){
 
   stopifnot(samplesize > 0)
-  dims <- dim(nyxz)
+  dims <- obj$dim
 
   if (length(dims) < 3) {
 
     # if there is no adjustment variables, convert to array
-    posterior_sample.backdoor_params_cat_array(as.array(nyxz), samplesize, ess, kx)
+    posterior_sample.backdoor_params_cat_array(as.array(obj), samplesize, ess, kx)
 
   } else {
 
@@ -267,14 +266,14 @@ posterior_sample.backdoor_params_cat_sparse <- function(nyxz, samplesize, ess, k
     kz  <- dims[3]
 
     # find observed levels of (y, x) and adjustment set z
-    yxz <- attr(nyxz, "index")
+    yxz <- obj$index
     yx  <- yxz%%kyx +1       # observed outcomes of (y, x) combined
     z   <- yxz%/%kyx +1      # observed outcomes of z
 
     # compute params of posterior over p(z)
     uz  <- unique(z)                                   # unique observed levels
     az  <- rep(ess/kz, kz)                             # prior hyperparams
-    az[uz] <- ess/kz + rowsum_fast(nyxz, z, uz)        # update by adding counts
+    az[uz] <- ess/kz + rowsum_fast(obj$counts, z, uz)  # update by adding counts
 
     # draw p(z)
     pz <- round(rDirichlet(samplesize, az), 15)
@@ -301,7 +300,7 @@ posterior_sample.backdoor_params_cat_sparse <- function(nyxz, samplesize, ess, k
       # update hyperparams
       ayxz <- a0
       tmp.indx <- z == zz
-      ayxz[yx[tmp.indx]] <- a0[1] + nyxz[tmp.indx]
+      ayxz[yx[tmp.indx]] <- a0[1] + obj$index[tmp.indx]
 
 
       # sample conditional distrib p(y|x, z)

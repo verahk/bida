@@ -1,0 +1,201 @@
+---
+title: "test_optimize_partition"
+author: "Vera Kvisgaard"
+date: "2024-05-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      results = "hold")
+```
+
+```{r, results = "hide"}
+library(pcalg) # for as(adjmat, "graphNEL")
+library(bida)
+here::i_am("./inst/vignettes/optimize_partition.Rmd")
+```
+
+## Test optmization routines
+Write a routine that, for a given frequency table, compares the partitions and local scores resulting from each optimization routine `methods = c("tree", "ldag", "part")`.
+```{r}
+tester <- function(counts, levels, methods = c("tree", "ldag", "part"), regular = F) {
+  df <- cbind(expand.grid(levels), n = counts)
+  scores <- setNames(numeric(length(methods)), methods)
+  for (method in methods) {
+    res <- optimize_partition(counts, levels, ess = 1, method, regular = regular)
+    df[[method]] <- get_parts(res$partition)
+    scores[method] <- sum(res$scores)
+  }
+  df[["none"]] <- seq_len(nrow(counts))
+  scores["none"] <- sum(bida:::famscore_bdeu_byrow(counts, 1, ncol(counts), nrow(counts), s = 1))
+  return(list(df, scores))
+}
+```
+
+
+### Binary split
+Compare partitions for a frequency table with a binary split of the outcome space, where the outcome variable is independent of one variable:
+```{r}
+levels <- rep(list(0:1), 2)
+counts <- cbind(10, c(10, 10, 100, 100))
+tester(counts, levels)
+```
+### V-structure
+Compare partitions given a frequency table corresponding to a v-structure with labels on both parents.
+```{r}
+levels <- rep(list(0:1), 2)
+counts <- cbind(10, c(10, 100, 100, 100))
+tester(counts, levels)
+```
+The `tree`-partition returns only one region, i.e. the no-parent CPT, as the score is not improved by splitting on any of the parent variables for the given frequency table. 
+```{r}
+cat("Score, P(Y|X1, X2):")
+sum(bida:::famscore_bdeu_byrow(counts, ess = 1, r = 2, q = 4, s = 1))
+cat("Score, P(Y|X2):")
+sum(bida:::famscore_bdeu_byrow(rowsum(counts, c(1, 1, 2, 2)), ess = 1, r = 2, q = 4, s = c(2, 2)))
+cat("Score P(Y):")
+sum(bida:::famscore_bdeu_byrow(matrix(colSums(counts), 1), ess = 1, r = 2, q = 4, s = 4))
+```
+
+In the following example, also the `tree` procedure captures the correct local structure.
+```{r}
+levels <- rep(list(0:1), 2)
+counts <- cbind(c(100, 10, 10, 10), c(10, 100, 100, 100))
+tester(counts, levels, regular = F)
+```
+
+The `regular` option of the `optimize_partition` function forces a partition that do not implicitly encode any conditional independencies.
+```{r}
+tester(counts, levels, regular = T)
+```
+
+
+Write function for comparing partitions, by a paired-confusion-matrix https://stats.stackexchange.com/questions/548778/how-to-compute-a-pair-confusion-matrix. 
+```{r}
+compute_confusion_matrix_for_partitions <- function(x, y) {
+  stopifnot(length(x) == length(y))
+  res <- matrix(character(), length(x), length(y))
+  # loop over all pairs
+  for (i in seq_along(x)[-1]) {
+    for (j in seq.int(1, i-1)) {
+      if (x[i] == x[j]) {
+        if (y[i] == y[j]) {
+          res[i, j] <- "a"
+        } else {
+          res[i, j] <- "b"
+        }
+      } else {
+        if (y[i] == y[j]) {
+          res[i, j] <- "c"
+        } else {
+          res[i, j] <- "d"
+        }
+      }
+    }
+  }
+  table(factor(res, c("a", "b", "c", "d")))
+}
+```
+
+```{r}
+bn   <- readRDS(here::here("./data/LDAG10.rds"))
+dag  <- bnlearn::amat(bn)
+nlev <- rep(2, 10)  
+levels <- lapply(nlev-1, seq.int, from = 0)
+probs <- lapply(bn, "[[", "prob")
+
+```
+
+
+# KNOWN DAG - compare parameter estimates given true DAG structure
+```{r}
+
+eval_bdeu <- function(fit, true) {
+  res <- matrix(NA, 1, 6)
+  colnames(res) <- c("score", "mse", paste0("co_memb_", letters[1:4]))
+  res[1, 1] <- score_bdeu(fit)
+  
+  m <- mean_bdeu(fit, reduced = F)
+  res[1, 2] <- mean((m-true)**2) 
+  
+  if (!is.null(fit$partition)) {
+    q <- prod(dim(true)[-1])
+    true_parts <- seq_len(q)
+    tmp <- asplit(true, -1)
+    for (i in seq_len(q)[-1]) {
+      for (j in seq.int(1, i-1)) {
+        if (all(tmp[[i]] == tmp[[j]])) true_parts[i] <- true_parts[j]
+      }
+    } 
+    parts <- get_parts(fit$partition)
+    res[1, 3:6] <- compute_confusion_matrix_for_partitions(parts, true_parts)
+  }
+  return(res)
+}
+
+
+dims <- list(node = seq_along(bn), N = round(10**seq(2, 6, length.out = 30)))
+res  <- array(list(), lengths(dims), dims)
+
+for (N in dims$N) {
+  data <- sample_data_from_bn(bn, N)
+  
+  for (j in seq_along(bn)) {
+    parentnodes <- which(dag[, j] == 1)
+  
+    fits <- list() 
+    
+    # compute BDeu-params for full CPT 
+    fit <- bida_bdeu(data, j, parentnodes, ess = 1, nlev = nlev)
+    fits$std <- fit
+    
+    if (length(parentnodes) > 1) {
+      # optimize partition of parent outcomes
+      for (method in c("tree", "ldag")) {
+        tmp <- optimize_bdeu(fit, method = method)
+        fits[[method]] <- replace(fit, "partition", list(tmp$partition))
+      }
+    }
+    
+    tmp <- lapply(fits, eval_bdeu, true = probs[[j]])
+    df  <- data.frame(method = names(fits), do.call(rbind, tmp))
+    res[[paste(j), paste(N)]] <- df
+  }
+}
+
+
+
+```
+
+```{r}
+library(ggplot2)
+tmp <- expand.grid(dimnames(res))
+indx <- rep.int(seq_len(nrow(tmp)), vapply(res, nrow, integer(1)))
+df <- cbind(tmp[indx, ], do.call(rbind, res))
+df$N <- as.numeric(levels(df$N))[df$N] 
+
+# plot score 
+ggplot(df, aes(N, -score, color = method, group = method)) +
+  facet_wrap(node~., scales = "free") +
+  geom_point() + 
+  geom_line() +
+  scale_y_log10()
+
+ggplot(df, aes(N, mse, color = method, group = method)) +
+  facet_wrap(node~., scales = "free") +
+  geom_point() + 
+  geom_line() +
+  scale_y_log10() +
+  scale_x_log10()
+
+
+df$ratio <- with(df, (co_memb_a+co_memb_d)/(co_memb_a+co_memb_b+co_memb_c+co_memb_d))
+ggplot(df, aes(N, ratio, color = method, group = method)) +
+  facet_wrap(node~., scales = "free") +
+  geom_point() + 
+  geom_line() +
+  coord_cartesian(ylim = c(0, 1)) +
+  scale_x_log10()
+
+```

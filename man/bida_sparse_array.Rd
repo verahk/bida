@@ -3,14 +3,17 @@
 \name{bida_sparse_array}
 \alias{bida_sparse_array}
 \alias{new_bida_sparse_array}
+\alias{as.array.bida_sparse_array}
 \title{class: cida sparse array}
 \usage{
-new_bida_sparse_array(x, index, dims, names = NULL)
+new_bida_sparse_array(value, index, dim, dimnames = NULL)
+
+\method{as.array}{bida_sparse_array}(x)
 }
 \arguments{
-\item{x}{(numeric vector) values of non-zero elements}
-
 \item{index}{(integer vector) position of non-zero elements}
+
+\item{x}{(numeric vector) values of non-zero elements}
 
 \item{dims}{(integer vector) dimension of array}
 }
@@ -25,5 +28,22 @@ x <- array(c(0, 0, 1, 0, 0, 1, 0, 0, 1), dim = c(3, 3))
 y <- new_bida_sparse_array(c(1, 1, 1), c(3, 6, 9), c(3, 3))
 y
 all.equal(x, as.array(x))
+
+
+# compare size of sparse and non-sparse arrays
+obj_size <- matrix(NA, 10, 2)
+sparsity <- .25 # share of non-zero elements
+for (i in seq_len(nrow(obj_size))) {
+  dims <- rep(2, i)
+  index  <- sample(prod(dims), round(prod(dims)*sparsity))
+  counts <- sample(10, size = length(index), replace = T)
+
+  sparse <- new_bida_sparse_array(counts, index, dims)
+  arr    <- as.array(sparse)
+  obj_size[i, 1] <- pryr::object_size(sparse)
+  obj_size[i, 2] <- pryr::object_size(arr)
+}
+
+matplot(obj_size, type = "l", log = "y")
 }
 \keyword{internal}

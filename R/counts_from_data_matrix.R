@@ -31,7 +31,7 @@ counts_from_data_matrix <- function (data, nlev, sparse = F) {
     tmp <- tabulate(match(group, ugroup), length(ugroup))
 
     # return sparse array with counts
-    new_bida_sparse_array(tmp, index = ugroup, dims = nlev)
+    new_bida_sparse_array(tmp, index = ugroup, dim = nlev)
   } else {
     tmp <- tabulate(group + 1, cump[n])
     array(tmp, nlev)                    # return array with counts
