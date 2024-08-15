@@ -111,10 +111,7 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
 
         return(score)
       }
-    } else {
-      stop(paste0("Invalid scoretype:", scoretype))
     }
-
 
     # assign function to name-space of BiDAG package
     assignInNamespace("usrDAGcorescore", usrDAGcorescore, ns = "BiDAG")

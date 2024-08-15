@@ -1,7 +1,7 @@
 
 #  Compare partitions
 #  Compute paired-confusion-matrix https://stats.stackexchange.com/questions/548778/how-to-compute-a-pair-confusion-matrix.
-compute_confusion_matrix_for_partitions <- function(x, y) {
+partition_confusion_matrix <- function(x, y) {
   stopifnot(length(x) == length(y))
   res <- matrix(character(), length(x), length(y))
   # loop over all pairs

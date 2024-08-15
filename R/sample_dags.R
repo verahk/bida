@@ -39,7 +39,9 @@
 #' colnames(data) <- paste0("X", seq_along(nlev))
 #'
 #' scorepar <- define_scoreparameters(data, "bdecat", par = list(chi  = 1, edgepf = 2))
-#' sample_dags(scorepar, "pcskel", "order", verbose = T)
+#' smpl <- sample_dags(scorepar, "pcskel", "order", verbose = T)
+#' attributes(smpl)
+#' smpl
 sample_dags <- function(scorepar, algo_init = "pcskel", algo_sample = "order", hardlimit = 5, verbose = F) {
 
   tic <- Sys.time()
