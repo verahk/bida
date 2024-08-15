@@ -57,12 +57,12 @@ params_to_filename <- function(par) {
 }
 
 
-# Load
-#devtools::install_github("verahk/bida", ref = "dev")
+# load libraries and aux functions ----
+devtools::install_github("verahk/bida", ref = "dev")
 library(doSNOW)
 source("./inst/simulations/ldags/simulate_and_write_to_file.R", echo = T)
 
-# Specify simulation params ----
+# specify simulation params ----
 par <- list(bnname = "asia",
             init = "pcskel",
             struct = c("none", "ldag", "tree"),
@@ -82,7 +82,7 @@ nClusters <- 6
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 export  <- c("run_sample_dags")                # objects to export with clusterExport()
 
-
+# test ----
 if (FALSE) {
   # test
   i <- 2
@@ -100,6 +100,8 @@ if (FALSE) {
   remove.dir(outdir)
 
 }
+
+# run simulation ----
 if (nClusters == 1) {
   for (i in seq_len(nrow(pargrid))) simulate_and_write_to_file(simId,
                                                           outdir,
