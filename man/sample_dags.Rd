@@ -72,5 +72,7 @@ data <- sapply(nlev, sample, size = 100, replace = T) -1
 colnames(data) <- paste0("X", seq_along(nlev))
 
 scorepar <- define_scoreparameters(data, "bdecat", par = list(chi  = 1, edgepf = 2))
-sample_dags(scorepar, "pcskel", "order", verbose = T)
+smpl <- sample_dags(scorepar, "pcskel", "order", verbose = T)
+attributes(smpl)
+smpl
 }
