@@ -3,7 +3,6 @@
 %   R/optimize_partition_ldag.R, R/optimize_partition_tree.R
 \name{optimize_partition}
 \alias{optimize_partition}
-\alias{optimize_partition_from_cpt}
 \alias{optimize_partition_ldag}
 \alias{optimize_partition_tree}
 \title{Optimize partition over parent outcome space}
@@ -17,8 +16,6 @@ optimize_partition(
   min_score_improv = 0,
   verbose = FALSE
 )
-
-optimize_partition_from_cpt(cpt, ess, method, regular = T, return_cpt = TRUE)
 
 optimize_partition_ldag(
   counts,

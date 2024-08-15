@@ -71,131 +71,104 @@ tester(counts, levels, regular = T)
 ```
 
 
-Write function for comparing partitions, by a paired-confusion-matrix https://stats.stackexchange.com/questions/548778/how-to-compute-a-pair-confusion-matrix. 
-```{r}
-compute_confusion_matrix_for_partitions <- function(x, y) {
-  stopifnot(length(x) == length(y))
-  res <- matrix(character(), length(x), length(y))
-  # loop over all pairs
-  for (i in seq_along(x)[-1]) {
-    for (j in seq.int(1, i-1)) {
-      if (x[i] == x[j]) {
-        if (y[i] == y[j]) {
-          res[i, j] <- "a"
-        } else {
-          res[i, j] <- "b"
-        }
-      } else {
-        if (y[i] == y[j]) {
-          res[i, j] <- "c"
-        } else {
-          res[i, j] <- "d"
-        }
-      }
-    }
-  }
-  table(factor(res, c("a", "b", "c", "d")))
-}
-```
 
 ```{r}
+
+
+
+```
+
+
+
+```{r}
+
+# import labeled DAG
 bn   <- readRDS(here::here("./data/LDAG10.rds"))
+bn   <- readRDS(here::here("./data/asia.rds"))
 dag  <- bnlearn::amat(bn)
-nlev <- rep(2, 10)  
-levels <- lapply(nlev-1, seq.int, from = 0)
 probs <- lapply(bn, "[[", "prob")
 
-```
+# extract levels and partitions from distribution - to draw random distribution over labeled DAG
+nlev <- sapply(probs, function(x) dim(x)[1])
+levels <- lapply(nlev-1, seq.int, from = 0)
+partitions <- lapply(probs, partition_from_cpt_array)
 
-
-# KNOWN DAG - compare parameter estimates given true DAG structure
-```{r}
-
-eval_bdeu <- function(fit, true) {
-  res <- matrix(NA, 1, 6)
-  colnames(res) <- c("score", "mse", paste0("co_memb_", letters[1:4]))
-  res[1, 1] <- score_bdeu(fit)
+par <- list(node = seq_along(bn), 
+            N = round(10**seq(2, 4, length.out = 50)))
+res <- array(list(), lengths(par), par)
+for (N in par$N) {
   
-  m <- mean_bdeu(fit, reduced = F)
-  res[1, 2] <- mean((m-true)**2) 
-  
-  if (!is.null(fit$partition)) {
-    q <- prod(dim(true)[-1])
-    true_parts <- seq_len(q)
-    tmp <- asplit(true, -1)
-    for (i in seq_len(q)[-1]) {
-      for (j in seq.int(1, i-1)) {
-        if (all(tmp[[i]] == tmp[[j]])) true_parts[i] <- true_parts[j]
-      }
-    } 
-    parts <- get_parts(fit$partition)
-    res[1, 3:6] <- compute_confusion_matrix_for_partitions(parts, true_parts)
-  }
-  return(res)
-}
-
-
-dims <- list(node = seq_along(bn), N = round(10**seq(2, 6, length.out = 30)))
-res  <- array(list(), lengths(dims), dims)
-
-for (N in dims$N) {
+  #bn <- rand_bn(dag, "cat", alpha = 1, nlev = nlev, partitions = partitions)
   data <- sample_data_from_bn(bn, N)
   
   for (j in seq_along(bn)) {
-    parentnodes <- which(dag[, j] == 1)
-  
-    fits <- list() 
-    
+    #parentnodes <- which(dag[, j] == 1)
+    parentnodes <- match(bn[[j]]$parents, names(bn))
     # compute BDeu-params for full CPT 
     fit <- bida_bdeu(data, j, parentnodes, ess = 1, nlev = nlev)
-    fits$std <- fit
     
+    # list params for CPTs with different local-structure
+    fits <- list() 
+    fits$none <- fit
     if (length(parentnodes) > 1) {
       # optimize partition of parent outcomes
       for (method in c("tree", "ldag")) {
-        tmp <- optimize_bdeu(fit, method = method)
+        tmp <- optimize_bdeu(fit, method = method, regular = F)
         fits[[method]] <- replace(fit, "partition", list(tmp$partition))
       }
     }
     
-    tmp <- lapply(fits, eval_bdeu, true = probs[[j]])
-    df  <- data.frame(method = names(fits), do.call(rbind, tmp))
-    res[[paste(j), paste(N)]] <- df
+    # evaluate fitted parameters
+    dimnames <- list(method = names(fits),
+                     variable = c("score", "mse", letters[1:4]))
+    eval <- array(NA, lengths(dimnames), dimnames)
+    for (i in seq_along(fits)) {
+      fit   <- fits[[i]]
+      eval[i, "score"] <- score_bdeu(fit) 
+      eval[i, "mse"]  <- mean((mean_bdeu(fit, reduced = FALSE)-bn[[j]]$prob)**2)
+      if (is.null(fit$partition)) next 
+      comemb <- partition_confusion_matrix(get_parts(fit$partition), get_parts(partitions[[j]]))
+      eval[i, 3:6] <- comemb/sum(comemb)
+    }
+    
+    res[[paste(j), paste(N)]] <- eval
   }
 }
 
-
-
 ```
+
+
+
 
 ```{r}
 library(ggplot2)
-tmp <- expand.grid(dimnames(res))
-indx <- rep.int(seq_len(nrow(tmp)), vapply(res, nrow, integer(1)))
-df <- cbind(tmp[indx, ], do.call(rbind, res))
-df$N <- as.numeric(levels(df$N))[df$N] 
+
+df <- expand.grid(dimnames(res), stringsAsFactors = FALSE)
+df$N <- as.numeric(df$N)
+
+tmp <- do.call(rbind, res)
+indx <- rep.int(seq_len(nrow(df)), vapply(res, nrow, integer(1)))
+df  <- cbind(df[indx, ], local_struct = rownames(tmp), tmp)
 
 # plot score 
-ggplot(df, aes(N, -score, color = method, group = method)) +
+ggplot(df, aes(N, -score, color = local_struct, group = local_struct)) +
   facet_wrap(node~., scales = "free") +
   geom_point() + 
   geom_line() +
   scale_y_log10()
 
-ggplot(df, aes(N, mse, color = method, group = method)) +
+ggplot(df, aes(N, mse, color = local_struct, group = local_struct)) +
   facet_wrap(node~., scales = "free") +
-  geom_point() + 
   geom_line() +
   scale_y_log10() +
   scale_x_log10()
 
 
-df$ratio <- with(df, (co_memb_a+co_memb_d)/(co_memb_a+co_memb_b+co_memb_c+co_memb_d))
-ggplot(df, aes(N, ratio, color = method, group = method)) +
-  facet_wrap(node~., scales = "free") +
-  geom_point() + 
-  geom_line() +
-  coord_cartesian(ylim = c(0, 1)) +
+tmp <- tidyr:::pivot_longer(df, letters[1:4])
+tmp <- dplyr::filter(tmp, !local_struct == "none")
+ggplot(tmp, aes(N, value, color = name, fill = name)) +
+  facet_grid(node~local_struct, scales = "free") +
+  geom_area() +
   scale_x_log10()
 
 ```

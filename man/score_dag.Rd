@@ -4,7 +4,7 @@
 \alias{score_dag}
 \title{Compute Bayesian score of DAG}
 \usage{
-score_dag(dag, data, type = "cat", params)
+score_dag(data, dag, type = "cat", params)
 }
 \arguments{
 \item{data}{(matrix) data matrix}
@@ -39,10 +39,10 @@ dag[upper.tri(dag)] <- 1
 N <- 100
 params <- list(nlev = rep(3, n), ess = 1)
 data <- sapply(params$nlev, sample, size = N, replace = T) -1
-score <- score_dag(dag, data, type = "cat", params)
-score == score_dag(t(dag), data, type = "cat", params) # score equiv
+score <- score_dag(data, dag, type = "cat", params)
+score == score_dag(data, t(dag), type = "cat", params) # score equiv
 
 # labeled DAG - add list of partitions of each CPT
 params$partition <- list(NULL, NULL, list(c(0, 1), 2, 3))
-score_dag(dag, data, type = "cat", params)
+score_dag(data, dag, type = "cat", params)
 }

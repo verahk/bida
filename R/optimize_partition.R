@@ -108,20 +108,3 @@ optimize_partition <- function(counts, levels, ess, method, regular = F, min_sco
   return(res)
 }
 
-#' @rdname optimize_partition
-optimize_partition_from_cpt <- function(cpt, ess, method, regular = T, return_cpt = TRUE) {
-  n <- length(cpt$levels)
-  if (n > 2) {
-    res <- optimize_partition(cpt$counts, cpt$levels[-n], ess, method, regular, verbose = FALSE)
-    if (return_cpt) {
-      cpt$partition <- res$partition
-      cpt$counts <- res$counts
-      cpt$score  <- sum(res$scores)
-      return(cpt)
-    } else {
-      res$partition
-    }
-  } else if (return_cpt) {
-    return(cpt)
-  }
-}

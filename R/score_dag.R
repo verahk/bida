@@ -24,13 +24,13 @@
 #' N <- 100
 #' params <- list(nlev = rep(3, n), ess = 1)
 #' data <- sapply(params$nlev, sample, size = N, replace = T) -1
-#' score <- score_dag(dag, data, type = "cat", params)
-#' score == score_dag(t(dag), data, type = "cat", params) # score equiv
+#' score <- score_dag(data, dag, type = "cat", params)
+#' score == score_dag(data, t(dag), type = "cat", params) # score equiv
 #'
 #' # labeled DAG - add list of partitions of each CPT
 #' params$partition <- list(NULL, NULL, list(c(0, 1), 2, 3))
-#' score_dag(dag, data, type = "cat", params)
-score_dag <- function(dag, data, type = "cat", params) {
+#' score_dag(data, dag, type = "cat", params)
+score_dag <- function(data, dag, type = "cat", params) {
   n <- ncol(dag)
   scores <- numeric(n)
 
@@ -41,49 +41,41 @@ score_dag <- function(dag, data, type = "cat", params) {
   sum(scores)
 }
 
+
 score_fam <- function(data, j, parentnodes, type, params) {
   switch(type,
-         "cat" = score_fam_cat(data, j, parentnodes, params$ess, params$nlev, params$partitions))
+         "cat" = score_fam_cat(data, j, parentnodes, params))
 }
 
-score_fam_cat <- function(data, j, parentnodes, ess, nlev, partitions = NULL) {
+
+score_fam_cat <- function(data, j, parentnodes, params) {
+  ess  <- params$ess
+  nlev <- params$nlev
+
   r <- nlev[j]
-  npar <- length(parentnodes)
-  if (npar == 0) {
+  nparents <- length(parentnodes)
+  if (nparents == 0) {
     tab <- tabulate(data[, j]+1, r)
-    famscore_bdeu_1row(tab, ess)
-  } else if (is.null(partitions) || is.null(partitions[[j]])) {
+    return(famscore_bdeu_1row(tab, ess))
+  } else {
 
     # enumerate joint outcomes
     stride <- c(1, cumprod(nlev[parentnodes]))
     joint  <- data[, c(parentnodes, j), drop = FALSE]%*%stride
 
     # compute frequency table
-    q   <- stride[npar+1]
+    q   <- stride[nparents+1]
     tab <- matrix(tabulate(joint + 1, q*r), q, r, byrow = F)
 
-    # compute family score
-    famscore_bdeu(tab, ess, r, q)
-
-  } else {
-
-    q <- prod(nlev[parentnodes])
-    stopifnot(length(unlist(partitions[[j]])) == q)
-
-    # enumerate joint parent outcomes
-    stride <- c(1, cumprod(nlev[parentnodes[-npar]]))
-    pa     <- data[, parentnodes, drop = FALSE]%*%stride
-
-    # map to parts
-    parts <- get_parts(partitions[[j]])[pa+1]
-
-    # enumerate joint outcomes and compute freq table
-    nparts <- length(partitions[[j]])
-    joint  <- parts + nparts*data[, j]
-    tab <- matrix(tabulate(joint, nparts*r), nparts, r)
-
-    # compute family score
-    sum(famscore_bdeu_byrow(tab, ess, r, q, lengths(partitions[[j]])))
+    if (nparents < 2 || is.null(params$local_structure)) {
+      return(famscore_bdeu(tab, ess, r, q))
+    } else {
+      opt <- optimize_partition(tab,
+                                levels = params$levels,
+                                ess = params$ess,
+                                local_structure = params$local_structure,
+                                regular = params$regular)
+      sum(opt$scores)
+    }
   }
 }
-

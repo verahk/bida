@@ -2,21 +2,22 @@
 % Please edit documentation in R/bida_bdeu.R
 \name{bida_bdeu}
 \alias{bida_bdeu}
+\alias{new_bida_bdeu}
 \title{Class: \code{bida_bdeu}}
 \usage{
-bida_bdeu(data, j, parentnodes, ess, nlev, partition = NULL)
+new_bida_bdeu(counts, ess, partition)
 }
 \arguments{
 \item{partition}{}
 }
 \description{
-Represents the parameters of a BDeu-distribution over a conditional probability table (CPT).
+Parameters of a Dirichlet distribution over a conditional probability table (CPT),
+assuming a BDeu-prior.
 }
 \examples{
 
 nlev <- 2:4
-data <- rbind(c(0, 0, 0),
-              c(1, 2, 3))
+data <- sapply(nlev, sample, size = 100, replace = T) -1
 
 j <- 1
 parentnodes <- 2:length(nlev)

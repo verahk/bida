@@ -17,14 +17,9 @@ test_that("score equivalence of bdeu score", {
 
   # test score equivalence standard DAG
   data <- sapply(params$nlev, sample, size = 100, replace = T)-1
-  expect_equal(score_dag(dag1, data, type = "cat", params),
-               score_dag(dag2, data, type = "cat", params))
-  expect_equal(score_dag(dag1, data, type = "cat", params),
-               score_dag(dag3, data, type = "cat", params))
-
-  # test score equivalence of labeled dag
-  params$partitions = list(NULL, NULL, c(0:2, 3))
-  expect_equal(score_dag(dag1, data, type = "cat", params),
-               score_dag(dag2, data, type = "cat", params))
+  expect_equal(score_dag(data, dag1,  type = "cat", params),
+               score_dag(data, dag2, type = "cat", params))
+  expect_equal(score_dag(data, dag1, type = "cat", params),
+               score_dag(data, dag3, type = "cat", params))
 
 })

@@ -17,8 +17,7 @@
 #' @examples
 #'
 #' nlev <- 2:4
-#' data <- rbind(c(0, 0, 0),
-#'               c(1, 2, 3))
+#' data <- sapply(nlev, sample, size = 100, replace = T) -1
 #'
 #' j <- 1
 #' parentnodes <- 2:length(nlev)
@@ -48,17 +47,21 @@
 #'
 #'
 #'
-bida_bdeu <- function(data, j, parentnodes, ess, nlev, partition = NULL) {
-  subset <- c(j, parentnodes)
-  counts <- counts_from_data_matrix(data[, subset, drop = FALSE], nlev[subset], sparse = T)
+
+new_bida_bdeu <- function(counts, ess, partition) {
   structure(list(counts = counts,
                  partition = partition,
                  ess = ess),
             class = "bida_bdeu")
 }
 
+bida_bdeu <- function(data, j, parentnodes, ess, nlev, partition = NULL) {
+  subset <- c(j, parentnodes)
+  counts <- counts_from_data_matrix(data[, subset, drop = FALSE], nlev[subset], sparse = T)
+  new_bida_bdeu(counts, ess, partition)
+}
 
-optimize_bdeu <- function(obj, method, ...) {
+optimize_bdeu <- function(obj, method, levels = NULL, ...) {
 
   dims <- get_dim(obj$counts)
   if (length(dims) < 2) return(NULL)
@@ -71,7 +74,7 @@ optimize_bdeu <- function(obj, method, ...) {
   counts <- matrix(counts, q, r, byrow = T)
 
   # optimize partitition
-  levels <- lapply(dims[-1]-1, seq.int, from = 0)
+  if (is.null(levels)) levels <- lapply(dims[-1]-1, seq.int, from = 0)
   optimize_partition(counts, levels, ess, method, ...)
 }
 
