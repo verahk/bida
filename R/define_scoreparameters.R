@@ -63,7 +63,8 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
                                        usrpar = list(pctesttype = "bdecat"))
 
     # add cardinality of variables
-    scorepar$Cvec <- scorepar$nlev <- par$nlev  # CVec is used in PC-routine of BiDAG-functions (?)
+    scorepar$nlev <- par$nlev
+    scorepar$Cvec <- par$nlev # CVec is used in PC-routine of BiDAG-functions (?)
 
     # additional parameters for user-specified score params
     scorepar$ess <- par$ess
