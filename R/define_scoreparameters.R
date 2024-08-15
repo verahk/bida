@@ -56,7 +56,7 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
                                        data = df,
                                        bdecatpar = list(chi = par$ess, edgepf = par$edgepf))
 
-  } else if (FALSE || scoretype %in% c("tree", "ldag", "part")) {
+  } else if (scoretype %in% c("tree", "ldag", "part")) {
 
     scorepar <- BiDAG::scoreparameters("usr",
                                        data = data,
@@ -111,6 +111,8 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
 
         return(score)
       }
+    } else {
+      stop(paste0("Invalid scoretype:", scoretype))
     }
 
 
