@@ -58,21 +58,22 @@ params_to_filename <- function(par) {
 
 
 # Load
-#devtools::install_github("verahk/bida", ref = "dev")
+devtools::install_github("verahk/bida", ref = "dev")
 library(doSNOW)
 source("./inst/simulations/ldags/simulate_and_write_to_file.R", echo = T)
 
 # Specify simulation params ----
-par <- list(bnname = "asia",
+par <- list(bnname = c("asia", "sachs", "child"),
             init = "pcskel",
             struct = c("none", "ldag", "tree"),
             sample = "order",
             ess = 1,
             edgepf = 2,
             hardlimit = 5,
-            regular = TRUE,
+            regular = FALSE,
             N = 10**c(2:4),
-            r = 1:10)
+            r = 1:30)
+
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
 
 outdir <- "./inst/simulations/ldags/MCMCchains/"  # directory for storing res

@@ -192,57 +192,5 @@ sample_bdeu <- function(size, obj, reduced = TRUE) {
   }
 }
 
-#' @rdname bdeu_par
-#' @export
-backdoor_mean_bdeu <- function(obj) {
-  dims <- get_dim(obj)
-  if (length(dims) < 2) {
-    mean_bdeu(obj)
-  } else {
-
-    ess <- obj$ess
-
-    # compute conditional means
-    py.xz <- mean_bdeu(obj, reduced = F)
-
-    # compute counts over adjustment sets
-    Nyxz <- as.array(obj$counts)
-    az <- colSums(Nyxz, dims = 2) + ess/prod(dims[-c(1:2)])
-
-    # sum out z
-    rowSums(py.xz*rep(az, each = prod(dims[1:2])), dims = 2)/sum(az)
-  }
-}
-
-#' @rdname bdeu_par
-#' @export
-backdoor_sample_bdeu <- function(size, obj, digits = 10e-16) {
-
-  dims <- get_dim(obj)
-  if (length(dims) < 2) {
-    round(sample_bdeu(size, obj), digits)
-  } else {
-
-    ess <- obj$ess
-    k <- prod(dims)
-    kxy <- prod(dims[1:2])
-    kz  <- k/kxy
-
-    # force 3-dim array
-    obj$counts$dim <- c(dims[1:2], kz)
-
-    # compute counts over adjustment sets
-    z <- obj$counts$index%/%kxy
-    az <- rowsum_fast(obj$counts$value, z, seq_len(kz)-1) + ess/kz
-
-    # sample distributions over adjustment set
-    pz <- round(rDirichlet(size, az, length(az)), digits)
-
-    # sample conditional means
-    py.xz <- round(sample_bdeu(size, obj, reduced = F), digits)
-
-    rowSums(aperm(py.xz, c(1, 2, 4, 3))*rep(pz, each = kxy), dims = 3)
-  }
-}
 
 
