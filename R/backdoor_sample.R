@@ -26,7 +26,7 @@ backdoor_sample.bida_bdeu <- function(size, obj, dims_ipt = get_dim(obj), digits
     if (ndims == 2 || length(dims_ipt) == 1)  return(tmp)
     # produce a sample of CPTs by replicating the marginal distribution
     array(rep(tmp, each = dims_ipt[2]), c(dims_ipt, size))
-  } else if (dims == 2)
+  } else if (dims == 2) {
     round(sample_bdeu(size, obj), digits)
   } else {
 
