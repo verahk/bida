@@ -16,12 +16,12 @@ interv_probs_from_bn(bn, method = c("exact", "bn"))
 interv_probs_x_exact(cpts, x, y, dmat)
 }
 \arguments{
-\item{obj}{a object defining the distribution, see \code{cpts} or \code{bn}}
+\item{obj}{a object defining the distribution.}
 
 \item{method}{either \code{"exact"} or \code{"bn"}}
 
 \item{cpts}{a list of cpt_arrays of length \code{n}, where \code{names(dimnames(cpts[[i]]))} gives
-scope of the variable \code{i}.}
+scope of the \code{i}th CPT.}
 
 \item{bn}{a object of class \code{bnlearn::bn.fit.dnet} of length \code{n}}
 
@@ -50,4 +50,31 @@ the node and compute the intervention distributions. For non-descendants,
 the interventional CPTs are filled with the marginal distribution of the
 pre-intervention distribution.
 }
+}
+\examples{
+
+bn <- readRDS("./data/asia.rds")
+
+exact  <- interv_probs_from_bn(bn, method = "exact")
+approx <- interv_probs_from_bn(bn, method = "bn")
+plot(unlist(exact), unlist(approx))
+abline(a = 0, b = 1, col = "red")
+
+#' diff <- unlist(exact)-unlist(approx)
+plot(diff)
+stopifnot(max(abs(diff)) < 10e-2)
+
+# ointervention distribution from cpt_arrays
+cpts <- cpt_arrays_from_bn(bn)
+exact2 <- interv_probs_from_cpt_arrays(cpts, method = "exact")
+
+# for method = "exact", the results are reproducable
+stopifnot(all.equal(exact, exact2))
+
+# for method = "bn", slightly different estimates are given in different runs
+approx2 <- interv_probs_from_cpt_arrays(cpts, method = "bn")
+plot(unlist(approx), unlist(approx2))
+abline(a = 0, b = 1, col = "red")
+
+
 }

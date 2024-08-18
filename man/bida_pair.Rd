@@ -6,7 +6,7 @@
 \alias{posterior_sample.bida_pair_cat}
 \title{Class: \code{bida_pair}}
 \usage{
-bida_pair(type, data, x, y, sets, support, par, lookup = NULL)
+bida_pair(type, data, x, y, sets, support, hyperpar, lookup = NULL)
 
 \method{posterior_mean}{bida_pair_cat}(x, n = 10^3, ace_funs = NULL)
 
@@ -66,15 +66,34 @@ See \link{optimize_partition}.
 }
 }
 \examples{
-nlev <- rep(2, 3)
+
+x <- 1 # cause node
+y <- 2 # effect node
+
+# construct parent sets
+sets <- matrix(NA, 4, 2)
+sets[1, ]          # no parents
+sets[2, 1] <- 3    # single parent
+sets[3, ]  <- 3:4  # multiple parents
+sets[4, 1] <- y    # parent set includes node `y`
+sets
+
+support <- rep(1/nrow(sets), nrow(sets)) # uniform support
+
+# categorical data ----
+nlev <- 1:4 +1
 lev  <- lapply(nlev-1, seq.int, from = 0)
 data <- as.matrix(expand.grid(lev))
-sets <- matrix(c(NA, 2), nrow = 3)
-fit <- bida_pair_cat(data, 1, 2, sets, rep(1/3, 3), nlev, ess = 0)
-fit
+hyperpar <- list(nlev = nlev,  levels = lev, ess = 1)
+
+pair <- bida_pair("cat", data, x, y, sets, support, hyperpar)
+str(pair, max.level = 1)
+
+
 # compute posterior mean
-posterior_mean(fit)
+posterior_mean(pair)
+
 # sample from postrior
-posterior_sample(fit)
+posterior_sample(pair)
 
 }

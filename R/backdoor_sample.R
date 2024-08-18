@@ -11,7 +11,7 @@
 #'
 
 backdoor_sample <- function(x, ...){
-  UseMethod("backdoor_mean", x)
+  UseMethod("backdoor_sample", x)
 }
 
 

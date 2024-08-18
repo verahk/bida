@@ -39,18 +39,37 @@
 #' - `support`:
 #' - `zerosupp`:
 #' @examples
-#' nlev <- rep(2, 3)
+#'
+#' x <- 1 # cause node
+#' y <- 2 # effect node
+#'
+#' # construct parent sets
+#' sets <- matrix(NA, 4, 2)
+#' sets[1, ]          # no parents
+#' sets[2, 1] <- 3    # single parent
+#' sets[3, ]  <- 3:4  # multiple parents
+#' sets[4, 1] <- y    # parent set includes node `y`
+#' sets
+#'
+#' support <- rep(1/nrow(sets), nrow(sets)) # uniform support
+#'
+#' # categorical data ----
+#' nlev <- 1:4 +1
 #' lev  <- lapply(nlev-1, seq.int, from = 0)
 #' data <- as.matrix(expand.grid(lev))
-#' sets <- matrix(c(NA, 2), nrow = 3)
-#' fit <- bida_pair_cat(data, 1, 2, sets, rep(1/3, 3), nlev, ess = 0)
-#' fit
-#' # compute posterior mean
-#' posterior_mean(fit)
-#' # sample from postrior
-#' posterior_sample(fit)
+#' hyperpar <- list(nlev = nlev,  levels = lev, ess = 1)
 #'
-bida_pair <- function(type, data, x, y, sets, support, par, lookup = NULL) {
+#' pair <- bida_pair("cat", data, x, y, sets, support, hyperpar)
+#' str(pair, max.level = 1)
+#'
+#'
+#' # compute posterior mean
+#' posterior_mean(pair)
+#'
+#' # sample from postrior
+#' posterior_sample(pair)
+#'
+bida_pair <- function(type, data, x, y, sets, support, hyperpar, lookup = NULL) {
 
   # indicator for zero-effects
   indx     <- rowSums(sets == y, na.rm = T) > 0
@@ -59,41 +78,30 @@ bida_pair <- function(type, data, x, y, sets, support, par, lookup = NULL) {
   params <- vector("list", nrow(sets))
   for (r in seq_along(params)[!indx]) {
     z <- sets[r, ]
-    params[[r]] <- backdoor_params_cat(data, x, y, z[!is.na(z)], nlev)
+    params[[r]] <- backdoor_params(type, data, x, y, z[!is.na(z)], hyperpar, lookup)
   }
 
   # compute backdoor params and support for zero-effects
-  if (any(indx)) {
-    zerosupp <- sum(support[indx])
-    tmp <- backdoor_params(data, x, y, y, nlev)
-    params <- c(list(tmp), params[!indx])
-    support <- c(zerosupp, support[!indx])
-  } else {
-    zerosupp <- 0
+  zeropar <- backdoor_params(type, data, x, y, y, hyperpar, lookup)
+  zerosupp <- sum(support[indx])
+
+  # store parameters in a list, where the zero-effects are placed first
+  params <- c(list(zeropar), params[!indx])
+  support <- c(zerosupp, support[!indx])
+
+  if (match(type, c("cat", "ldag", "tree"), 0L) > 0) {
+    new_bida_pair_bdeu(x, y, params, support, zerosupp, dim = hyperpar$nlev[c(y, x)])
   }
-
-  new_bida_pair(type, x, y, params, support, zerosupp, list(dim = nlev[c(y, x)]))
 }
 
-new_bida_pair <- function(type, x, y, params, support, zerosupp, par) {
-  tmp <- list(x = x,
-              y = y,
-              params = params,
-              support = support,
-              zerosupp = zerosupp)
-
-  if (type %in% c("cat", "ldag", "tree")) {
-    tmp$dim  <- par$dim
-    subclass <- "bida_pair_bdeu"
-  }
-
-  structure(tmp, class("bida_pair", "bida_pair_bdeu"))
+new_bida_pair_bdeu <- function(x, y, params, support, zerosupp, dim){
+  structure(list(x = x,
+                 y = y,
+                 params = params,
+                 support = support,
+                 zerosupp = zerosupp,
+                 dim = dim),
+            class = c("bida_pair", "bida_pair_bdeu"))
 }
 
-print.bida_pair <- function(x) {
-  cat(sprintf("\nAn object of class %s:", class(x)[2]),
-      sprintf("\nx = %s, y = %s", x$x, x$y),
-      sprintf("\nUnique adjustment sets: %s", length(x$params)),
-      sprintf("\nSupport for zero-effect: %s", x$support[1]))
-}
 

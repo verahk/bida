@@ -12,7 +12,7 @@ optimize_partition(
   levels,
   ess,
   method,
-  regular = F,
+  regular = T,
   min_score_improv = 0,
   verbose = FALSE
 )

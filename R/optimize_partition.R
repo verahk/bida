@@ -86,14 +86,17 @@
 #'       get_parts(part$partition))
 #'
 #'
-optimize_partition <- function(counts, levels, ess, method, regular = F, min_score_improv = 0, verbose = FALSE){
+optimize_partition <- function(counts, levels, ess, method, regular = T, min_score_improv = 0, verbose = FALSE){
   method <- match.arg(method, c("tree", "ldag", "part"))
+  if (is.null(regular)) regular <- TRUE
+
   res <- switch(method,
                "tree" = optimize_partition_tree(counts, levels, ess, min_score_improv, verbose = verbose),
                "ldag" = optimize_partition_ldag(counts, levels, ess, regular, min_score_improv, verbose = verbose),
                "part" = optimize_partition_part(counts, levels, ess, regular, min_score_improv, verbose = verbose))
 
   if (regular && method == "tree") {
+
     # ensure that partition is regular
     new_P <- make_regular(res$partition, lengths(levels))
     if (!length(new_P) == length(res$partition)) {

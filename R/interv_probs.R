@@ -4,7 +4,7 @@
 #'
 #' @name interv_probs
 #' @param cpts a list of cpt_arrays of length `n`, where `names(dimnames(cpts[[i]]))` gives
-#'  scope of the variable `i`.
+#'  scope of the `i`th CPT.
 #' @param bn a object of class `bnlearn::bn.fit.dnet` of length `n`
 #' @param method either `"exact"` or `"bn"`
 #' @return a `n`-by-`n` matrix with intervention probabilities
@@ -23,12 +23,39 @@
 NULL
 
 #' @rdname interv_probs
-#' @param obj a object defining the distribution, see `cpts` or `bn`
+#' @param obj a object defining the distribution.
 #' @param dag adjacency matrix of `obj`
 #' @export
+#' @examples
+#'
+#' bn <- readRDS("./data/asia.rds")
+#'
+#' exact  <- interv_probs_from_bn(bn, method = "exact")
+#' approx <- interv_probs_from_bn(bn, method = "bn")
+#' plot(unlist(exact), unlist(approx))
+#' abline(a = 0, b = 1, col = "red")
+#'
+#' #' diff <- unlist(exact)-unlist(approx)
+#' plot(diff)
+#' stopifnot(max(abs(diff)) < 10e-2)
+#'
+#' # ointervention distribution from cpt_arrays
+#' cpts <- cpt_arrays_from_bn(bn)
+#' exact2 <- interv_probs_from_cpt_arrays(cpts, method = "exact")
+#'
+#' # for method = "exact", the results are reproducable
+#' stopifnot(all.equal(exact, exact2))
+#'
+#' # for method = "bn", slightly different estimates are given in different runs
+#' approx2 <- interv_probs_from_cpt_arrays(cpts, method = "bn")
+#' plot(unlist(approx), unlist(approx2))
+#' abline(a = 0, b = 1, col = "red")
+#'
+#'
+
+
 interv_probs <- function(obj, dmat, method = c("exact", "bn")) {
 
-  # precompute marginal probs
   margs <- switch(method,
                   "exact" = marginal_probs_exact(obj, dmat),
                   "bn" = marginal_probs_bn(obj))
@@ -46,14 +73,14 @@ interv_probs <- function(obj, dmat, method = c("exact", "bn")) {
     k <- nlev[i]
     pdo[[i, i]] <- diag(k)
 
-    # for non-descendants
-    nonDe <- which(dmat[i, ] == 0)
+    # for non-descendants, intervention probs equal marginal probs
+    nonDe <- seqn[dmat[i, ] == 0]
     if (length(nonDe) > 0) {
       pdo[i, nonDe] <- lapply(margs[nonDe],
-                              function(p) matrix(rep(p, each = k), nrow = k))
+                              function(p) matrix(rep(p, k), ncol = k))
     }
 
-    # for descendants
+    # for descendants, compute intervention probs
     if (length(nonDe) < n-1) {
       De <- seqn[-c(i, nonDe)]
       pdo[i, De] <- switch(method,
@@ -64,13 +91,15 @@ interv_probs <- function(obj, dmat, method = c("exact", "bn")) {
   return(pdo)
 }
 
+
+
 #' @rdname interv_probs
 #' @export
 interv_probs_from_cpt_arrays <- function(cpts, method =  c("exact", "bn")) {
   dag  <- dag_from_cpt_arrays(cpts)
-  dmat <- bida::descendants(dag)
+  dmat <- descendants(dag)
   if (method == "bn") {
-    bn <- bn_from_cpt_arrays(cpts, dag)
+    bn <- bn_from_cpt_arrays(cpts)
     interv_probs(bn, dmat, method)
   } else {
     interv_probs(cpts, dmat, method)
@@ -105,32 +134,35 @@ interv_probs_x_exact <- function(cpts, x, y, dmat) {
   for (j in seq_along(y)) {
 
     yy   <- y[j]
-    anc  <- dmat[, yy] == 1
+
+    # to compute conditional P(y|do(x)), list all ancestors of node yy (including x, also if not true ancestor)
+    anc  <- replace(dmat[, yy] == 1, x, TRUE)
+    # indicator for variables to eliminate / marginalize over
     elim <- replace(anc, c(x, yy), FALSE)
 
     if (!any(elim)) {
 
       # x is only ancestor of yy
-      out[[j]] <- t(unname(cpts[[yy]]))
+      out[[j]] <- unname(cpts[[yy]])
 
     } else {
 
       #  for each intervention level
-      evidence <- array(0, k, setNames(list(NULL), varnames[x]))
+      zeros <- array(0, k, setNames(list(NULL), varnames[x]))
       probs <- vector("list", k)
       for (kk in seqk) {
 
         # replace cpt of intervention variable
         do_cpts <- cpts
-        do_cpts[[x]] <- replace(evidence, kk, 1)
+        do_cpts[[x]] <- replace(zeros, kk, 1)
 
         # compute marginal probs
         tmp <- sum_product_ve(do_cpts[anc], varnames[elim])
-        tmp <- aperm(tmp, varnames[c(x, yy)])
-        probs[[kk]] <- tmp[kk, ]
+        tmp <- aperm(tmp, varnames[c(yy, x)])
+        probs[[kk]] <- tmp[, kk]
       }
 
-      out[[j]] <- do.call("rbind", probs)
+      out[[j]] <- do.call("cbind", probs)
     }
   }
   return(out)
@@ -156,7 +188,7 @@ interv_probs_x_bn <- function(bn, x, y, dmat) {
     probs[kk, ]  <- lapply(data, function(x) tabulate(x, nlevels(x))/nrow(data))
   }
 
-  apply(probs, 2, function(x) do.call("rbind", x), simplify = FALSE)
+  apply(probs, 2, function(x) do.call("cbind", x), simplify = FALSE)
 }
 
 
@@ -182,19 +214,18 @@ interv_prob_from_cpts_mc <- function(cpts, x, y, oc, top_ordering = NULL, sample
   return(out)
 }
 
+
 # compute marginal probabilities
-marginal_probs_exact <- function(cpts, dmat) {
-  lapply(seq_along(cpts),
-         function(j) cpquery_from_cpt_arrays(cpts, j, NULL, dmat[, j] == 1))
+marginal_probs_exact <- function(cpts, dmat, nodes = seq_along(cpts)) {
+  lapply(nodes, function(j) cpquery_from_cpt_arrays(cpts, j, NULL, dmat[, j] == 1))
 }
-marginal_probs_bn  <- function(bn) {
-  data  <- bnlearn::cpdist(bn, names(bn), evidence = TRUE)
+marginal_probs_bn  <- function(bn, nodes = seq_along(bn)) {
+  data  <- bnlearn::cpdist(bn, names(bn)[nodes], evidence = TRUE)
   lapply(data, function(x) tabulate(x, nlevels(x))/nrow(data))
 }
 
 
-
-## OLD
+## OLD ----
 
 interv_probs_from_bn_old <- function(bn, samplesize = 10**4){
 
