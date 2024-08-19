@@ -14,10 +14,16 @@
 #' @keywords internal
 #'
 #' @examples
-#' x <- array(c(0, 0, 1, 0, 0, 1, 0, 0, 1), dim = c(3, 3))
-#' y <- new_bida_sparse_array(c(1, 1, 1), c(3, 6, 9), c(3, 3))
+#'
+#' vals <- seq(3, 27, by = 3)
+#' x <- new_bida_sparse_array(vals, vals-1, c(3, 3, 3))
+#' y <- as.array(x)
 #' y
-#' all.equal(x, as.array(x))
+#'
+#' dims <- 2:4
+#' x <- new_bida_sparse_array(rep(1, prod(dims)), seq_len(prod(dims))-1, dims)
+#' y <- aperm(x, c(3:1))
+#' stopifnot(all.equal(as.array(y), aperm(as.array(x), c(3:1))))
 #'
 #'
 #' # compare size of sparse and non-sparse arrays
@@ -57,7 +63,24 @@ as.numeric.bida_sparse_array <- function(x) {
   y[x$index+1] <- x$value
 }
 
-is.bida_sparse_array <- function(x) class(x) == "bida_sparse_array"
+#' @rdname bida_sparse_array
+#' @export
+aperm.bida_sparse_array <- function(x, perm) {
+  indx <- x$index
+  dims <- x$dim
+  n <- length(dims)
+
+  stride <- c(1, cumprod(dims[-n]))
+  conf <- mapply(function(s, k) (indx%/%s)%%k, stride, dims)
+
+  new_dims <- dims[perm]
+  new_indx <- c(conf[, perm, drop = F]%*%c(1, cumprod(new_dims[-n])))
+
+  x$dim    <- new_dims
+  x$index  <- new_indx
+
+  return(x)
+}
 
 colSums_bida_sparse_array <- function(x, dims = 1) {
   tmp <- seq_len(dims)

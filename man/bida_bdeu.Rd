@@ -17,14 +17,15 @@ assuming a BDeu-prior.
 \examples{
 
 nlev <- 2:4
-data <- sapply(nlev, sample, size = 100, replace = T) -1
+lev  <- lapply(nlev-1, seq.int, from = 0)
+data <- expand_grid_fast(lev)
 
 j <- 1
 parentnodes <- 2:length(nlev)
 bdeu <- bida_bdeu(data, j, parentnodes, ess = 1, nlev)
 
 # optimize partition of parent space
-opt <- optimize_bdeu(obj, method = "tree", regular = F)
+opt <- optimize_bdeu(bdeu, method = "tree", regular = T)
 opt$partition
 bdeu_part <- replace(bdeu, "partition", list(opt$partition))
 
@@ -35,6 +36,12 @@ score_bdeu(bdeu_part)
 # update hyperparams
 update_bdeu(bdeu)
 update_bdeu(bdeu_part)
+
+# permute parent dimension
+perm <- c(1, 3, 2)
+bdeu_perm <- aperm(bdeu_part, perm)
+stopifnot(all.equal(as.array(bdeu_perm$counts), array(1, nlev[perm])))
+bdeu_perm
 
 # posterior mean
 mean_bdeu(bdeu)

@@ -4,11 +4,14 @@
 \alias{bida_sparse_array}
 \alias{new_bida_sparse_array}
 \alias{as.array.bida_sparse_array}
+\alias{aperm.bida_sparse_array}
 \title{class: cida sparse array}
 \usage{
 new_bida_sparse_array(value, index, dim, dimnames = NULL)
 
 \method{as.array}{bida_sparse_array}(x)
+
+\method{aperm}{bida_sparse_array}(x, perm)
 }
 \arguments{
 \item{index}{(integer vector) position of non-zero elements}
@@ -24,10 +27,16 @@ an object of class \code{bida_sparse_array}
 Sparse representation of multi-dimensional arrays.
 }
 \examples{
-x <- array(c(0, 0, 1, 0, 0, 1, 0, 0, 1), dim = c(3, 3))
-y <- new_bida_sparse_array(c(1, 1, 1), c(3, 6, 9), c(3, 3))
+
+vals <- seq(3, 27, by = 3)
+x <- new_bida_sparse_array(vals, vals-1, c(3, 3, 3))
+y <- as.array(x)
 y
-all.equal(x, as.array(x))
+
+dims <- 2:4
+x <- new_bida_sparse_array(rep(1, prod(dims)), seq_len(prod(dims))-1, dims)
+y <- aperm(x, c(3:1))
+stopifnot(all.equal(as.array(y), aperm(as.array(x), c(3:1))))
 
 
 # compare size of sparse and non-sparse arrays

@@ -85,32 +85,36 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
 
       npar <- length(parentnodes)
       pG   <- -npar*log(scorepar$edgepf) # penality term for edges
+      parentnodes <- sort(parentnodes)   # for parID
       bdeu <- bida_bdeu(scorepar$data, j, parentnodes, scorepar$ess, scorepar$nlev)
 
       if (npar < 2) {
         # no partitioning possible, return score
         return(score_bdeu(bdeu)+pG)
-      } else if (is.null(scorepar$lookup)) {
-        # optimize partitioning of parent space
-        opt <- optimize_bdeu(bdeu, method = scorepar$local_struct, levels = scorepar$levels[parentnodes], regular = scorepar$regular)
-        return(sum(opt$scores)+pG)
-      } else {
-        parId <- paste(c(j, sort(parentnodes)), collapse = ".")
-        scores <- scorepar$lookup[[scorepar$local_struct]]
+      } else if (!is.null(scorepar$lookup)) {
+        parID <- paste(c(j, parentnodes), collapse = ".")
 
         # if score is already computed, return score
-        if (length(scores) > 0 && parId %in% names(scores)) return(scores[[parId]]$score)
+        scores <- scorepar$lookup[[scorepar$local_struct]]
+        if (length(scores) > 0 && parID %in% names(scores)) {
+          return(scores[[parID]]$score+pG)
+        }
+      }
 
-        # optimize partitioning of parent space
-        opt <- optimize_bdeu(bdeu, method = scorepar$local_struct, levels = scorepar$levels[parentnodes], regular = scorepar$regular)
-        score <- sum(opt$scores) +pG
+      # optimize partitioning of parent space
+      opt <- optimize_bdeu(bdeu,
+                           method = scorepar$local_struct,
+                           levels = scorepar$levels[parentnodes],
+                           regular = scorepar$regular)
+      score <- sum(opt$scores)
 
+      if (!is.null(scorepar$lookup)) {
         # store score and bdeu-params in lookup
         bdeu$partition  <- opt$partition
-        scorepar$lookup[[scorepar$local_struct]][[parId]] <- list(score = score, bdeu = bdeu)
-
-        return(score)
+        bdeu$score <- score
+        scorepar$lookup[[scorepar$local_struct]][[parID]] <- bdeu
       }
+      score+pG
     }
 
     # assign function to name-space of BiDAG package

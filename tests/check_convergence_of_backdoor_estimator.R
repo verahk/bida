@@ -44,6 +44,8 @@ tau <- list(jsd = array(vapply(pdo, avg_jsd_array, numeric(1)), dim(pdo)),
                         dim(pdo)))
 
 
+
+
 # ESTIMATE PARAMS ----
 # - repeatedly sample data from the BN, estimate backdoor params, and compute mean squared errors.
 

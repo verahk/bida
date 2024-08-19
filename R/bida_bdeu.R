@@ -17,14 +17,15 @@
 #' @examples
 #'
 #' nlev <- 2:4
-#' data <- sapply(nlev, sample, size = 100, replace = T) -1
+#' lev  <- lapply(nlev-1, seq.int, from = 0)
+#' data <- expand_grid_fast(lev)
 #'
 #' j <- 1
 #' parentnodes <- 2:length(nlev)
 #' bdeu <- bida_bdeu(data, j, parentnodes, ess = 1, nlev)
 #'
 #' # optimize partition of parent space
-#' opt <- optimize_bdeu(obj, method = "tree", regular = F)
+#' opt <- optimize_bdeu(bdeu, method = "tree", regular = T)
 #' opt$partition
 #' bdeu_part <- replace(bdeu, "partition", list(opt$partition))
 #'
@@ -35,6 +36,12 @@
 #' # update hyperparams
 #' update_bdeu(bdeu)
 #' update_bdeu(bdeu_part)
+#'
+#' # permute parent dimension
+#' perm <- c(1, 3, 2)
+#' bdeu_perm <- aperm(bdeu_part, perm)
+#' stopifnot(all.equal(as.array(bdeu_perm$counts), array(1, nlev[perm])))
+#' bdeu_perm
 #'
 #' # posterior mean
 #' mean_bdeu(bdeu)
@@ -59,6 +66,38 @@ bida_bdeu <- function(data, j, parentnodes, ess, nlev, partition = NULL) {
   subset <- c(j, parentnodes)
   counts <- counts_from_data_matrix(data[, subset, drop = FALSE], nlev[subset], sparse = T)
   new_bida_bdeu(counts, ess, partition)
+}
+
+
+#' @export
+aperm.bida_bdeu <- function(obj, perm) {
+
+  if (is.null(obj$partition)) {
+    obj$counts <- aperm.bida_sparse_array(obj$counts, perm)
+    return(obj)
+  }
+
+  stopifnot(perm[1] == 1)
+
+  # create matrix with parent outcomes
+  dims_pa <- obj$counts$dim[-1]
+  perm_pa <- perm[-1]-1
+  lev_pa  <- lapply(dims_pa-1, seq.int, from = 0)
+
+  # order current parent config by permuted
+  conf_pa <- expand_grid_fast(lev_pa[perm_pa])
+  stride_pa <- c(1, cumprod(dims_pa[-length(dims_pa)]))[perm_pa]
+  new_indx_pa <- conf_pa%*%stride_pa
+
+  # adjust counts and partition
+  dims <- obj$counts$dim
+  obj$counts$dim <- dims[perm]
+  indx_y  <- obj$counts$index%%dims[1]
+  indx_pa <- obj$counts$index%/%dims[1]
+  obj$counts$index <- indx_y + dims[1]*(match(indx_pa, new_indx_pa)-1)
+  obj$partition <- relist(match(unlist(obj$partition), new_indx_pa)-1, obj$partition)
+
+  return(obj)
 }
 
 optimize_bdeu <- function(obj, method, levels = NULL, ...) {
@@ -192,57 +231,5 @@ sample_bdeu <- function(size, obj, reduced = TRUE) {
   }
 }
 
-#' @rdname bdeu_par
-#' @export
-backdoor_mean_bdeu <- function(obj) {
-  dims <- get_dim(obj)
-  if (length(dims) < 2) {
-    mean_bdeu(obj)
-  } else {
-
-    ess <- obj$ess
-
-    # compute conditional means
-    py.xz <- mean_bdeu(obj, reduced = F)
-
-    # compute counts over adjustment sets
-    Nyxz <- as.array(obj$counts)
-    az <- colSums(Nyxz, dims = 2) + ess/prod(dims[-c(1:2)])
-
-    # sum out z
-    rowSums(py.xz*rep(az, each = prod(dims[1:2])), dims = 2)/sum(az)
-  }
-}
-
-#' @rdname bdeu_par
-#' @export
-backdoor_sample_bdeu <- function(size, obj, digits = 10e-16) {
-
-  dims <- get_dim(obj)
-  if (length(dims) < 2) {
-    round(sample_bdeu(size, obj), digits)
-  } else {
-
-    ess <- obj$ess
-    k <- prod(dims)
-    kxy <- prod(dims[1:2])
-    kz  <- k/kxy
-
-    # force 3-dim array
-    obj$counts$dim <- c(dims[1:2], kz)
-
-    # compute counts over adjustment sets
-    z <- obj$counts$index%/%kxy
-    az <- rowsum_fast(obj$counts$value, z, seq_len(kz)-1) + ess/kz
-
-    # sample distributions over adjustment set
-    pz <- round(rDirichlet(size, az, length(az)), digits)
-
-    # sample conditional means
-    py.xz <- round(sample_bdeu(size, obj, reduced = F), digits)
-
-    rowSums(aperm(py.xz, c(1, 2, 4, 3))*rep(pz, each = kxy), dims = 3)
-  }
-}
 
 
