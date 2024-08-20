@@ -35,14 +35,23 @@ n   <- 3
 dag <- matrix(0, n, n)
 dag[upper.tri(dag)] <- 1
 
-# categorical
+
+# Categorical data ---
+params <- list(nlev = 2:4, ess = 1)
+
+## draw random data set
 N <- 100
-params <- list(nlev = rep(3, n), ess = 1)
 data <- sapply(params$nlev, sample, size = N, replace = T) -1
-score <- score_dag(data, dag, type = "cat", params)
-score == score_dag(data, t(dag), type = "cat", params) # score equiv
+
+## test score equivalence
+score1 <- score_dag(data, dag, type = "cat", params)
+score2 <- score_dag(data, t(dag), type = "cat", params)
+stopifnot(score1 == score2)
+
 
 # labeled DAG - add list of partitions of each CPT
 params$partition <- list(NULL, NULL, list(c(0, 1), 2, 3))
 score_dag(data, dag, type = "cat", params)
+
+
 }

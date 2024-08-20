@@ -2,18 +2,18 @@
 % Please edit documentation in R/backdoor_params.R
 \name{backdoor_params}
 \alias{backdoor_params}
-\title{Compute parameters for direct backdoor estimation of an intervention distribution}
+\title{Compute backdoor parameters}
 \usage{
-backdoor_params(type, data, x, y, z, hyperpar, lookup)
+backdoor_params(type, data, y, x, z, hyperpar, lookup)
 }
 \arguments{
 \item{data}{a N-by-n data matrix}
 
-\item{x}{(integer)
-column position of cause variable}
-
 \item{y}{(integer)
 column position of effect variable}
+
+\item{x}{(integer)
+column position of cause variable}
 
 \item{z}{(integer vector) column position of the adjustment variables.
 If \code{any(y == z)}, the marginal distribution of \code{y} is returned.
@@ -27,7 +27,7 @@ If \code{length(z) = 0}, the conditional distribution of \code{y} given \code{x}
 }
 }
 \description{
-Compute parameters for direct backdoor estimation of an intervention distribution
+Compute parameters for direct backdoor estimation of an intervention distribution.
 }
 \examples{
 
@@ -35,30 +35,31 @@ Compute parameters for direct backdoor estimation of an intervention distributio
 nlev <- 2:4
 lev  <- lapply(nlev-1, seq.int, from = 0)
 data <- as.matrix(expand.grid(lev))
-
-
 y <- 3
 x <- 2
 z <- 1
+
+type <- "tree"
 hyperpar <- list(nlev = nlev, ess = 1)
 
-# no adjustment set, return params for cond distribution p(y|x)
-backdoor_params("cat", data, x, y, integer(0), hyperpar, NULL)
+# empty adjustment set
+backdoor_params(type, data, y, x, integer(0), hyperpar, NULL)
 
-# y is in adjustment set, return params for marginal distribution
-backdoor_params("cat", data, x, y, c(y, z), hyperpar, NULL)
+# no effect, y is in adjustment set
+backdoor_params(type, data, y, x, c(y, z), hyperpar, NULL)
 
-# with optimized partitioning
-type <- "tree"
-bdeu_tree <- backdoor_params(type, data, x, y, z, hyperpar, NULL)
+# return params for reduced CPT
+bdeu_tree <- backdoor_params(type, data, y, x, z, hyperpar, NULL)
 
-# compare with results from lookup table after running BiDAG::sampleBN with user-score
+# from lookup table
+## compute score with user-defined score-function in BiDAG::scoreparameter
 lookup   <- rlang:::new_environment()
-hyperpar$edgepf <- 1
-scorepar <- define_scoreparameters(data, "tree", hyperpar, lookup = lookup)
+scorepar <- define_scoreparameters(data, "tree", c(hyperpar, list(edgepf = 1)), lookup = lookup)
 BiDAG:::usrDAGcorescore(y, c(x, z), n = 3, scorepar)
 ls.str(lookup)
 bdeu_lookup <- backdoor_params(type, data, y, x, z, hyperpar, lookup)
-stopifnot(all.equal(bdeu_tree, bdeu_lookup))
+stopifnot(all.equal(bdeu_tree$counts, bdeu_lookup$counts))
+all.equal(bdeu_tree$partition, bdeu_lookup$partition)      # ordering differ
+table(get_parts(bdeu_tree$partition), get_parts(bdeu_lookup$partition))
 
 }

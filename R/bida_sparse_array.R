@@ -50,6 +50,14 @@ new_bida_sparse_array <- function(value, index, dim, dimnames = NULL) {
             class = "bida_sparse_array")
 }
 
+colIndex <- function(x, dims = 1){
+  x$index%/%prod(x$dim[seq_len(dims)])
+}
+rowIndex <- function(x, dims = 1) {
+  x$index%%prod(x$dim[seq_len(dims)])
+}
+
+#'
 #' @rdname bida_sparse_array
 #' @export
 as.array.bida_sparse_array <- function(x) {

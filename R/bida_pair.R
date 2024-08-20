@@ -22,7 +22,6 @@
 #' @param lookup
 #' @param nlev
 #' @param
-#'
 #' @details
 #' The `hyperpar` argument is a list that contains parameters of the distribution
 #' or other variables required to update the parameters.
@@ -32,7 +31,7 @@
 #'   - `ess` (numeric) imaginary sample size.
 #'   Also, if type `ldag` or `tree`, parameters for optimizing a partition of the CPT.
 #'   See [optimize_partition].
-#'
+#' @export
 #' @return
 #' An object of class [bida_pair] is a list that contains:
 #' - `params`:
@@ -51,7 +50,8 @@
 #' sets[4, 1] <- y    # parent set includes node `y`
 #' sets
 #'
-#' support <- rep(1/nrow(sets), nrow(sets)) # uniform support
+#' # uniform support over all sets
+#' support <- rep(1/nrow(sets), nrow(sets))
 #'
 #' # categorical data ----
 #' nlev <- 1:4 +1
@@ -65,29 +65,30 @@
 #'
 #' # compute posterior mean
 #' posterior_mean(pair)
+#' posterior_mean(pair, contrasts = list(jsd = JSD))
 #'
 #' # sample from postrior
-#' posterior_sample(pair)
+#' posterior_sample(pair, n = 10)
 #'
-bida_pair <- function(type, data, x, y, sets, support, hyperpar, lookup = NULL) {
+bida_pair <- function(type, data, y, x, sets, support, hyperpar, lookup = NULL) {
 
   # indicator for zero-effects
   indx     <- rowSums(sets == y, na.rm = T) > 0
+  zerosupp <- sum(support[indx])
 
   # compute backdoor params for non-zero effects
   params <- vector("list", nrow(sets))
   for (r in seq_along(params)[!indx]) {
     z <- sets[r, ]
-    params[[r]] <- backdoor_params(type, data, x, y, z[!is.na(z)], hyperpar, lookup)
+    params[[r]] <- backdoor_params(type, data, y, x, z[!is.na(z)], hyperpar, lookup)
   }
 
-  # compute backdoor params and support for zero-effects
-  zeropar <- backdoor_params(type, data, x, y, y, hyperpar, lookup)
-  zerosupp <- sum(support[indx])
+  # add params for zero effect
+  if (zerosupp > 0) {
+    params <- c(params[!indx], list(backdoor_params(type, data, y, x, y, hyperpar, lookup)))
+    support <- c(support[!indx], zerosupp)
+  }
 
-  # store parameters in a list, where the zero-effects are placed first
-  params <- c(list(zeropar), params[!indx])
-  support <- c(zerosupp, support[!indx])
 
   if (match(type, c("cat", "ldag", "tree"), 0L) > 0) {
     new_bida_pair_bdeu(x, y, params, support, zerosupp, dim = hyperpar$nlev[c(y, x)])
@@ -104,4 +105,67 @@ new_bida_pair_bdeu <- function(x, y, params, support, zerosupp, dim){
             class = c("bida_pair", "bida_pair_bdeu"))
 }
 
+#' @rdname posterior_sample
+#' @export
+posterior_sample.bida_pair <- function(x, n, contrasts = NULL) {
+  if (x$support[1] == 1 && !is.null(contrasts)) {
+    matrix(0, nrow = n, ncol = length(contrasts), dimnames = list(NULL, names(contrasts)))
+  } else {
+    NextMethod()
+  }
+}
 
+
+# Methods for bida_pair_bdeu ----
+
+#' @rdname bida_pair_bdeu
+#' @export
+posterior_sample.bida_pair_bdeu <- function(x, n, contrasts = NULL) {
+
+  nlevx <- x$dim[2]
+
+  # sample adjustment sets
+  nZ <- stats::rmultinom(n=1, size=n, prob=x$support)
+
+  # indicator for sampled parameter sets, excluding that for a zero-effect (last parameter set)
+  indx <- replace(c(nZ > 0), length(nZ), x$zerosupp == 0)
+
+  # sample first only intervention distributions for non-zero effects
+  tmp  <- mapply(function(bdeu, size) backdoor_sample(bdeu, size, nlevx),
+                 bdeu = x$params[indx],
+                 size = nZ[indx],
+                 USE.NAMES = FALSE,
+                 SIMPLIFY = FALSE)
+
+  if (is.null(contrasts)) {
+    if (x$zerosupp > 0 && nZ[length(nZ)] > 0) {
+      # sample also intervention distributions for zero-effects,
+      # i.e. realization of the marginal distributions p(y)
+      tmp <- c(tmp, backdoor_sample(x$params[[1]], nZ[1], nlevx))
+    }
+    array(unlist(tmp), c(x$dim, n))
+  } else {
+
+    # store pos-effect samples in array, for computing contrast
+    nPos <- n-(x$zerosupp>0)*nZ[length(nZ)]
+    pdo <- array(unlist(tmp), c(x$dim, nPos))
+
+    out <- matrix(0, n, length(contrasts))
+    colnames(out) <- names(contrasts)
+    out[seq_len(nPos), ] <- vapply(contrasts, function(f) f(pdo), numeric(nPos))
+
+    return(out)
+  }
+}
+
+
+
+#' @export
+posterior_mean.bida_pair_bdeu <- function(x, contrasts = NULL) {
+  if (is.null(contrasts)) {
+    Reduce("+", Map("*", lapply(x$params, backdoor_mean, nlevx = x$dim[2]), x$support))
+  } else {
+    smpl <- posterior_sample(x, 10**3)
+    colMeans(vapply(contrasts, function(f) f(smpl), numeric(10**3)))
+  }
+}

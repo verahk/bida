@@ -6,7 +6,7 @@
 \alias{posterior_sample.bida_pair_cat}
 \title{Class: \code{bida_pair}}
 \usage{
-bida_pair(type, data, x, y, sets, support, hyperpar, lookup = NULL)
+bida_pair(type, data, y, x, sets, support, hyperpar, lookup = NULL)
 
 \method{posterior_mean}{bida_pair_cat}(x, n = 10^3, ace_funs = NULL)
 
@@ -15,11 +15,11 @@ bida_pair(type, data, x, y, sets, support, hyperpar, lookup = NULL)
 \arguments{
 \item{data}{a N-by-n data matrix}
 
-\item{x}{(integer)
-column position of cause variable}
-
 \item{y}{(integer)
 column position of effect variable}
+
+\item{x}{(integer)
+column position of cause variable}
 
 \item{sets}{(integer matrix)
 each row contains column positions of a valid adjustment set.
@@ -78,7 +78,8 @@ sets[3, ]  <- 3:4  # multiple parents
 sets[4, 1] <- y    # parent set includes node `y`
 sets
 
-support <- rep(1/nrow(sets), nrow(sets)) # uniform support
+# uniform support over all sets
+support <- rep(1/nrow(sets), nrow(sets))
 
 # categorical data ----
 nlev <- 1:4 +1
@@ -92,8 +93,9 @@ str(pair, max.level = 1)
 
 # compute posterior mean
 posterior_mean(pair)
+posterior_mean(pair, contrasts = list(jsd = JSD))
 
 # sample from postrior
-posterior_sample(pair)
+posterior_sample(pair, n = 10)
 
 }

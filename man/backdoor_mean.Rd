@@ -4,15 +4,16 @@
 \alias{backdoor_mean}
 \title{Compute the mean of an intervention distribution}
 \usage{
-backdoor_mean(x, ...)
+backdoor_mean(x, nlevx)
 }
 \arguments{
 \item{x}{object of class \code{\link{bida_bdeu}}}
-
-\item{...}{additional arguments}
 }
 \value{
-the posterior mean(s) of the distribution(s) specified by \code{x}
+the mean intervention distribution defined by \code{x}.
+\itemize{
+\item If \code{class(x) = "bida_bdeu"} this is a conditional probability table.
+}
 }
 \description{
 Compute the mean of an intervention distribution by applying the backdoor formula.
