@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-here::i_am("./tests/check_convergence_of_bida_bdeu_class.Rmd")
+here::i_am("./inst/check_convergence_of_bida_bdeu_class.Rmd")
 ```
 
 
@@ -30,7 +30,7 @@ for (N in 10**c(2:4)) {
     
     set.seed(r+N)
     data <- bida:::sample_data_from_bn(bn, N)
-    ps <- parent_support_from_dags(list(dag), 1)
+    ps   <- parent_support_from_dags(list(dag), 1)
     
     for (i in seq_len(n)) {
       for (j in seq_len(n)[-i]) {
