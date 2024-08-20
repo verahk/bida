@@ -4,9 +4,9 @@
 #' @param n (integer) samplesize
 #' @param ... additional arguments
 #' @return a posterior sample from the distribution(s) specified by `x`
+#' @keywords internral
 #' @export
-posterior_sample <- function(x, n, ...){
+posterior_sample <- function(x, n, contrasts, reduced){
   UseMethod("posterior_sample")
 }
-
 

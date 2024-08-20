@@ -17,3 +17,9 @@ the posterior mean(s) of the distribution(s) specified by \code{x}
 \description{
 Compute posterior mean
 }
+\examples{
+# list methods
+methods("posterior_mean")
+
+}
+\keyword{internal}

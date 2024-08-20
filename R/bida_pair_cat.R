@@ -8,7 +8,7 @@
 #' Compute parameters defining the posterior mixture distribution over the
 #' parameters defining interventional distribution p(y|do(x)).
 #'
-#' @name bida_pair
+#' @name bida_pair_cat
 #' @param data a N-by-n data matrix
 #' @param x (integer)
 #' column position of cause variable
@@ -41,6 +41,8 @@
 #' posterior_mean(fit)
 #' # sample from postrior
 #' posterior_sample(fit)
+#'
+#'
 bida_pair_cat <- function(data, x, y, sets, support, nlev, ess = 1) {
 
   # indicator for zero-effects
@@ -73,12 +75,9 @@ bida_pair_cat <- function(data, x, y, sets, support, nlev, ess = 1) {
             class = c("bida_pair", "bida_pair_cat"))
 }
 
-print.bida_pair <- function(x) {
-  cat(sprintf("\nAn object of class %s:", class(x)[2]),
-      sprintf("\nx = %s, y = %s", x$x, x$y),
-      sprintf("\nUnique adjustment sets: %s", length(x$params)),
-      sprintf("\nSupport for zero-effect: %s", x$support[1]))
-}
+
+
+
 
 
 

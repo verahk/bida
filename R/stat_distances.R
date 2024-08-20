@@ -18,6 +18,11 @@ avg_akl_array <- function(p, k = dim(p), digits = 15){
   round(1/k[1]*colSums(x[indx,])-1/k[1]**2*colSums(x), digits)
 }
 
+JSD <- function(p, k = dim(p), digits = 15) {
+  if (length(k) == 2) dim(p) <- c(k, 1)
+  perm <- c(2, 1, 3)
+  avg_jsd_array(aperm(p, perm), k[perm], digits)
+}
 
 avg_jsd_array  <- function(p, k = dim(p), digits = 15){
 

@@ -84,7 +84,7 @@ tester(counts, levels, regular = T)
 
 # import labeled DAG
 bn   <- readRDS(here::here("./data/LDAG10.rds"))
-bn   <- readRDS(here::here("./data/asia.rds"))
+bn   <- readRDS(here::here("./data/child.rds"))
 dag  <- bnlearn::amat(bn)
 probs <- lapply(bn, "[[", "prob")
 

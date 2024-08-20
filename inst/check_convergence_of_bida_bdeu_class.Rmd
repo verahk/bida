@@ -1,0 +1,45 @@
+---
+title: "Test bida_bdeu class"
+output: html_document
+date: "2024-08-18"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+here::i_am("./inst/check_convergence_of_bida_bdeu_class.Rmd")
+```
+
+
+```{r}
+# import alaram network 
+bn <- readRDS(here::here("./data/alarm.rds"))
+n  <- length(bn)
+nlev <- sapply(bn, function(node) dim(node$prob)[[1]])
+dag <- bnlearn::amat(bn)
+
+# compute true intervention distributions
+pdo <- interv_probs_from_bn(bn, "exact")
+
+# 
+par <- list(nlev = nlev, ess = 1)
+for (N in 10**c(2:4)) {
+  for (r in 1:10) {
+    
+    set.seed(r+N)
+    data <- bida:::sample_data_from_bn(bn, N)
+    ps   <- parent_support_from_dags(list(dag), 1)
+    
+    for (i in seq_len(n)) {
+      for (j in seq_len(n)[-i]) {
+        bida_pair <- bida_pair("cat", data, i, j, ps$sets[[i]], ps$support[[j]], par)
+      }
+    }
+   
+  }
+}
+
+```
+
