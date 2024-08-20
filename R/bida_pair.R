@@ -31,12 +31,13 @@
 #'   - `ess` (numeric) imaginary sample size.
 #'   Also, if type `ldag` or `tree`, parameters for optimizing a partition of the CPT.
 #'   See [optimize_partition].
-#' @export
+#'
 #' @return
 #' An object of class [bida_pair] is a list that contains:
 #' - `params`:
 #' - `support`:
 #' - `zerosupp`:
+#' @export
 #' @examples
 #'
 #' x <- 1 # cause node
@@ -71,6 +72,7 @@
 #' # sample from postrior
 #' posterior_sample(pair, n = 10)
 #'
+
 bida_pair <- function(type, data, x, y, sets, support, hyperpar, lookup = NULL) {
 
   # indicator for zero-effects
@@ -96,6 +98,19 @@ bida_pair <- function(type, data, x, y, sets, support, hyperpar, lookup = NULL) 
   }
 }
 
+#' Title
+#'
+#' @param x
+#' @param y
+#' @param params
+#' @param support
+#' @param zerosupp
+#' @param dim
+#'
+#' @return
+#' @export
+#'
+#' @examples
 new_bida_pair_bdeu <- function(x, y, params, support, zerosupp, dim){
   structure(list(x = x,
                  y = y,
