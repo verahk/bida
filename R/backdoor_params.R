@@ -25,13 +25,13 @@
 #' hyperpar <- list(nlev = nlev, ess = 1)
 #'
 #' # empty adjustment set
-#' backdoor_params(type, data, y, x, integer(0), hyperpar, NULL)
+#' backdoor_params(type, data, x, y, integer(0), hyperpar, NULL)
 #'
 #' # no effect, y is in adjustment set
-#' backdoor_params(type, data, y, x, c(y, z), hyperpar, NULL)
+#' backdoor_params(type, data, x, y, c(y, z), hyperpar, NULL)
 #'
 #' # return params for reduced CPT
-#' bdeu_tree <- backdoor_params(type, data, y, x, z, hyperpar, NULL)
+#' bdeu_tree <- backdoor_params(type, data,  x, y, z, hyperpar, NULL)
 #'
 #' # from lookup table
 #' ## compute score with user-defined score-function in BiDAG::scoreparameter
@@ -39,12 +39,12 @@
 #' scorepar <- define_scoreparameters(data, "tree", c(hyperpar, list(edgepf = 1)), lookup = lookup)
 #' BiDAG:::usrDAGcorescore(y, c(x, z), n = 3, scorepar)
 #' ls.str(lookup)
-#' bdeu_lookup <- backdoor_params(type, data, y, x, z, hyperpar, lookup)
+#' bdeu_lookup <- backdoor_params(type, data,  x, y, z, hyperpar, lookup)
 #' stopifnot(all.equal(bdeu_tree$counts, bdeu_lookup$counts))
 #' all.equal(bdeu_tree$partition, bdeu_lookup$partition)      # ordering differ
 #' table(get_parts(bdeu_tree$partition), get_parts(bdeu_lookup$partition))
 #'
-backdoor_params <- function(type, data, y, x, z, hyperpar, lookup) {
+backdoor_params <- function(type, data, x, y, z, hyperpar, lookup) {
   if (type %in% c("cat", "ldag", "tree")) {
     if (length(z) > 0 && any(y == z)) {
       bida_bdeu(data, y, integer(0), hyperpar$ess, hyperpar$nlev)

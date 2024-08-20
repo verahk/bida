@@ -66,11 +66,12 @@
 #' # compute posterior mean
 #' posterior_mean(pair)
 #' posterior_mean(pair, contrasts = list(jsd = JSD))
+#' stopifnot(all(dim(posterior_mean(pair)) == nlev[c(y, x)]))
 #'
 #' # sample from postrior
 #' posterior_sample(pair, n = 10)
 #'
-bida_pair <- function(type, data, y, x, sets, support, hyperpar, lookup = NULL) {
+bida_pair <- function(type, data, x, y, sets, support, hyperpar, lookup = NULL) {
 
   # indicator for zero-effects
   indx     <- rowSums(sets == y, na.rm = T) > 0
@@ -80,12 +81,12 @@ bida_pair <- function(type, data, y, x, sets, support, hyperpar, lookup = NULL) 
   params <- vector("list", nrow(sets))
   for (r in seq_along(params)[!indx]) {
     z <- sets[r, ]
-    params[[r]] <- backdoor_params(type, data, y, x, z[!is.na(z)], hyperpar, lookup)
+    params[[r]] <- backdoor_params(type, data, x, y, z[!is.na(z)], hyperpar, lookup)
   }
 
   # add params for zero effect
   if (zerosupp > 0) {
-    params <- c(params[!indx], list(backdoor_params(type, data, y, x, y, hyperpar, lookup)))
+    params <- c(params[!indx], list(backdoor_params(type, data, x, y, y, hyperpar, lookup)))
     support <- c(support[!indx], zerosupp)
   }
 

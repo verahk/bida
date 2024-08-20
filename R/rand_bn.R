@@ -34,7 +34,7 @@ rand_dist_cat <- function(dag, alpha, nlev, partitions = NULL) {
     if (!(is.null(partitions) && is.null(partitions[[i]]))) {
       bdeu$partition <- partitions[[i]]
     }
-    tmp <- sample_bdeu(1, bdeu, reduced = FALSE)
+    tmp <- posterior_sample(bdeu, 1, reduced = FALSE)
     dist[[i]] <- array(tmp, dims, dimnames)
   }
 
