@@ -81,9 +81,10 @@ run <- function(par, verbose = FALSE) {
   # load bn and compute ground truth ----
   bn <- readRDS(paste0("./data/", par$bnname, ".rds"))
   dag <- bnlearn::amat(bn)
-  dmat <- descendants(dag)
-  pdo <- interv_probs_from_bn(bn, "bn")  # ground truth
+  dmat <- bida:::descendants(dag)
+  pdo <- bida:::interv_probs_from_bn(bn, "bn")  # ground truth
 
+  n <- length(bn)
   N <- par$N
   r <- par$r
 
@@ -104,9 +105,9 @@ run <- function(par, verbose = FALSE) {
   out$MCMCchain <- bida:::sample_dags(scorepar, par$init, par$sample, hardlimit = par$hardlimit, verbose = verbose)
 
   # compute support over unique dags
-  dags <- out$MCMCchain$traceadd$incidence
+  dags <- lapply(out$MCMCchain$traceadd$incidence, as.matrix)
   tmp <- unique(dags)
-  support <- rowsum_fast(rep(1/length(dags), length(dags)), dags, tmp)
+  support <- bida:::rowsum_fast(rep(1/length(dags), length(dags)), dags, tmp)
   dags <- tmp
 
   # compute support over parent sets
@@ -114,8 +115,12 @@ run <- function(par, verbose = FALSE) {
 
   # compute precision-recall of edges ----
   avgppv_from_sample <- function(smpl, amat, include = !diag(ncol(amat) == 1)) {
-    edgep <- Reduce("+", Map("*", smpl, support))[indx]
-    compute_avgppv(edgep, amat[indx], method = "noise")
+      x <- Reduce("+", Map("*", smpl, support))[include]
+      y <- amat[include]
+      indx <- order(x+runif(length(x))/1000, decreasing = TRUE)
+      tp <- cumsum(y[indx])
+      pp <- seq_along(x)
+      mean((tp/pp)[y[indx] == 1])
   }
   out$avgppv <- c(dag  = avgppv_from_sample(dags, dag),
                   dmat = avgppv_from_sample(lapply(dags, bida:::descendants), dmat))
@@ -127,13 +132,13 @@ run <- function(par, verbose = FALSE) {
   for (x in seq_len(n)) {
     for (y in seq_len(n)[-x]) {
       type <- ifelse(par$struct == "none", "cat", par$struct)
-      pair <- bida:::bida_pair(type, data, y, x,
+      pair <- bida::bida_pair(type, data, y, x,
                                sets = ps$sets[[x]],
                                support = ps$support[[x]],
                                hyperpar = c(list(nlev = nlev), par),
                                lookup = scorepar$lookup)
 
-      mse[x, y] <- mean( (pdo[[x, y]]-posterior_mean(pair))**2 )
+      mse[x, y] <- mean( (pdo[[x, y]]-bida::posterior_mean(pair))**2 )
     }
   }
 
@@ -166,17 +171,24 @@ if (nClusters == 1) {
   for (i in seq_len(nrow(pargrid))) simulate_and_write_to_file(simId,
                                                           outdir,
                                                           params_to_filename(pargrid[i, ]),
-                                                          run_sample_dags,
+                                                          run,
                                                           par = pargrid[i, ],
                                                           verbose = TRUE)
 } else {
   cl <- makeCluster(nClusters, type = "SOCK", outfile = paste0(outdir, simId, ".out"))
   clusterExport(cl, export)
   registerDoSNOW(cl)
-  foreach (i = seq_len(nrow(pargrid))) %dopar% simulate_and_write_to_file(simId,
+
+  keepLooking <- TRUE
+  row <- 0
+  while (keepLooking) {
+    row <- row+1
+    keepLooking <- file.exists(paste0(outdir, params_to_filename(pargrid[row, ])))
+  }
+  foreach (i = seq(row, nrow(pargrid))) %dopar% simulate_and_write_to_file(simId,
                                                                     outdir,
                                                                     params_to_filename(pargrid[i, ]),
-                                                                    run_sample_dags,
+                                                                    run,
                                                                     par = pargrid[i, ],
                                                                     verbose = TRUE)
   stopCluster(cl)
