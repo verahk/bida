@@ -25,83 +25,9 @@
 #' Otherwise, the results is written to file and the functions returns `NULL`.
 
 
-run_sample_dags <- function(par, bn = readRDS(paste0("./data/", par$bnname, ".rds")), verbose = FALSE) {
-
-  N <- par$N
-  r <- par$r
-
-  # draw data
-  set.seed(N+r)
-  data <- bida:::sample_data_from_bn(bn, N)
-  nlev <- sapply(bn, function(x) dim(x$prob)[1])
-
-  # define scorepars
-  scoretype <- ifelse(par$struct == "none", "bdecat", par$struct)
-  tmp <- c(par, nlev = list(nlev))
-  lookup <- rlang::new_environment()
-  scorepar  <- bida:::define_scoreparameters(data, scoretype, tmp, lookup = lookup)
-
-  # run MCMC
-  smpl <- bida:::sample_dags(scorepar, par$init, par$sample, hardlimit = par$hardlimit, verbose = verbose)
-
-  return(list(MCMCchain = smpl,
-              scorepar = scorepar))
-}
-
-run_backdoor_estimates_ldags <- function(par, bn = readRDS(paste0("./data/", par$bnname, ".rds")), verbose = FALSE) {
-
-  N <- par$N
-  r <- par$r
-
-  # draw data
-  set.seed(N+r)
-  data <- bida:::sample_data_from_bn(bn, N)
-  nlev <- sapply(bn, function(x) dim(x$prob)[1])
-
-  tmp  <- run_sample_dags(par, bn)
-  dags <- tmp$MCMCchain$traceadd$incidence
-  scorepar <- tmp$scorepar
-
-  # compute ground truth
-  set.seed(r)
-  pdo <- interv_probs_from_bn(bn, "bn")
-
-  # compute support over parent sets
-  ps <- bida::parent_support_from_dags(dags)
-
-  hyperpar <- c(list(nlev = nlev), par)
-
-  # compute mse of point-estimates of intervention distribution
-  mse <- matrix(n, n)
-  for (x in seq_len(n)) {
-    for (y in seq_len(n)[-x]) {
-      type <- ifelse(par$struct == "none", "cat", par$struct)
-      pair <- bida:::bida_pair(type, data, y, x,
-                               sets = ps$sets[[x]],
-                               support = ps$support[[x]],
-                               hyperpar = hyperpar,
-                               lookup = scorepar$lookup)
-
-      mean <- posterior_mean(pair)
-      mse[x, y] <- mean
-    }
-  }
-}
-params_to_filename <- function(par) {
-  tmp <- sprintf("%s_%s_%s_%s_ess%s_epf%s_reg%s_N%s_r%02.0f.rds",
-                 par$bnname, par$init, par$struct, par$sample, par$ess, par$edgepf, par$regular*1, par$N, par$r)
-  stopifnot(length(tmp) == 1)  # fails if any argument is NULL
-  return(tmp)
-}
-
-
-
-# load libraries and aux functions ----
-
+# load libraries ----
 devtools::install_github("verahk/bida", ref = "dev")
 library(doSNOW)
-source("./inst/simulations/ldags/simulate_and_write_to_file.R", echo = T)
-
 
 # specify simulation params ----
 par <- list(bnname = c("asia", "sachs", "child"),
@@ -116,13 +42,106 @@ par <- list(bnname = c("asia", "sachs", "child"),
             r = 1:30)
 
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
+outdir <- "./inst/simulations/ldags/results/"  # directory for storing res
 
-outdir <- "./inst/simulations/ldags/MCMCchains/"  # directory for storing res
-if (!dir.exists(outdir)) dir.create(outdir)
 
 nClusters <- 6
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
-export  <- c("run_sample_dags")                # objects to export with clusterExport()
+export  <- c("run")                # objects to export with clusterExport()
+
+# simulation routine -----
+simulate_and_write_to_file <- function(id, outdir, filename, run, ...) {
+  if (is.null(outdir)) return(run(...))
+
+  filepath <- paste0(outdir, filename)
+  if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
+  if (file.exists(filepath)) return(NULL)
+
+  tic <- Sys.time()
+  res <- run(...)
+  attr(res, "simid") <- id
+
+  cat("\nSave results to: ", filepath)
+  saveRDS(res, filepath)
+  cat("\nRuntime\n")
+  print(Sys.time()-tic)
+
+  return(NULL)
+}
+
+params_to_filename <- function(par) {
+  tmp <- sprintf("%s_%s_%s_%s_ess%s_epf%s_reg%s_N%s_r%02.0f.rds",
+                 par$bnname, par$init, par$struct, par$sample, par$ess, par$edgepf, par$regular*1, par$N, par$r)
+  stopifnot(length(tmp) == 1)  # fails if any argument is NULL
+  return(tmp)
+}
+
+run <- function(par, verbose = FALSE) {
+
+  # load bn and compute ground truth ----
+  bn <- readRDS(paste0("./data/", par$bnname, ".rds"))
+  dag <- bnlearn::amat(bn)
+  dmat <- descendants(dag)
+  pdo <- interv_probs_from_bn(bn, "bn")  # ground truth
+
+  N <- par$N
+  r <- par$r
+
+  out <- list()
+
+  # draw data
+  set.seed(N+r)
+  data <- bida:::sample_data_from_bn(bn, N)
+  nlev <- sapply(bn, function(x) dim(x$prob)[1])
+
+  # define scorepars
+  scoretype <- ifelse(par$struct == "none", "bdecat", par$struct)
+  tmp <- c(par, nlev = list(nlev))
+  lookup <- rlang::new_environment()
+  scorepar  <- bida:::define_scoreparameters(data, scoretype, tmp, lookup = lookup)
+
+  # run MCMC ----
+  out$MCMCchain <- bida:::sample_dags(scorepar, par$init, par$sample, hardlimit = par$hardlimit, verbose = verbose)
+
+  # compute support over unique dags
+  dags <- out$MCMCchain$traceadd$incidence
+  tmp <- unique(dags)
+  support <- rowsum_fast(rep(1/length(dags), length(dags)), dags, tmp)
+  dags <- tmp
+
+  # compute support over parent sets
+  ps <- bida::parent_support_from_dags(dags)
+
+  # compute precision-recall of edges ----
+  avgppv_from_sample <- function(smpl, amat, include = !diag(ncol(amat) == 1)) {
+    edgep <- Reduce("+", Map("*", smpl, support))[indx]
+    compute_avgppv(edgep, amat[indx], method = "noise")
+  }
+  out$avgppv <- c(dag  = avgppv_from_sample(dags, dag),
+                  dmat = avgppv_from_sample(lapply(dags, bida:::descendants), dmat))
+
+
+  # estimate intervention distributions ----
+  set.seed(r)
+  mse <- matrix(NA, n, n)
+  for (x in seq_len(n)) {
+    for (y in seq_len(n)[-x]) {
+      type <- ifelse(par$struct == "none", "cat", par$struct)
+      pair <- bida:::bida_pair(type, data, y, x,
+                               sets = ps$sets[[x]],
+                               support = ps$support[[x]],
+                               hyperpar = c(list(nlev = nlev), par),
+                               lookup = scorepar$lookup)
+
+      mse[x, y] <- mean( (pdo[[x, y]]-posterior_mean(pair))**2 )
+    }
+  }
+
+  dindx <- diag(n) == 1
+  out$mse <- rowsum_fast(c(mse), c(dmat), c(0,1), na.rm = T)/tabulate(dmat[!dindx]+1, 2)
+  return(out)
+}
+
 
 # test ----
 if (FALSE) {
@@ -132,16 +151,15 @@ if (FALSE) {
   simulate_and_write_to_file(simId,
                              outdir,
                              filename,
-                             run_sample_dags,
+                             run,
                              par = pargrid[i, ],
                              verbose = TRUE)
 
   res <- readRDS(paste0(outdir, filename))
-  ls.str(res$lookup)
-  ls.str(res$lookup[[pargrid[i,]$struct]])
-  remove.dir(outdir)
-
+  str(res, max.level = 2)
+  file.remove(paste0(outdir, filename))
 }
+
 
 # run simulation ----
 if (nClusters == 1) {
