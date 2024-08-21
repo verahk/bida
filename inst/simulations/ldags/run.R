@@ -56,10 +56,10 @@ par <- list(bnname = bnnames,
             N = c(100, 300, 1000, 3000, 10000),
             r = 1:30)
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
-indx <- with(pargrid, struct == "none" & pargrid$edgepf > 2 | regular == FALSE)
+indx <- with(pargrid, struct == "none" & (pargrid$edgepf > 2 | regular == FALSE))
 indx <- indx | with(pargrid, bnname != "asia" & init == "hcskel")
 indx <- indx | with(pargrid, bnname != "asia" & (N < 100 | N > 3000))
-indx <- indx | with(pargrid, bnname != "asia" & regular == TRUE)
+indx <- indx | with(pargrid, bnname != "asia" & regular == FALSE)
 indx <- indx | with(pargrid, bnname != "asia" & struct == "ldag")
 pargrid <- pargrid[!indx, ]
 

@@ -2,12 +2,32 @@
 title: "results"
 author: "Vera Kvisgaard"
 date: "2024-08-20"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, cache = T)
 ```
+
+This note shows results from simulation experiments on BIDA with local structure.
+Both in the structure learning part of the BIDA procedure and in the local-backdoor-estimation step, a partition of the relevant CPTs are learned in a
+greedy structure: fitting either a tree-structure or a decision graph / labeled graph. 
+
+## Parameter explantion
+The different simulation settings are characterized by the following parameters:
+
+- `network`: 
+- `init `: algorithm for learning the initial search space for the MCMC chain. 
+  Either`bnlearn::hc` or `pcalg::pc` is used to learn an CPDAG, and `*skel` means 
+  that the undirected skeleton is used. The initial seach space is iteratively expanded with the `BiDAG:::IterativeMCMC` procedure.
+- `struct`: Algorithm for optimizing the local CPTs. `none`for standard, full CPTs. `tree` or `ldag`.
+- `sample`: MCMC scheme used to sample dags. `order`
+- `ess`: equivalent sample size. Sat equal to 1. Defaults to .5 in BiDAG.
+- `epf`: edge penalty. An penalty term `log(epf)*length(parentnodes)` is added to the score for each node. Defaults to 2 in BiDAG.
+- `regular`: if `TRUE`, the partitioing over parent-outcomes is forced to be regular. I.e. to not encode any conditional independencies. Required for maximal-ldag-consistency.
 
 
 ```{r}
@@ -57,7 +77,7 @@ plot_boxplot <- function(df, x = "N", y, fill = "structr",
 }
 ```
 
-### Counts of each simulation setting
+## Counts of each simulation setting
 For each simulation setting, up to 30 simulation runs. When the table below shows
 a lower frequency for some settings, the simulation is not complete.
 At each run, the different structure learning procedures are applied to a single
@@ -65,7 +85,7 @@ data set sampled from the network.
 ```{r}
 files <- list.files(indir, ".rds", full.names = TRUE)
 df_par <- params_from_filenames(files)
-include <- !names(df_par) %in% c("r", "structr")
+include <- !names(df_par) %in% c("N" , "r", "structr")
 data.frame(table(df_par[, include]))
 ```
 
@@ -84,7 +104,6 @@ stopifnot(all(len == len[1]))
 
 # store in data frame
 df <- cbind(params_from_filenames(files), do.call(rbind, tmp))
-
 ```
 
 ## True and false positive rate 
@@ -107,7 +126,7 @@ plot_boxplot(df, "N", "arp")
 Mean squared error of the point-estimates intervention distributions.
 Tend to be more accurate with `tree`. Might sug
 ```{r}
-plot_boxplot(df, "N", "mse", "struct")
+plot_boxplot(df, "N", "mse")
 ```
 
 
@@ -115,23 +134,27 @@ plot_boxplot(df, "N", "mse", "struct")
 ```{r}
 files <- list.files(indir, pattern = ".rds", full.names = T)
 files <- files[!grepl("asia", files)]
-imp <- lapply(files, readRDS)
-df <- cbind(params_from_filenames(files), do.call(rbind, tmp))
 
-# true positive edge rate
-plot_boxplot(df, "N", "tpr")
+if (length(files) > 0) {
+  imp <- lapply(files, readRDS)
+  df <- cbind(params_from_filenames(files), do.call(rbind, tmp))
+  
+  # true positive edge rate
+  plot_boxplot(df, "N", "tpr")
+  
+  # false positive edge rate 
+  plot_boxplot(df, "N", "fpr")
+  
+  # average precision, edges
+  plot_boxplot(df, "N", "edgep")
+  
+  # average precision, arp
+  plot_boxplot(df, "N", "arp")
+  
+  # mse of intervention probs
+  plot_boxplot(df, "N", "mse")
+}
 
-# false positive edge rate 
-plot_boxplot(df, "N", "fpr")
-
-# average precision, edges
-plot_boxplot(df, "N", "edgep")
-
-# average precision, arp
-plot_boxplot(df, "N", "arp")
-
-# mse of intervention probs
-plot_boxplot(df, "N", "mse")
 ```
 
 
