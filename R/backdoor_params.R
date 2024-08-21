@@ -54,7 +54,7 @@ backdoor_params <- function(type, data, x, y, z, hyperpar, lookup) {
 
       if (!is.null(lookup[[type]])) {
         parentnodes <- sort.int(c(x, z))
-        parID <- paste(c(y, parentnodes$x), collapse = ".")
+        parID <- paste(c(y, parentnodes), collapse = ".")
         if (parID %in% names(lookup[[type]])) {
           bdeu <- lookup[[type]][[parID]]
           if (parentnodes[1] == x) {
