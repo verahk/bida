@@ -1,0 +1,82 @@
+---
+title: "results"
+author: "Vera Kvisgaard"
+date: "2024-08-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(ggplot2)
+here::i_am("inst/simulations/ldags/results.rmd")
+```
+
+
+
+```{r}
+
+indir <- here::here("inst/simulations/ldags/results/")
+files <- list.files(indir, ".rds", full.names = TRUE)
+imp <- lapply(files, readRDS)
+
+
+# extract params from filenames
+params_from_filenames <- function(files, 
+                                  names = c("network", "init", "struct", "sample", "ess", "epf", "regular", "N", "r")) {
+  tmp <- stringr::str_split(gsub("^(.*[\\/])|.rds", "", files), "_", simplify = FALSE)
+  df <- data.frame(do.call(rbind, tmp), stringsAsFactors = F)
+  names(df) <- names
+  
+  df$N <- factor(as.numeric(gsub("N", "", df$N)))
+  df
+}
+df_par <- params_from_filenames(files)
+
+
+```
+
+
+```{r}
+include <- !names(df_par) %in% c("r")
+data.frame(table(df_par[, include]))
+```
+
+```{r}
+prettify_plot <- function(plot) {
+  list(theme_minimal(),
+       theme(legend.position = "bottom"))
+}
+
+plot_boxplot <- function(df, x = "N", y, fill = "struct", 
+                         facets = as.formula("init+sample+ess+epf+regular~network")) {
+  ggplot(df, aes(!! sym(x), !! sym(y), fill = !! sym(fill))) +
+  facet_grid(facets) +
+  geom_boxplot() +
+  prettify_plot()
+}
+```
+
+# box plots
+```{r}
+# collect simulation results
+tmp <- lapply(imp, "[[", "res")
+len <- lengths(tmp)
+stopifnot(all(len == len[1]))
+
+# store in data
+df <- cbind(df_par, do.call(rbind, tmp))
+
+# plot box-plotes
+plot_boxplot(df, "N", "tpr", "struct")
+plot_boxplot(df, "N", "fpr", "struct")
+plot_boxplot(df, "N", "edgep", "struct")
+plot_boxplot(df, "N", "arp", "struct")
+plot_boxplot(df, "N", "mse", "struct")
+```
+
+
+

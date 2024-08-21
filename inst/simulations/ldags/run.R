@@ -26,30 +26,47 @@
 
 
 # load libraries ----
-devtools::install_github("verahk/bida", ref = "dev")
+devtools::install_github("verahk/bida",
+                         ref = "sim_backdoor_estimates_with_local_structure")
+
+
 library(doSNOW)
 
 # specify simulation params ----
-par <- list(bnname = c("asia", "sachs", "child"),
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) == 0) {
+  nClusters <- 6
+  bnnames <- c("asia", "child")
+} else {
+  nClusters <- as.numeric(args[1])
+  bnnames <- args[-1]
+  cat(sprintf("Commandline args: nclusters = %s, bnname(s) = %s\n",
+              nClusters, paste(bnnames, collapse = ",")))
+}
+
+# additional params
+par <- list(bnname = bnnames,
             init = "pcskel",
-            struct = c("none", "ldag", "tree"),
+            struct = c("tree", "none"),
             sample = "order",
             ess = 1,
             edgepf = 2,
             hardlimit = 5,
             regular = FALSE,
             N = 10**c(2:4),
-            r = 1:30)
-
+            r = 1:10)
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
+
+
 outdir <- "./inst/simulations/ldags/results/"  # directory for storing res
-
-
-nClusters <- 6
+if (!dir.exists(outdir)) dir.create(outdir)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 export  <- c("run")                # objects to export with clusterExport()
 
-# simulation routine -----
+
+
+
+# define simulation routine -----
 simulate_and_write_to_file <- function(id, outdir, filename, run, ...) {
   if (is.null(outdir)) return(run(...))
 
@@ -88,8 +105,6 @@ run <- function(par, verbose = FALSE) {
   N <- par$N
   r <- par$r
 
-  out <- list()
-
   # draw data
   set.seed(N+r)
   data <- bida:::sample_data_from_bn(bn, N)
@@ -102,37 +117,45 @@ run <- function(par, verbose = FALSE) {
   scorepar  <- bida:::define_scoreparameters(data, scoretype, tmp, lookup = lookup)
 
   # run MCMC ----
-  out$MCMCchain <- bida:::sample_dags(scorepar, par$init, par$sample, hardlimit = par$hardlimit, verbose = verbose)
+  MCMCchain <- bida:::sample_dags(scorepar, par$init, par$sample, hardlimit = par$hardlimit, verbose = verbose)
 
   # compute support over unique dags
-  dags <- lapply(out$MCMCchain$traceadd$incidence, as.matrix)
+  dags <- lapply(MCMCchain$traceadd$incidence, as.matrix)
   tmp <- unique(dags)
   support <- bida:::rowsum_fast(rep(1/length(dags), length(dags)), dags, tmp)
   dags <- tmp
 
-  # compute support over parent sets
-  ps <- bida::parent_support_from_dags(dags)
+  # edge probs  ---
+  edgep <- Reduce("+", Map("*", dags, support))
+  arp   <- Reduce("+", Map("*", lapply(dags, bida:::descendants), support))
 
-  # compute precision-recall of edges ----
-  avgppv_from_sample <- function(smpl, amat, include = !diag(ncol(amat) == 1)) {
-      x <- Reduce("+", Map("*", smpl, support))[include]
-      y <- amat[include]
-      indx <- order(x+runif(length(x))/1000, decreasing = TRUE)
-      tp <- cumsum(y[indx])
-      pp <- seq_along(x)
-      mean((tp/pp)[y[indx] == 1])
+  # compute precision-recall of edges
+  compute_avgppv <- function(x, y) {
+    indx <- order(x+runif(length(x))/1000, decreasing = TRUE)
+    tp <- cumsum(y[indx])
+    pp <- seq_along(x)
+    mean((tp/pp)[y[indx] == 1])
   }
-  out$avgppv <- c(dag  = avgppv_from_sample(dags, dag),
-                  dmat = avgppv_from_sample(lapply(dags, bida:::descendants), dmat))
+
+  dindx <- diag(n) == 1
+  tmp <- bida:::rowsum_fast(edgep[!dindx], dag[!dindx], 0:1)/tabulate(dag[!dindx]+1, 2)
+  avgppv <- c(fpr = tmp[1],
+              tpr = tmp[2],
+              edgep  = compute_avgppv(edgep[!dindx], dag[!dindx]),
+              arp    =  compute_avgppv(arp[!dindx], dmat[!dindx]))
 
 
   # estimate intervention distributions ----
+  ## compute support over parent sets
+  ps <- bida::parent_support_from_dags(dags)
+
+  ## compute mse of point-estimates (mean) of intervention distribution
   set.seed(r)
   mse <- matrix(NA, n, n)
   for (x in seq_len(n)) {
     for (y in seq_len(n)[-x]) {
       type <- ifelse(par$struct == "none", "cat", par$struct)
-      pair <- bida::bida_pair(type, data, y, x,
+      pair <- bida::bida_pair(type, data, x, y,
                                sets = ps$sets[[x]],
                                support = ps$support[[x]],
                                hyperpar = c(list(nlev = nlev), par),
@@ -142,16 +165,16 @@ run <- function(par, verbose = FALSE) {
     }
   }
 
-  dindx <- diag(n) == 1
-  out$mse <- rowsum_fast(c(mse), c(dmat), c(0,1), na.rm = T)/tabulate(dmat[!dindx]+1, 2)
-  return(out)
-}
+  mse <- sum(mse[!dindx])/(n*(n-1))
 
+  list(res = c(avgppv, mse = mse),
+       MCMCchain = MCMCchain)
+}
 
 # test ----
 if (FALSE) {
   # test
-  i <- 2
+  i <- 1
   filename <- "test.rds"
   simulate_and_write_to_file(simId,
                              outdir,
@@ -167,6 +190,7 @@ if (FALSE) {
 
 
 # run simulation ----
+
 if (nClusters == 1) {
   for (i in seq_len(nrow(pargrid))) simulate_and_write_to_file(simId,
                                                           outdir,
