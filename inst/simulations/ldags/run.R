@@ -36,7 +36,7 @@ library(doSNOW)
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) == 0) {
   nClusters <- 6
-  bnnames <- c("asia", "child")
+  bnnames <- c("asia", "sachs", "child")
 } else {
   nClusters <- as.numeric(args[1])
   bnnames <- args[-1]
@@ -46,7 +46,7 @@ if (length(args) == 0) {
 
 # additional params
 par <- list(bnname = bnnames,
-            init = "pcskel",
+            init = c("hcskel", "hc"),
             struct = c("ldag", "tree", "none"),
             sample = "order",
             ess = 1,
@@ -56,9 +56,11 @@ par <- list(bnname = bnnames,
             N = c(100, 300, 1000, 3000, 10000),
             r = 1:30)
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
-indx <- pargrid$edgepf > 2 & pargrid$struct == "none"
-indx <- indx & network != "asia" & (par$N < 100 & par$N > 3000)
-indx <- indx & network != "asia" & regular = TRUE
+indx <- with(pargrid, struct == "none" & pargrid$edgepf > 2 | regular == FALSE)
+indx <- indx | with(pargrid, bnname != "asia" & init == "hcskel")
+indx <- indx | with(pargrid, bnname != "asia" & (N < 100 | N > 3000))
+indx <- indx | with(pargrid, bnname != "asia" & regular == TRUE)
+indx <- indx | with(pargrid, bnname != "asia" & struct == "ldag")
 pargrid <- pargrid[!indx, ]
 
 outdir <- "./inst/simulations/ldags/results/"  # directory for storing res

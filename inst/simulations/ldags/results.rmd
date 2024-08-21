@@ -13,15 +13,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(ggplot2)
 here::i_am("inst/simulations/ldags/results.rmd")
+indir <- here::here("inst/simulations/ldags/results/")
 ```
 
 
 
 ```{r}
-
-indir <- here::here("inst/simulations/ldags/results/")
-files <- list.files(indir, ".rds", full.names = TRUE)
-
 # extract params from filenames
 params_from_filenames <- function(files, 
                                   names = c("network", "init", "struct", "sample", "ess", "epf", "regular", "N", "r")) {
@@ -37,19 +34,22 @@ params_from_filenames <- function(files,
   
   levels <- c("none", "tree", "ldag")
   df$struct <- factor(df$struct, levels)
-
+  
+  df$structr <- interaction(df$struct, df$regular)
+  
   df
   
 }
 
-
+# prettify ggplots
 prettify_plot <- function(plot) {
   list(theme_minimal(),
        theme(legend.position = "bottom"))
 }
 
-plot_boxplot <- function(df, x = "N", y, fill = "struct", 
-                         facets = as.formula("init+sample+ess+regular~network+epf")) {
+# plot box plot with ggplot
+plot_boxplot <- function(df, x = "N", y, fill = "structr", 
+                         facets = as.formula("init+sample+ess~network+epf")) {
   ggplot(df, aes(!! sym(x), !! sym(y), fill = !! sym(fill))) +
   facet_grid(facets) +
   geom_boxplot() +
@@ -63,7 +63,9 @@ a lower frequency for some settings, the simulation is not complete.
 At each run, the different structure learning procedures are applied to a single
 data set sampled from the network. 
 ```{r}
-include <- !names(df_par) %in% c("r")
+files <- list.files(indir, ".rds", full.names = TRUE)
+df_par <- params_from_filenames(files)
+include <- !names(df_par) %in% c("r", "structr")
 data.frame(table(df_par[, include]))
 ```
 
@@ -72,9 +74,10 @@ data.frame(table(df_par[, include]))
 The Asia network is the smallest and easiest to run with a wide range of different simulation settings, shown in the following. 
 
 ```{r}
+
+# import simulation results
 files <- list.files(indir, pattern = "asia.*.rds", full.names = T)
 imp <- lapply(files, readRDS)
-# collect simulation results
 tmp <- lapply(imp, "[[", "res")
 len <- lengths(tmp)
 stopifnot(all(len == len[1]))
@@ -82,13 +85,13 @@ stopifnot(all(len == len[1]))
 # store in data frame
 df <- cbind(params_from_filenames(files), do.call(rbind, tmp))
 
-
 ```
+
 ## True and false positive rate 
 The true and false positive rate of the edges (TPR and FPR, respectively), averaged over all DAGs in the sample. The higher FPR when learning DAGs with local structure suggests spurious edges. Mitigated by increasing the edge penalty parameter `epf`.
 ```{r}
-plot_boxplot(df, "N", "tpr", "struct")
-plot_boxplot(df, "N", "fpr", "struct")
+plot_boxplot(df, "N", "tpr")
+plot_boxplot(df, "N", "fpr")
 ```
 
 
@@ -96,9 +99,8 @@ plot_boxplot(df, "N", "fpr", "struct")
 The area under the precision recall curve, approximated by the average precision (`avgppv`). Based on the posterior edge probabilities (`edgep`) and the posterior 
 ancestor relation probabilities (`arp`).
 ```{r}
-plot_boxplot(df, "N", "edgep", "struct")
-plot_boxplot(df, "N", "arp", "struct")
-
+plot_boxplot(df, "N", "edgep")
+plot_boxplot(df, "N", "arp")
 ```
 
 ## Intervention distribution
@@ -107,4 +109,29 @@ Tend to be more accurate with `tree`. Might sug
 ```{r}
 plot_boxplot(df, "N", "mse", "struct")
 ```
+
+
+# Larger networks
+```{r}
+files <- list.files(indir, pattern = ".rds", full.names = T)
+files <- files[!grepl("asia", files)]
+imp <- lapply(files, readRDS)
+df <- cbind(params_from_filenames(files), do.call(rbind, tmp))
+
+# true positive edge rate
+plot_boxplot(df, "N", "tpr")
+
+# false positive edge rate 
+plot_boxplot(df, "N", "fpr")
+
+# average precision, edges
+plot_boxplot(df, "N", "edgep")
+
+# average precision, arp
+plot_boxplot(df, "N", "arp")
+
+# mse of intervention probs
+plot_boxplot(df, "N", "mse")
+```
+
 

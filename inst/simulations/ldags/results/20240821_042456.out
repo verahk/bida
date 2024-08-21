@@ -1,0 +1,850 @@
+starting worker for localhost:11826 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables comput
+Save results to:  ./inst/
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf2_reg1_N100_r01.rds
+Runtime
+Time difference of 27.65386 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Sa
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf2_reg1_N300_r01.rds
+Runtime
+Time difference of 13.87985 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is runnin
+Sa
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf16_reg1_N300_r01.rds
+Runtime
+Time difference of 9.991329 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf2_reg1_N1000_r01.rds
+Runtime
+Time difference of 17.68333 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tabl
+Save results to:  ./inst/simulatio
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf4_reg1_N1000_r01.rds
+Runtime
+Time difference of 15.74819 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is ru
+Samplesearch space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_tree_order_ess1_epf2_reg1_N3000_r01.rds
+Runtime
+Time difference of 11.33682 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_tree_order_ess1_epf4_reg1_N3000_r01.rds
+Runtime
+Time difference of 6.387977 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf16_reg1_N3000_r01.rds
+Runtime
+Time difference of 9.710102 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_tree_order_ess1_epf2_reg1_N10000_r01.rds
+Runtime
+Time difference of 8.891042 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_tree_order_ess1_epf4_reg1_N10000_r01.rds
+Runtime
+Time difference of 7.079833 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being co
+Sample score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+
+Sample DAGs using BiDAG::sampleBN:
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_
+Save results to:  ./inst/simulation
+Save results to:  ./inst/simul
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf4_reg1_N10000_r01.rds
+Runtime
+Time difference of 18.43152 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables cosearch space expansion 3 
+search space expansion 4 
+search space expansion 5 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, order
+Save results to:
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf2_reg1_N100_r02.rds
+Runtime
+Time difference of 20.44587 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/l
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf4_reg1_N100_r02.rds
+Runtime
+Time difference of 14.58695 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables compsearch space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score table
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf2_reg1_N300_r02.rds
+Runtime
+Time difference of 11.89815 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldag
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf4_reg1_N300_r02.rds
+Runtime
+Time difference of 12.61085 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tablesearch space expansion 2 
+search space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf2_reg1_N1000_r02.rds
+Runtime
+Time difference of 22.61737 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf16_reg1_N1000_r02.rds
+Runtime
+Time difference of 11.00265 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_none_orde
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf2_reg1_N3000_r02.rds
+Runtime
+Time difference of 18.74997 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf16_reg1_N3000_r02.rds
+Runtime
+Time difference of 9.938899 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_tree_order_ess1_epf2_reg1_N10000_r02.rds
+Runtime
+Time difference of 9.37471 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf16_reg1_N10000_r02.rds
+Runtime
+Time difference of 7.878698 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_tree_order_ess1_epf2_reg1_N100_r03.rds
+Runtime
+Time difference of 9.549422 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf4_reg1_N100_r03.rds
+Runtime
+Time difference of 12.04704 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf2_reg1_N300_r03.rds
+Runtime
+Time difference of 17.13221 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_tree_order_ess1_epf4_reg1_N300_r03.rds
+Runtime
+Time difference of 9.281374 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf2_reg1_N1000_r03.rds
+Runtime
+Time difference of 17.33889 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf16_reg1_N1000_r03.rds
+Runtime
+Time difference of 7.293728 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_tree_order_ess1_epf16_reg1_N1000_r03.rds
+Runtime
+Time difference of 6.534411 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core spacesearch space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf2_reg1_N3000_r03.rds
+Runtime
+Time difference of 23.42255 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf2_reg1_N10000_r03.rds
+Runtime
+Time difference of 21.19306 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf16_reg1_N10000_r03.rds
+Runtime
+Time difference of 8.644081 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf2_reg1_N100_r04.rds
+Runtime
+Time difference of 21.34672 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf16_reg1_N100_r04.rds
+Runtime
+Time difference of 9.421531 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+search space expansion 5 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf2_reg1_N300_r04.rds
+Runtime
+Time difference of 28.16182 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_tree_order_ess1_epf16_reg1_N300_r04.rds
+Runtime
+Time difference of 10.21949 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_tree_order_ess1_epf2_reg1_N1000_r04.rds
+Runtime
+Time difference of 13.65341 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf16_reg1_N1000_r04.rds
+Runtime
+Time difference of 10.93842 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_tree_order_ess1_epf2_reg1_N3000_r04.rds
+Runtime
+Time difference of 7.397485 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf4_reg1_N3000_r04.rds
+Runtime
+Time difference of 12.50556 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_tree_order_ess1_epf16_reg1_N3000_r04.rds
+Runtime
+Time difference of 11.21614 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_none_order_ess1_epf2_reg1_N10000_r04.rds
+Runtime
+Time difference of 8.6596 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf4_reg1_N10000_r04.rds
+Runtime
+Time difference of 17.48914 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_tree_order_ess1_epf2_reg1_N100_r05.rds
+Runtime
+Time difference of 10.9336 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 1 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf4_reg1_N100_r05.rds
+Runtime
+Time difference of 15.48973 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+e_order_ess1_epf4_reg1_N10000_r04.rds
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf16_reg1_N10000_r04.rds
+Runtime
+Time difference of 11.95019 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 1 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_ldag_order_ess1_epf2_reg1_N100_r05.rds
+Runtime
+Time difference of 21.51973 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 1 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+ 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_tree_order_ess1_epf4_reg1_N100_r05.rds
+Runtime
+Time difference of 10.62284 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 1 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+pace defined, score table are bein
+Save results to:  ./inst/simulations/ldags/results/asia_h
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf2_reg1_N100_r05.rds
+Runtime
+Time difference of 18.98979 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 1 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hc_tree_order_ess1_epf4_reg1_N100_r05.rds
+Runtime
+Time difference of 13.16095 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+BN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf16_reg1_N100_r05.rds
+Runtime
+Time difference of 11.56164 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 1 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+ expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/ldags/results/asia_hcskel_ldag_order_ess1_epf4_reg1_N100_r05.rds
+Runtime
+Time difference of 13.23595 secs
+Type: EXEC 
+
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
