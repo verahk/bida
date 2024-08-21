@@ -47,16 +47,19 @@ if (length(args) == 0) {
 # additional params
 par <- list(bnname = bnnames,
             init = "pcskel",
-            struct = c("tree", "none"),
+            struct = c("ldag", "tree", "none"),
             sample = "order",
             ess = 1,
-            edgepf = 2,
-            hardlimit = 5,
-            regular = FALSE,
-            N = 10**c(2:4),
-            r = 1:10)
+            edgepf = c(2, 4, 16),
+            hardlimit = 4,
+            regular = c(FALSE, TRUE),
+            N = c(100, 300, 1000, 3000, 10000),
+            r = 1:30)
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
-
+indx <- pargrid$edgepf > 2 & pargrid$struct == "none"
+indx <- indx & network != "asia" & (par$N < 100 & par$N > 3000)
+indx <- indx & network != "asia" & regular = TRUE
+pargrid <- pargrid[!indx, ]
 
 outdir <- "./inst/simulations/ldags/results/"  # directory for storing res
 if (!dir.exists(outdir)) dir.create(outdir)

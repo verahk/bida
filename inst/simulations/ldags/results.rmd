@@ -21,8 +21,6 @@ here::i_am("inst/simulations/ldags/results.rmd")
 
 indir <- here::here("inst/simulations/ldags/results/")
 files <- list.files(indir, ".rds", full.names = TRUE)
-imp <- lapply(files, readRDS)
-
 
 # extract params from filenames
 params_from_filenames <- function(files, 
@@ -32,27 +30,26 @@ params_from_filenames <- function(files,
   names(df) <- names
   
   df$N <- factor(as.numeric(gsub("N", "", df$N)))
+  
+  levels <- unique(df$epf)
+  levels <- levels[order(as.numeric(gsub("epf", "",  levels)))]
+  df$epf <- factor(df$epf, levels)
+  
+  levels <- c("none", "tree", "ldag")
+  df$struct <- factor(df$struct, levels)
+
   df
+  
 }
-df_par <- params_from_filenames(files)
 
 
-```
-
-
-```{r}
-include <- !names(df_par) %in% c("r")
-data.frame(table(df_par[, include]))
-```
-
-```{r}
 prettify_plot <- function(plot) {
   list(theme_minimal(),
        theme(legend.position = "bottom"))
 }
 
 plot_boxplot <- function(df, x = "N", y, fill = "struct", 
-                         facets = as.formula("init+sample+ess+epf+regular~network")) {
+                         facets = as.formula("init+sample+ess+regular~network+epf")) {
   ggplot(df, aes(!! sym(x), !! sym(y), fill = !! sym(fill))) +
   facet_grid(facets) +
   geom_boxplot() +
@@ -60,23 +57,54 @@ plot_boxplot <- function(df, x = "N", y, fill = "struct",
 }
 ```
 
-# box plots
+### Counts of each simulation setting
+For each simulation setting, up to 30 simulation runs. When the table below shows
+a lower frequency for some settings, the simulation is not complete.
+At each run, the different structure learning procedures are applied to a single
+data set sampled from the network. 
 ```{r}
+include <- !names(df_par) %in% c("r")
+data.frame(table(df_par[, include]))
+```
+
+
+# Asia, 8 nodes
+The Asia network is the smallest and easiest to run with a wide range of different simulation settings, shown in the following. 
+
+```{r}
+files <- list.files(indir, pattern = "asia.*.rds", full.names = T)
+imp <- lapply(files, readRDS)
 # collect simulation results
 tmp <- lapply(imp, "[[", "res")
 len <- lengths(tmp)
 stopifnot(all(len == len[1]))
 
-# store in data
-df <- cbind(df_par, do.call(rbind, tmp))
+# store in data frame
+df <- cbind(params_from_filenames(files), do.call(rbind, tmp))
 
-# plot box-plotes
+
+```
+## True and false positive rate 
+The true and false positive rate of the edges (TPR and FPR, respectively), averaged over all DAGs in the sample. The higher FPR when learning DAGs with local structure suggests spurious edges. Mitigated by increasing the edge penalty parameter `epf`.
+```{r}
 plot_boxplot(df, "N", "tpr", "struct")
 plot_boxplot(df, "N", "fpr", "struct")
-plot_boxplot(df, "N", "edgep", "struct")
-plot_boxplot(df, "N", "arp", "struct")
-plot_boxplot(df, "N", "mse", "struct")
 ```
 
 
+## Precision-recall 
+The area under the precision recall curve, approximated by the average precision (`avgppv`). Based on the posterior edge probabilities (`edgep`) and the posterior 
+ancestor relation probabilities (`arp`).
+```{r}
+plot_boxplot(df, "N", "edgep", "struct")
+plot_boxplot(df, "N", "arp", "struct")
+
+```
+
+## Intervention distribution
+Mean squared error of the point-estimates intervention distributions.
+Tend to be more accurate with `tree`. Might sug
+```{r}
+plot_boxplot(df, "N", "mse", "struct")
+```
 
