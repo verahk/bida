@@ -21,23 +21,28 @@
 #' famscore_bdeu(m, ess) == sum(famscore_bdeu_byrow(m, ess))
 #' famscore_bdeu_byrow(m, ess) == apply(m, 1, function(x) famscore_bdeu_1row(x, ess, q = nrow(m)))
 #'
+#' m <- matrix(0, 2, 2)
+#' famscore_bdeu_byrow(m, 1)  # not exact zero
 famscore_bdeu <- function(m, ess = 1, r = ncol(m), q = nrow(m)){
   a <- ess/(r*q)
-  q*lgamma(r*a) - r*q*lgamma(a) + sum(lgamma(a+m)) - sum(lgamma(r*a+rowSums(m)))
+  score <- q*lgamma(r*a) - r*q*lgamma(a) + sum(lgamma(a+m)) - sum(lgamma(r*a+rowSums(m)))
+  round(score, 15)
 }
 
 #' @rdname famscore_bdeu
 famscore_bdeu_byrow <- function(m, ess, r = ncol(m), q = nrow(m), s = 1) {
   ralpha <- ess*s/q
   alpha <- ralpha/r
-  lgamma(ralpha) - r*lgamma(alpha) + rowSums(lgamma(alpha + m)) - lgamma(ralpha + rowSums(m))
+  scores <- lgamma(ralpha) - r*lgamma(alpha) + rowSums(lgamma(alpha + m)) - lgamma(ralpha + rowSums(m))
+  round(scores, 15)
 }
 
 #' @rdname famscore_bdeu
 famscore_bdeu_1row <- function(x, ess, r = length(x), q = 1, s = 1) {
   ralpha <- ess*s/q
   alpha <- ralpha/r
-  lgamma(ralpha) - r*lgamma(alpha) + sum(lgamma(alpha + x)) - lgamma(ralpha + sum(x))
+  score <- lgamma(ralpha) - r*lgamma(alpha) + sum(lgamma(alpha + x)) - lgamma(ralpha + sum(x))
+  round(score, 15)
 }
 
 
