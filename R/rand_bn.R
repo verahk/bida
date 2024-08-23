@@ -16,7 +16,7 @@ rand_bn <- function(dag, type = "cat", ...) {
   bnlearn::custom.fit(g, dist)
 }
 
-rand_dist_cat <- function(dag, alpha, nlev, partitions = NULL) {
+rand_dist_cat <- function(dag, alpha, nlev, levels = lapply(nlev-1, seq.int, from = 0), partitions = NULL) {
   n <- ncol(dag)
   dist <- vector("list", n)
   varnames <- colnames(dag)
@@ -25,17 +25,20 @@ rand_dist_cat <- function(dag, alpha, nlev, partitions = NULL) {
   names(nlev) <- varnames # for dimnames
   for (i in seq_len(n)) {
     pa <- which(dag[, i] == 1)
+
+    if (is.null(partitions) || is.null(partitions[[i]])) {
+      p <- vapply(1:prod(nlev),
+                  function(x) rDirichlet(1, rep(alpha, r), r), numeric(r))
+    } else {
+      parts <- get_parts(partitions[[i]])
+      p <- vapply(seq_along(partitions[[i]]),
+                  function(x) rDirichlet(1, rep(alpha, r), r), numeric(r))[, parts]
+
+    }
+
     dims <- nlev[c(i, pa)]
     dimnames <- lapply(dims-1, seq.int, from = 0)
-
-    bdeu <- new_bida_bdeu(new_bida_sparse_array(0, 0, dims),
-                          ess = alpha*prod(dims),
-                          partition = NULL)
-    if (!(is.null(partitions) && is.null(partitions[[i]]))) {
-      bdeu$partition <- partitions[[i]]
-    }
-    tmp <- posterior_sample(bdeu, 1, reduced = FALSE)
-    dist[[i]] <- array(tmp, dims, dimnames)
+    dist[[i]] <- array(p, dims, dimnames)
   }
 
   names(dist) <- varnames
