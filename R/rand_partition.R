@@ -15,7 +15,9 @@
 #'
 rand_partition <- function(nlev, prob, method = "labels") {
   P <- switch(method,
-             "labels" = partition_from_labels(rand_labels(nlev, prob), nlev))
+             "labels" = partition_from_labels(rand_labels(nlev, prob), nlev),
+             "tree" = rand_partition_tree(nlev, prob, doMerge = F, ...),
+             "dgraph" = rand_partition_tree(nlev, prob, doMerge = T, ...))
 
   # ensure parts are enumerated from 1,..., length(unique(P))
   match(P, unique(P))
@@ -35,9 +37,10 @@ rand_labels <- function(nlev, lprob) {
   for (i in seq_len(n)) {
     if (runif(1) < lprob) {
       # draw number of labels
-      p <- lprob/2**seq.int(q/nlev[i])
-      p <- p/sum(p)
-      nlabels <- sample.int(length(p), 1, prob = p)
+      #p <- lprob/2**seq.int(q/nlev[i])
+      #p <- p/sum(p)
+      #nlabels <- sample.int(length(p), 1, prob = p)
+      nlabels <- sample.int(length(p), 1)
 
       # draw labels
       contexts <- sample(joint[conf[, i] == 0], nlabels, FALSE)
@@ -123,6 +126,7 @@ rand_partition_tree <- function(nlev, splitprob, doMerge = T, nextsplitprob = fu
 
   get_parts(partition)
 }
+
 
 
 

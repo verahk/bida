@@ -2,45 +2,57 @@
 % Please edit documentation in R/is_regular.R
 \name{is_regular}
 \alias{is_regular}
+\alias{is_regular_varwise}
 \title{Check if partition is regular.}
 \usage{
-is_regular(P, nlev, stride = c(1, cumprod(nlev[-length(nlev)])))
+is_regular(P, nlev, stride = NULL)
+
+is_regular_varwise(P, nlev, stride, i = 1)
 }
 \arguments{
-\item{P}{a partitioning of a outcome space.
-See class documentation \code{\link[=partition]{partition()}}.}
+\item{P}{(list of integer vectors) a partitioning of a zero-indexed outcome space (\verb{0, 1, ..., prod(nlev)-1})
+specified as a list of subsets (see examples).}
 
-\item{nlev}{}
+\item{nlev}{(integer vector) cardinality of the variables}
 
-\item{stride}{}
+\item{stride}{(integer vector, optional)}
+
+\item{i}{position of node}
 }
 \value{
 a logical constant; \code{TRUE} if partition is regular, \code{FALSE} otherwise.
 }
 \description{
-A partition is called regular if it do not encode any conditional independencies.
-That is, the partition is independent of one or more conditioning variable(s).
-The function iterates through each conditioning variable until a variable and
-return \code{FALSE} such a variable is met.
+A partition is called regular if it does not encode any conditional independencies.
+The tests if there is any variable for which all parts in the partition is
+independent of that variable's value.
+More precisely, it iterates through the variables and parts and checks if all
+values of the variable is repeated for every configuration of the remainder
+variables in that part.
+}
+\details{
+\itemize{
+\item \code{is_regular_varwise}: returns \code{TRUE} if \code{P} is regular with respect to variable \code{i}
+}
 }
 \examples{
 
-# check if partition is regular 
+# specify cardinality of variables
 nlev   <- c(2, 2)
 
-## regular 
+## regular
 P <- list(0, 1:3)
-is_regular(P, nlev)
+stopifnot(is_regular(P, nlev) == TRUE)
 
-P <- list(c(0, 3), c(1, 2)) 
-is_regular(P, nlev)
+P <- list(c(0, 3), c(1, 2))
+stopifnot(is_regular(P, nlev) == TRUE)
 
 ## not regular
 P <- list(0:3)
-is_regular(P, nlev)
+stopifnot(is_regular(P, nlev) == FALSE)
 
 P <- list(0:1, 2:3)
-is_regular(P, nlev)
+stopifnot(is_regular(P, nlev) == FALSE)
 }
 \seealso{
 \code{\link[=make_regular]{make_regular()}}

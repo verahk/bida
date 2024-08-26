@@ -22,7 +22,8 @@ here::i_am("./inst/rmd/optimize_partition.Rmd")
 
 # Basic usage
 The documentation of the function is found running `?bida::optimize_partition`.
-Here follows a few examples. 
+Here follows a few examples, where the optimization algorithms are applied to counts from a binary split, a v-structure and mixed cardinality setting.
+
 ### Binary split
 First, design a frequency table `counts` representing a binary split and compare the output from the three optimization algorithms `tree`, `ldag` and `part`.
 ```{r}
@@ -109,31 +110,32 @@ Given a true partition `parts` of a parent space, the following code block imple
 ```{r}
 
 
-run <- function(parts, levels, r, alpha = rep(1, r), verbose = F, doPlot = T) {
+run <- function(parts, levels, r, reps = 10, alpha = rep(1, r), verbose = F, doPlot = T) {
   # simulation: learn partitions from data 
-  # 1. for each rep, draw a reduced CPT over parts 
-  # 2. for each sample size, simulate data from the CPT
-  #    - infer a partition from data 
-  #    - evaluate the partition by the pair-confusion-matrix
+  # parts = partitioning of parent space
+  # levels = levels of the parent variables
+  # r: cardinality of outcome variable
+  # alpha: hyperparam for Dirichlet distrib over each conditional prob vector 
   
-  tmp <- unique(parts)
-  nparts <- length(tmp)
-  parts  <- match(parts, tmp) # relab parts from 1, 2, .., nparts
+  # relab parts from 1, 2, .., nparts
+  uparts <- unique(parts)
+  nparts <- length(uparts)
+  parts  <- match(parts, uparts) 
   q <- length(parts)
   
-  # init array for storing results 
-  simpar <- list(rep = 1:5,
+  # specify simparams and init array for storing results 
+  simpar <- list(rep = 1:reps,
                  N = round(10**seq(2, 4, length.out = 11)), 
                  struct = c("tree", "ldag"),
                  regular = c(TRUE, FALSE))
   res <- array(list(), lengths(simpar), simpar)
  
-  
-  for (i in simpar$rep) {
+  for (i in simpar$rep) { 
     
     # draw reduced CPT
     set.seed(i)
     cpt <- vapply(1:nparts, function(x) bida:::rDirichlet(1, alpha), numeric(r))
+    tcpt <- t(cpt)
     
     for (j in seq_along(simpar$N)) {
       
@@ -143,15 +145,16 @@ run <- function(parts, levels, r, alpha = rep(1, r), verbose = F, doPlot = T) {
       # sample from conditional distribution
       set.seed(j)
       par <- sample.int(q, N, replace = T) # sample parents uniformily
-      x   <- bida:::sample_from_cpt(cpt, parts[par]-1, r)
-      # check means
-      tab <- table(parts[par], x)
-      tab/rowSums(tab)-t(cpt)
-      
+      x   <- bida:::sample_from_cpt(t(cpt), parts[par], r)
       
       # compute frequency table 
       tab  <- as.matrix(table(par, x))
-     
+      
+      # compute squared errors of point-estimates 
+      ess  <- 1
+      tmp  <- tab + ess/(q*r)
+      sqerr <- sum((tmp/rowSums(tmp)-tcpt[parts, ])**2)
+      
       for (k in seq_along(simpar$struct)) {
         for (l in seq_along(simpar$regular)){
           struct <- simpar$struct[k]
@@ -161,26 +164,43 @@ run <- function(parts, levels, r, alpha = rep(1, r), verbose = F, doPlot = T) {
           fit <- bida:::optimize_partition(tab, levels, 1, struct, regular = regular, verbose = verbose)
           
           # compute partition similarity
-          tmp <- get_parts(fit$partition)
-          res[[i, j, k, l]] <- compute_paired_confusion_matrix(tmp, parts)
+          opt_parts <- get_parts(fit$partition)
+          res_pairs <- compute_paired_confusion_matrix(opt_parts, parts)
           
-          # compute MSE of point-estimates
+          # compute relative MSE of point-estimates
+          tmp <- rowsum(tab + ess/(q*r), opt_parts)
+          means <- (tmp/rowSums(tmp))[opt_parts, ]
+          res_mse <- sum((means-tcpt[parts, ])**2)/sqerr
           
+          res[[i, j, k, l]] <- c(res_pairs, mse = res_mse)
         }
       }
     }
   }
   
+  # collect results in data.frame
   df <- cbind(expand.grid(simpar), do.call(rbind, res))
+  df$Fmeasure <- with(df, 2*a/(2*a+b+c))
   plots <- list()
     
   if (doPlot) {
     # F-measure
-    plot <- ggplot(df, aes(N, y = 2*a/(2*a+b+c),  group = rep)) +
+    plot <- ggplot(df, aes(N, y = Fmeasure,  group = rep)) +
                   facet_grid(. ~ struct + regular) +
                   geom_line() +
-                  scale_x_log10()
+                  #geom_violin() + 
+                  scale_x_log10() +
+                  geom_abline(slope = 0, intercept = 1, color = "red") +
+                  coord_cartesian(ylim = c(0, 1))
     plots$Fmeasure <- plot
+    
+    plot <- ggplot(df, aes(N, y = mse,  group = rep)) +
+                  facet_grid(. ~ struct + regular) +
+                  geom_boxplot() +
+                  scale_x_log10() +
+                  geom_abline(slope = 0, intercept = 1, color = "red") +
+                  coord_cartesian(ylim = c(0, 3))
+    plots$mse <- plot
     
     # decomp paired comparisons
     df_long <- tidyr::pivot_longer(df, letters[1:4])
@@ -223,32 +243,41 @@ compute_paired_confusion_matrix <- function(x, y) {
 
 
 ## Binary split over two binary parents
-```{r}
+```{r, results = "hold"}
 levels <- list(0:1, 0:1)
-labels <- list(rbind(0), NULL)
-parts  <- bida:::labels_to_parts(labels, lengths(levels), levels)
+labels <- list(binary = list(rbind(0), NULL),
+               vstruct = list(rbind(0), rbind(0)))
 
-# print partition
-cbind(expand.grid(levels), parts)
+for (name in names(labels)) {
+  
+  cat("\nTwo binary variables, structure:", name)
+  # print partition
+  parts  <- bida:::partition_from_labels(labels[[name]], lengths(levels), levels)
+  print(cbind(expand.grid(levels), parts))
+  
+  # run simulation
+  res <- run(parts, levels, r = 2, verbose = F)
+  lapply(res$plots, print)
+}
 
-# run simulation
-res <- run(parts, levels, r = 2, verbose = F)
-res$plots$compar
-res$plots$Fmeasure
+
 ```
 
 ## Vstructure over two binary parents
 ```{r}
 levels <- list(0:1, 0:1)
 labels <- list(rbind(0), rbind(0))
-parts  <- bida:::labels_to_parts(labels, lengths(levels), levels)
+parts  <- bida:::partition_from_labels(labels, lengths(levels), levels)
 
 # print partition
 cbind(expand.grid(levels), parts)
 
 # run simulation
 res <- run(parts, levels, r = 2, verbose = F)
+res <- run(parts, levels, r = 2, verbose = F)
 res$plots$compar
+res$plots$Fmeasure
+res$plots$mse
 ```
 
 ## Three binary parents
@@ -257,7 +286,7 @@ levels <- list(0:1, 0:1, 0:1)
 labels <- list(rbind(c(0, 0), c(1, 0)), 
                rbind(c(0, 0), c(1, 0)), 
                NULL)
-parts  <- bida:::labels_to_parts(labels, lengths(levels), levels)
+parts  <- bida:::partition_from_labels(labels, lengths(levels), levels)
 
 # print partition
 cbind(expand.grid(levels), parts)
@@ -270,10 +299,10 @@ res$plots$compar
 ## Mixed cardinality
 ```{r}
 levels <- list(0:1, 0:2, 0:3)
-labels <- list(NULL,
+labels <- list(rbind(c(0, 0), c(1, 0)),
                rbind(c(0, 0), c(1, 0)), 
                rbind(c(0, 0), c(1, 0)))
-parts  <- bida:::labels_to_parts(labels, lengths(levels), levels)
+parts  <- bida:::partition_from_labels(labels, lengths(levels), levels)
 
 # print partition
 cbind(expand.grid(levels), parts)
@@ -282,3 +311,24 @@ cbind(expand.grid(levels), parts)
 res <- run(parts, levels, r = 3, verbose = F)
 res$plots$compar
 ```
+
+
+```{r}
+
+simpar <- list(n = 2:4,
+               k = 2**seq.int(3),
+               p = c(.25, .5, .75))
+
+res <- array(list(), dim = 
+
+               
+nlev <- rep(k, n)
+parts <- rand_partition(nlev, .5)
+cbind(expand.grid(levels), parts)
+simpar <- function(n, )
+# run simulation
+res <- run(parts, levels, r = 3, verbose = F)
+res$plots$compar
+```
+
+

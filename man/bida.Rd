@@ -6,7 +6,7 @@
 \alias{posterior_sample.bida}
 \title{Class: bida}
 \usage{
-bida(ps, data, type, params, pairs = NULL)
+bida(ps, data, type, params, lookup = NULL, pairs = NULL)
 
 \method{posterior_mean}{bida}(x, ...)
 
@@ -30,14 +30,35 @@ If NULL (default), all pairs are considered and \code{pairs[i, j] = 1} for all b
 }
 \value{
 \code{bida}: a n-by-n list where each element is an object of class \code{bida_pair}
-\code{posterior_mean}: a n-by-n list with the posterior mean
-\code{posterior_sample}: a n-by-n list with posterior samples
 }
 \description{
 An object of class bida is a matrix list with objects of class \link{bida_pair},
 that describes the posterior mixture distribution over the causal effect between every variable pair.
 The \code{posterior_mean} and \code{posterior_sample} methods calls the respective methods
 for each \link{bida_pair} and collect the output in a matrix list.
+}
+\examples{
+dag  <- rbind(c(0, 1, 1), c(0, 0, 1), c(0, 0, 0))
+colnames(dag) <- rownames(dag) <- letters[1:3]
+
+# Categorical data
+nlev <- 2:4
+bn <- rand_bn(dag, "cat", alpha = 1, nlev = nlev)
+data <- sample_data_from_bn(bn, 10**4)
+
+# list parent sets in true DAG
+ps <- parent_support_from_dags(list(dag))
+
+params <- list(nlev = nlev, ess = 1)
+fit <- bida(ps, data, "cat", params)
+means <- posterior_mean(fit)
+means
+
+# compare with true distributions
+pdo <- interv_probs_from_bn(bn, "exact")
+dindx <- diag(ncol(dag)) == 1
+plot(unlist(pdo[!dindx]), unlist(means[!dindx]))
+
 }
 \seealso{
 \link{bida_pair_cat}
