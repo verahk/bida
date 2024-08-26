@@ -30,14 +30,14 @@ sample_data_from_cpts <- function(size, cpts, top_order) {
 # parents <- sample.int(q, 10**4, TRUE)
 #
 # # sample from cpt
-# x <- sample_from_cpt(cpt, parents-1, r)
+# x <- sample_from_cpt(cpt, parents, r)
 
 
 sample_from_cpt <- function(cpt, parents, r = dim(cpt)[1]) {
   y <- integer(length(parents))
   for (k in unique(parents)) {
     indx <- parents == k
-    y[indx] <- sample.int(r, sum(indx), replace = T, prob = cpt[, k+1])
+    y[indx] <- sample.int(r, sum(indx), replace = T, prob = cpt[k, ])
   }
   return(y-1)
 }

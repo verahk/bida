@@ -31,17 +31,19 @@ optimize_partition_ldag <- function(counts, levels, ess, regular,
   best_lab <- list()
 
   # check if all co-parent configs is already added to label
-  for (i in seq_along(nlev)[lengths(labels) < q/nlev]) {
+  for (i in seq_along(nlev)) {
+
     # find candidate  labels /  co-parent configs to add to label
     # - enumerate these contexts by the rows in the CPT where node i is zero
     contexts <- joint[conf[, i] == 0]
 
-    # remove contexts already in label on edge from i
+    # remove contexts already in labels on edge from i
     contexts <- contexts[match(contexts, labels[[i]], nomatch = 0) == 0]
 
-
-    # find the parts satisfied by each candidate label
+    # rows in the CPT satisfied by each candidate label
     rows  <- outer(contexts, levels[[i]]*stride[i]+1, "+")
+
+    # correspononding parts in the current partition
     parts <- array(partition[rows], dim(rows))
     # check
     # apply(rows, 1, function(x) cbind(conf[x, ], p = partition[x]), simplify = F)
@@ -86,12 +88,10 @@ optimize_partition_ldag <- function(counts, levels, ess, regular,
       if (diff - best_diff > 10e-16) {
 
         # check if regular
-        PP <- c(P[-collapse], list(unlist(P[collapse])))
-        if (regular && !is_regular(PP,  nlev, stride))  next
+        new_part <- list(unlist(P[collapse]))
+        PP <- c(P[-collapse], new_part)
 
-        if (sum(lengths(PP)) > sum(lengths(P))) {
-          print("breakpoint")
-        }
+        if (regular && !is_regular(PP,  nlev, stride))  next
 
         best_partition <- PP
         best_diff <- diff
@@ -129,31 +129,3 @@ optimize_partition_ldag <- function(counts, levels, ess, regular,
                 scores = part_scores))
   }
 }
-
-
-find_duplicated_rows <- function(x) {
-  rsums <- rowSums(x)
-  dups  <- duplicated(rsums)
-
-}
-# profiling ----
-if (FALSE) {
-
-  levels <- rep(list(0:2), 3)
-  counts <- matrix(rgamma(prod(lengths(levels))*3, 10), ncol = 3)
-  res <- optimize_partition_ldag(counts, levels, ess = 1, verbose = T)
-
-  all_elem_equal <- function(y) vapply(y, function(x) all(x == x[1]), logical(1))
-  all_elem_equal2 <- function(y) vapply(y, function(x) length(unique(x)), integer(1)) == 1
-  all_elem_equal3 <- function(m) rowSums(m == m[, 1]) == 1
-
-  tmp <- replicate(5, sample(1:3, 10, T), simplify = F)
-  m <- do.call(rbind, tmp)
-
-  microbenchmark::microbenchmark(all_elem_equal(tmp),
-                                 all_elem_equal2(tmp),
-                                 all_elem_equal3(m))
-
-
-}
-
