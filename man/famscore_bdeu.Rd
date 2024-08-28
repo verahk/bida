@@ -38,4 +38,13 @@ Compute family score for categorical data (BDeu-score)
 \item \code{famscore_bdeu_byrow} assumes \code{x} is a matrix and returns a vector with the scores of each row of \code{x}. Used in \link{optimize_partition}.
 }
 }
+\examples{
+
+m <- matrix(1:4, 2, 2)
+ess <- 1
+famscore_bdeu(m, ess)
+famscore_bdeu(m, ess) == sum(famscore_bdeu_byrow(m, ess))
+famscore_bdeu_byrow(m, ess) == apply(m, 1, function(x) famscore_bdeu_1row(x, ess, q = nrow(m)))
+
+}
 \keyword{internal}
