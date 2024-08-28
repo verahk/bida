@@ -78,7 +78,7 @@ optimize_partition_ldag <- function(counts, levels, ess, regular,
     # do not evaluate collapse parts with zero-counts
     # - collapsing rows with zero counts do not change the score
     part_zero_counts <- rowSums(part_counts) == 0
-    indx <- rowSums(array(part_zero_counts[parts], dim(parts))) > 0
+    indx <- rowSums(array(!part_zero_counts[parts], dim(parts))) > 0
 
     for (j in seq_along(contexts)[indx]) {
 
