@@ -2,8 +2,9 @@
 
 #' Title
 #'
-#' @param splitprob
 #' @param nlev
+#' @param prob
+#' @param method
 #' @return
 #' @export
 #'
@@ -13,14 +14,51 @@
 #' nlev <- c(2, 2, 2)
 #' rand_partition(nlev, prob = .5)
 #'
-rand_partition <- function(nlev, prob, method = "labels") {
+#' set.seed(007)
+#' nlev <- c(2, 2, 2)
+#' rand_partition(nlev, .5, method = "tree")
+#'
+#' # force at least one split by manipulating `nextsplitprob` rule
+#' set.seed(007)
+#' nextsplitprob <- function(x) x/2
+#' rand_partition(nlev, 1, "tree", nextsplitprob)
+#'
+#' stopifnot(length(unique(rand_partition(nlev, 1, "tree", function(x) 0))) == 2)
+#'
+#'
+#' # method = "`dgraph" to merge leaves in decision tree
+#' set.seed(007)
+#' rand_partition(nlev, 1, "dgraph", nextsplitprob)
+#'
+#' # high cardinality
+#' nlev <- rep(8, 4)
+#' parts <- list(labels = rand_partition(nlev, .5, "labels"),
+#'               tree = rand_partition(nlev, .5, "tree"),
+#'               dgraph = rand_partition(nlev, .5, "dgraph"))
+#' lapply(parts, function(x) length(unique(x))/length(x))
+#'
+#' parts <- rand_partition(nlev, .5, "dgraph")
+#' P <- split(seq_along(parts), parts)
+#' is_regular(P, nlev)
+rand_partition <- function(nlev,
+                           prob,
+                           method = "labels",
+                           nextsplitprob = function(x) x,
+                           regular = FALSE) {
   P <- switch(method,
              "labels" = partition_from_labels(rand_labels(nlev, prob), nlev),
-             "tree" = rand_partition_tree(nlev, prob, doMerge = F, ...),
-             "dgraph" = rand_partition_tree(nlev, prob, doMerge = T, ...))
+             "tree" = rand_partition_tree(nlev, prob, doMerge = F, nextsplitprob = nextsplitprob),
+             "dgraph" = rand_partition_tree(nlev, prob, doMerge = T,  nextsplitprob = nextsplitprob))
 
-  # ensure parts are enumerated from 1,..., length(unique(P))
-  match(P, unique(P))
+  if (regular) {
+    P <- split(seq_along(P), P)
+    return(get_parts(make_regular(P, nlev)))
+  } else {
+    # ensure parts are enumerated from 1,..., length(unique(P))
+    match(P, unique(P))
+  }
+
+
 }
 
 rand_labels <- function(nlev, lprob) {
@@ -52,35 +90,12 @@ rand_labels <- function(nlev, lprob) {
 
 
 
-#' Title
+#' @rdname rand_partition
+#' @param splitprob (numeric constant) probability of splitting a node
+#' @param doMerge (logical constant) randomly merge leaves in tree
+#' @param nextsplitprob (function) manipulate `splitprob` for each new split
 #'
-#' @param nlev
-#' @param splitprob
-#' @param doMerge
-#' @param nextsplitprob
-#' @return
-#' @keywords internal
-#' @examples
-#'
-#' set.seed(007)
-#' nlev <- c(2, 2, 2)
-#' rand_partition_tree(nlev, splitprob = .5, doMerge = F)
-#'
-#' # force at least one split by manipulating `nextsplitprob` rule
-#' set.seed(007)
-#' nextsplitprob <- function(x) x/2
-#' part_tree <- rand_partition_tree(nlev, splitprob = 1, doMerge = F, nextsplitprob)
-#' part_tree
-#'
-#' # set doMerge = T to merge leaves in decision tree
-#' set.seed(007)
-#' part_ldag <- rand_partition_tree(nlev, splitprob = 1, doMerge = T, nextsplitprob)
-#'
-#' # compare
-#' levels <- lapply(nlev-1, seq.int, from = 0)
-#' cbind(expand.grid(levels), part_tree, part_ldag)
-#'
-rand_partition_tree <- function(nlev, splitprob, doMerge = T, nextsplitprob = function(x) x) {
+rand_partition_tree <- function(nlev, splitprob, doMerge = TRUE, nextsplitprob = function(x) x) {
 
   # define routine for growing a tree
   grow_tree <- function(splitprob, vars, subset) {
@@ -117,6 +132,7 @@ rand_partition_tree <- function(nlev, splitprob, doMerge = T, nextsplitprob = fu
   subset <- seq_len(prod(nlev))-1
   tree   <- grow_tree(splitprob, vars, subset)
   partition <- unlist_tree(tree)
+  nparts <- length(partition)
 
   if (doMerge && nparts > 1) {
     nparts <- length(partition)

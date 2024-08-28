@@ -10,12 +10,12 @@ is_regular(P, nlev, stride = NULL)
 is_regular_varwise(P, nlev, stride, i = 1)
 }
 \arguments{
-\item{P}{(list of integer vectors) a partitioning of a zero-indexed outcome space (\verb{0, 1, ..., prod(nlev)-1})
-specified as a list of subsets (see examples).}
+\item{P}{(list of integer vectors) a partitioning of a zero-indexed outcome space
+`0, 1, ..., prod(nlev)-1, see examples.}
 
 \item{nlev}{(integer vector) cardinality of the variables}
 
-\item{stride}{(integer vector, optional)}
+\item{stride}{(integer vector) stride corresponding to \code{nlev}. Optional.}
 
 \item{i}{position of node}
 }

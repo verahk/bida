@@ -2,9 +2,24 @@
 % Please edit documentation in R/rand_partition.R
 \name{rand_partition}
 \alias{rand_partition}
+\alias{rand_partition_tree}
 \title{Title}
 \usage{
 rand_partition(nlev, prob, method = "labels")
+
+rand_partition_tree(
+  nlev,
+  splitprob,
+  doMerge = T,
+  nextsplitprob = function(x) x
+)
+}
+\arguments{
+\item{splitprob}{(numeric constant) probability of splitting a node}
+
+\item{doMerge}{(logical constant) randomly merge leaves in tree}
+
+\item{nextsplitprob}{(function) manipulate \code{splitprob} for each new split}
 }
 \description{
 Title
@@ -14,5 +29,24 @@ Title
 set.seed(007)
 nlev <- c(2, 2, 2)
 rand_partition(nlev, prob = .5)
+
+
+set.seed(007)
+nlev <- c(2, 2, 2)
+rand_partition_tree(nlev, splitprob = .5, doMerge = F)
+
+# force at least one split by manipulating `nextsplitprob` rule
+set.seed(007)
+nextsplitprob <- function(x) x/2
+part_tree <- rand_partition_tree(nlev, splitprob = 1, doMerge = F, nextsplitprob)
+part_tree
+
+# set doMerge = T to merge leaves in decision tree
+set.seed(007)
+part_ldag <- rand_partition_tree(nlev, splitprob = 1, doMerge = T, nextsplitprob)
+
+# compare
+levels <- lapply(nlev-1, seq.int, from = 0)
+cbind(expand.grid(levels), part_tree, part_ldag)
 
 }

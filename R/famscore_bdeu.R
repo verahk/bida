@@ -13,7 +13,7 @@
 #'
 #' @returns the bdeu score
 #' @keywords internal
-#' @example
+#' @examples
 #'
 #' m <- matrix(1:4, 2, 2)
 #' ess <- 1
