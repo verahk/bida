@@ -2,27 +2,25 @@
 % Please edit documentation in R/rand_partition.R
 \name{rand_partition}
 \alias{rand_partition}
-\alias{rand_partition_tree}
-\title{Title}
+\title{Draw a random partition of an outcome space}
 \usage{
-rand_partition(nlev, prob, method = "labels")
-
-rand_partition_tree(
-  nlev,
-  splitprob,
-  doMerge = T,
-  nextsplitprob = function(x) x
-)
+rand_partition(nlev, prob, method = "tree", regular = FALSE, ...)
 }
 \arguments{
-\item{splitprob}{(numeric constant) probability of splitting a node}
+\item{nlev}{cardinality of the variables.}
 
-\item{doMerge}{(logical constant) randomly merge leaves in tree}
+\item{prob}{parameter controlling the size of the partition.}
 
-\item{nextsplitprob}{(function) manipulate \code{splitprob} for each new split}
+\item{method}{name of algorithm}
+
+\item{regular}{If \code{TRUE}, the partition is forced to be regular. See \link{make_regular}.}
+}
+\value{
+an vector of length \code{prod(nlev)} assigning each joint outcome to a
+subset of the partition.
 }
 \description{
-Title
+Draw a random partition of the outcome space of a set of categorical variables
 }
 \examples{
 
@@ -30,23 +28,30 @@ set.seed(007)
 nlev <- c(2, 2, 2)
 rand_partition(nlev, prob = .5)
 
-
 set.seed(007)
 nlev <- c(2, 2, 2)
-rand_partition_tree(nlev, splitprob = .5, doMerge = F)
+rand_partition(nlev, .5, method = "tree")
 
 # force at least one split by manipulating `nextsplitprob` rule
 set.seed(007)
 nextsplitprob <- function(x) x/2
-part_tree <- rand_partition_tree(nlev, splitprob = 1, doMerge = F, nextsplitprob)
-part_tree
+rand_partition(nlev, 1, "tree", nextsplitprob)
 
-# set doMerge = T to merge leaves in decision tree
+stopifnot(length(unique(rand_partition(nlev, 1, "tree", function(x) 0))) == 2)
+
+
+# method = "`dgraph" to merge leaves in decision tree
 set.seed(007)
-part_ldag <- rand_partition_tree(nlev, splitprob = 1, doMerge = T, nextsplitprob)
+rand_partition(nlev, 1, "dgraph", nextsplitprob)
 
-# compare
-levels <- lapply(nlev-1, seq.int, from = 0)
-cbind(expand.grid(levels), part_tree, part_ldag)
+# high cardinality
+nlev <- rep(8, 4)
+parts <- list(labels = rand_partition(nlev, .5, "labels"),
+              tree = rand_partition(nlev, .5, "tree"),
+              dgraph = rand_partition(nlev, .5, "dgraph"))
+lapply(parts, function(x) length(unique(x))/length(x))
 
+parts <- rand_partition(nlev, .5, "dgraph")
+P <- split(seq_along(parts), parts)
+is_regular(P, nlev)
 }

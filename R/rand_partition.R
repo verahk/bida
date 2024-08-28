@@ -1,11 +1,15 @@
 
 
-#' Title
+#' Draw a random partition of an outcome space
 #'
-#' @param nlev
-#' @param prob
-#' @param method
-#' @return
+#' Draw a random partition of the outcome space of a set of categorical variables
+#'
+#' @param nlev cardinality of the variables.
+#' @param prob parameter controlling the size of the partition.
+#' @param method name of algorithm.
+#' @param regular If `TRUE`, the partition is forced to be regular. See [bida::make_regular].
+#' @return an vector of length `prod(nlev)` assigning each joint outcome to a
+#'  subset of the partition.
 #' @export
 #'
 #' @examples
@@ -42,13 +46,13 @@
 #' is_regular(P, nlev)
 rand_partition <- function(nlev,
                            prob,
-                           method = "labels",
-                           nextsplitprob = function(x) x,
-                           regular = FALSE) {
+                           method = "tree",
+                           regular = FALSE,
+                           ...) {
   P <- switch(method,
-             "labels" = partition_from_labels(rand_labels(nlev, prob), nlev),
-             "tree" = rand_partition_tree(nlev, prob, doMerge = F, nextsplitprob = nextsplitprob),
-             "dgraph" = rand_partition_tree(nlev, prob, doMerge = T,  nextsplitprob = nextsplitprob))
+             "labels" = partition_from_labels(rand_labels(nlev, prob, ...), nlev),
+             "tree" = rand_partition_tree(nlev, prob, doMerge = F, ...),
+             "dgraph" = rand_partition_tree(nlev, prob, doMerge = T, ...))
 
   if (regular) {
     P <- split(seq_along(P), P)
@@ -60,6 +64,7 @@ rand_partition <- function(nlev,
 
 
 }
+
 
 rand_labels <- function(nlev, lprob) {
 
@@ -74,13 +79,7 @@ rand_labels <- function(nlev, lprob) {
 
   for (i in seq_len(n)) {
     if (runif(1) < lprob) {
-      # draw number of labels
-      #p <- lprob/2**seq.int(q/nlev[i])
-      #p <- p/sum(p)
-      #nlabels <- sample.int(length(p), 1, prob = p)
-      nlabels <- sample.int(length(p), 1)
-
-      # draw labels
+      nlabels <- rbinom(1, q/nlev[i]-1, lprob)
       contexts <- sample(joint[conf[, i] == 0], nlabels, FALSE)
       labels[[i]] <- conf[contexts, -i, drop = FALSE]
     }
@@ -90,11 +89,9 @@ rand_labels <- function(nlev, lprob) {
 
 
 
-#' @rdname rand_partition
 #' @param splitprob (numeric constant) probability of splitting a node
 #' @param doMerge (logical constant) randomly merge leaves in tree
 #' @param nextsplitprob (function) manipulate `splitprob` for each new split
-#'
 rand_partition_tree <- function(nlev, splitprob, doMerge = TRUE, nextsplitprob = function(x) x) {
 
   # define routine for growing a tree
