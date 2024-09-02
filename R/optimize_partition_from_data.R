@@ -133,3 +133,33 @@ optimize_partition_from_data_pcart <- function(data, j, parentnodes, ess, nlev =
        score = score,
        pcart = result)
 }
+
+
+if (FALSE) {
+  rules_from_tree <- function(tree, rule = "") {
+    if (startsWith(tree[1], "-+")) {
+      root <- tree[1]
+      split <- strsplit(substring(root, 4), ": | \\| ")[[1]]
+
+      splitvals <- lapply(split[-1],
+                          function(x) strsplit(x, " +")[[1]])
+      add_rules <- lapply(splitvals,
+                          function(x) paste0(paste0(split[1], "==", x), collapse = "|"))
+      new_rules <- lapply(add_rules,
+                          function(x) paste0(rule, x, collapse = "&"))
+
+      subtrees <- split(substring(tree[-1], 3), grepl("^ \\|", tree[-1]))
+
+      c(rules_from_tree(subtrees[[1]], new_rules[[1]]),
+        rules_from_tree(subtrees[[2]], new_rules[[2]]))
+    } else {
+      list(rule)
+    }
+  }
+
+  rules_chr  <- rules_from_tree(tree, "")
+  rules_expr <- lapply(rules_chr, function(x) parse(text = x))
+  with(tail(df), eval(rules_expr[[1]]))
+  lapply(rules_expr, function(xx) which(with(df, eval(xx))))
+
+}
