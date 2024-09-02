@@ -1,4 +1,23 @@
 
+#' Title
+#'
+#' @param dag
+#' @param type
+#' @param ...
+#'
+#' @return
+#' @keywords internal
+#'
+#' @examples
+#'
+#' n <- 3
+#' dag <- matrix(0, n, n)
+#' dag[upper.tri(dag)] <- 1
+#'
+#' # categorical distribution with local structure
+#' nlev <- rep(2, ncol(dag))
+#' partitions <- list(NULL, NULL, X3 = list(0:2, 1))
+#' rand_bn(dag, "cat", alpha = 1, nlev = rep(2, 3), partitions)
 rand_bn <- function(dag, type = "cat", ...) {
   n <- ncol(dag)
 
@@ -16,7 +35,7 @@ rand_bn <- function(dag, type = "cat", ...) {
   bnlearn::custom.fit(g, dist)
 }
 
-rand_dist_cat <- function(dag, alpha, nlev, levels = lapply(nlev-1, seq.int, from = 0), partitions = NULL) {
+rand_dist_cat <- function(dag, alpha, nlev, partitions = NULL) {
   n <- ncol(dag)
   dist <- vector("list", n)
   varnames <- colnames(dag)
@@ -25,13 +44,18 @@ rand_dist_cat <- function(dag, alpha, nlev, levels = lapply(nlev-1, seq.int, fro
   names(nlev) <- varnames # for dimnames
   for (i in seq_len(n)) {
     pa <- which(dag[, i] == 1)
+    r <- nlev[i]
+    q <- prod(nlev[pa])
+    partition <- partitions[[i]]
 
-    if (is.null(partitions) || is.null(partitions[[i]])) {
-      p <- vapply(1:prod(nlev),
+    if (is.null(partition)) {
+      p <- vapply(integer(q),
                   function(x) rDirichlet(1, rep(alpha, r), r), numeric(r))
     } else {
-      parts <- get_parts(partitions[[i]])
-      p <- vapply(seq_along(partitions[[i]]),
+
+      stopifnot(length(unlist(partition)) == q)
+      parts <- get_parts(partition)
+      p <- vapply(seq_along(partition),
                   function(x) rDirichlet(1, rep(alpha, r), r), numeric(r))[, parts]
 
     }
