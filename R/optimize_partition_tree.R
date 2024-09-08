@@ -90,10 +90,10 @@ grow_tree <- function(counts, conf, score, ess, r, q, min_score_improv, stride, 
   }
   if (keep_splitting) {
 
-    if (verbose) cat("\ndiff:", best_split$score-score,
+    if (verbose) cat("\nScore-diff:", sum(best_split$leaf_scores)-score,
                       "Splitvariable:", best_split$var,
                       "Splitvalue:", best_split$vals,
-                      "Scores:", best_split$leaf_scores)
+                      "Leaf-scores:", best_split$leaf_scores)
 
     # grow a new tree for each value of split variable
     best_split$branches <- setNames(vector("list", length(best_split$vals)), best_split$vals)
