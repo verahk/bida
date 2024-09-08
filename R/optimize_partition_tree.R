@@ -63,8 +63,8 @@ prune_tree <- function(tree, verbose = FALSE) {
 #  indx <- vapply(tree$branches, function(x) is.null(x$branches), logical(1))
   score_subtree <- sum(unlist(list_leaves(tree, "score")))
   if (tree$score > score_subtree) {
-    if (verbose) cat("\nScore-diff:", tree$score-score_subtree,
-                     "\nCollapse split on variable", tree$splitvar)
+    if (verbose) cat("\nCollapse split on variable:", tree$var,
+                      "Score-diff:", tree$score-score_subtree)
     list(score = tree$score,
          outcomes = unlist(list_leaves(tree, "outcomes")))
   } else {
