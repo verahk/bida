@@ -31,7 +31,7 @@
 #' res[-1]
 #' stopifnot(abs(res$score-res$pcart$score) < 10**-10)
 optimize_partition_from_data <- function(data, j, parentnodes, ess, nlev, method, verbose = FALSE, ...) {
-  if (type == "pcart") {
+  if (method == "pcart") {
     optimize_partition_from_data_pcart(data, j, parentnodes, ess, nlev, verbose = verbose, ...)
   } else {
     stride <- c(1, cumprod(nlev[parentnodes]))
