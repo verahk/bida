@@ -51,10 +51,6 @@
 #'       get_parts(tree$partition),
 #'       get_parts(ldag$partition))
 #'
-#' # lower stopping criteria
-#' tree = optimize_partition(counts, levels, 1, "tree", min_score_improv = -10)
-#' ldag = optimize_partition(counts, levels, 1, "ldag", min_score_improv = -10)
-#'
 #' cbind(expand.grid(levels),
 #'       counts,
 #'       get_parts(tree$partition),
@@ -87,14 +83,14 @@
 #'
 #'
 optimize_partition <- function(counts, levels, ess, method, regular = T, verbose = FALSE){
-  method <- match.arg(method, c("tree", "ldag", "part"))
+  method <- match.arg(method, c("tree", "ptree", "ldag", "part"))
   if (is.null(regular)) regular <- TRUE
 
   res <- switch(method,
-               "tree" = optimize_partition_tree(counts, levels, ess, min_score_improv, verbose = verbose),
-               "ptree" = optimize_partition_tree(countes, levels, ess, min_score_improv = -Inf, prune = TRUE, verbose = verbose),
-               "ldag" = optimize_partition_ldag(counts, levels, ess, regular, min_score_improv, verbose = verbose),
-               "part" = optimize_partition_part(counts, levels, ess, regular, min_score_improv, verbose = verbose))
+               "tree" = optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = verbose),
+               "ptree" = optimize_partition_tree(counts, levels, ess, min_score_improv = -Inf, prune = TRUE, verbose = verbose),
+               "ldag" = optimize_partition_ldag(counts, levels, ess, regular, min_score_improv = 0, verbose = verbose),
+               "part" = optimize_partition_part(counts, levels, ess, regular, min_score_improv = 0, verbose = verbose))
 
   if (regular && method == "tree") {
 

@@ -1,4 +1,18 @@
 
+test_that("optimization routines return expected partitions", {
+  levels <- list(0:1, 0:1, 0:1)
+  counts <- cbind(c(rep(10, 4), 2, 20, 20, 2), c(rep(10, 4), 30, 2, 2, 30))
+
+  fit <- optimize_partition(counts, levels, 1, "tree", regular = F)
+  expect_equal(fit$partition, list(0:7))
+  fit <- optimize_partition(counts, levels, 1, "ptree", regular = F)
+  expect_equal(fit$partition, c(list(c(0, 2, 1, 3)), list(4, 6, 5, 7)), ignore_attr = TRUE)
+  fit <- optimize_partition(counts, levels, 1, "ldag", regular = F, verbose = T)
+  expect_equal(fit$partition, c(list(4, 5, 6, 7), list(0:3)), ignore_attr = TRUE)
+  fit <- optimize_partition(counts, levels, 1, "part", regular = F, verbose = T)
+  expect_equal(fit$partition, c(list(4, 5, 6, 7), list(0:3)), ignore_attr = TRUE)
+})
+
 test_that("optimization routines handles mixed cardinality data", {
 
 
@@ -103,3 +117,5 @@ test_that("regularity options work as intended and gives correct scores", {
 
 
 })
+
+
