@@ -25,10 +25,11 @@
 #' cbind(counts, get_parts(fit$partition))
 #' sum(fit$scores)
 #'
-#' #
+#' ## grow full tree, then prune
 #' fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = -Inf, TRUE, verbose = TRUE)
 #' cbind(counts, get_parts(fit$partition))
 #' sum(fit$scores)
+#'
 #'
 optimize_partition_tree <- function(counts, levels, ess = 1, min_score_improv = 0, prune = FALSE, verbose = verbose) {
 
@@ -42,7 +43,7 @@ optimize_partition_tree <- function(counts, levels, ess = 1, min_score_improv = 
   tree  <- grow_tree(counts, conf, score, ess, r, q, min_score_improv, stride, verbose = verbose)
 
   if (prune) {
-    tree <- prune_tree(tree)
+    tree <- prune_tree(tree, verbose)
   }
   # return partition and scores of each part / leaf
   out <- list(tree = tree,
@@ -53,19 +54,19 @@ optimize_partition_tree <- function(counts, levels, ess = 1, min_score_improv = 
 }
 
 
-prune_tree <- function(tree) {
-  if (is.null(tree$branches)) {
-    return(tree)
-  }
+prune_tree <- function(tree, verbose = FALSE) {
 
   for (b in seq_along(tree$branches)) {
-    tree$branches[b] <- list(prune_tree(tree$branches[[b]]))
+    tree$branches[b] <- list(prune_tree(tree$branches[[b]], verbose))
   }
 
-  indx <- vapply(tree$branches, function(x) is.null(x$branches), logical(1))
-  if (all(indx) && (tree$score > sum(unlist(list_leaves(tree, "score"))))) {
-      list(score = tree$score,
-           outcomes = unlist(list_leaves(tree, "outcomes")))
+#  indx <- vapply(tree$branches, function(x) is.null(x$branches), logical(1))
+  score_subtree <- sum(unlist(list_leaves(tree, "score")))
+  if (tree$score > score_subtree) {
+    if (verbose) cat("\nScore-diff:", tree$score-score_subtree,
+                     "\nCollapse split on variable", tree$splitvar)
+    list(score = tree$score,
+         outcomes = unlist(list_leaves(tree, "outcomes")))
   } else {
     tree
   }
