@@ -2,16 +2,27 @@
 % Please edit documentation in R/bida_sparse_array.R
 \name{bida_sparse_array}
 \alias{bida_sparse_array}
-\alias{new_bida_sparse_array}
 \alias{as.array.bida_sparse_array}
+\alias{rep.bida_sparse_array}
 \alias{aperm.bida_sparse_array}
+\alias{+.bida_sparse_array}
+\alias{-.bida_sparse_array}
+\alias{/.bida_sparse_array}
 \title{class: cida sparse array}
 \usage{
-new_bida_sparse_array(value, index, dim, dimnames = NULL)
+bida_sparse_array(value, index, dim, dimnames = NULL, default = 0)
 
 \method{as.array}{bida_sparse_array}(x)
 
+\method{rep}{bida_sparse_array}(x, times = 1, each = 1)
+
 \method{aperm}{bida_sparse_array}(x, perm)
+
+\method{+}{bida_sparse_array}(x, y)
+
+\method{-}{bida_sparse_array}(x, y)
+
+\method{/}{bida_sparse_array}(x, y)
 }
 \arguments{
 \item{index}{(integer vector) position of non-zero elements}
@@ -30,8 +41,16 @@ Sparse representation of multi-dimensional arrays.
 
 vals <- seq(3, 27, by = 3)
 x <- new_bida_sparse_array(vals, vals-1, c(3, 3, 3))
-y <- as.array(x)
-y
+x
+as.array(x)
+
+# addition
+x+1
+y <- new_bida_sparse_array(0:2, 0:2, c(3, 3, 3), default = 1)
+x+y
+stopifnot(all(as.array(x+y) == as.array(x) + as.array(y)))
+
+# rep
 
 dims <- 2:4
 x <- new_bida_sparse_array(rep(1, prod(dims)), seq_len(prod(dims))-1, dims)
@@ -40,12 +59,12 @@ stopifnot(all.equal(as.array(y), aperm(as.array(x), c(3:1))))
 
 
 # compare size of sparse and non-sparse arrays
-obj_size <- matrix(NA, 10, 2)
+obj_size <- matrix(NA, 24, 2)
 sparsity <- .25 # share of non-zero elements
 for (i in seq_len(nrow(obj_size))) {
   dims <- rep(2, i)
   index  <- sample(prod(dims), round(prod(dims)*sparsity))
-  counts <- sample(10, size = length(index), replace = T)
+  counts <- sample(100, size = length(index), replace = T)
 
   sparse <- new_bida_sparse_array(counts, index, dims)
   arr    <- as.array(sparse)
@@ -53,6 +72,8 @@ for (i in seq_len(nrow(obj_size))) {
   obj_size[i, 2] <- pryr::object_size(arr)
 }
 
-matplot(obj_size, type = "l", log = "y")
+matplot(2**seq_len(nrow(obj_size)), obj_size, type = "l")
+plot(2**seq_len(nrow(obj_size)), obj_size[, 1]/obj_size[, 2], type = "l")
+
 }
 \keyword{internal}

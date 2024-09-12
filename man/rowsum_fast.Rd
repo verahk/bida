@@ -8,9 +8,9 @@
 \usage{
 rowsum_fast(x, group, ugroup, na.rm = FALSE)
 
-\method{rowsum_fast}{default}(x, group, ugroup, na.rm = FALSE)
+\method{rowsum_fast}{default}(x, group, ugroup = unique(group), na.rm = FALSE)
 
-\method{rowsum_fast}{matrix}(x, group, ugroup, na.rm = FALSE)
+\method{rowsum_fast}{matrix}(x, group, ugroup = unique(group), na.rm = FALSE)
 }
 \arguments{
 \item{x}{(numeric) vector or matrix}

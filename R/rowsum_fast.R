@@ -48,14 +48,13 @@ rowsum_fast <- function(x, group, ugroup, na.rm = FALSE) {
 
 #' @rdname rowsum_fast
 #' @export
-rowsum_fast.default <- function(x, group, ugroup, na.rm = FALSE) {
+rowsum_fast.default <- function(x, group, ugroup = unique(group), na.rm = FALSE) {
   c(.Internal(rowsum_matrix(x, group, ugroup, na.rm, vector("character", length(ugroup)))))
 }
 #' @rdname rowsum_fast
 #' @export
-rowsum_fast.matrix <- function(x, group, ugroup, na.rm = FALSE) {
+rowsum_fast.matrix <- function(x, group, ugroup = unique(group), na.rm = FALSE) {
   out <- .Internal(rowsum_matrix(x, group, ugroup, na.rm, vector("character", length(ugroup))))
   dimnames(out) <- NULL
   return(out)
 }
-
