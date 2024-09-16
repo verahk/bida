@@ -6,22 +6,24 @@
 \alias{famscore_bdeu_1row}
 \title{Compute family score for categorical data (BDeu-score)}
 \usage{
-famscore_bdeu(m, ess = 1, r = ncol(m), q = nrow(m))
+famscore_bdeu(m, ess = 1, r = ncol(m), q = nrow(m), digits = 15)
 
-famscore_bdeu_byrow(m, ess, r = ncol(m), q = nrow(m), s = 1)
+famscore_bdeu_byrow(m, ess, r = ncol(m), q = nrow(m), s = 1, digits = 15)
 
-famscore_bdeu_1row(x, ess, r = length(x), q = 1, s = 1)
+famscore_bdeu_1row(x, ess, r = length(x), q = 1, s = 1, digits = 15)
 }
 \arguments{
 \item{m}{(matrix) a \code{q-by-r} matrix with counts (a frequency table)}
 
 \item{ess}{equivalent sample size parameter.}
 
-\item{r}{cardinality of outcome variable}
+\item{r}{(integer)  cardinality of outcome variable}
 
-\item{q}{cardinality of parent set}
+\item{q}{(integer) cardinality of parent set}
 
-\item{s}{number of parent outcomes in each row of \code{x}. Default to 1.}
+\item{digits}{(integer) output is rounded by \code{round(score, digits)}.}
+
+\item{s}{(integer vector) number of parent outcomes in each row of \code{m}. Default to 1.}
 
 \item{x}{(array) an \code{1-by-r} matrix or vector of length \code{r} with counts.}
 }
@@ -46,5 +48,7 @@ famscore_bdeu(m, ess)
 famscore_bdeu(m, ess) == sum(famscore_bdeu_byrow(m, ess))
 famscore_bdeu_byrow(m, ess) == apply(m, 1, function(x) famscore_bdeu_1row(x, ess, q = nrow(m)))
 
+m <- matrix(0, 2, 2)
+famscore_bdeu_byrow(m, 1, digits = Inf)  # not exact zero
 }
 \keyword{internal}

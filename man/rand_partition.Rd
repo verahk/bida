@@ -11,7 +11,7 @@ rand_partition(nlev, prob, method = "tree", regular = FALSE, ...)
 
 \item{prob}{parameter controlling the size of the partition.}
 
-\item{method}{name of algorithm}
+\item{method}{name of algorithm.}
 
 \item{regular}{If \code{TRUE}, the partition is forced to be regular. See \link{make_regular}.}
 }
@@ -35,17 +35,14 @@ rand_partition(nlev, .5, method = "tree")
 # force at least one split by manipulating `nextsplitprob` rule
 set.seed(007)
 nextsplitprob <- function(x) x/2
-rand_partition(nlev, 1, "tree", nextsplitprob = nextsplitprob)
+rand_partition(nlev, 1, "tree", nextsplitprob)
 
 stopifnot(length(unique(rand_partition(nlev, 1, "tree", function(x) 0))) == 2)
 
+
 # method = "`dgraph" to merge leaves in decision tree
 set.seed(007)
-rand_partition(nlev, 1, "dgraph", nextsplitprob = nextsplitprob)
-
-# regular forces
-p <-  rand_partition(nlev, 1, "tree", TRUE, nextsplitprob = function(x) 0)
-stopifnot(is_regular(split(seq_along(p)-1, p), nlev))
+rand_partition(nlev, 1, "dgraph", nextsplitprob)
 
 # high cardinality
 nlev <- rep(8, 4)
@@ -57,5 +54,4 @@ lapply(parts, function(x) length(unique(x))/length(x))
 parts <- rand_partition(nlev, .5, "dgraph")
 P <- split(seq_along(parts), parts)
 is_regular(P, nlev)
-
 }

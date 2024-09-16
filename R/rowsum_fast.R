@@ -54,7 +54,15 @@ rowsum_fast.default <- function(x, group, ugroup = unique(group), na.rm = FALSE)
 #' @rdname rowsum_fast
 #' @export
 rowsum_fast.matrix <- function(x, group, ugroup = unique(group), na.rm = FALSE) {
+
   out <- .Internal(rowsum_matrix(x, group, ugroup, na.rm, vector("character", length(ugroup))))
   dimnames(out) <- NULL
   return(out)
+}
+
+#' @rdname rowsum_fast
+#' @export
+rowsum_fast.bida_sparse_array <- function(x, group, ugroup, na.rm = TRUE) {
+  if (x$default != 0) stop("Not supported for non-zero default values.")
+  rowsum_fast(x$value, group, ugroup, na.rm)
 }

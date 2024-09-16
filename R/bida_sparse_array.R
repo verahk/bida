@@ -18,7 +18,7 @@
 #' vals <- seq(3, 27, by = 3)
 #' x <- new_bida_sparse_array(vals, vals-1, c(3, 3, 3))
 #' x
-#' as.array(x)
+#' arr <- as.array(x)
 #'
 #' # addition
 #' x+1
@@ -26,8 +26,8 @@
 #' x+y
 #' stopifnot(all(as.array(x+y) == as.array(x) + as.array(y)))
 #'
+#' colSums(x)
 #' # rep
-#'
 #' dims <- 2:4
 #' x <- new_bida_sparse_array(rep(1, prod(dims)), seq_len(prod(dims))-1, dims)
 #' y <- aperm(x, c(3:1))
@@ -56,8 +56,14 @@
 #' @rdname bida_sparse_array
 #' @export
 bida_sparse_array <- function(value, index, dim, dimnames = NULL, default = 0) {
-  tmp <- sort.int(index, index.return = TRUE)
-  new_bida_sparse_array(value[tmp$ix], tmp$x, dim, dimnames, default)
+  if (is.unsorted(index)) {
+    tmp <- sort.int(index, index.return = TRUE)
+    value <- value[tmp$ix]
+    index <- tmp$x
+  }
+  stopifnot(prod(dim) > max(index))
+  stopifnot(all(lengths(dimnames) == dim))
+  new_bida_sparse_array(value, index, dim, dimnames, default)
 }
 
 new_bida_sparse_array <- function(value, index, dim, dimnames = NULL, default = 0) {
@@ -68,13 +74,57 @@ new_bida_sparse_array <- function(value, index, dim, dimnames = NULL, default = 
                  default = default),
             class = "bida_sparse_array")
 }
+# new_bida_sparse_array <- function(value, index, dim, dimnames = NULL, default = 0) {
+#   structure(value,
+#             index = index,
+#             dims = dim,
+#             dimnames = dimnames,
+#             default = default,
+#             class = "bida_sparse_array")
+# }
 
 
+#' @rdname bida_sparse_array
+#' @export
+as.bida_sparse_array.array <- function(arr, default = 0) {
+  # convert standard array to bida_sparse_array
+  stopifnot(!is.null(dim(arr)))
+  index <- which(!array == default)
+  new_bida_sparse_array(arr[index], index-1, dim(arr), dimnames(arr))
+}
+#' @rdname bida_sparse_array
+#' @export
+as.bida_sparse_array.bida_sparse_array <- function(x) x
+
+# Methods ----
+#' @rdname bida_sparse_array
+#' @export
+dim.bida_sparse_array <- function(x) {
+  x$dim
+  #attr(x, "dims")
+}
+
+#' @rdname bida_sparse_array
+#' @export
+`dim<-.bida_sparse_array` <- function(x, value) {
+  stopifnot(prod(value) > max(x$index))
+  x$dim <- value
+  x
+}
 
 
-
-# Generics ----
-
+#' @rdname bida_sparse_array
+#' @export
+dimnames.bida_sparse_array <- function(x) {
+  x$dimnames
+}
+#' @rdname bida_sparse_array
+#' @export
+`dimnames<-.bida_sparse_array` <- function(x, value) {
+  stopifnot(all(lengths(value) == dim(x)))
+  x$dimnames <- value
+  x
+}
 
 #' @rdname bida_sparse_array
 #' @export
@@ -84,19 +134,17 @@ as.array.bida_sparse_array <- function(x) {
   return(y)
 }
 
-
 #' @rdname bida_sparse_array
 #' @export
 rep.bida_sparse_array <- function(x, times = 1, each = 1) {
   if (times == 1 && each == 1) return(x)
   len <- prod(x$dim)
-
   rep_index   <- rep(x$index, each = each, times = times)
   each_index  <- rep(seq_len(each)-1, times = length(x$index)*times)
   times_index <- rep(each*len*(seq_len(times)-1), each = length(x$index)*each)
 
-  new_index   <- each_index + each*rep_index + times_index
   new_value   <- rep(x$value, each = each, times = times)
+  new_index   <- each_index + each*rep_index + times_index
   new_dim     <- times*each*prod(x$dim)
   new_bida_sparse_array(new_value, new_index, dim = new_dim, default = x$default)
 }
@@ -125,10 +173,22 @@ aperm.bida_sparse_array <- function(x, perm) {
 ## Arithmetics ----
 #' @rdname bida_sparse_array
 #' @export
+sum.bida_sparse_array <- function(x, ...) {
+  if (x$default == 0) {
+    sum(x$value)
+  } else {
+    sum(x$value) + (prod(dim(x))-length(x$index))*x$default
+  }
+}
+#' @rdname bida_sparse_array
+#' @export
 `+.bida_sparse_array` <- function(x, y){
   aritmethics_bida_sparse_array("+", x, y)
 }
 
+
+#' @rdname bida_sparse_array
+#' @export
 `*.bida_sparse_array` <- function(x, y){
   aritmethics_bida_sparse_array("*", x, y)
 }
@@ -143,6 +203,7 @@ aperm.bida_sparse_array <- function(x, perm) {
 `/.bida_sparse_array` <- function(x, y) {
   aritmethics_bida_sparse_array("/", x, y)
 }
+
 
 aritmethics_bida_sparse_array <- function(fun, x, y) {
   stopifnot(inherits(x, "bida_sparse_array"))
@@ -161,7 +222,7 @@ aritmethics_bida_sparse_array <- function(fun, x, y) {
     index_xiny  <- match(x$index, y$index, 0L)
 
     value  <- c(f(x$value[index_xiny == 0], y$default),
-                f(y$value[index_yinx == 0], x$default),
+                f(x$default, y$value[index_yinx == 0]),
                 f(x$value[index_yinx], y$value[index_xiny]))
     default <- f(x$default, y$default)
     index  <- c(x$index[index_xiny == 0],
@@ -175,31 +236,55 @@ aritmethics_bida_sparse_array <- function(fun, x, y) {
   }
 }
 
-
-colIndex <- function(x, dims = 1){
-  x$index%/%prod(x$dim[seq_len(dims)])
-}
-rowIndex <- function(x, dims = 1) {
-  x$index%%prod(x$dim[seq_len(dims)])
-}
-
-
-colSums_bida_sparse_array <- function(x, dims = 1) {
-  tmp <- seq_len(dims)
-  colIndex  <- x$index%/%prod(x$dim[tmp])
-  newIndex <- unique(group)
-  new_bida_sparse_array(rowsum_fast(x$value, colIndex, newIndex),
-                        newIndex,
-                        x$dim[-tmp])
-}
-
+#' @rdname bida_sparse_array
 #' @export
-levels.bida_sparse_array <- function(x) {
-  if (is.null(x$dimnames)) {
-    setNames(lapply(x$dim-1, seq.int, from = 0), paste0("X", seq_along(x$dim)))
+rowSums.bida_sparse_array <- function(x, na.rm = FALSE, dims = 1L){
+
+  dimx <- dim(x)
+  keep <- seq.int(1, dims)  # margins to be kept
+  new_dim   <- dim(x)[keep]
+  new_dimnames <- dimnames(x)[keep]
+
+  # compute row-indicies
+  index <- x$index%%prod(dimx[keep])
+  new_index <- unique(index)
+
+  # aggregate values
+  if (x$default == 0) {
+    new_value  <- rowsum_fast(x$value, index, new_index)
+    new_default <- 0
   } else {
-    x$dimnames
+    k <- prod(dimx[-keep])    # cardinality of margins summed out
+    nmiss <- k-tabulate(match(index, new_index))
+    new_value <- rowsum_fast(x$value, index, new_index) + nmiss*x$default
+    new_default <- k*x$default
   }
+  new_bida_sparse_array(new_value, new_index, new_dim, new_dimnames, new_default)
+}
+
+#' @rdname bida_sparse_array
+#' @export
+colSums.bida_sparse_array <- function(x, na.rm = FALSE, dims = 1L){
+  dimx <- dim(x)
+  keep <- seq.int(dims+1, length(dimx))
+
+  new_dim   <- dim(x)[keep]
+  new_dimnames <- dimnames(x)[keep]
+
+  index <- x$index%/%prod(dimx[-keep])
+  new_index <- unique(index)
+
+  # aggregate values
+  if (x$default == 0) {
+    new_value  <- rowsum_fast(x$value, index, new_index)
+    new_default <- 0
+  } else {
+    k <- prod(dimx[-keep])    # cardnality of margins summed out
+    nmiss <- k-tabulate(match(index, new_index))
+    new_value <- rowsum_fast(x$value, index, new_index) + nmiss*x$default
+    new_default <- k*x$default
+  }
+  new_bida_sparse_array(new_value, new_index, new_dim, new_dimnames, new_default)
 }
 
 
@@ -207,7 +292,7 @@ get_stride <- function(x, MARGIN = seq_along(x$dim)) {
   c(1, cumprod(x$dim[MARGIN[-length(MARGIN)]]))
 }
 
-get_coordinates <- function(x, MARGIN, stride = get_stride(x)) {
+get_coordinates <- function(x, MARGIN = seq_along(x$dim), stride = get_stride(x)) {
   vapply(MARGIN,
          function(i) x$index%/%stride[i]%%x$dim[i],
          numeric(length(x$index)))
@@ -248,10 +333,4 @@ marginalize <- function(x, MARGIN) {
 }
 
 
-backdoor_mean <- function(counts, x, y, z, ess) {
 
-  nxz <- marginalize(counts, c(x, z))
-  nz  <- marginalize(nxz, length(x)+seq_along(z))
-
-
-}

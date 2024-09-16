@@ -126,16 +126,6 @@ cbind(expand.grid(levels),
 
 
 
-levels <- rep(list(0:1), 8)
-r <- 2
-q <- prod(lengths(levels))
-counts <- matrix(0, q, 2)
-counts[sample(q, 10)] <- sample(q, 10)
-ess <- 1
-
-
-
-
 levels <- list(0:1, 0:1)
 counts <- cbind(10, c(10, 100, 1000, 1000))
 ess <- 1
