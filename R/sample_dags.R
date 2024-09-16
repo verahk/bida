@@ -1,5 +1,5 @@
 
-#' Sample DAGs with locastructure
+#' Sample DAGs with local structure
 #'
 #' This function is a wrapper around [BiDAG::sampleBN], and can be used to sample
 #' DAGs with locastructure using the different MCMC schemes implemented in [BiDAG::sampleBN].

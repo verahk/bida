@@ -13,26 +13,26 @@
 #'
 #' @examples
 #'
-#' # binary split data
-#' data <- cbind(z = rep(0:2, 9),
-#'               x = rep(0:2, each = 9),
-#'               y = c(rep(0, 9), rep(1, 2*9)))
+#' # binary split data with missing levels
+#' data <- cbind(z = rep(0:2, 2),
+#'               x = rep(c(0, 2), each = 3),
+#'               y = c(rep(0, 3), rep(1, 3)))
 #' nlev <- rep(3, 3)
+#' pcart <- optimize_partition_from_data(data, 3, 1:2, 1, nlev, "pcart", verbose = TRUE)
+#' tree  <- optimize_partition_from_data(data, 3, 1:2, 1, nlev, "tree", regular = FALSE, verbose = TRUE)
+#' ptree <- optimize_partition_from_data(data, 3, 1:2, 1, nlev, "ptree", verbose = TRUE)
 #'
-#' # optimize local structure
-#' res <- optimize_partition_from_data_pcart(data, 3, 1:2, 1, nlev, verbose = TRUE)
-#' parts <- get_parts(res$partition)
-#' stopifnot(all(match(parts, unique(parts)) == c(rep(1, 3), rep(2, 6))))
-#'
-#' # score do not match when there are unobserved levels of outcome variable
-#' res[-1]
-#'
-#' res <- optimize_partition_from_data_pcart(data, 3, 1:2, 1, nlev = NULL, recompute_score = TRUE, verbose = TRUE)
-#' res[-1]
-#' stopifnot(abs(res$score-res$pcart$score) < 10**-10)
+#' counts <- matrix(table(data.frame(data)), 6, 2)
 optimize_partition_from_data <- function(data, j, parentnodes, ess, nlev, method, verbose = FALSE, ...) {
   if (method == "pcart") {
-    optimize_partition_from_data_pcart(data, j, parentnodes, ess, nlev, verbose = verbose, ...)
+    # construct data frame with factor variables
+    vars <- c(j, parentnodes)
+    varnames <- colnames(data)[vars]
+    if (is.null(varnames)) varnames <- paste0("X", vars)
+    df <- data.frame(lapply(vars,
+                            function(x) factor(data[, x], seq.int(0, nlev[x]-1))))
+    names(df) <- varnames
+    optimize_partition_from_df_pcart(df, 1, seq_along(parentnodes)+1, ess, nlev[vars], verbose = verbose, ...)
   } else {
     stride <- c(1, cumprod(nlev[parentnodes]))
     r <- nlev[j]
@@ -42,50 +42,20 @@ optimize_partition_from_data <- function(data, j, parentnodes, ess, nlev, method
                        levels = lapply(nlev[parentnodes]-1, seq.int, from = 0),
                        ess,
                        method,
-                       regular = (method == "ldag"),
                        verbose = verbose,
                        ...)
   }
 }
-#' Title
-#'
-#' @param data
-#' @param j
-#' @param parentnodes
-#' @param nlev
-#' @param ess
-#'
+#' @rdname optimize_partition_from_data
+#' @param df a data.frame of factor variables, with levels corresponding to nlev.
 #' @return
 #' @export
 #'
 #' @examples
-#'
-#' # binary split data
-#' data <- cbind(z = rep(0:2, 9),
-#'               x = rep(0:2, each = 9),
-#'               y = c(rep(0, 9), rep(1, 2*9)))
-#' nlev <- rep(3, 3)
-#'
-#' # optimize local structure
-#' res <- optimize_partition_from_data_pcart(data, 3, 1:2, 1, nlev, verbose = TRUE)
-#' parts <- get_parts(res$partition)
-#' stopifnot(all(match(parts, unique(parts)) == c(rep(1, 3), rep(2, 6))))
-#'
-#' # score do not match when there are unobserved levels of outcome variable
-#' res[-1]
-#'
-#' res <- optimize_partition_from_data_pcart(data, 3, 1:2, 1, nlev = NULL, recompute_score = TRUE, verbose = TRUE)
-#' res[-1]
-#' stopifnot(abs(res$score-res$pcart$score) < 10**-10)
-optimize_partition_from_data_pcart <- function(data, j, parentnodes, ess, nlev = NULL, recompute_score = !is.null(nlev), verbose = FALSE) {
 
-  if (is.null(nlev)) nlev <- apply(data, 2, function(x) length(unique(x)))
-
-  r <- nlev[j]
-  q <- prod(nlev[parentnodes])
+optimize_partition_from_df_pcart <- function(df, j, parentnodes, ess, nlev, verbose = FALSE) {
 
   # optimize structure
-  df <- as.data.frame(data)
   predictors <- names(df)[parentnodes]
   response   <- names(df)[j]
   if (verbose) cat("\nOptimize local structure using rpcart::opt.pcart.cat.bdeu\n")
@@ -118,20 +88,9 @@ optimize_partition_from_data_pcart <- function(data, j, parentnodes, ess, nlev =
     }
   }
   partition <- unlist_tree(tree, nlev, stride, seq_len(prod(nlev))-1)
-
-  # compute score
-  if (recompute_score) {
-    n_parts <- length(partition)
-    data_parts <- get_parts(partition)[data[, parentnodes]%*%stride+1]
-    counts <- matrix(tabulate(data_parts + n_parts*data[, j], n_parts*r), n_parts, r)
-    score  <- sum(famscore_bdeu_byrow(counts, ess, r, q, lengths(partition)))
-  } else {
-    score <- result$score
-  }
-
-  list(partition = partition,
-       score = score,
-       pcart = result)
+  c(partition = list(partition),
+    scores = result$score,
+    tree = result$tree)
 }
 
 

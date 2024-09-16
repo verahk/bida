@@ -51,11 +51,27 @@ score_dag <- function(data, dag, type = "cat", params) {
 }
 
 
-score_fam <- function(data, j, parentnodes, type, params) {
+score_fam <- function(data, j, parentnodes, type = c("cat"), params) {
+  type = match.arg(type)
   switch(type,
          "cat" = score_fam_cat(data, j, parentnodes, params))
 }
 
+score_partition_cat <- function(data, j, parentnodes, params) {
+
+  stopifnot(!is.null(params$partition))
+
+  # compute freq table
+  r <- params$nlev[j]
+  q <- prod(params$nlev[parentnodes])
+  counts <- counts_from_data_matrix(data[, c(parentnodes, j)], params$nlev, FALSE)
+  dim(counts) <- c(q, r)
+
+  # aggregate counts
+  agg <- rowsum_fast(counts, get_parts(params$partition), seq_along(params$partition))
+  sum(famscore_bdeu_byrow(agg, params$ess, r, q, s = lengths(params$partition)))
+
+}
 
 score_fam_cat <- function(data, j, parentnodes, params) {
   ess  <- params$ess
