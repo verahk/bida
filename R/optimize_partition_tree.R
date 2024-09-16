@@ -17,17 +17,26 @@
 #'
 #' ## stop splitting when additional split do not improve score (default)
 #' fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = TRUE)
-#' cbind(counts, get_parts(fit$partition))
+#' cbind(counts, part = get_parts(fit$partition))
 #' sum(fit$scores)
 #'
 #' ##  grow full tree
 #' fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = -Inf, verbose = TRUE)
-#' cbind(counts, get_parts(fit$partition))
+#' cbind(counts, part = get_parts(fit$partition))
 #' sum(fit$scores)
 #'
 #' ## grow full tree, then prune
 #' fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = -Inf, TRUE, verbose = TRUE)
-#' cbind(counts, get_parts(fit$partition))
+#' cbind(counts, part = get_parts(fit$partition))
+#' sum(fit$scores)
+#'
+#' # sparse counts - split on var 2
+#' levels <- list(0:2, 0:2)
+#' counts <- cbind(c(rep(1, 3), rep(0, 6)),
+#'                 c(rep(0, 6), rep(1, 3)),
+#'                 rep(0, 9))
+#' fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = TRUE)
+#' cbind(counts, part = get_parts(fit$partition))
 #' sum(fit$scores)
 #'
 #'
@@ -62,7 +71,7 @@ prune_tree <- function(tree, verbose = FALSE) {
 
 #  indx <- vapply(tree$branches, function(x) is.null(x$branches), logical(1))
   score_subtree <- sum(unlist(list_leaves(tree, "score")))
-  if (tree$score > score_subtree) {
+  if (tree$score >= score_subtree) {
     if (verbose) cat("\nCollapse split on variable:", tree$var,
                       "Score-diff:", tree$score-score_subtree)
     list(score = tree$score,
@@ -119,6 +128,7 @@ grow_tree <- function(counts, conf, score, ess, r, q, min_score_improv, stride, 
 }
 
 find_best_split <- function(counts, conf, score, ess, r, q, min_score_improv) {
+  # keep score of current part, before branching, for evaluating splits when tree is pruned
   best_split <- list(score = score)
   best_score <- score+min_score_improv
   for (i in 1:ncol(conf)) {
