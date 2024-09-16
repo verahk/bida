@@ -29,6 +29,8 @@
 #'
 #' stopifnot(length(unique(rand_partition(nlev, 1, "tree", function(x) 0))) == 2)
 #'
+#' # grow tree of given depth
+#' rand_partition(nlev, 1, maxdepth = 2)
 #'
 #' # method = "`dgraph" to merge leaves in decision tree
 #' set.seed(007)
@@ -44,6 +46,7 @@
 #' parts <- rand_partition(nlev, .5, "dgraph")
 #' P <- split(seq_along(parts), parts)
 #' is_regular(P, nlev)
+#'
 rand_partition <- function(nlev,
                            prob,
                            method = "tree",
@@ -55,14 +58,9 @@ rand_partition <- function(nlev,
              "dgraph" = rand_partition_tree(nlev, prob, doMerge = T, ...))
 
   if (regular) {
-    P <- split(seq_along(P), P)
-    return(get_parts(make_regular(P, nlev)))
-  } else {
-    # ensure parts are enumerated from 1,..., length(unique(P))
-    match(P, unique(P))
+    P <- make_regular(P, nlev)
   }
-
-
+  return(P)
 }
 
 
@@ -92,11 +90,11 @@ rand_labels <- function(nlev, lprob) {
 #' @param splitprob (numeric constant) probability of splitting a node
 #' @param doMerge (logical constant) randomly merge leaves in tree
 #' @param nextsplitprob (function) manipulate `splitprob` for each new split
-rand_partition_tree <- function(nlev, splitprob, doMerge = TRUE, nextsplitprob = function(x) x) {
+rand_partition_tree <- function(nlev, splitprob, doMerge = TRUE, nextsplitprob = function(x) x, maxdepth = length(nlev)) {
 
   # define routine for growing a tree
   grow_tree <- function(splitprob, vars, subset) {
-    if (length(vars) == 0 || runif(1) > splitprob) {
+    if (length(vars) <= n-maxdepth || runif(1) > splitprob) {
       return(list(subset = subset))
     }
 
@@ -137,7 +135,7 @@ rand_partition_tree <- function(nlev, splitprob, doMerge = TRUE, nextsplitprob =
     partition <- lapply(split(partition, tmp), do.call, what = "c")
   }
 
-  get_parts(partition)
+  partition
 }
 
 

@@ -18,6 +18,10 @@
 #' nlev <- rep(2, ncol(dag))
 #' partitions <- list(NULL, NULL, X3 = list(0:2, 1))
 #' rand_bn(dag, "cat", alpha = 1, nlev = rep(2, 3), partitions)
+#'
+#'
+#' partitions <- rand_partitions_cat(dag, nlev, 1, maxdepth = 2)
+#' rand_bn(dag, "cat", alpha = 1, nlev, partitions = partitions)
 rand_bn <- function(dag, type = "cat", ...) {
   n <- ncol(dag)
 
@@ -33,6 +37,18 @@ rand_bn <- function(dag, type = "cat", ...) {
 
   # return bn.fit object
   bnlearn::custom.fit(g, dist)
+}
+
+rand_partitions_cat <- function(dag, nlev, splitprob, maxdepth) {
+  n <- ncol(dag)
+  partitions <- vector("list", n)
+  for (i in seq_len(n)) {
+    pa <- which(dag[, i] == 1)
+    if (length(pa) > 1) {
+      partitions[[i]] <- rand_partition(nlev[pa], splitprob, method = "tree", maxdepth = maxdepth)
+    }
+  }
+  return(partitions)
 }
 
 rand_dist_cat <- function(dag, alpha, nlev, partitions = NULL) {
