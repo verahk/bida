@@ -28,7 +28,8 @@ If \code{NULL} the structures are not  saved.}
 an object of class \link[BiDAG:scoreparameters]{BiDAG::scoreparameters}
 }
 \description{
-Define a \link[BiDAG:scoreparameters]{BiDAG::scoreparameters} object with user defined score.
+Define a \link[BiDAG:scoreparameters]{BiDAG::scoreparameters} object with a user defined score for learning
+DAGs with local structure.
 }
 \examples{
 
@@ -37,7 +38,6 @@ bn  <- readRDS("./data/asia.rds")
 data <- sample_data_from_bn(bn, 10)
 
 par <- list(nlev = apply(data, 2, max)+1, ess = 1, edgepf = 2, regular = T)
-
 
 j <- 1
 parentnodes <- 2

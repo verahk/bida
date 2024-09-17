@@ -12,8 +12,7 @@ optimize_partition(
   levels,
   ess,
   method,
-  regular = T,
-  min_score_improv = 0,
+  regular = FALSE,
   verbose = FALSE
 )
 
@@ -34,6 +33,7 @@ optimize_partition_tree(
   levels,
   ess = 1,
   min_score_improv = 0,
+  prune = FALSE,
   verbose = verbose
 )
 }
@@ -101,10 +101,6 @@ cbind(expand.grid(levels),
       get_parts(tree$partition),
       get_parts(ldag$partition))
 
-# lower stopping criteria
-tree = optimize_partition(counts, levels, 1, "tree", min_score_improv = -10)
-ldag = optimize_partition(counts, levels, 1, "ldag", min_score_improv = -10)
-
 cbind(expand.grid(levels),
       counts,
       get_parts(tree$partition),
@@ -134,6 +130,41 @@ cbind(expand.grid(levels),
       get_parts(tree$partition),
       get_parts(ldag$partition),
       get_parts(part$partition))
+
+
+
+levels <- list(0:1, 0:1)
+counts <- cbind(10, c(10, 100, 1000, 1000))
+ess <- 1
+optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = TRUE)
+
+# illustrate grow-full-and-then-prune procedure
+levels <- list(0:1, 0:1, 0:1)
+counts <- cbind(c(1, 1, 1, 1, 10, 20, 20, 2), c(1, 1, 1, 1, 10, 2, 2, 10))
+
+## stop splitting when additional split do not improve score (default)
+fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = TRUE)
+cbind(counts, part = get_parts(fit$partition))
+sum(fit$scores)
+
+##  grow full tree
+fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = -Inf, verbose = TRUE)
+cbind(counts, part = get_parts(fit$partition))
+sum(fit$scores)
+
+## grow full tree, then prune
+fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = -Inf, TRUE, verbose = TRUE)
+cbind(counts, part = get_parts(fit$partition))
+sum(fit$scores)
+
+# sparse counts - split on var 2
+levels <- list(0:2, 0:2)
+counts <- cbind(c(rep(1, 3), rep(0, 6)),
+                c(rep(0, 6), rep(1, 3)),
+                rep(0, 9))
+fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = TRUE)
+cbind(counts, part = get_parts(fit$partition))
+sum(fit$scores)
 
 
 }

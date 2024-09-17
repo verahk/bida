@@ -3,7 +3,7 @@
 \name{sample_dags}
 \alias{sample_dags}
 \alias{init_search_space}
-\title{Sample DAGs with locastructure}
+\title{Sample DAGs with local structure}
 \usage{
 sample_dags(
   scorepar,
