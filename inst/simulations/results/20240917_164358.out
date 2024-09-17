@@ -1,0 +1,4638 @@
+starting worker for localhost:11109 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.3100952 
+x= 1  y= 3  S=  : pval = 0.9468258 
+x= 1  y= 4  S=  : pval = 0.6095132 
+x= 1  y= 5  S=  : pval = 2.473788e-18 
+x= 1  y= 6  S=  : pval = 0.6330092 
+x= 1  y= 7  S=  : pval = 0.2103507 
+x= 1  y= 8  S=  : pval = 0.8877536 
+x= 1  y= 9  S=  : pval = 0.1079521 
+x= 1  y= 10  S=  : pval = 0.8128484 
+x= 2  y= 3  S=  : pval = 2.658751e-09 
+x= 2  y= 4  S=  : pval = 0.2997346 
+x= 2  y= 5  S=  : pval = 0.1605045 
+x= 2  y= 6  S=  : pval = 0.4781314 
+x= 2  y= 7  S=  : pval = 0.825902 
+x= 2  y= 8  S=  : pval = 0.9042515 
+x= 2  y= 9  S=  : pval = 0.806876 
+x= 2  y= 10  S=  : pval = 0.6575975 
+x= 3  y= 2  S=  : pval = 2.658751e-09 
+x= 3  y= 4  S=  : pval = 0.6806117 
+x= 3  y= 5  S=  : pval = 0.4236042 
+x= 3  y= 6  S=  : pval = 0.3778936 
+x= 3  y= 7  S=  : pval = 0.866749 
+x= 3  y= 8  S=  : pval = 0.9656429 
+x= 3  y= 9  S=  : pval = 0.02273493 
+x= 3  y= 10  S=  : pval = 4.970951e-06 
+x= 4  y= 5  S=  : pval = 0.3442471 
+x= 4  y= 6  S=  : pval = 1.395082e-16 
+x= 4  y= 7  S=  : pval = 0.2485236 
+x= 4  y= 8  S=  : pval = 0.4368376 
+x= 4  y= 9  S=  : pval = 1 
+x= 4  y= 10  S=  : pval = 0.0006551776 
+x= 5  y= 1  S=  : pval = 2.473788e-18 
+x= 5  y= 6  S=  : pval = 0.6469969 
+x= 5  y= 7  S=  : pval = 0.04882669 
+x= 5  y= 8  S=  : pval = 0.1294415 
+x= 5  y= 9  S=  : pval = 0.6793076 
+x= 5  y= 10  S=  : pval = 0.6046942 
+x= 6  y= 4  S=  : pval = 1.395082e-16 
+x= 6  y= 7  S=  : pval = 0.7321224 
+x= 6  y= 8  S=  : pval = 0.8490101 
+x= 6  y= 9  S=  : pval = 0.4399678 
+x= 6  y= 10  S=  : pval = 0.04336253 
+x= 7  y= 5  S=  : pval = 0.04882669 
+x= 7  y= 8  S=  : pval = 0.7219917 
+x= 7  y= 9  S=  : pval = 0.03881988 
+x= 7  y= 10  S=  : pval = 0.1597818 
+x= 8  y= 9  S=  : pval = 0.04847641 
+x= 8  y= 10  S=  : pval = 0.6575975 
+x= 9  y= 3  S=  : pval = 0.02273493 
+x= 9  y= 7  S=  : pval = 0.03881988 
+x= 9  y= 8  S=  : pval = 0.04847641 
+x= 9  y= 10  S=  : pval = 0.006065308 
+x= 10  y= 3  S=  : pval = 4.970951e-06 
+x= 10  y= 4  S=  : pval = 0.0006551776 
+x= 10  y= 6  S=  : pval = 0.04336253 
+x= 10  y= 9  S=  : pval = 0.006065308 
+Order=1; remaining edges:22
+x= 3  y= 2  S= 9 : pval = 1.133601e-08 
+x= 3  y= 2  S= 10 : pval = 1.435081e-08 
+x= 3  y= 9  S= 2 : pval = 0.04158214 
+x= 3  y= 9  S= 10 : pval = 0.2178979 
+x= 3  y= 10  S= 2 : pval = 2.093343e-05 
+x= 3  y= 10  S= 9 : pval = 8.665037e-05 
+x= 4  y= 6  S= 10 : pval = 8.658056e-15 
+x= 4  y= 10  S= 6 : pval = 0.0177744 
+x= 5  y= 1  S= 7 : pval = 4.014914e-17 
+x= 5  y= 7  S= 1 : pval = 0.2102537 
+x= 6  y= 4  S= 10 : pval = 8.658056e-15 
+x= 6  y= 10  S= 4 : pval = 0.7676187 
+x= 7  y= 9  S= 5 : pval = 0.07548226 
+x= 9  y= 8  S= 3 : pval = 0.1271007 
+x= 9  y= 10  S= 3 : pval = 0.06755562 
+x= 10  y= 3  S= 4 : pval = 3.109771e-05 
+x= 10  y= 3  S= 6 : pval = 3.907004e-05 
+x= 10  y= 3  S= 9 : pval = 8.665037e-05 
+x= 10  y= 4  S= 3 : pval = 0.003150188 
+x= 10  y= 4  S= 6 : pval = 0.0177744 
+x= 10  y= 4  S= 9 : pval = 0.001162536 
+Order=2; remaining edges:10
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables comput
+Save results to:  ./inst/
+Save results to:  ./inst/simulations/results/n10_k2_csi25_pcskel_ptree_order_ess1_epf2_N300_r01.rds
+Runtime
+Time difference of 15.74502 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.7233936 
+x= 1  y= 3  S=  : pval = 0.3717034 
+x= 1  y= 4  S=  : pval = 0.09232967 
+x= 1  y= 5  S=  : pval = 3.336458e-47 
+x= 1  y= 6  S=  : pval = 0.1261172 
+x= 1  y= 7  S=  : pval = 0.8997018 
+x= 1  y= 8  S=  : pval = 0.1366583 
+x= 1  y= 9  S=  : pval = 0.7675088 
+x= 1  y= 10  S=  : pval = 0.1816494 
+x= 2  y= 3  S=  : pval = 7.782564e-37 
+x= 2  y= 4  S=  : pval = 0.9775894 
+x= 2  y= 5  S=  : pval = 0.5840714 
+x= 2  y= 6  S=  : pval = 0.26802 
+x= 2  y= 7  S=  : pval = 0.3556166 
+x= 2  y= 8  S=  : pval = 0.952679 
+x= 2  y= 9  S=  : pval = 0.7888787 
+x= 2  y= 10  S=  : pval = 0.1184996 
+x= 3  y= 2  S=  : pval = 7.782564e-37 
+x= 3  y= 4  S=  : pval = 0.7711231 
+x= 3  y= 5  S=  : pval = 0.04131337 
+x= 3  y= 6  S=  : pval = 0.1836602 
+x= 3  y= 7  S=  : pval = 0.1913319 
+x= 3  y= 8  S=  : pval = 0.7800282 
+x= 3  y= 9  S=  : pval = 0.08144307 
+x= 3  y= 10  S=  : pval = 1.092421e-05 
+x= 4  y= 5  S=  : pval = 0.6995563 
+x= 4  y= 6  S=  : pval = 1.06385e-46 
+x= 4  y= 7  S=  : pval = 0.181844 
+x= 4  y= 8  S=  : pval = 0.5706762 
+x= 4  y= 9  S=  : pval = 0.958833 
+x= 4  y= 10  S=  : pval = 1.69453e-07 
+x= 5  y= 1  S=  : pval = 3.336458e-47 
+x= 5  y= 3  S=  : pval = 0.04131337 
+x= 5  y= 6  S=  : pval = 0.5977198 
+x= 5  y= 7  S=  : pval = 0.3442254 
+x= 5  y= 8  S=  : pval = 0.5231558 
+x= 5  y= 9  S=  : pval = 0.8807385 
+x= 5  y= 10  S=  : pval = 0.2747086 
+x= 6  y= 4  S=  : pval = 1.06385e-46 
+x= 6  y= 7  S=  : pval = 0.6840691 
+x= 6  y= 8  S=  : pval = 0.2692369 
+x= 6  y= 9  S=  : pval = 0.9608886 
+x= 6  y= 10  S=  : pval = 7.977558e-06 
+x= 7  y= 8  S=  : pval = 0.9285126 
+x= 7  y= 9  S=  : pval = 0.0005407897 
+x= 7  y= 10  S=  : pval = 0.1800355 
+x= 8  y= 9  S=  : pval = 0.00102974 
+x= 8  y= 10  S=  : pval = 0.08631097 
+x= 9  y= 7  S=  : pval = 0.0005407897 
+x= 9  y= 8  S=  : pval = 0.00102974 
+x= 9  y= 10  S=  : pval = 3.597503e-05 
+x= 10  y= 3  S=  : pval = 1.092421e-05 
+x= 10  y= 4  S=  : pval = 1.69453e-07 
+x= 10  y= 6  S=  : pval = 7.977558e-06 
+x= 10  y= 9  S=  : pval = 3.597503e-05 
+Order=1; remaining edges:20
+x= 3  y= 2  S= 5 : pval = 1.286047e-35 
+x= 3  y= 2  S= 10 : pval = 2.399242e-35 
+x= 3  y= 5  S= 2 : pval = 0.128925 
+x= 3  y= 10  S= 2 : pval = 0.0001216108 
+x= 3  y= 10  S= 5 : pval = 2.472952e-05 
+x= 4  y= 6  S= 10 : pval = 1.193735e-42 
+x= 4  y= 10  S= 6 : pval = 0.0007133134 
+x= 5  y= 1  S= 3 : pval = 5.147134e-46 
+x= 6  y= 4  S= 10 : pval = 1.193735e-42 
+x= 6  y= 10  S= 4 : pval = 0.02900076 
+x= 9  y= 7  S= 8 : pval = 0.001184583 
+x= 9  y= 7  S= 10 : pval = 0.001058081 
+x= 9  y= 8  S= 7 : pval = 0.00215432 
+x= 9  y= 8  S= 10 : pval = 0.00501439 
+x= 9  y= 10  S= 7 : pval = 8.24823e-05 
+x= 9  y= 10  S= 8 : pval = 0.0002149391 
+x= 10  y= 3  S= 4 : pval = 4.595809e-05 
+x= 10  y= 3  S= 6 : pval = 7.712275e-06 
+x= 10  y= 3  S= 9 : pval = 0.0001154952 
+x= 10  y= 4  S= 3 : pval = 8.371528e-07 
+x= 10  y= 4  S= 6 : pval = 0.0007133134 
+x= 10  y= 4  S= 9 : pval = 7.073817e-07 
+x= 10  y= 6  S= 3 : pval = 5.711554e-06 
+x= 10  y= 6  S= 4 : pval = 0.02900076 
+x= 10  y= 6  S= 9 : pval = 2.666455e-05 
+x= 10  y= 9  S= 3 : pval = 0.0003592999 
+x= 10  y= 9  S= 4 : pval = 0.0001208103 
+x= 10  y= 9  S= 6 : pval = 0.0001120097 
+Order=2; remaining edges:18
+x= 9  y= 7  S= 8 10 : pval = 0.005750548 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi25_pcskel_ptree_order_ess1_epf16_N300_r01.rds
+Runtime
+Time difference of 7.980597 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.7233936 
+x= 1  y= 3  S=  : pval = 0.3717034 
+x= 1  y= 4  S=  : pval = 0.09232967 
+x= 1  y= 5  S=  : pval = 3.336458e-47 
+x= 1  y= 6  S=  : pval = 0.1261172 
+x= 1  y= 7  S=  : pval = 0.8997018 
+x= 1  y= 8  S=  : pval = 0.1366583 
+x= 1  y= 9  S=  : pval = 0.7675088 
+x= 1  y= 10  S=  : pval = 0.1816494 
+x= 2  y= 3  S=  : pval = 7.782564e-37 
+x= 2  y= 4  S=  : pval = 0.9775894 
+x= 2  y= 5  S=  : pval = 0.5840714 
+x= 2  y= 6  S=  : pval = 0.26802 
+x= 2  y= 7  S=  : pval = 0.3556166 
+x= 2  y= 8  S=  : pval = 0.952679 
+x= 2  y= 9  S=  : pval = 0.7888787 
+x= 2  y= 10
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi25_pcskel_none_order_ess1_epf8_N1000_r01.rds
+Runtime
+Time difference of 5.357584 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.7233936 
+x= 1  y= 3  S=  : pval = 0.3717034 
+x= 1  y= 4  S=  : pval = 0.09232967 
+x= 1  y= 5  S=  : pval = 3.336458e-47 
+x= 1  y= 6  S=  : pval = 0.1261172 
+x= 1  y= 7  S=  : pval = 0.8997018 
+x= 1  y= 8  S=  : pval = 0.1366583 
+x= 1  y= 9  S=  : pval = 0.7675088 
+x= 1  y= 10  S=  : pval = 0.1816494 
+x= 2  y= 3  S=  : pval = 7.782564e-37 
+x= 2  y= 4  S=  : pval = 0.9775894 
+x= 2  y= 5  S=  : pval = 0.5840714 
+x= 2  y= 6  S=  : pval = 0.26802 
+x= 2  y= 7  S=  : pval = 0.3556166 
+x= 2  y= 8  S=  : pval = 0.952679 
+x= 2  y= 9  S=  : pval = 0.7888787 
+x= 2  y= 10  S=  : pval = 0.1184996 
+x= 3  y= 2  S=  : pval = 7.782564e-37 
+x= 3  y= 4  S=  : pval = 0.7711231 
+x= 3  y= 5  S=  : pval = 0.04131337 
+x= 3  y= 6  S=  : pval = 0.1836602 
+x= 3  y= 7  S=  : pval = 0.1913319 
+x= 3  y= 8  S=  : pval = 0.7800282 
+x= 3  y= 9  S=  : pval = 0.08144307 
+x= 3  y= 10  S=  : pval = 1.092421e-05 
+x= 4  y= 5  S=  : pval = 0.6995563 
+x= 4  y= 6  S=  : pval = 1.06385e-46 
+x= 4  y= 7  S=  : pval = 0.181844 
+x= 4  y= 8  S=  : pval = 0.5706762 
+x= 4  y= 9  S=  : pval = 0.958833 
+x= 4  y= 10  S=  : pval = 1.69453e-07 
+x= 5  y= 1  S=  : pval = 3.336458e-47 
+x= 5  y= 3  S=  : pval = 0.04131337 
+x= 5  y= 6  S=  : pval = 0.5977198 
+x= 5  y= 7  S=  : pval = 0.3442254 
+x= 5  y= 8  S=  : pval = 0.5231558 
+x= 5  y= 9  S=  : pval = 0.8807385 
+x= 5  y= 10  S=  : pval = 0.2747086 
+x= 6  y= 4  S=  : pval = 1.06385e-46 
+x= 6  y= 7  S=  : pval = 0.6840691 
+x= 6  y= 8  S=  : pval = 0.2692369 
+x= 6  y= 9  S=  : pval = 0.9608886 
+x= 6  y= 10  S=  : pval = 7.977558e-06 
+x= 7  y= 8  S=  : pval = 0.9285126 
+x= 7  y= 9  S=  : pval = 0.0005407897 
+x= 7  y= 10  S=  : pval = 0.1800355 
+x= 8  y= 9  S=  : pval = 0.00102974 
+x= 8  y= 10  S=  : pval = 0.08631097 
+x= 9  y= 7  S=  : pval = 0.0005407897 
+x= 9  y= 8  S=  : pval = 0.00102974 
+x= 9  y= 10  S=  : pval = 3.597503e-05 
+x= 10  y= 3  S=  : pval = 1.092421e-05 
+x= 10  y= 4  S=  : pval = 1.69453e-07 
+x= 10  y= 6  S=  : pval = 7.977558e-06 
+x= 10  y= 9  S=  : pval = 3.597503e-05 
+Order=1; remaining edges:20
+x= 3  y= 2  S= 5 : pval = 1.286047e-35 
+x= 3  y= 2  S= 10 : pval = 2.399242e-35 
+x= 3  y= 5  S= 2 : pval = 0.128925 
+x= 3  y= 10  S= 2 : pval = 0.0001216108 
+x= 3  y= 10  S= 5 : pval = 2.472952e-05 
+x= 4  y= 6  S= 10 : pval = 1.193735e-42 
+x= 4  y= 10  S= 6 : pval = 0.0007133134 
+x= 5  y= 1  S= 3 : pval = 5.147134e-46 
+x= 6  y= 4  S= 10 : pval = 1.193735e-42 
+x= 6  y= 10  S= 4 : pval = 0.02900076 
+x= 9  y= 7  S= 8 : pval = 0.001184583 
+x= 9  y= 7  S= 10 : pval = 0.001058081 
+x= 9  y= 8  S= 7 : pval = 0.00215432 
+x= 9  y= 8  S= 10 : pval = 0.00501439 
+x= 9  y= 10  S= 7 : pval = 8.24823e-05 
+x= 9  y= 10  S= 8 : pval = 0.0002149391 
+x= 10  y= 3  S= 4 : pval = 4.595809e-05 
+x= 10  y= 3  S= 6 : pval = 7.712275e-06 
+x= 10  y= 3  S= 9 : pval = 0.0001154952 
+x= 10  y= 4  S= 3 : pval = 8.371528e-07 
+x= 10  y= 4  S= 6 : pval = 0.0007133134 
+x= 10  y= 4  S= 9 : pval = 7.073817e-07 
+x= 10  y= 6  S= 3 : pval = 5.711554e-06 
+x= 10  y= 6  S= 4 : pval = 0.02900076 
+x= 10  y= 6  S= 9 : pval = 2.666455e-05 
+x= 10  y= 9  S= 3 : pval = 0.0003592999 
+x= 10  y= 9  S= 4 : pval = 0.0001208103 
+x= 10  y= 9  S= 6 : pval = 0.0001120097 
+Order=2; remaining edges:18
+x= 9  y= 7  S= 
+Save results to:  ./inst/si
+Save results to:  ./inst/simulations/results/n10_k2_csi25_pcskel_ptree_order_ess1_epf8_N1000_r01.rds
+Runtime
+Time difference of 8.506848 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.4301466 
+x= 1  y= 3  S=  : pval = 0.2921609 
+x= 1  y= 4  S=  : pval = 0.02082983 
+x= 1  y= 5  S=  : pval = 1.843776e-163 
+x= 1  y= 6  S=  : pval = 0.3762087 
+x= 1  y= 7  S=  : pval = 0.6384601 
+x= 1  y= 8  S=  : pval = 0.5966244 
+x= 1  y= 9  S=  : pval = 0.01354011 
+x= 1  y= 10  S=  : pval = 0.1917006 
+x= 2  y= 3  S=  : pval = 3.297659e-127 
+x= 2  y= 4  S=  : pval = 0.4029601 
+x= 2  y= 5  S=  : pval = 0.8321004 
+x= 2  y= 6  S=  : pval = 0.365756 
+x= 2  y= 7  S=  : pval = 0.9236293 
+x= 2  y= 8  S=  : pval = 0.4533542 
+x= 2  y= 9  S=  : pval = 0.773207 
+x= 2  y= 10  S=  : pval = 1.69649e-05 
+x= 3  y= 2  S=  : pval = 3.297659e-127 
+x= 3  y= 4  S=  : pval = 0.03979534 
+x= 3  y= 5  S=  : pval = 0.7246508 
+x= 3  y= 6  S=  : 
+Save results to:  ./inst/simulations/results/n10_k2_csi25_pcskel_ptree_order_ess1_epf16_N1000_r01.rds
+Runtime
+Time difference of 8.135901 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.4301466 
+x= 1  y= 3  S=  : pval = 0.2921609 
+x= 1  y= 4  S=  : pval = 0.02082983 
+x= 1  y= 5  S=  : pval = 1.843776e-163 
+x= 1  y= 6  S=  : pval = 0.3762087 
+x= 1  y= 7  S=  : pval = 0.6384601 
+x= 1  y= 8  S=  : pval = 0.5966244 
+x= 1  y= 9  S=  : pval = 0.01354011 
+x= 1  y= 10  S=  : pval = 0.1917006 
+x= 2  y= 3  S=  : pval = 3.297659e-127 
+x= 2  y= 4  S=  : pval = 0.4029601 
+x= 2  y= 5  S=  : pval = 0.8321004 
+x= 2  y= 6  S=  : pval = 0.365756 
+x= 2  y= 7  S=  : pval = 0.9236293 
+x= 2  y= 8  S=  : pval = 0.4533542 
+x= 2  y= 9  S=  : pval = 0.773207 
+x= 2  y= 10  S=  : pval = 1.69649e-05 
+x= 3  y= 2  S=  : pval = 3.297659e-127 
+x= 3  y= 4  S=  : pval = 0.03979534 
+x= 3  y= 5  S=  : pval = 0.7246508 
+x= 3  y= 6  S=  : pval = 0.04153069 
+x= 3  y= 7  S=  : pval = 0.9897195 
+x= 3  y= 8  S=  : pval = 0.7095996 
+x= 3  y= 9  S=  : pval = 0.2712908 
+x= 3  y= 10  S=  : pval = 6.092926e-30 
+x= 4  y= 1  S=  : pval = 0.02082983 
+x= 4  y= 3  S=  : pval = 0.03979534 
+x= 4  y= 5  S=  : pval = 0.07087477 
+x= 4  y= 6  S=  : pval = 6.505165e-125 
+x= 4  y= 7  S=  : pval = 0.3556598 
+x= 4  y= 8  S=  : pval = 0.6908447 
+x= 4  y= 9  S=  : pval = 0.7395828 
+x= 4  y= 10  S=  : pval = 5.176845e-30 
+x= 5  y= 1  S=  : pval = 1.843776e-163 
+x= 5  y= 6  S=  : pval = 0.9284791 
+x= 5  y= 7  S=  : pval = 0.6712974 
+x= 5  y= 8  S=  : pval = 0.7982678 
+x= 5  y= 9  S=  : pval = 0.4233134 
+x= 5  y= 10  S=  : pval = 0.1602688 
+x= 6  y= 3  S=  : pval = 0.04153069 
+x= 6  y= 4  S=  : pval = 6.505165e-125 
+x= 6  y= 7  S=  : pval = 0.4632647 
+x= 6  y= 8  S=  : pval = 0.6426652 
+x= 6  y= 9  S=  : pval = 0.06365659 
+x= 6  y= 10  S=  : pval = 3.74274e-18 
+x= 7  y= 8  S=  : pval = 0.3202371 
+x= 7  y= 9  S=  : pval = 1.009947e-06 
+x= 7  y= 10  S=  : pval = 0.8827351 
+x= 8  y= 9  S=  : pval = 0.9730514 
+x= 8  y= 10  S=  : pval = 0.06316801 
+x= 9  y= 1  S=  : pval = 0.01354011 
+x= 9  y= 7  S=  : pval = 1.009947e-06 
+x= 9  y= 10  S=  : pval = 1.637922e-14 
+x= 10  y= 2  S=  : pval = 1.69649e-05 
+x= 10  y= 3  S=  : pval = 6.092926e-30 
+x= 10  y= 4  S=  : pval = 5.176845e-30 
+x= 10  y= 6  S=  : pval = 3.74274e-18 
+x= 10  y= 9  S=  : pval = 1.637922e-14 
+Order=1; remaining edges:26
+x= 1  y= 4  S= 5 : pval = 0.1929853 
+x= 1  y= 5  S= 4 : pval = 1.757758e-161 
+x= 1  y= 5  S= 9 : pval = 6.672007e-162 
+x= 1  y= 9  S= 4 : pval = 0.04755507 
+x= 1  y= 9  S= 5 : pval = 0.05019068 
+x= 2  y= 3  S= 10 : pval = 9.240356e-122 
+x= 2  y= 10  S= 3 : pval = 0.8927762 
+x= 3  y= 2  S= 4 : pval = 1.388015e-125 
+x= 3  y= 2  S= 6 : pval = 1.095285e-125 
+x= 3  y= 2  S= 10 : pval = 9.240356e-122 
+x= 3  y= 4  S= 2 : pval = 0.1688505 
+x= 3  y= 6  S= 2 : pval = 0.1381492 
+x= 3  y= 10  S= 2 : pval = 8.136276e-25 
+x= 3  y= 10  S= 4 : pval = 6.620224e-28 
+x= 3  y= 10  S= 6 : pval = 4.194494e-28 
+x= 4  y= 6  S= 1 : pval = 1.699671e-123 
+x= 4  y= 6  S= 3 : pval = 6.775786e-123 
+x= 4  y= 6  S= 10 : pval = 3.89413e-112 
+x= 4  y= 10  S= 1 : pval = 3.955519e-29 
+x= 4  y= 10  S= 3 : pval = 5.631792e-28 
+x= 4  y= 10  S= 6 : pval = 1.492353e-17 
+x= 6  y= 4  S= 3 : pval = 6.775786e-123 
+x= 6  y= 4  S= 10 : pval = 3.89413e-112 
+x= 6  y= 10  S= 3 : pval = 1.979276e-16 
+x= 6  y= 10  S= 4 : pval = 8.277981e-06 
+x= 9  y= 7  S= 1 : pval = 5.704131e-07 
+x= 9  y= 7  S= 10 : pval = 3.059166e-06 
+x= 9  y= 10  S= 1 : pval = 3.608009e-14 
+x= 9  y= 10  S= 7 : pval = 7.620376e-14 
+x= 10  y= 3  S= 2 : pval = 8.136276e-25 
+x= 10  y= 3  S= 4 : pval = 6.620224e-28 
+x= 10  y= 3  S= 6 : pval = 4.194494e-28 
+x= 10  y= 3  S= 9 : pval = 1.249416e-28 
+x= 10  y= 4  S= 2 : pval = 1.03113e-28 
+x= 10  y= 4  S= 3 : pval = 5.631792e-28 
+x= 10  y= 4  S= 6 : pval = 1.492353e-17 
+x= 10  y= 4  S= 9 : pval = 5.636029e-30 
+x= 10  y= 6  S= 2 : pval = 3.615502e-17 
+x= 10  y= 6  S= 3 : pval = 1.979276e-16 
+x= 10  y= 6  S= 4 : pval = 8.277981e-06 
+x= 10  y= 6  S= 9 : pval = 1.288028e-16 
+x= 10  y= 9  S= 2 : pval = 1.387382e-13 
+x= 10  y= 9  S= 3 : pval = 2.287992e-13 
+x= 10  y= 9  S= 4 : pval = 1.21324e-14 
+x= 10  y= 9  S= 6 : pval = 4.998572e-13 
+Order=2; remaining edges:16
+x= 10  y= 3  S= 4 6 : pval = 4.666642e-26 
+x= 10  y= 3  S= 4 9 : pval = 7.547754e-26 
+x= 10  y= 3  S= 6 9
+Save results to:  ./inst/simulations/results/n10_k2_csi25_pcskel_none_order_ess1_epf8_N3000_r01.rds
+Runtime
+Time difference of 5.276956 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.4301466 
+x= 1  y= 3  S=  : pval = 0.2921609 
+x= 1  y= 4  S=  : pval = 0.02082983 
+x= 1  y= 5  S=  : pval = 1.843776e-163 
+x= 1  y= 6  S=  : pval = 0.3762087 
+x= 1  y= 7  S=  : pval = 0.6384601 
+x= 1  y= 8  S=  : pval = 0.5966244 
+x= 1  y= 9  S=  : pval = 0.01354011 
+x= 1  y= 10  S=  : pval = 0.1917006 
+x= 2  y= 3  S=  : pval = 3.297659e-127 
+x= 2  y= 4  S=  : pval = 0.4029601 
+x= 2  y= 5  S=  : pval = 0.8321004 
+x= 2  y= 6  S=  : pval = 0.365756 
+x= 2  y= 7  S=  : pval = 0.9236293 
+x= 2  y= 8  S=  : pval = 0.4533542 
+x= 2  y= 9  S=  : pval = 0.773207 
+x= 2  y=
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables com
+Save results to:  ./inst/sim
+Save results to:  ./inst/simulations/results/n10_k2_csi25_pcskel_none_order_ess1_epf16_N3000_r01.rds
+Runtime
+Time difference of 5.307451 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.366699 
+x= 1  y= 3  S=  : pval = 0.7653619 
+x= 1  y= 4  S=  : pval = 0.6750297 
+x= 1  y= 5  S=  : pval = 0 
+x= 1  y= 6  S=  : pval = 0.2266517 
+x= 1  y= 7  S=  : pval = 0.2355294 
+x= 1  y= 8  S=  : pval = 0.1649952 
+x= 1  y= 9  S=  : pval = 0.06545397 
+x= 1  y= 10  S=  : pval = 0.9098436 
+x= 2  y= 3  S=  : pval = 0 
+x= 2  y= 4  S=  : pval = 0.1786153 
+x= 2  y= 5  S=  : pval = 0.1329722 
+x= 2  y= 6  S=  : pval = 0.2016889 
+x= 2  y= 7  S=  : pval = 0.8046281 
+x= 2  y= 8  S=  : pval = 0.3912441 
+x= 2  y= 9  S=  : pval = 0.7209323 
+x= 2  y= 10  S=  : pval = 2.131864e-11 
+x= 3  y= 2  S=  : pval = 0 
+x= 3  y= 4  S=  : pval = 0.00771037 
+x= 3  y= 5  S=  : pval = 0.2587433 
+x= 3  y= 6  S=  : pval = 0.1345928 
+x= 3  y= 7  S=  : pval = 0.4588396 
+x= 3  y= 8  S=  : pval = 0.5924637 
+x= 3  y= 9  S=  : pval = 0.03350623 
+x= 3  y= 10  S=  : pval = 2.036383e-81 
+x= 4  y= 3  S=  : pval = 0.00771037 
+x= 4  y= 5  S=  : pval = 0.973895 
+x= 4  y= 6  S=  : pval = 0 
+x= 4  y= 7  S=  : pval = 0.2453363 
+x= 4  y= 8  S=  : pval = 0.5966332 
+x= 4  y= 9  S=  : pval = 0.0002701389 
+x= 4  y= 10  S=  : pval = 1.827854e-70 
+x= 5  y= 1  S=  : pval = 0 
+x= 5  y= 6  S=  : pval = 0.6227829 
+x= 5  y= 7  S=  : pval = 0.7680519 
+x= 5  y= 8  S=  : pval = 0.7573265 
+x= 5  y= 9  S=  : pval = 0.9589078 
+x= 5  y= 10  S=  : pval = 0.9060447 
+x= 6  y= 4  S=  : pval = 0 
+x= 6  y= 7  S=  : pval = 0.5536247 
+x= 6  y= 8  S=  : pval = 0.9042925 
+x= 6  y= 9  S=  : pval = 0.007248607 
+x= 6  y= 10  S=  : pval = 8.335349e-53 
+x= 7  y= 8  S=  : pval = 0.03917067 
+x= 7  y= 9  S=  : pval = 1.343246e-08 
+x= 7  y= 10  S=  : pval = 0.1027464 
+x= 8  y= 7  S=  : pval = 0.03917067 
+x= 8  y= 9  S=  : pval = 1.026659e-07 
+x= 8  y= 10  S=  : pval = 0.1975995 
+x= 9  y= 3  S=  : pval = 0.03350623 
+x= 9  y= 4  S=  : pval = 0.0002701389 
+x= 9  y= 6  S=  : pval = 0.007248607 
+x= 9  y= 7  S=  : pval = 1.343246e-08 
+x= 9  y= 8  S=  : pval = 1.026659e-07 
+x= 9  y= 10  S=  : pval = 9.761984e-46 
+x= 10  y= 2  S=  : pval = 2.131864e-11 
+x= 10  y= 3  S=  : pval = 2.036383e-81 
+x= 10  y= 4  S=  : pval = 1.827854e-70 
+x= 10  y= 6  S=  : pval = 8.335349e-53 
+x= 10  y= 9  S=  : pval = 9.761984e-46 
+Order=1; remaining edges:30
+x= 2  y= 3  S= 10 : pval = 0 
+x= 2  y= 10  S= 3 : pval = 0.355039 
+x= 3  y= 2  S= 4 : pval = 0 
+x= 3  y= 2  S= 9 : pval = 0 
+x= 3  y= 2  S= 10 : pval = 0 
+x= 3  y= 4  S= 2 : pval = 0.05531759 
+x= 3  y= 9  S= 2 : pval = 0.07644685 
+x= 3  y= 10  S= 2 : pval = 9.501438e-71 
+x= 3  y= 10  S= 4 : pval = 1.311162e-78 
+x= 3  y= 10  S= 9 : pval = 3.458829e-79 
+x= 4  y= 6  S= 3 : pval = 0 
+x= 4  y= 6  S= 9 : pval = 0 
+x= 4  y= 6  S= 10 : pval = 0 
+x= 4  y= 9  S= 3 : pval = 0.001299043 
+x= 4  y= 9  S= 6 : pval = 0.01823691 
+x= 4  y= 9  S= 10 : pval = 0.6085664 
+x= 4  y= 10  S= 3 : pval = 1.093339e-67 
+x= 4  y= 10  S= 6 : pval = 5.821368e-34 
+x= 4  y= 10  S= 9 : pval = 1.886505e-66 
+x= 6  y= 4  S= 9 : pval = 0 
+x= 6  y= 4  S= 10 : pval = 0 
+x= 6  y= 9  S= 4 : pval = 0.3768041 
+x= 6  y= 10  S= 4 : pval = 2.29029e-16 
+x= 6  y= 10  S= 9 : pval = 5.546654e-50 
+x= 7  y= 8  S= 9 : pval = 0.1992206 
+x= 7  y= 9  S= 8 : pval = 1.644777e-07 
+x= 8  y= 9  S= 7 : pval = 1.182186e-06 
+x= 9  y= 7  S= 3 : pval = 2.328269e-08 
+x= 9  y= 7  S= 4 : pval = 7.147634e-08 
+x= 9  y= 7  S= 6 : pval = 6.820674e-08 
+x= 9  y= 7  S= 8 : pval = 1.644777e-07 
+x= 9  y= 7  S= 10 : pval = 1.672122e-07 
+x= 9  y= 8  S= 3 : pval = 7.040354e-07 
+x= 9  y= 8  S= 4 : pval = 4.706118e-07 
+x= 9  y= 8  S= 6 : pval = 2.481361e-07 
+x= 9  y= 8  S= 7 : pval = 1.182186e-06 
+x= 9  y= 8  S= 10 : pval = 1.444437e-06 
+x= 9  y= 10  S= 3 : pval = 1.234296e-43 
+x= 9  y= 10  S= 4 : pval = 8.073279e-42 
+x= 9  y= 10  S= 6 : pval = 6.033338e-43 
+x= 9  y= 10  S= 7 : pval = 2.964827e-44 
+x= 9  y= 10  S= 8 : pval = 3.563291e-44 
+x= 10  y= 3  S= 2 : pval = 9.501438e-71 
+x= 10  y= 3  S= 4 : pval = 1.311162e-78 
+x= 10  y= 3  S= 6 : pval = 8.597807e-80 
+x= 10  y= 3  S= 9 : pval = 3.458829e-79 
+x= 10  y= 4  S= 2 : pval = 6.745075e-69 
+x= 10  y= 4  S= 3 : pval = 1.093339e-67 
+x= 10  y= 4  S= 6 : pval = 5.821368e-34 
+x= 10  y= 4  S= 9 : pval = 1.886505e-66
+Save results to:  ./inst/si
+Save results to:  ./inst/simulations/results/n10_k2_csi25_pcskel_ptree_order_ess1_epf16_N3000_r01.rds
+Runtime
+Time difference of 8.315078 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.366699 
+x= 1  y= 3  S=  : pval = 0.7653619 
+x= 1  y= 4  S=  : pval = 0.6750297 
+x= 1  y= 5  S=  : pval = 0 
+x= 1  y= 6  S=  : pval = 0.2266517 
+x= 1  y= 7  S=  : pval = 0.2355294 
+x= 1  y= 8  S=  : pval = 0.1649952 
+x= 1  y= 9  S=  : pval = 0.06545397 
+x= 1  y= 10  S=  : pval = 0.9098436 
+x= 2  y= 3  S=  : pval = 0 
+x= 2  y= 4  S=  : pval = 0.1786153 
+x= 2  y= 5  S=  : pval = 0.1329722 
+x= 2  y= 6  S=  : pval = 0.2016889 
+x= 2  y= 7  S=  : pval = 0.8046281 
+x= 2  y= 8  S=  : pval = 0.3912441 
+x= 2  y= 9  S=  : pval = 0.7209323 
+x= 2  y= 10  S=  : pval = 2.131864e-11 
+x= 3  y= 2  S=  : pval = 0 
+x= 3  y= 4  S=  : pval = 0.00771037 
+x= 3  y= 5  S=  : pval = 0.2587433 
+x= 3  y= 6  S=  : pval = 0.1345928 
+x= 3  y= 7  S=  : pval = 0.4588396 
+x= 3  y= 8  S=  : pval = 0.5924637 
+x= 3  y= 9  S=  : pval = 0.03350623 
+x= 3  y= 10  S=  : pval = 2.036383e-81 
+x= 4  y= 3  S=  : pval = 0.00771037 
+x= 4  y= 5  S=  : pval = 0.973895 
+x= 4  y= 6  S=  : pval = 0 
+x= 4  y= 7  S=  : pval = 0.2453363 
+x= 4  y= 8  S=  : pval = 0.5966332 
+x= 4  y= 9  S=  : pval = 0.0002701389 
+x= 4  y= 10  S=  : pval = 1.827854e-70 
+x= 5  y= 1  S=  : pval = 0 
+x= 5  y= 6  S=  : pval = 0.6227829 
+x= 5  y= 7  S=  : pval = 0.7680519 
+x= 5  y= 8  S=  : pval = 0.7573265 
+x= 5  y= 9  S=  : pval = 0.9589078 
+x= 
+Save results to:  ./inst/simulations/results/n10_k2_csi25_pcskel_ptree_order_ess1_epf2_N10000_r01.rds
+Runtime
+Time difference of 9.253596 secs
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.07263561 
+x= 1  y= 3  S=  : pval = 0.914199 
+x= 1  y= 4  S=  : pval = 0.5488596 
+x= 1  y= 5  S=  : pval = 1.839343e-15 
+x= 1  y= 6  S=  : pval = 0.7115574 
+x= 1  y= 7  S=  : pval = 0.6821535 
+x= 1  y= 8  S=  : pval = 0.6097116 
+x= 1  y= 9  S=  : pval = 0.09984228 
+x= 1  y= 10  S=  : pval = 0.9323518 
+x= 2  y= 3  S=  : pval = 1.543993e-10 
+x= 2  y= 4  S=  : pval = 0.3242009 
+x= 2  y= 5  S=  : pval = 0.6232995 
+x= 2  y= 6  S=  : pval = 0.2354996 
+x= 2  y= 7  S=  : pval = 0.7130364 
+x= 2  y= 8  S=  : pval = 0.6566154 
+x= 2  y= 9  S=  : pval = 0.3147834 
+x= 2  y= 10  S=  : pval = 0.1386217 
+x= 3  y= 2  S=  : pval = 1.543993e-10 
+x= 3  y= 4  S=  : pval = 0.2485593 
+x= 3  y= 5  S=  : pval = 0.3183373 
+x= 3  y= 6  S=  : pval = 0.0006915595 
+x= 3  y= 7  S=  : pval = 0.4591089 
+x= 3  y= 8  S=  : pval = 0.01735962 
+x= 3  y= 9  S=  : pval = 0.2409292 
+x= 3  y= 10  S=  : pval = 2.936861e-22 
+x= 4  y= 5  S=  : pval = 0.6597226 
+x= 4  y= 6  S=  : pval = 1.085651e-13 
+x= 4  y= 7  S=  : pval = 0.5509363 
+x= 4  y= 8  S=  : pval = 0.9104702 
+x= 4  y= 9  S=  : pval = 0.04293479 
+x= 4  y= 10  S=  : pval = 1.258625e-11 
+x= 5  y= 1  S=  : pval = 1.839343e-15 
+x= 5  y= 6  S=  : pval = 0.1738235 
+x= 5  y= 7  S=  : pval = 0.9295895 
+x= 5  y= 8  S=  : pval = 0.6426821 
+x= 5  y= 9  S=  : pval = 0.3047755 
+x= 5  y= 10  S=  : pval = 0.8807746 
+x= 6  y= 3  S=  : pval = 0.0006915595 
+x= 6  y= 4  S=  : pval = 1.085651e-13 
+x= 6  y= 7  S=  : pval = 0.04022144 
+x= 6  y= 8  S=  : pval = 0.5490839 
+x= 6  y= 9  S=  : pval = 0.7681177 
+x= 6  y= 10  S=  : pval = 3.196243e-10 
+x= 7  y= 6  S=  : pval = 0.04022144 
+x= 7  y= 8  S=  : pval = 0.09110498 
+x= 7  y= 9  S=  : pval = 0.0002059079 
+x= 7  y= 10  S=  : pval = 0.1978704 
+x= 8  y= 3  S=  : pval = 0.01735962 
+x= 8  y= 9  S=  : pval = 5.855643e-08 
+x= 8  y= 10  S=  : pval = 2.649802e-08 
+x= 9  y= 4  S=  : pval = 0.04293479 
+x= 9  y= 7  S=  : pval = 0.0002059079 
+x= 9  y= 8  S=  : pval = 5.855643e-08 
+x= 9  y= 10  S=  : pval = 0.2676956 
+x= 10  y= 3  S=  : pval = 2.936861e-22 
+x= 10  y= 4  S=  : pval = 1.258625e-11 
+x= 10  y= 6  S=  : pval = 3.196243e-10 
+x= 10  y= 8  S=  : pval = 2.649802e-08 
+Order=1; remaining edges:26
+x= 3  y= 2  S= 6 : pval = 2.302218e-08 
+x= 3  y= 2  S= 8 : pval = 9.356949e-10 
+x= 3  y= 2  S= 10 : pval = 4.976236e-08 
+x= 3  y= 6  S= 2 : pval = 0.006608935 
+x= 3  y= 6  S= 8 : pval = 0.0001356647 
+x= 3  y= 6  S= 10 : pval = 0.4815146 
+x= 3  y= 8  S= 2 : pval = 0.006042702 
+x= 3  y= 8  S= 6 : pval = 0.001939119 
+x= 3  y= 8  S= 10 : pval = 0.847029 
+x= 3  y= 10  S= 2 : pval = 1.210646e-18 
+x= 3  y= 10  S= 6 : pval = 7.176346e-16 
+x= 3  y= 10  S= 8 : pval = 1.95542e-16 
+x= 4  y= 6  S= 9 : pval = 1.923111e-10 
+x= 4  y= 6  S= 10 : pval = 3.951755e-20 
+x= 4  y= 9  S= 6 : pval = 0.2844281 
+x= 4  y= 10  S= 6 : pval = 3.52757e-18 
+x= 4  y= 10  S= 9 : pval = 5.501975e-09 
+x= 6  y= 4  S= 3 : pval = 2.59308e-12 
+x= 6  y= 4  S= 7 : pval = 5.790377e-11 
+x= 6  y= 4  S= 10 : pval = 3.951755e-20 
+x= 6  y= 7  S= 3 : pval = 0.008757113 
+x= 6  y= 7  S= 4 : pval = 0.1426681 
+x= 6  y= 10  S= 3 : pval = 2.708747e-05 
+x= 6  y= 10  S= 4 : pval = 7.449493e-17 
+x= 6  y= 10  S= 7 : pval = 3.994742e-08 
+x= 7  y= 9  S= 6 : pval = 0.01086548 
+x= 8  y= 9  S= 3 : pval = 2.607365e-05 
+x= 8  y= 9  S= 10 : pval = 0.0001870474 
+x= 8  y= 10  S= 3 : pval = 0.000302137 
+x= 8  y= 10  S= 9 : pval = 9.980312e-05 
+x= 9  y= 7  S= 4 : pval = 0.004921747 
+x= 9  y= 7  S= 8 : pval = 0.01917817 
+x= 9  y= 8  S= 4 : pval = 1.57111e-05 
+x= 9  y= 8  S= 7 : pval = 3.870531e-05 
+x= 10  y= 3  S= 4 : pval = 2.480684e-17 
+x= 10  y= 3  S= 6 : pval = 7.176346e-16 
+x= 10  y= 3  S= 8 : pval = 1.95542e-16 
+x= 10  y= 4  S= 3 : pval = 9.03094e-08 
+x= 10  y= 4  S= 6 : pval = 3.52757e-18 
+x= 10  y= 4  S= 8 : pval = 9.455147e-11 
+x= 10  y= 6  S= 3 : pval = 2.708747e-05 
+x= 10  y= 6  S= 4 : pval = 7.449493e-17 
+x= 10  y= 6  S= 8 : pval = 4.50151e-07 
+x= 10  y= 8  S= 3 : pval = 0.000302137 
+x= 10  y= 8  S= 4 : pval = 8.276817e-08 
+x= 10  y= 8  S= 6 : pval = 1.814742e-05 
+Order=2; remaining edges:18
+x= 10  y= 3  S= 4 6 : pval = 1 
+x= 10  y= 4  S= 3 6 : pval = 1 
+Save results to:  ./inst/simulations/results/n10_k2_csi25_pcskel_none_order_ess1_epf16_N10000_r01.rds
+Runtime
+Time difference of 5.851057 secs
+Type: EXEC 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.07263561 
+x= 1  y= 3  S=  : pvasearch space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/results/n10_k3_csi25_pcskel_none_order_ess1_epf8_N300_r01.rds
+Runtime
+Time difference of 7.286354 secs
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.7779197 
+x= 1  y= 3  S=  : pval = 0.05984291 
+x= 1  y= 4  S=  : pval = 0.3311925 
+x= 1  y= 5  S=  : pval = 8.811624e-136 
+x= 1  y= 6  S=  : pval = 0.09031139 
+x= 1  y= 7  S=  : pval = 0.8439062 
+x= 1  y= 8  S=  : pval = 0.6700964 
+x= 1  y= 9  S=  : pval = 0.1038015 
+x= 1  y= 10  S=  : pval = 0.1943252 
+x= 2  y= 3  S=  : pval = 5.830215e-55 
+x= 2  y= 4  S=  : pval = 0.1159235 
+x= 2  y= 5  S=  : pval = 0.3310752 
+x= 2  y= 6  S=  : pval = 0.3324943 
+x= 2  y= 7  S=  : pval = 0.6277172 
+x= 2  y= 8  S=  : pval = 0.01062853 
+x= 2  y= 9  S=  : pval = 0.8003219 
+x= 2  y= 10  S=  : pval = 0.001168599 
+x= 3  y= 2  S=  : pval = 5.830215e-55 
+x= 3  y= 4  S=  : pval = 0.001301379 
+x= 3  y= 5  S=  : pval = 0.3939588 
+x= 3  y= 6  S=  : pval = 2.224465e-27 
+x= 3  y= 7  S=  : pval = 0.1504722 
+x= 3  y= 8  S=  : pval = 4.974631e-32 
+x= 3  y= 9  S=  : pval = 6.133435e-05 
+x= 3  y= 10  S=  : pval = 6.428855e-260 
+x= 4  y= 3  S=  : pval = 0.001301379 
+x= 4  y= 5  S=  : pval = 0.9097372 
+x= 4  y= 6  S=  : pval = 1.935848e-92 
+x= 4  y= 7  S=  : pval = 0.03172821 
+x= 4  y= 8  S=  : pval = 0.2566475 
+x= 4  y= 9  S=  : pval = 0.998666 
+x= 4  y= 10  S=  : pval = 3.674382e-92 
+x= 5  y= 1  S=  : pval = 8.811624e-136 
+x= 5  y= 6  S=  : pval = 9.989573e-12 
+x= 5  y= 7  S=  : pval = 0.8752627 
+x= 5  y= 8  S=  : pval = 0.869117 
+x= 5  y= 9  S=  : pval = 0.4957932 
+x= 5  y= 10  S=  : pval = 0.7698744 
+x= 6  y= 3  S=  : pval = 2.224465e-27 
+x= 6  y= 4  S=  : pval = 1.935848e-92 
+x= 6  y= 5  S=  : pval = 9.989573e-12 
+x= 6  y= 7  S=  : pval = 0.1124448 
+x= 6  y= 8  S=  : pval = 1.904179e-07 
+x= 6  y= 9  S=  : pval = 0.0799122 
+x= 6  y= 10  S=  : pval = 1.380032e-72 
+x= 7  y= 4  S=  : pval = 0.03172821 
+x= 7  y= 8  S=  : pval = 2.916332e-08 
+x= 7  y= 9  S=  : pval = 1.421488e-45 
+x= 7  y= 10  S=  : pval = 0.03809626 
+x= 8  y= 2  S=  : pval = 0.01062853 
+x= 8  y= 3  S=  : pval = 4.974631e-32 
+x= 8  y= 6  S=  : pval = 1.904179e-07 
+x= 8  y= 7  S=  : pval = 2.916332e-08 
+x= 8  y= 9  S=  : pval = 1.571057e-105 
+x= 8  y= 10  S=  : pval = 4.693635e-99 
+x= 9  y= 3  S=  : pval = 6.133435e-05 
+x= 9  y= 7  S=  : pval = 1.421488e-45 
+x= 9  y= 8  S=  : pval = 1.571057e-105 
+x= 9  y= 10  S=  : pval = 9.191162e-09 
+x= 10  y= 2  S=  : pval = 0.001168599 
+x= 10  y= 3  S=  : pval = 6.428855e-260 
+x= 10  y= 4  S=  : pval = 3.674382e-92 
+x= 10  y= 6  S=  : pval = 1.380032e-72 
+x= 10  y= 7  S=  : pval = 0.03809626 
+x= 10  y= 8  S=  : pval = 4.693635e-99 
+x= 10  y= 9  S=  : pval = 9.191162e-09 
+Order=1; remaining edges:42
+x= 2  y= 3  S= 8 : pval = 2.401878e-48 
+x= 2  y= 3  S= 10 : pval = 4.407897e-48 
+x= 2  y= 8  S= 3 : pval = 0.4421073 
+x= 2  y= 10  S= 3 : pval = 0.2021669 
+x= 3  y= 2  S= 4 : pval = 2.444686e-49 
+x= 3  y= 2  S= 6 : pval = 1.38771e-49 
+x= 3  y= 2  S= 8 : pval = 2.401878e-48 
+x= 3  y= 2  S= 9 : pval = 5.679156e-51 
+x= 3  y= 2  S= 10 : pval = 4.407897e-48 
+x= 3  y= 4  S= 2 : pval = 0.04300028 
+x= 3  y= 4  S= 6 : pval = 4.453478e-10 
+x= 3  y= 4  S= 8 : pval = 0.0005118897 
+x= 3  y= 4  S= 9 : pval = 0.04394877 
+x= 3  y= 4  S= 10 : pval = 0.7247451 
+x= 3  y= 6  S= 2 : pval = 3.885883e-23 
+x= 3  y= 6  S= 4 : pval = 1.315231e-32 
+x= 3  y= 6  S= 8 : pval = 4.302456e-23 
+x= 3  y= 6  S= 9 : pval = 2.549527e-24 
+x= 3  y= 6  S= 10 : pval = 0.240183 
+x= 3  y= 8  S= 2 : pval = 2.486731e-26 
+x= 3  y= 8  S= 4 : pval = 5.42002e-30 
+x= 3  y= 8  S= 6 : pval = 1.71906e-27 
+x= 3  y= 8  S= 9 : pval = 2.722188e-23 
+x= 3  y= 8  S= 10 : pval = 0.6492322 
+x= 3  y= 9  S= 2 : pval = 0.0003185794 
+x= 3  y= 9  S= 4 : pval = 0.005247568 
+x= 3  y= 9  S= 6 : pval = 0.0004239118 
+x= 3  y= 9  S= 8 : pval = 0.7485432 
+x= 3  y= 10  S= 2 : pval = 2.295108e-250 
+x= 3  y= 10  S= 4 : pval = 6.635027e-249 
+x= 3  y= 10  S= 6 : pval = 7.050436e-226 
+x= 3  y= 10  S= 8 : pval = 4.818214e-220 
+x= 3  y= 10  S= 9 : pval = 1.93356e-248 
+x= 4  y= 6  S= 3 : pval = 4.459879e-96 
+x= 4  y= 6  S= 7 : pval = 7.081056e-86 
+x= 4  y= 6  S= 10 : pval = 8.166272e-230 
+x= 4  y= 7  S= 3 : pval = 0.04324144 
+x= 4  y= 7  S= 6 : pval = 0.3061252 
+x= 4  y= 10  S= 3 : pval = 5.883404e-83 
+x= 4  y= 10  S= 6 : 
+Save results to:  ./inst/simulations/results/n10_k3_csi25_pcskel_none_order_ess1_epf16_N300_r01.rds
+Runtime
+Time difference of 7.174275 secs
+Type: EXEC 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.7779197 
+x= 1  y= 3  S=  : pval = 0.05984291 
+x= 1  y= 4  S=  : pval = 0.3311925 
+x= 1  y= 5  S=  : pval = 8.811624e-136 
+x= 1  y= 6  S=  : pval = 0.09031139 
+x= 1  y= 7  S=  : pval = 0.8439062 
+x= 1  y= 8  S=  : pval = 0.6700964 
+x= 1  y= 9  S=  : pval = 0.1038015 
+x= 1  y= 10  S=  : pval = 0.1943252 
+x= 2  y= 3  S=  : pval = 5.830215e-55 
+x= 2  y= 4  S=  : pval = 0.1159235 
+x= 2  y= 5  S=  : pval = 0.3310752 
+x= 2  y= 6  S=  : pval = 0.3324943 
+x= 2  y= 7  S=  : pval = 0.6277172 
+x= 2  y= 8  S=  : pval = 0.01062853 
+x= 2  y= 9  S=  : pval = 0.8003219 
+x= 2  y= 10  S=  : pval = 0.001168599 
+x= 3  y= 2  S=  : pval = 5.830215e-55 
+x= 3  y= 4  S=  : pval = 0.001301379 
+x= 3  y= 5  S=  : pval = 0.3939588 
+x= 3  y= 6  S=  : pval = 2.224465e-27 
+x= 3  y= 7  S=  : pval = 0.1504722 
+x= 3  y= 8  S=  : pval = 4.974631e-32 
+x= 3  y= 9  S=  : pval = 6.133435e-05 
+x= 3  y= 10  S=  : pval = 6.428855e-260 
+x= 4  y= 3  S=  : pval = 0.001301379 
+x= 4  y= 5  S=  : pval = 0.9097372 
+x= 4  y= 6  S=  : pval = 1.935848e-92 
+x= 4  y= 7  S=  : pval = 0.03172821 
+x= 4  y= 8  S=  : pval = 0.2566475 
+x= 4  y= 9  S=  : pval = 0.998666 
+x= 4  y= 10  S=  : pval = 3.674382e-92 
+x= 5  y= 1  S=  : pval = 8.811624e-136 
+x= 5  y= 6  S=  : pval = 9.989573e-12 
+x= 5  y= 7  S=  : pval = 0.8752627 
+x= 5  y= 8  S=  : pval = 0.869117 
+x= 5  y= 9  S=  : pval = 0.4957932 
+x= 5  y= 10  S=  : pval = 0.7698744 
+x= 6  y= 3  S=  : pval = 2.224465e-27 
+x= 6  y= 4  S=  : pval = 1.935848e-92 
+x= 6  y= 5  S=  : pval = 9.989573e-12 
+x= 6  y= 7  S=  : pval = 0.1124448 
+x= 6  y= 8  S=  : pval = 1.904179e-07 
+x= 6  y= 9  S=  : pval = 0.0799122 
+x= 6  y= 10  S=  : pval = 1.380032e-72 
+x= 7  y= 4  S=  : pval = 0.03172821 
+x= 7  y= 8  S=  : pval = 2.916332e-08 
+x= 7  y= 9  S=  : pval = 1.421488e-45 
+x= 7  y= 10  S=  : pval = 0.03809626 
+x= 8  y= 2  S=  : pval = 0.01062853 
+x= 8  y= 3  S=  : pval = 4.974631e-32 
+x= 8  y= 6  S=  : pval = 1.904179e-07 
+x= 8  y= 7  S=  : pval = 2.916332e-08 
+x= 8  y= 9  S=  : pval = 1.571057e-105 
+x= 8  y= 10  S=  : pval = 4.693635e-99 
+x= 9  y= 3  S=  : pval = 6.133435e-05 
+x= 9  y= 7  S=  : pval = 1.421488e-45 
+x= 9  y= 8  S=  : pval = 1.571057e-105 
+x= 9  y= 10  S=  : pval = 9.191162e-09 
+x= 10  y= 2  S=  : pval = 0.001168599 
+x= 10  y= 3  S=  : pval = 6.428855e-260 
+x= 10  y= 4  S=  : pval = 3.674382e-92 
+x= 10  y= 6  S=  : pval = 1.380032e-72 
+x= 10  y= 7  S=  : pval = 0.03809626 
+x= 10  y= 8  S=  : pval = 4.693635e-99 
+x= 10  y= 9  S=  : pval = 9.191162e-09 
+Order=1; remaining edges:42
+x= 2  y= 3  S= 8 : pval = 2.401878e-48 
+x= 2  y= 3  S= 10 : pval = 4.407897e-48 
+x= 2  y= 8  S= 3 : pval = 0.4421073 
+x= 2  y= 10  S= 3 : pval = 0.2021669 
+x= 3  y= 2  S= 4 : pval = 2.444686e-49 
+x= 3  y= 2  S= 6 : pval = 1.38771e-49 
+x= 3  y= 2  S= 8 : pval = 2.401878e-48 
+x= 3  y= 2  S= 9 : pval = 5.679156e-51 
+x= 3  y= 2  S= 10 : pval = 4.407897e-48 
+x= 3  y= 4  S= 2 : pval = 0.04300028 
+x= 3  y= 4  S= 6 : pval = 4.453478e-10 
+x= 3  y= 4  S= 8 : pval = 0.0005118897 
+x= 3  y= 4  S= 9 : pval = 0.04394877 
+x= 3  y= 4  S= 10 : pval = 0.7247451 
+x= 3  y= 6  S= 2 : pval = 3.885883e-23 
+x= 3  y= 6  S= 4 : pval = 1.315231e-32 
+x= 3  y= 6  S= 8 : pval = 4.302456e-23 
+x= 3  y= 6  S= 9 : pval = 2.549527e-24 
+x= 3  y= 6  S= 10 : pval = 0.240183 
+x= 3  y= 8  S= 2 : pval = 2.486731e-26 
+x= 3  y= 8  S= 4 : pval = 5.42002e-30 
+x= 3  y= 8  S= 6 : pval = 1.71906e-27 
+x= 3  y= 8  S= 9 : pval = 2.722188e-23 
+x= 3  y= 8  S= 10 : pval = 0.6492322 
+x= 3  y= 9  S= 2 : pval = 0.0003185794 
+x= 3  y= 9  S= 4 : pval = 0.005247568 
+x= 3  y= 9  S= 6 : pval = 0.0004239118 
+x= 3  y= 9  S= 8 : pval = 0.7485432
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables 
+Save results to:  ./inst/simula
+Save results to:  ./inst/simulations/results/n10_k3_csi25_pcskel_none_order_ess1_epf8_N3000_r01.rds
+Runtime
+Time difference of 5.784974 secs
+Type: EXEC 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.8349176 
+x= 1  y= 3  S=  : pval = 0.6488547 
+x= 1  y= 4  S=  : pval = 0.3101796 
+x= 1  y= 5  S=  : pval = 0 
+x= 1  y= 6  S=  : pval = 6.465032e-05 
+x= 1  y= 7  S=  : pval = 0.2886103 
+x= 1  y= 8  S=  : pval = 0.1365465 
+x= 1  y= 9  S=  : pval = 0.3933437 
+x= 1  y= 10  S=  : pval = 0.8820971 
+x= 2  y= 3  S=  : pval = 2.584108e-192 
+x= 2  y= 4  S=  : pval = 0.1097298 
+x= 2  y= 5  S=  : pval = 0.1956354 
+x= 2  y= 6  S=  : pval = 0.02847954 
+x= 2  y= 7  S=  : pval = 0.9291721 
+x= 2  y= 8  S=  : pval = 0.1010996 
+x= 2  y= 9  S=  : pval = 0.9650585 
+x= 2  y= 10  S=  : pval = 8.673022e-13 
+x= 3  y= 2  S=  : pval = 2.584108e-192 
+x= 3  y= 4  S=  : pval = 1.305043e-19 
+x= 3  y= 5  S=  : pval = 0.7643129 
+x= 3  y= 6  S=  : pval = 1.44416e-64 
+x= 3  y= 7  S=  : pval = 0.008752639 
+x= 3  y= 8  S=  : pval = 9.101018e-107 
+x= 3  y= 9  S=  : pval = 1.279936e-13 
+x= 3  y= 10  S=  : pval = 0 
+x= 4  y= 3  S=  : pval = 1.305043e-19 
+x= 4  y= 5  S=  : pval = 0.4623194 
+x= 4  y= 6  S=  : pval = 0 
+x= 4  y= 7  S=  : pval = 0.455443 
+x= 4  y= 8  S=  : pval = 1.671064e-06 
+x= 4  y= 9  S=  : pval = 0.1321079 
+x= 4  y= 10  S=  : pval = 2.005907e-320 
+x= 5  y= 1  S=  : pval = 0 
+x= 5  y= 6  S=  : pval = 1.079545e-41 
+x= 5  y= 7  S=  : pval = 0.7788785 
+x= 5  y= 8  S=  : pval = 0.4579948 
+x= 5  y= 9  S=  : pval = 0.6365479 
+x= 5  y= 10  S=  : pval = 0.2139295 
+x= 6  y= 1  S=  : pval = 6.465032e-05 
+x= 6  y= 2  S=  : pval = 0.02847954 
+x= 6  y= 3  S=  : pval = 1.44416e-64 
+x= 6  y= 4  S=  : pval = 0 
+x= 6  y= 5  S=  : pval = 1.079545e-41 
+x= 6  y= 7  S=  : pval = 0.6005097 
+x= 6  y= 8  S=  : pval = 3.803144e-34 
+x= 6  y= 9  S=  : pval = 0.0004346239 
+x= 6  y= 10  S=  : pval = 5.639471e-272 
+x= 7  y= 3  S=  : pval = 0.008752639 
+x= 7  y= 8  S=  : pval = 1.108448e-34 
+x= 7  y= 9  S=  : pval = 6.991382e-193 
+x= 7  y= 10  S=  : pval = 3.44301e-06 
+x= 8  y= 3  S=  : pval = 9.101018e-107 
+x= 8  y= 4  S=  : pval = 1.671064e-06 
+x= 8  y= 6  S=  : pval = 3.803144e-34 
+x= 8  y= 7  S=  : pval = 1.108448e-34 
+x= 8  y= 9  S=  : pval = 0 
+x= 8  y= 10  S=  : pval = 0 
+x= 9  y= 3  S=  : pval = 1.279936e-13 
+x= 9  y= 6  S=  : pval = 0.0004346239 
+x= 9  y= 7  S=  : pval = 6.991382e-193 
+x= 9  y= 8  S=  : pval = 0 
+x= 9  y= 10  S=  : pval = 7.583677e-39 
+x= 10  y= 2  S=  : pval = 8.673022e-13 
+x= 10  y= 3  S=  : pval = 0 
+x= 10  y= 4  S=  : pval = 2.005907e-320 
+x= 10  y= 6  S=  : pval = 5.639471e-272 
+x= 10  y= 7  S=  : pval = 3.44301e-06 
+x= 10  y= 8  S=  : pval = 0 
+x= 10  y= 9  S=  : pval = 7.583677e-39 
+Order=1; remaining edges:48
+x= 1  y= 5  S= 6 : pval = 0 
+x= 1  y= 6  S= 5 : pval = 0.9344694 
+x= 2  y= 3  S= 6 : pval = 3.488038e-183 
+x= 2  y= 3  S= 10 : pval = 9.183783e-174 
+x= 2  y= 6  S= 3 : pval = 0.7831456 
+x= 2  y= 10  S= 3 : pval = 0.2006885 
+x= 3  y= 2  S= 4 : pval = 2.996879e-184 
+x= 3  y= 2  S= 6 : pval = 3.488038e-183 
+x= 3  y= 2  S= 7 : pval = 6.304698e-185 
+x= 3  y= 2  S= 8 : pval = 2.52948e-184 
+x= 3  y= 2  S= 9 : pval = 5.817026e-185 
+x= 3  y= 2  S= 10 : pval = 9.183783e-174 
+x= 3  y= 4  S= 2 : pval = 2.271657e-15 
+x= 3  y= 4  S= 6 : pval = 6.608296e-37 
+x= 3  y= 4  S= 7 : pval = 4.187077e-17 
+x= 3  y= 4  S= 8 : pval = 1.869072e-16 
+x= 3  y= 4  S= 9 : pval = 1.011227e-15 
+x= 3  y= 4  S= 10 : pval = 0.1296801 
+x= 3  y= 6  S= 2 : pval = 2.56947e-57 
+x= 3  y= 6  S= 4 : pval = 7.75464e-81 
+x= 3  y= 6  S= 7 : pval = 6.291375e-59 
+x= 3  y= 6  S= 8 : pval = 6.30907e-59 
+x= 3  y= 6  S= 9 : pval = 2.672061e-58 
+x= 3  y= 6  S= 10 : pval = 0.3381527 
+x= 3  y= 7  S= 2 : pval = 0.09122248 
+x= 3  y= 8  S= 2 : pval = 8.812128e-100 
+x= 3  y= 8  S= 4 : pval = 6.90135e-101 
+x= 3  y= 8  S= 6 : pval = 2.776869e-100 
+x= 3  y= 8  S= 7 : pval = 2.315478e-98 
+x= 3  y= 8  S= 9 : pval = 1.395212e-87 
+x= 3  y= 8  S= 10 : pval = 0.2041232 
+x= 3  y= 9  S= 2 : pval = 1.404978e-10 
+x= 3  y= 9  S= 4 : pval = 2.705051e-10 
+x= 3  y= 9  S= 6 : pval = 6.626226e-10 
+x= 3  y= 9  S= 7 : pval = 3.396761e-11 
+x= 3  y= 9  S= 8 : pval = 0.4827796 
+x= 3  y= 10  S= 2 : pval = 0 
+x= 3  y= 10  S= 4 : pval = 0 
+x= 3  y= 10  S= 6 : pval = 0 
+x= 3  y= 
+Save results to:  .
+Save results to:  ./inst/simulations/results/n10_k3_csi25_pcskel_none_order_ess1_epf16_N3000_r01.rds
+Runtime
+Time difference of 5.934247 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.02666857 
+x= 1  y= 3  S=  : pval = 0.4476503 
+x= 1  y= 4  S=  : pval = 0.2577154 
+x= 1  y= 5  S=  : pval = 9.407364e-10 
+x= 1  y= 6  S=  : pval = 0.2925919 
+x= 1  y= 7  S=  : pval = 0.7409147 
+x= 1  y= 8  S=  : pval = 0.1806425 
+x= 1  y= 9  S=  : pval = 0.5387029 
+x= 1  y= 10  S=  : pval = 0.0426132 
+x= 2  y= 1  S=  : pval = 0.02666857 
+x= 2  y= 3  S=  : pval = 0.01058041 
+x= 2  y= 4  S=  : pval = 0.132764 
+x= 2  y= 5  S=  : pval = 0.2710252 
+x= 2  y= 6  S=  : pval = 0.2446477 
+x= 2  y= 7  S=  : pval = 1.705535e-06 
+x= 2  y= 8  S=  : pval = 0.3118889 
+x= 2  y= 9  S=  : pval = 0.01620005 
+x= 2  y= 10  S=  : pval = 0.5206353 
+x= 3  y= 2  S=  : pval = 0.01058041 
+x= 3  y= 4  S=  : pval = 0.3666236 
+x= 3  y= 5  S=  : pval = 0.5866965 
+x= 3  y= 6  S=  : pval = 0.07491444 
+x= 3  y= 7  S=  : pval = 0.3560918 
+x= 3  y= 8  S=  : pval = 0.04573961 
+x= 3  y= 9  S=  : pval = 0.03910393 
+x= 3  y= 10  S=  : pval = 0.0006726075 
+x= 4  y= 5  S=  : pval = 0.150328 
+x= 4  y= 6  S=  : pval = 0.844189 
+x= 4  y= 7  S=  : pval = 0.8969046 
+x= 4  y= 8  S=  : pval = 3.809555e-09 
+x= 4  y= 9  S=  : pval = 0.9212898 
+x= 4  y= 10  S=  : pval = 0.0002054261 
+x= 5  y= 1  S=  : pval = 9.407364e-10 
+x= 5  y= 6  S=  : pval = 0.02520984 
+x= 5  y= 7  S=  : pval = 0.2472955 
+x= 5  y= 8  S=  : pval = 0.6711925 
+x= 5  y= 9  S=  : pval = 0.7937562 
+x= 5  y= 10  S=  : pval = 0.03105583 
+x= 6  y= 5  S=  : pval = 0.02520984 
+x= 6  y= 7  S=  : pval = 0.5147282 
+x= 6  y= 8  S=  : pval = 0.6888566 
+x= 6  y= 9  S=  : pval = 0.07379887 
+x= 6  y= 10  S=  : pval = 0.9657659 
+x= 7  y= 2  S=  : pval = 1.705535e-06 
+x= 7  y= 8  S=  : pval = 0.004904732 
+x= 7  y= 9  S=  : pval = 2.561906e-16 
+x= 7  y= 10  S=  : pval = 0.1657694 
+x= 8  y= 3  S=  : pval = 0.04573961 
+x= 8  y= 4  S=  : pval = 3.809555e-09 
+x= 8  y= 7  S=  : pval = 0.004904732 
+x= 8  y= 9  S=  : pval = 2.517006e-07 
+x= 8  y= 10  S=  : pval = 0.06330329 
+x= 9  y= 2  S=  : pval = 0.01620005 
+x= 9  y= 3  S=  : pval = 0.03910393 
+x= 9  y= 7  S=  : pval = 2.561906e-16 
+x= 8  y= 10  S= 6 : pval = 2.728272e-311 
+x= 8  y= 10  S= 7 : pval = 0 
+x= 8  y= 10  S= 9 : pval = 1.207474e-308 
+x= 9  y= 7  S= 3 : pval = 3.158319e-186 
+x= 9  y= 7  S= 6 : pval = 2.175339e-185 
+x= 9  y= 7  S= 8 : pval = 3.791917e-152 
+x= 9  y= 7  S= 10 : pval = 1.580623e-180 
+x= 9  y= 8  S= 3 : pval = 5.296384e-321 
+x= 9  y= 8  S= 6 : pval = 0 
+x= 9  y= 8  S= 7 : pval = 1.8364e-300 
+x= 9  y= 8  S= 10 : pval = 4.949034e-297 
+x= 9  y= 10  S= 3 : pval = 7.682021e-21 
+x= 9  y= 10  S= 6 : pval = 4.829749e-31 
+x= 9  y= 10  S= 7 : pval = 2.133246e-29 
+x= 9  y= 10  S= 8 : pval = 0.0989629 
+x= 10  y= 3  S= 2 : pval = 0 
+x= 10  y= 3  S= 4 : pval = 0 
+x= 10  y= 3  S= 6 : pval = 0 
+x= 10  y= 3  S= 7 : pval = 0 
+x= 10  y= 3  S= 8 : pval = 0 
+x= 10  y= 3  S= 9 : pval = 0 
+x= 10  y= 4  S= 2 : pval = 7.558246e-312 
+x= 10  y= 4  S= 3 : pval = 2.231972e-294 
+x= 10  y= 4  S= 6 : pval = 0 
+x= 10  y= 4  S= 7 : pval = 1.556647e-312 
+x= 10  y= 4  S= 8 : pval = 5.821273e-307 
+x= 10  y= 4  S= 9 : pval = 5.597324e-311 
+x= 10  y= 6  S= 2 : pval = 2.418176e-261 
+x= 10  y= 6  S= 3 : pval = 2.60159e-200 
+x= 10  y= 6  S= 4 : pval = 0 
+x= 10  y= 6  S= 7 : pval = 1.114643e-264 
+x= 10  y= 6  S= 8 : pval = 9.617615e-230 
+x= 10  y= 6  S= 9 : pval = 9.500588e-261 
+x= 10  y= 8  S= 2 : pval = 0 
+x= 10  y= 8  S= 3 : pval = 3.368724e-240 
+x= 10  y= 8  S= 4 : pval = 0 
+x= 10  y= 8  S= 6 : pval = 2.728272e-311 
+x= 10  y= 8  S= 7 : pval = 0 
+x= 10  y= 8  S= 9 : pval = 1.207474e-308 
+Order=2; remaining edges:20
+x= 6  y= 4  S= 5 10 : pval = 0 
+x= 6  y= 5  S= 4 10 : pval = 6.742564e-204 
+x= 6  y= 10  S= 4 5 : pval = 0 
+x= 10  y= 3  S= 4 6 : pval = 0 
+x= 10  y= 3  S= 4 8 : pval = 0 
+x= 10  y= 3  S= 6 8 : pval = 0 
+x= 10  y= 4  S= 3 6 : pval = 0 
+x= 10  y= 4  S= 3 8 : pval = 6.471401e-272 
+x= 10  y= 4  S= 6 8 : pval = 0 
+x= 10  y= 6  S= 3 4 : pval = 0 
+x= 10  y= 6  S= 3 8 : pval = 2.566185e-154 
+x= 10  y= 6  S= 4 8 : pval = 0 
+x= 10  y= 8  S= 3 4 : pval = 9.168692e-219 
+x= 10  y= 8  S= 3 6 : pval = 4.007317e-193 
+x= 10  y= 8  S= 4 6 : pval = 8.685147e-288 
+Order=3; remaining edges:20
+x= 10  y= 3  S= 4 6 8 : pval = 0 
+x= 10  y= 4  S= 3 6 8 : pval = 0 
+x= 10  y= 6  S= 3 4 8 : pval = 0 
+x= 10  y= 8  S= 3 4 6 : pval = 1.034105e-155 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is run
+Save 
+Save results to:  ./inst/simulations/results/n10_k3_csi25_pcskel_none_order_ess1_epf16_N10000_r01.rds
+Runtime
+Time difference of 7.171625 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.02666857 
+x= 1  y= 3  S=  : pval = 0.4476503 
+x= 1  y= 4  S=  : pval = 0.2577154 
+x= 1  y= 5  S=  : pval = 9.407364e-10 
+x= 1  y= 6  S=  : pval = 0.2925919 
+x= 1  y= 7  S=  : pval = 0.7409147 
+x= 1  y= 8  S=  : pval = 0.1806425 
+x= 1  y= 9  S=  : pval = 0.5387029 
+x= 1  y= 10  S=  : pval = 0.0426132 
+x= 2  y= 1  S=  : pval = 0.02666857 
+x= 2  y= 3  S=  : pval = 0.01058041 
+x= 2  y= 4  S=  : pval = 0.132764 
+x= 2  y= 5  S=  : pval = 0.2710252 
+x= 2  y= 6  S=  : pval = 0.2446477 
+x= 2  y= 7  S=  : pval = 1.705535e-06 
+x= 2  y= 8  S=  : pval = 0.3118889 
+x= 2  y= 9  S=  : pval = 0.01620005 
+x= 2  y= 10  S=  : pval = 0.5206353 
+x= 3  y= 2  S=  : pval = 0.01058041 
+x= 3  y= 4  S=  : pval = 0.3666236 
+x= 3  y= 5  S=  : pval = 0.5866965 
+x= 3  y= 6  S=  : pval = 0.07491444 
+x= 3  y= 7  S=  : pval = 0.3560918 
+x= 3  y= 8  S=  : pval = 0.04573961 
+x= 3  y= 9  S=  : pval = 0.03910393 
+x= 3  y= 10  S=  : pval = 0.0006726075 
+x= 4  y= 5  S=  : pval = 0.150328 
+x= 4  y= 6  S=  : pval = 0.844189 
+xsearch space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi75_pcskel_ptree_order_ess1_epf2_N300_r01.rds
+Runtime
+Time difference of 15.51521 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.9190132 
+x= 1  y= 3  S=  : pval = 0.2138421 
+x= 1  y= 4  S=  : pval = 0.0009276346 
+x= 1  y= 5  S=  : pval = 5.84821e-34 
+x= 1  y= 6  S=  : pval = 3.578562e-05 
+x= 1  y= 7  S=  : pval = 0.6709733 
+x= 1  y= 8  S=  : pval = 0.08971711 
+x= 1  y= 9  S=  : pval = 0.6592214 
+x= 1  y= 10  S=  : pval = 3.704787e-07 
+x= 2  y= 3  S=  : pval = 9.308221e-12 
+x= 2  y= 4  S=  : pval = 0.03390656 
+x= 2  y= 5  S=  : pval = 0.4330355 
+x= 2  y= 6  S=  : pval = 0.1653736 
+x= 2  y= 7  S=  : pval = 1.456512e-08 
+x= 2  y= 8  S=  : pval = 0.9993333 
+x= 2  y= 9  S=  : pval = 0.003098469 
+x= 2  y= 10  S=  : pval = 0.1917027 
+x= 3  y= 2  S=  : pval = 9.308221e-12 
+x= 3  y= 4  S=  : pval = 0.0181809 
+x= 3  y= 5  S=  : pval = 0.01425301 
+x= 3  y= 6  S=  : pval = 1.318576e-09 
+x= 3  y= 7  S=  : pval = 0.07526368 
+x= 3  y= 8  S=  : pval = 7.591646e-05 
+x= 3  y= 9  S=  : pval = 0.004596977 
+x= 3  y= 10  S=  : pval = 1.341997e-10 
+x= 4  y= 1  S=  : pval = 0.0009276346 
+x= 4  y= 2  S=  : pval = 0.03390656 
+x= 4  y= 3  S=  : pval = 0.0181809 
+x= 4  y= 5  S=  : pval = 3.318095e-08 
+x= 4  y= 6  S=  : pval = 0.4338127 
+x= 4  y= 7  S=  : pval = 0.01910275 
+x= 4  y= 8  S=  : pval = 2.784033e-19 
+x= 4  y= 9  S=  : pval = 0.2916114 
+x= 4  y= 10  S=  : pval = 1.076568e-20 
+x= 5  y= 1  S=  : pval = 5.84821e-34 
+x= 5  y= 3  S=  : pval = 0.01425301 
+x= 5  y= 4  S=  : pval = 3.318095e-08 
+x= 5  y= 6  S=  : pval = 2.208037e-08 
+x= 5  y= 7  S=  : pval = 0.4834889 
+x= 5  y= 8  S=  : pval = 0.4352282 
+x= 5  y= 9  S=  : pval = 0.9337691 
+x= 5  y= 10  S=  : pval = 8.93257e-10 
+x= 6  y= 1  S=  : pval = 3.578562e-05 
+x= 6  y= 3  S=  : pval = 1.318576e-09 
+x= 6  y= 5  S=  : pval = 2.208037e-08 
+x= 6  y= 7  S=  : pval = 0.765002 
+x= 6  y= 8  S=  : pval = 0.09988014 
+x= 6  y= 9  S=  : pval = 0.6173472 
+x= 6  y= 10  S=  : pval = 0.381326 
+x= 7  y= 2  S=  : pval = 1.456512e-08 
+x= 7  y= 4  S=  : pval = 0.01910275 
+x= 7  y= 8  S=  : pval = 2.345368e-07 
+x= 7  y= 9  S=  : pval = 1.720956e-68 
+x= 7  y= 10  S=  : pval = 7.711053e-08 
+x= 8  y= 3  S=  : pval = 7.591646e-05 
+x= 8  y= 4  S=  : pval = 2.784033e-19 
+x= 8  y= 7  S=  : pval = 2.345368e-07 
+x= 8  y= 9  S=  : pval = 1.060742e-25 
+x= 8  y= 10  S=  : pval = 0.0001357752 
+x= 9  y= 2  S=  : pval = 0.003098469 
+x= 9  y= 3  S=  : pval = 0.004596977 
+x= 9  y= 7  S=  : pval = 1.720956e-68 
+x= 9  y= 8  S=  : pval = 1.060742e-25 
+x= 9  y= 10  S=  : pval = 5.547778e-20 
+x= 10  y= 1  S=  : pval = 3.704787e-07 
+x= 10  y= 3  S=  : pval = 1.341997e-10 
+x= 10  y= 4  S=  : pval = 1.076568e-20 
+x= 10  y= 5  S=  : pval = 8.93257e-10 
+x= 10  y= 7  S=  : pval = 7.711053e-08 
+x= 10  y= 8  S=  : pval = 0.0001357752 
+x= 10  y= 9  S=  : pval = 5.547778e-20 
+Order=1; remaining edges:52
+x= 1  y= 4  S= 5 : pval = 0.0045653 
+x= 1  y= 4  S= 6 : pval = 0.001498667 
+x= 1  y= 4  S= 10 : pval = 0.07781025 
+x= 1  y= 5  S= 4 : pval = 9.848197e-33 
+x= 1  y= 5  S= 6 : pval = 1.943907e-30 
+x= 1  y= 5  S= 10 : pval = 7.654505e-37 
+x= 1  y= 6  S= 4 : pval = 7.04077e-05 
+x= 1  y= 6  S= 5 : pval = 0.04233535 
+x= 1  y= 6  S= 10 : pval = 1.415462e-10 
+x= 1  y= 10  S= 4 : pval = 4.579749e-05 
+x= 1  y= 10  S= 5 : pval = 2.0885e-10 
+x= 1  y= 10  S= 6 : pval = 1.773323e-12 
+x= 2  y= 3  S= 4 : pval = 4.674942e-12 
+x= 2  y= 3  S= 7 : pval = 7.082137e-21 
+x= 2  y= 3  S= 9 : pval = 1.17427e-16 
+x= 2  y= 4  S= 3 : pval = 0.006072176 
+x= 2  y= 4  S= 7 : pval = 0.02149594 
+x= 2  y= 4  S= 9 : pval = 0.002701686 
+x= 2  y= 7  S= 3 : pval = 9.291147e-18 
+x= 2  y= 7  S= 4 : pval = 2.171167e-08 
+x= 2  y= 7  S= 9 : pval = 5.098395e-06 
+x= 2  y= 9  S= 3 : pval = 1.822405e-08 
+x= 2  y= 9  S= 4 : pval = 0.0003228077 
+x= 2  y= 9  S= 7 : pval = 0.6031225 
+x= 3  y= 2  S= 4 : pval = 4.674942e-12 
+x= 3  y= 2  S= 5 : pval = 7.87006e-11 
+x= 3  y= 2  S= 6 : pval = 1.772441e-10 
+x= 3  y= 2  S= 8 : pval = 3.974006e-12 
+x= 3  y= 2  S= 9 : pval = 1.17427e-16 
+x= 3  y= 2  S= 10 : pval = 1.135332e-12 
+x= 3  y= 4  S= 2 : pval = 0.003539923 
+x= 3  y= 4  S= 5 : pval = 0.009105856 
+x= 3  y= 4  S= 6 : pval = 9.976727e-09 
+x= 3  y= 4  S= 8 : pval = 4.580349e-16 
+x= 3  y= 4  S= 9 : pval = 8.572074e-30 
+x= 3  y= 4  S= 10 : pval = 6.155868e-27 
+x= 3  y= 5  S= 2 : pval = 0.04811478 
+x= 3  y= 5  S= 4 : pval = 0.00735197 
+x= 3  y= 5  S= 6 : pval = 0.002762296 
+x= 3  y= 5  S= 8 : pval = 0.001891823 
+x= 3  y= 5  S= 9 : pval = 0.005681449 
+x= 3  y= 5  S= 10 : pval = 0.0001946956 
+x= 3  y= 6  S= 2 : pval = 2.245293e-08 
+x= 3  y= 6  S= 4 : pval = 1.669059e-15 
+x= 
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi75_pcskel_ptree_order_ess1_epf8_N300_r01.rds
+Runtime
+Time difference of 15.83183 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.9190132 
+x= 1  y= 3  S=  : pval = 0.2138421 
+x= 1  y= 4  S=  : pval = 0.0009276346 
+x= 1  y= 5  S=  : pval = 5.84821e-34 
+x= 1  y= 6  S=  : pval = 3.578562e-05 
+x= 1  y= 7  S=  : pval = 0.6709733 
+x= 1  y= 8  S=  : pval = 0.08971711 
+x= 1  y= 9  S=  : pval = 0.6592214 
+x= 1  y= 10  S=  : pval = 3.704787e-07 
+x= 2  y= 3  S=  : pval = 9.308221e-12 
+x= 2  y= 4  S=  : pval = 0.03390656 
+x= 2  y= 5  S=  : pval = 0.4330355 
+x= 2  y= 6  S=  : pval = 0.1653736 
+x= 2  y= 7  S=  : pval = 1.456512e-08 
+x= 2  y= 8  S=  : pval = 0.9993333 
+x= 2  y= 9  S=  : pval = 0.003098469 
+x= 2  y= 10  S=  : pval = 0.1917027 
+x= 3  y= 2  S=  : pval = 9.308221e-12 
+x= 3  y= 4  S=  : pval = 0.0181809 
+x= 3  y= 5  S=  : pval = 0.01425301 
+x= 3  y= 6  S=  : pval = 1.318576e-09 
+x= 3  y= 7  S=  : pval = 0.07526368 
+x= 3  y= 8  S=  : pval = 7.591646e-05 
+x= 3  y= 9  S=  : pval = 0.004596977 
+x= 3  y= 10  S=  : pval = 1.341997e-10 
+x= 4  y= 1  S=  : pval = 0.0009276346 
+x= 4  y= 2  S=  : pval = 0.03390656 
+x= 4  y= 3  S=  : pval = 0.0181809 
+x= 4  y= 5  S=  : pval = 3.318095e-08 
+x= 4  y= 6  S=  : pval = 0.4338127 
+x= 4  y= 7  S=  : pval = 0.01910275 
+x= 4  y= 8  S=  : pval = 2.784033e-19 
+x= 4  y= 9  S=  : pval = 0.2916114 
+x= 4  y= 10  S=  : pval = 1.076568e-20 
+x= 5  y= 1  S=  : pval = 5.84821e-34 
+x= 5  y= 3  S=  : pval = 0.01425301 
+x= 5  y= 4  S=  : pval = 3.318095e-08 
+x= 5  y= 6  S=  : pval = 2.208037e-08 
+x= 5  y= 7  S=  : pval = 0.4834889 
+x= 5  y= 8  S=  : pval = 0.4352282 
+x= 5  y= 9  S=  : pval = 0.9337691 
+x= 5  y= 10  S=  : pval = 8.93257e-10 
+x= 6  y= 1  S=  : pval = 3.578562e-05 
+x= 6  y= 3  S=  : pval = 1.318576e-09 
+x= 6  y= 5  S=  : pval = 2.208037e-08 
+x= 6  y= 7  S=  : pval = 0.765002 
+x= 6  y= 8  S=  : pval = 0.09988014 
+x= 6  y= 9  S=  : pval = 0.6173472 
+x= 6  y= 10  S=  : pval = 0.381326 
+x= 7  y= 2  S=  : pval = 1.456512e-08 
+x= 7  y= 4  S=  : pval = 0.01910275 
+x= 7  y= 8  S=  : pval = 2.345368e-07 
+x= 7  y= 9  S=  : pval = 1.720956e-68 
+x= 7  y= 10  S=  : pval = 7.711053e-08 
+x= 8  y= 3  S=  : pval = 7.591646e-05 
+x= 8  y= 4  S=  : pval = 2.784033e-19 
+x= 8  y= 7  S=  : pval = 2.345368e-07 
+x= 8  y= 9  S=  : pval = 1.060742e-25 
+x= 8  y= 10  S=  : pval = 0.0001357752 
+x= 9  y= 2  S=  : pval = 0.003098469 
+x= 9  y= 3  S=  : pval = 0.004596977 
+x= 9  y= 7  S=  : pval = 1.720956e-68 
+x= 9  y= 8  S=  : pval = 1.060742e-25 
+x= 9  y= 10  S=  : pval = 5.547778e-20 
+x= 10  y= 1  S=  : pval = 3.704787e-07 
+x= 10  y= 3  S=  : pval = 1.341997e-10 
+x= 10  y= 4  S=  : pval = 1.076568e-20 
+x= 10  y= 5  S=  : pval = 8.93257e-10 
+x= 10  y= 7  S=  : pval = 7.711053e-08 
+x= 10  y= 8  S=  : pval = 0.0001357752 
+x= 10  y= 9  S=  : pval = 5.547778e-20 
+Order=1; remaining edges:52
+x= 1  y= 4  S= 5 : pval = 0.0045653 
+x= 1  y= 4  S= 6 : pval = 0.001498667 
+x= 1  y= 4  S= 10 : pval = 0.07781025 
+x= 1  y= 5  S= 4 : pval = 9.848197e-33 
+x= 1  y= 5  S= 6 : pval = 1.943907e-30 
+x= 1  y= 5  S= 10 : pval = 7.654505e-37 
+x= 1  y= 6  S= 4 : pval = 7.04077e-05 
+x= 1  y= 6  S= 5 : pval = 0.04233535 
+x= 1  y= 6  S= 10 : pval = 1.415462e-10 
+x= 1  y= 10  S= 4 : pval = 4.579749e-05 
+x= 1  y= 10  S= 5 : pval = 2.0885e-10 
+x= 1  y= 10  S= 6 : pval = 1.773323e-12 
+x= 2  y= 3  S= 4 : pval = 4.674942e-12 
+x= 2  y= 3  S= 7 : pval = 7.082137e-21 
+x= 2  y= 3  S= 9 : pval = 1.17427e-16 
+x= 2  y= 4  S= 3 : pval = 0.006072176 
+x= 2  y= 4  S= 7 : pval = 0.02149594 
+x= 2  y= 4  S= 9 : pval = 0.002701686 
+x= 2  y= 7  S= 3 : pval = 9.291147e-18 
+x= 2  y= 7  S= 4 : pval = 2.171167e-08 
+x= 2  y= 7  S= 9 : pval = 5.098395e-06 
+x= 2  y= 9  S= 3 : pval = 1.822405e-08 
+x= 2  y= 9  S= 4 : pval = 0.0003228077 
+x= 2  y= 9  S= 7 : pval = 0.6031225 
+x= 3  y= 2  S= 4 : pval = 4.674942e-12 
+x= 3  y= 2  S= 5 : pval = 7.87006e-11 
+x= 3  y= 2  S= 6 : pval = 1.772441e-10 
+x= 3  y= 2  S= 8 : pval = 3.974006e-12 
+x= 3  y= 2  S= 9 : pval = 1.17427e-16 
+x= 3  y= 2  S= 10 : pval = 1.135332e-12 
+x= 3  y= 4  S= 2 : pval = 0.003539923 
+x= 3  y= 4  S= 5 : pval = 0.009105856 
+x= 3  y= 4  S= 6 : pval = 9.976727e-09 
+x= 3  y= 4  S= 8 : pval = 4.580349e-16 
+x= 3  y= 4  S= 9 : pval = 8.572074e-30 
+x= 3  y= 4  S= 10 : pval = 6.155868e-27 
+x= 3  y= 5  S= 2 : pval = 0.04811478 
+x= 3  y= 5  S= 4 : pval = 0.00735197 
+x= 3  y= 5  S= 6 : pval = 0.002762296 
+x= 3  y= 5  S= 8 : pval = 0.001891823 
+x= 3  y= 5  S= 9 : pval = 0.005681449 
+x= 3  y= 5  S= 10 : pval = 0.0001946956 
+x= 3  y= 6  S= 2 : pval = 2.245293e-08 
+x= 3  y= 6  S= 4 : pval = 1.669059e-15 
+x= 3  y= 6  S= 5 : pval = 5.723622e-10 
+x= 3  y= 6  S= 8 : pval = 1.397298e-10 
+x= 3  y= 6  S= 9 : pval = 5.668788e-10 
+x= 3  y= 6  S= 10 : pval = 1.477027e-13 
+x= 3  y= 8  S= 2 : pval = 1.949296e-05 
+x= 3  y= 8  S= 4 : pval = 2.967088e-18 
+x= 3  y= 8  S= 5 : pval = 1.517852e-05 
+x= 3  y= 8  S= 6 : pval = 5.410498e-06 
+x= 3  y= 8  S= 9 : pval = 0.004489649 
+x= 3  y= 8  S= 10 : pval = 1.538311e-10 
+x= 3  y= 9  S= 2 : pval = 2.608218e-08 
+x= 3  y= 9  S= 4 : pval = 2.514458e-30 
+x= 3  y= 9  S= 5 : pval = 0.002064118 
+x= 3  y= 9  S= 6 : pval = 0.000993951 
+x= 3  y= 9  S= 8 : pval = 0.2033007 
+x= 3  y= 10  S= 2 : pval = 1.545918e-11 
+x= 3  y= 10  S= 4 : pval = 1.106969e-34 
+x= 3  y= 10  S= 5 : pval = 4.336298e-12 
+x= 3  y= 10  S= 6 : pval = 1.587635e-14 
+x= 3  y= 10  S= 8 : pval = 4.270299e-16 
+x= 3  y= 10  S= 9 : pval = 5.036861e-12 
+x= 4  y= 2  S= 1 : pval = 0.07673128 
+x= 4  y= 3  S= 1 : pval = 0.03434374 
+x= 4  y= 3  S= 2 : pval = 0.003539923 
+x= 4  y= 3  S= 5 : pval = 0.009105856 
+x= 4  y= 3  S= 7 : pval = 7.488521e-09 
+x= 4  y= 3  S= 8 : pval = 4.580349e-16 
+x= 4  y= 3  S= 10 : pval = 6.155868e-27 
+x= 4  y= 5  S= 1 : pval = 2.601747e-07 
+x= 4  y= 5  S= 2 : pval = 1.147776e-07 
+x= 4  y= 5  S= 3 : pval = 3.508417e-08 
+x= 4  y= 5  S= 7 : pval = 8.302049e-10 
+x= 4  y= 5  S= 8 : pval = 1.992759e-07 
+x= 4  y= 5  S= 10 : pval = 1.656698e-10 
+x= 4  y= 7  S= 1 : pval = 0.03367062 
+x= 4  y= 7  S= 2 : pval = 0.01308578 
+x= 4  y= 7  S= 3 : pval = 7.819695e-09 
+x= 4  y= 7  S= 5 : pval = 0
+Save results to:  ./inst/simulations/results/n10_k2_csi75_pcskel_ptree_order_ess1_epf16_N300_r01.rds
+Runtime
+Time difference of 15.68082 secs
+Error in unserialize(node$con) : error reading from connection
+Calls: local ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+In addition: Warning messages:
+1: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=1000 is too small (n < n.min = 1080 ) for G^2 test (=> treated as independence)
+2: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=1000 is too small (n < n.min = 1080 ) for G^2 test (=> treated as independence)
+3: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=1000 is too small (n < n.min = 1080 ) for G^2 test (=> treated as independence)
+4: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=1000 is too small (n < n.min = 1080 ) for G^2 test (=> treated as independence)
+Execution halted
+S= 6 : pval = 2.850275e-08 
+x= 5  y= 4  S= 10 : pval = 1.656698e-10 
+x= 5  y= 6  S= 1 : pval = 3.45894e-05 
+x= 5  y= 6  S= 3 : pval = 8.878448e-09 
+x= 5  y= 6  S= 4 : pval = 1.919756e-08 
+x= 5  y= 6  S= 10 : pval = 5.660331e-14 
+x= 5  y= 10  S= 1 : pval = 6.006414e-13 
+x= 5  y= 10  S= 3 : pval = 2.759646e-11 
+x= 5  y= 10  S= 4 : pval = 4.920771e-12 
+x= 5  y= 10  S= 6 : pval = 2.496159e-15 
+x= 6  y= 1  S= 3 : pval = 0.0002214895 
+x= 6  y= 1  S= 5 : pval = 0.04233535 
+x= 6  y= 3  S= 1 : pval = 1.166613e-08 
+x= 6  y= 3  S= 5 : pval = 5.723622e-10 
+x= 6  y= 5  S= 1 : pval = 3.45894e-05 
+x= 6  y= 5  S= 3 : pval = 8.878448e-09 
+x= 7  y= 2  S= 4 : pval = 2.171167e-08 
+x= 7  y= 2  S= 8 : pval = 2.587688e-09 
+x= 7  y= 2  S= 9 : pval = 5.098395e-06 
+x= 7  y= 2  S= 10 : pval = 4.031403e-08 
+x= 7  y= 8  S= 2 : pval = 3.822041e-08 
+x= 7  y= 8  S= 4 : pval = 7.863709e-09 
+x= 7  y= 8  S= 9 : pval = 0.9276544 
+x= 7  y= 9  S= 2 : pval = 1.811956e-65 
+x= 7  y= 9  S= 4 : pval = 5.59855e-67 
+x= 7  y= 9  S= 8 : pval = 2.232117e-61 
+x= 7  y= 9  S= 10 : pval = 2.728139e-61 
+x= 7  y= 10  S= 2 : pval = 2.030127e-07 
+x= 7  y= 10  S= 4 : pval = 4.906479e-06 
+x= 7  y= 10  S= 8 : pval = 1.016912e-08 
+x= 7  y= 10  S= 9 : pval = 0.3865621 
+x= 8  y= 3  S= 4 : pval = 2.967088e-18 
+x= 8  y= 3  S= 7 : pval = 0.0009740094 
+x= 8  y= 3  S= 9 : pval = 0.004489649 
+x= 8  y= 3  S= 10 : pval = 1.538311e-10 
+x= 8  y= 4  S= 3 : pval = 2.362531e-32 
+x= 8  y= 4  S= 7 : pval = 1.585023e-20 
+x= 8  y= 4  S= 9 : pval = 8.527446e-22 
+x= 8  y= 4  S= 10 : pval = 4.004206e-48 
+x= 8  y= 9  S= 3 : pval = 1.585218e-23 
+x= 8  y= 9  S= 4 : pval = 3.781363e-28 
+x= 8  y= 9  S= 7 : pval = 8.291319e-19 
+x= 8  y= 9  S= 10 : pval = 4.655486e-28 
+x= 8  y= 10  S= 3 : pval = 2.662935e-10 
+x= 8  y= 10  S= 4 : pval = 8.705339e-34 
+x= 8  y= 10  S= 7 : pval = 1.307004e-05 
+x= 8  y= 10  S= 9 : pval = 2.28247e-07 
+x= 9  y= 7  S= 2 : pval = 1.811956e-65 
+x= 9  y= 7  S= 3 : pval = 6.271188e-67 
+x= 9  y= 7  S= 8 : pval = 2.232117e-61 
+x= 9  y= 7  S= 10 : pval = 2.728139e-61 
+x= 9  y= 8  S= 2 : pval = 3.374053e-26 
+x= 9  y= 8  S= 3 : pval = 1.585218e-23 
+x= 9  y= 8  S= 7 : pval = 8.291319e-19 
+x= 9  y= 8  S= 10 : pval = 4.655486e-28 
+x= 9  y= 10  S= 2 : pval = 1.339686e-18 
+x= 9  y= 10  S= 3 : pval = 2.934064e-21 
+x= 9  y= 10  S= 7 : pval = 4.641095e-13 
+x= 9  y= 10  S= 8 : pval = 2.132123e-22 
+x= 10  y= 1  S= 3 : pval = 3.07571e-07 
+x= 10  y= 1  S= 4 : pval = 4.579749e-05 
+x= 10  y= 1  S= 5 : pval = 2.0885e-10 
+x= 10  y= 1  S= 7 : pval = 1.04971e-06 
+x= 10  y= 1  S= 8 : pval = 2.604997e-07 
+x= 10  y= 1  S= 9 : pval = 1.241586e-09 
+x= 10  y= 3  S= 1 : pval = 1.389926e-10 
+x= 10  y= 3  S= 4 : pval = 1.106969e-34 
+x= 10  y= 3  S= 5 : pval = 4.336298e-12 
+x= 10  y= 3  S= 7 : pval = 1.680163e-10 
+x= 10  y= 3  S= 8 : pval = 4.270299e-16 
+x= 10  y= 3  S= 9 : pval = 5.036861e-12 
+x= 10  y= 4  S= 1 : pval = 2.38332e-18 
+x= 10  y= 4  S= 3 : pval = 1.274764e-44 
+x= 10  y= 4  S= 5 : pval = 8.904164e-23 
+x= 10  y= 4  S= 7 : pval = 1.164544e-18 
+x= 10  y= 4  S= 8 : pval = 1.607599e-49 
+x= 10  y= 4  S= 9 : pval = 1.15181e-20 
+x= 10  y= 5  S= 1 : pval = 6.006414e-13 
+x= 10  y= 5  S= 3 : pval = 2.759646e-11 
+x= 10  y= 5  S= 4 : pval = 4.920771e-12 
+x= 10  y= 5  S= 7 : pval = 5.314431e-09 
+x= 10  y= 5  S= 8 : pval = 1.976644e-35 
+x= 10  y= 5  S= 9 : pval = 1.350404e-11 
+x= 10  y= 8  S= 1 : pval = 7.341011e-05 
+x= 10  y= 8  S= 3 : pval = 2.662935e-10 
+x= 10  y= 8  S= 4 : pval = 8.705339e-34 
+x= 10  y= 8  S= 5 : pval = 1.936852e-30 
+x= 10  y= 8  S= 7 : pval = 1.307004e-05 
+x= 10  y= 8  S= 9 : pval = 2.28247e-07 
+x= 10  y= 9  S= 1 : pval = 3.268382e-22 
+x= 10  y= 9  S= 3 : pval = 2.934064e-21 
+x= 10  y= 9  S= 4 : pval = 5.826346e-20 
+x= 10  y= 9  S= 5 : pval = 1.236059e-21 
+x= 10  y= 9  S= 7 : pval = 4.641095e-13 
+x= 10  y= 9  S= 8 : pval = 2.132123e-22 
+Order=2; remaining edges:38
+x= 1  y= 5  S= 6 10 : pval = 6.453923e-28 
+x= 1  y= 6  S= 5 10 : pval = 0.01292025 
+x= 1  y= 10  S= 5 6 : pval = 2.297744e-10 
+x= 3  y= 2  S= 4 5 : pval = 1.123033e-10 
+x= 3  y= 2  S= 4 6 : pval = 8.725858e-12 
+x= 3  y= 2  S= 4 8 : pval = 7.923527e-13 
+x= 3  y= 2  S= 4 10 : pval = 1.022338e-10 
+x= 3  y= 2  S= 5 6 : pval = 2.684718e-09 
+x= 3  y= 2  S= 5 8 : pval = 3.499103e-11 
+x= 3  y= 2  S= 5 10 : pval = 2.150395e-11 
+x= 3  y= 2  S= 6 8 : pval = 1.246561e-10 
+x= 3  y= 2  S= 6 10 : pval = 2.495417e-10 
+x= 3  y= 2  S= 8 10 : pval = 3.835376e-12 
+x= 3  y= 4  S= 2 5 : pval = 0.004128722 
+x= 3  y= 4  S= 2 6 : pval = 4.248679e-10 
+x= 3  y= 4  S= 2 8 : pval = 1.169328e-16 
+x= 3  y= 4  S= 2 10 : pval = 1.221028e-24 
+x= 3  y= 4  S= 5 6 : pval = 9.349201e-07 
+x= 3  y= 4  S= 5 8 : pval = 1.146418e-14 
+x= 3  y= 4  S= 5 10 : pval = 3.60683e-23 
+x= 3  y= 4  S= 6 8 : pval = 4.579655e-21 
+x= 3  y= 4  S= 6 10 : pval = 3.784063e-32 
+x= 3  y= 4  S= 8 10 : pval = 2.126587e-28 
+x= 3  y= 5  S= 2 4 : pval = 0.03918259 
+x= 3  y= 5  S= 2 6 : pval = 0.01285872 
+x= 3  y= 5  S= 2 8 : pval = 0.004947518 
+x= 3  y= 5  S= 2 10 : pval = 0.001270656 
+x= 3  y= 5  S= 4 6 : pval = 0.07620624 
+x= 3  y= 6  S= 2 4 : pval = 3.943442e-15 
+x= 3  y= 6  S= 2 5 : pval = 1.790478e-08 
+x= 3  y= 6  S= 2 8 : pval = 3.807369e-09 
+x= 3  y= 6  S= 2 10 : pval = 3.497397e-11 
+x= 3  y= 6  S= 4 5 : pval = 1.136359e-13 
+x= 3  y= 6  S= 4 8 : pval = 1.056358e-15 
+x= 3  y= 6  S= 4 10 : pval = 5.479556e-19 
+x= 3  y= 6  S= 5 8 : pval = 7.453147e-10 
+x= 3  y= 6  S= 5 10 : pval = 2.234919e-13 
+x= 3  y= 6  S= 8 10 : pval = 8.315232e-23 
+x= 3  y= 8  S= 2 4 : pval = 7.247911e-19 
+x= 3  y= 8  S= 2 5 : pval = 3.859048e-06 
+x= 3  y= 8  S= 2 6 : pval = 2.355532e-06 
+x= 3  y= 8  S= 2 10 : pval = 4.36607e-10 
+x= 3  y= 8  S= 4 5 : pval = 2.244018e-17 
+x= 3  y= 8  S= 4 6 : pval = 2.181623e-18 
+x= 3  y= 8  S= 4 10 : pval = 2.404182e-12 
+x= 3  y= 8  S= 5 6 : pval = 1.179071e-05 
+x= 3  y= 8  S= 5 10 : pval = 1.466671e-07 
+x= 3  y= 8  S= 6 10 : pval = 7.583084e-20 
+x= 3  y= 10  S= 2 4 : pval = 7.038536e-33 
+x= 3  y= 10  S= 2 5 : pval = 1.303563e-12 
+x= 3  y= 10  S= 2 6 : pval = 3.024844e-14 
+x= 3  y= 10  S= 2 8 : pval = 5.34767e-16 
+x= 3  y= 10  S= 4 5 : pval = 2.367682e-32 
+x= 3  y= 10  S= 4 6 : pval = 7.056352e-38 
+x= 3  y= 10  S= 4 8 : pval = 1.984651e-28 
+x= 3  y= 10  S= 5 6 : pval = 1.938932e-15 
+x= 3  y= 10  S= 5 8 : pval = 7.392346e-14 
+x= 3  y= 10  S= 6 8 : pval = 3.118868e-28 
+x= 4  y= 3  S= 5 8 : pval = 1.146418e-14 
+x= 4  y= 3  S= 5 10 : pval = 3.60683e-23 
+x= 4  y= 3  S= 8 10 : pval = 2.126587e-28 
+x= 4  y= 5  S= 3 8 : pval = 2.284589e-06 
+x= 4  y= 5  S= 3 10 : pval = 3.23193e-07 
+x= 4  y= 5  S= 8 10 : pval = 0.8598188 
+x= 4  y= 8  S= 3 5 : pval = 6.631663e-30 
+x= 4  y= 8  S= 3 10 : pval = 2.361978e-49 
+x= 4  y= 8  S= 5 10 : pval = 1.10868e-36 
+x= 4  y= 10  S= 3 5 : pval = 6.39217e-43 
+x= 4  y= 10  S= 3 8 : pval = 1.580244e-61 
+x= 4  y= 10  S= 5 8 : pval = 4.132582e-41 
+x= 5  y= 1  S= 3 4 : pval = 6.293826e-34 
+x= 5  y= 1  S= 3 6 : pval = 3.25416e-29 
+x= 5  y= 1  S= 3 10 : pval = 3.678062e-36 
+x= 5  y= 1  S= 4 6 : pval = 3.509863e-29 
+x= 5  y= 1  S= 4 10 : pval = 3.860901e-42 
+x= 5  y= 1  S= 6 10 : pval = 6.453923e-28 
+x= 5  y= 6  S= 1 3 : pval = 2.96037e-05 
+x= 5  y= 6  S= 1 4 : pval = 1.435439e-05 
+x= 5  y= 6  S= 1 10 : pval = 1.067235e-05 
+x= 5  y= 6  S= 3 4 : pval = 6.882713e-07 
+x= 5  y= 6  S= 3 10 : pval = 8.808921e-14 
+x= 5  y= 6  S= 4 10 : pval = 1.659281e-15 
+x= 5  y= 10  S= 1 3 : pval = 2.168367e-14 
+x= 5  y= 10  S= 1 4 : pval = 1.018562e-21 
+x= 5  y= 10  S= 1 6 : pval = 4.036621e-13 
+x= 5  y= 10  S= 3 4 : pval = 3.504444e-10 
+x= 5  y= 10  S= 3 6 : pval = 3.194873e-16 
+x= 5  y= 10  S= 4 6 : pval = 5.162164e-19 
+x= 6  y= 1  S= 3 5 : pval = 0.2071623 
+x= 6  y= 3  S= 1 5 : pval = 1.565713e-08 
+x= 6  y= 5  S= 1 3 : pval = 2.96037e-05 
+x= 8  y= 3  S= 4 9 : pval = 1.68602e-06 
+x= 8  y= 3  S= 4 10 : pval = 2.404182e-12 
+x= 8  y= 3  S= 9 10 : pval = 1.183185e-14 
+x= 8  y= 4  S= 3 9 : pval = 1.125908e-24 
+x= 8  y= 4  S= 3 10 : pval = 2.361978e-49 
+x= 8  y= 4  S= 9 10 : pval = 1.198678e-45 
+x= 8  y= 9  S= 3 4 : pval = 5.005878e-16 
+x= 8  y= 9  S= 3 10 : pval = 7.519784e-32 
+x= 8  y= 9  S= 4 10 : pval = 8.036023e-26 
+x= 8  y= 10  S= 3 4 : pval = 1.51412e-27 
+x= 8  y= 10  S= 3 9 : pval = 7.636917e-19 
+x= 8  y= 10  S= 4 9 : pval = 2.231695e-31 
+x= 9  y= 7  S= 8 10 : pval = 1.405438e-52 
+x= 9  y= 8  S= 7 10 : pval = 9.328044e-20 
+x= 9  y= 10  S= 7 8 : pval = 3.802508e-14 
+x= 10  y= 1  S= 3 4 : pval = 0.0001585391 
+x= 10  y= 1  S= 3 5 : pval = 1.791951e-10 
+x= 10  y= 1  S= 3 8 : pval = 1.682367e-06 
+x= 10  y= 1  S= 3 9 : pval = 9.813385e-09 
+x= 10  y= 1  S= 4 5 : pval = 6.626446e-15 
+x= 10  y= 1  S= 4 8 : pval = 0.0002862474 
+x= 10  y= 1  S= 4 9 : pval = 6.706287e-07 
+x= 10  y= 1  S= 5 8 : pval = 0.4029362 
+x= 10  y= 3  S= 1 4 : pval = 2.515522e-33 
+x= 10  y= 3  S= 1 5 : pval = 4.259923e-12 
+x= 10  y= 3  S= 1 8 : pval = 6.013402e-15 
+x= 10  y= 3  S= 1 9 : pval = 4.95315e-11 
+x= 10  y= 3  S= 4 5 : pval = 2.367682e-32 
+x= 10  y= 3  S= 4 8 : pval = 1.984651e-28 
+x= 10  y= 3  S= 4 9 : pval = 3.202255e-22 
+x= 10  y= 3  S= 5 8 : pval = 7.392346e-14 
+x= 10  y= 3  S= 5 9 : pval = 1.304025e-14 
+x= 10  y= 3  S= 8 9 : pval = 2.073382e-23 
+x= 10  y= 4  S= 1 3 : pval = 5.272113e-41 
+x= 10  y= 4  S= 1 5 : pval = 4.984485e-27 
+x= 10  y= 4  S= 1 8 : pval = 1.655369e-45 
+x= 10  y= 4  S= 1 9 : pval = 1.494753e-17 
+x= 10  y= 4  S= 3 5 : pval = 6.39217e-43 
+x= 10  y= 4  S= 3 8 : pval = 1.580244e-61 
+x= 10  y= 4  S= 3 9 : pval = 9.996545e-31 
+x= 10  y= 4  S= 5 8 : pval = 4.132582e-41 
+x= 10  y= 4  S= 5 9 : pval = 1.34262e-21 
+x= 10  y= 4  S= 8 9 : pval = 1.580443e-44 
+x= 10  y= 5  S= 1 3 : pval = 2.168367e-14 
+x= 10  y= 5  S= 1 4 : pval = 1.018562e-21 
+x= 10  y= 5  S= 1 8 : pval = 6.879627e-28 
+x= 10  y= 5  S= 1 9 : pval = 3.840927e-12 
+x= 10  y= 5  S= 3 4 : pval = 3.504444e-10 
+x= 10  y= 5  S= 3 8 : pval = 7.801144e-33 
+x= 10  y= 5  S= 3 9 : pval = 3.401864e-14 
+x= 10  y= 5  S= 4 8 : pval = 3.408979e-27 
+x= 10  y= 5  S= 4 9 : pval = 9.542599e-13 
+x= 10  y= 5  S= 8 9 : pval = 1.846843e-49 
+x= 10  y= 8  S= 1 3 : pval = 2.055985e-09 
+x= 10  y= 8  S= 1 4 : pval = 3.643298e-32 
+x= 10  y= 8  S= 1 5 : pval = 6.097545e-20 
+x= 10  y= 8  S= 1 9 : pval = 1.244654e-07 
+x= 10  y= 8  S= 3 4 : pval = 1.51412e-27 
+x= 10  y= 8  S= 3 5 : pval = 7.312574e-32 
+x= 10  y= 8  S= 3 9 : pval = 7.636917e-19 
+x= 10  y= 8  S= 4 5 : pval = 1.059818e-48 
+x= 10  y= 8  S= 4 9 : pval = 2.231695e-31 
+x= 10  y= 8  S= 5 9 : pval = 2.863987e-45 
+x= 10  y= 9  S= 1 3 : pval = 2.276035e-22 
+x= 10  y= 9  S= 1 4 : pval = 2.468829e-21 
+x= 10  y= 9  S= 1 5 : pval = 3.541822e-21 
+x= 10  y= 9  S= 1 8 : pval = 1.667299e-24 
+x= 10  y= 9  S= 3 4 : pval = 6.369928e-08 
+x= 10  y= 9  S= 3 5 : pval = 5.95108e-24 
+x= 10  y= 9  S= 3 8 : pval = 1.297471e-29 
+x= 10  y= 9  S= 4 5 : pval = 1.771346e-20 
+x= 10  y= 9  S= 4 8 : pval = 8.672202e-18 
+x= 10  y= 9  S= 5 8 : pval = 1.485416e-36 
+Order=3; remaining edges:30
+x= 3  y= 2  S= 4 6 8 : pval = 7.082883e-12 
+x= 3  y= 2  S= 4 6 10 : pval = 4.152312e-09 
+x= 3  y= 2  S= 4 8 10 : pval = 9.076655e-10 
+x= 3  y= 2  S= 6 8 10 : pval = 1.516014e-08 
+x= 3  y= 4  S= 2 6 8 : pval = 6.600435e-22 
+x= 3  y= 4  S= 2 6 10 : pval = 4.659903e-30 
+x= 3  y= 4  S= 2 8 10 : pval = 2.593088e-25 
+x= 3  y= 4  S= 6 8 10 : pval = 3.855276e-21 
+x= 3  y= 6  S= 2 4 8 : pval = 1.317875e-14 
+x= 3  y= 6  S= 2 4 10 : pval = 6.191589e-17 
+x= 3  y= 6  S= 2 8 10 : pval = 1.2901e-18 
+x= 3  y= 6  S= 4 8 10 : pval = 8.69862e-16 
+x= 3  y= 8  S= 2 4 6 : pval = 3.458681e-18 
+x= 3  y= 8  S= 2 4 10 : pval = 2.682519e-11 
+x= 3  y= 8  S= 2 6 10 : pval = 1.520584e-17 
+x= 3  y= 8  S= 4 6 10 : pval = 1.605301e-09 
+x= 3  y= 10  S= 2 4 6 : pval = 3.404275e-34 
+x= 3  y= 10  S= 2 4 8 : pval = 1.150097e-24 
+x= 3  y= 10  S= 2 6 8 : pval = 2.416384e-25 
+x= 3  y= 10  S= 4 6 8 : pval = 4.228384e-28 
+x= 8  y= 3  S= 4 9 10 : pval = 4.900147e-08 
+x= 8  y= 4  S= 3 9 10 : pval = 9.179114e-38 
+x= 8  y= 9  S= 3 4 10 : pval = 8.97263e-21 
+x= 8  y= 10  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 3  S= 4 5 8 : pval = 1.308696e-25 
+x= 10  y= 3  S= 4 5 9 : pval = 6.97414e-20 
+x= 10  y= 3  S= 4 8 9 : pval = 4.277846e-23 
+x= 10  y= 3  S= 5 8 9 : pval = 1.085116e-18 
+x= 10  y= 4  S= 3 5 8 : pval = 1.831095e-52 
+x= 10  y= 4  S= 3 5 9 : pval = 1.080782e-26 
+x= 10  y= 4  S= 3 8 9 : pval = 9.880046e-44 
+x= 10  y= 4  S= 5 8 9 : pval = 1.47866e-30 
+x= 10  y= 5  S= 3 4 8 : pval = 2.064717e-24 
+x= 10  y= 5  S= 3 4 9 : pval = 7.486739e-11 
+x= 10  y= 5  S= 3 8 9 : pval = 4.707113e-44 
+x= 10  y= 5  S= 4 8 9 : pval = 2.319181e-35 
+x= 10  y= 8  S= 3 4 5 : pval = 1.465747e-41 
+x= 10  y= 8  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 8  S= 3 5 9 : pval = 1.066083e-48 
+x= 10  y= 8  S= 4 5 9 : pval = 7.338012e-54 
+x= 10  y= 9  S= 3 4 5 : pval = 1.003839e-08 
+x= 10  y= 9  S= 3 4 8 : pval = 6.489156e-13 
+x= 10  y= 9  S= 3 5 8 : pval = 7.037315e-41 
+x= 10  y= 9  S= 4 5 8 : pval = 3.911813e-26 
+Order=4; remaining edges:30
+x= 3  y= 2  S= 4 6 8 10 : pval = 1.246531e-06 
+x= 3  y= 4  S= 2 6 8 10 : pval = 4.705363e-18 
+x= 3  y= 6  S= 2 4 8 10 : pval = 6.116519e-12 
+x= 3  y= 8  S= 2 4 6 10 : pval = 5.505154e-07 
+x= 3  y= 10  S= 2 4 6 8 : pval = 2.846846e-21 
+x= 10  y= 3  S= 4 5 8 9 : pval = 2.126332e-15 
+x= 10  y= 4  S= 3 5 8 9 : pval = 1.519984e-26 
+x= 10  y= 5  S= 3 4 8 9 : pval = 7.565439e-27 
+x= 10  y= 8  S= 3 4 5 9 : pval = 8.918234e-48 
+x= 10  y= 9  S= 3 4 5 8 : pval = 7.070168e-16 
+Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.9190132 
+x= 1  y= 3  S=  : pval = 0.2138421 
+x= 1  y= 4  S=  : pval = 0.0009276346 
+x= 1  y= 5  S=  : pval = 5.84821e-34 
+x= 1  y= 6  S=  : pval = 3.578562e-05 
+x= 1  y= 7  S=  : pval = 0.6709733 
+x= 1  y= 8  S=  : pval = 0.08971711 
+x= 1  y= 9  S=  : pval = 0.6592214 
+x= 1  y= 10  S=  : pval = 3.704787e-07 
+x= 2  y= 3  S=  : pval = 9.308221e-12 
+x= 2  y= 4  S=  : pval = 0.03390656 
+x= 2  y= 5  S=  : pval = 0.4330355 
+x= 2  y= 6  S=  : pval = 0.1653736 
+x= 2  y= 7  S=  : pval = 1.456512e-08 
+x= 2  y= 8  S=  : pval = 0.9993333 
+x= 2  y= 9  S=  : pval = 0.003098469 
+x= 2  y= 10  S=  : pval = 0.1917027 
+x= 3  y= 2  S=  : pval = 9.308221e-12 
+x= 3  y= 4  S=  : pval = 0.0181809 
+x= 3  y= 5  S=  : pval = 0.01425301 
+x= 3  y= 6  S=  : pval = 1.318576e-09 
+x= 3  y= 7  S=  : pval = 0.07526368 
+x= 3  y= 8  S=  : pval = 7.591646e-05 
+x= 3  y= 9  S=  : pval = 0.004596977 
+x= 3  y= 10  S=  : pval = 1.341997e-10 
+x= 4  y= 1  S=  : pval = 0.0009276346 
+x= 4  y= 3  S=  : pval = 0.0181809 
+x= 4  y= 5  S=  : pval = 3.318095e-08 
+x= 4  y= 6  S=  : pval = 0.4338127 
+x= 4  y= 7  S=  : pval = 0.01910275 
+x= 4  y= 8  S=  : pval = 2.784033e-19 
+x= 4  y= 9  S=  : pval = 0.2916114 
+x= 4  y= 10  S=  : pval = 1.076568e-20 
+x= 5  y= 1  S=  : pval = 5.84821e-34 
+x= 5  y= 3  S=  : pval = 0.01425301 
+x= 5  y= 4  S=  : pval = 3.318095e-08 
+x= 5  y= 6  S=  : pval = 2.208037e-08 
+x= 5  y= 7  S=  : pval = 0.4834889 
+x= 5  y= 8  S=  : pval = 0.4352282 
+x= 5  y= 9  S=  : pval = 0.9337691 
+x= 5  y= 10  S=  : pval = 8.93257e-10 
+x= 6  y= 1  S=  : pval = 3.578562e-05 
+x= 6  y= 3  S=  : pval = 1.318576e-09 
+x= 6  y= 5  S=  : pval = 2.208037e-08 
+x= 6  y= 7  S=  : pval = 0.765002 
+x= 6  y= 8  S=  : pval = 0.09988014 
+x= 6  y= 9  S=  : pval = 0.6173472 
+x= 6  y= 10  S=  : pval = 0.381326 
+x= 7  y= 2  S=  : pval = 1.456512e-08 
+x= 7  y= 4  S=  : pval = 0.01910275 
+x= 7  y= 8  S=  : pval = 2.345368e-07 
+x= 7  y= 9  S=  : pval = 1.720956e-68 
+x= 7  y= 10  S=  : pval = 7.711053e-08 
+x= 8  y= 3  S=  : pval = 7.591646e-05 
+x= 8  y= 4  S=  : pval = 2.784033e-19 
+x= 8  y= 7  S=  : pval = 2.345368e-07 
+x= 8  y= 9  S=  : pval = 1.060742e-25 
+x= 8  y= 10  S=  : pval = 0.0001357752 
+x= 9  y= 2  S=  : pval = 0.003098469 
+x= 9  y= 3  S=  : pval = 0.004596977 
+x= 9  y= 7  S=  : pval = 1.720956e-68 
+x= 9  y= 8  S=  : pval = 1.060742e-25 
+x= 9  y= 10  S=  : pval = 5.547778e-20 
+x= 10  y= 1  S=  : pval = 3.704787e-07 
+x= 10  y= 3  S=  : pval = 1.341997e-10 
+x= 10  y= 4  S=  : pval = 1.076568e-20 
+x= 10  y= 5  S=  : pval = 8.93257e-10 
+x= 10  y= 7  S=  : pval = 7.711053e-08 
+x= 10  y= 8  S=  : pval = 0.0001357752 
+x= 10  y= 9  S=  : pval = 5.547778e-20 
+Order=1; remaining edges:50
+x= 1  y= 4  S= 5 : pval = 0.0045653 
+x= 1  y= 4  S= 6 : pval = 0.001498667 
+x= 1  y= 4  S= 10 : pval = 0.07781025 
+x= 1  y= 5  S= 4 : pval = 9.848197e-33 
+x= 1  y= 5  S= 6 : pval = 1.943907e-30 
+x= 1  y= 5  S= 10 : pval = 7.654505e-37 
+x= 1  y= 6  S= 4 : pval = 7.04077e-05 
+x= 1  y= 6  S= 5 : pval = 0.04233535 
+x= 1  y= 10  S= 4 : pval = 4.579749e-05 
+x= 1  y= 10  S= 5 : pval = 2.0885e-10 
+x= 1  y= 10  S= 6 : pval = 1.773323e-12 
+x= 2  y= 3  S= 7 : pval = 7.082137e-21 
+x= 2  y= 3  S= 9 : pval = 1.17427e-16 
+x= 2  y= 7  S= 3 : pval = 9.291147e-18 
+x= 2  y= 7  S= 9 : pval = 5.098395e-06 
+x= 2  y= 9  S= 3 : pval = 1.822405e-08 
+x= 2  y= 9  S= 7 : pval = 0.6031225 
+x= 3  y= 2  S= 4 : pval = 4.674942e-12 
+x= 3  y= 2  S= 5 : pval = 7.87006e-11 
+x= 3  y= 2  S= 6 : pval = 1.772441e-10 
+x= 3  y= 2  S= 8 : pval = 3.974006e-12 
+x= 3  y= 2  S= 9 : pval = 1.17427e-16 
+x= 3  y= 2  S= 10 : pval = 1.135332e-12 
+x= 3  y= 4  S= 2 : pval = 0.003539923 
+x= 3  y= 4  S= 5 : pval = 0.009105856 
+x= 3  y= 4  S= 6 : pval = 9.976727e-09 
+x= 3  y= 4  S= 8 : pval = 4.580349e-16 
+x= 3  y= 4  S= 9 : pval = 8.572074e-30 
+x= 3  y= 4  S= 10 : pval = 6.155868e-27 
+x= 3  y= 5  S= 2 : pval = 0.04811478 
+x= 3  y= 6  S= 2 : pval = 2.245293e-08 
+x= 3  y= 6  S= 4 : pval = 1.669059e-15 
+x= 3  y= 6  S= 5 : pval = 5.723622e-10 
+x= 3  y= 6  S= 8 : pval = 1.397298e-10 
+x= 3  y= 6  S= 9 : pval = 5.668788e-10 
+x= 3  y= 6  S= 10 : pval = 1.477027e-13 
+x= 3  y= 8  S= 2 : pval = 1.949296e-05 
+x= 3  y= 8  S= 4 : pval = 2.967088e-18 
+x= 3  y= 8  S= 5 : pval = 1.517852e-05 
+x= 3  y= 8  S= 6 : pval = 5.410498e-06 
+x= 3  y= 8  S= 9 : pval = 0.004489649 
+x= 3  y= 8  S= 10 : pval = 1.538311e-10 
+x= 3  y= 9  S= 2 : pval = 2.608218e-08 
+x= 3  y= 9  S= 4 : pval = 2.514458e-30 
+x= 3  y= 9  S= 5 : pval = 0.002064118 
+x= 3  y= 9  S= 6 : pval = 0.000993951 
+x= 3  y= 9  S= 8 : pval = 0.2033007 
+x= 3  y= 10  S= 2 : pval = 1.545918e-11 
+x= 3  y= 10  S= 4 : pval = 1.106969e-34 
+x= 3  y= 10  S= 5 : pval = 4.336298e-12 
+x= 3  y= 10  S= 6 : pval = 1.587635e-14 
+x= 3  y= 10  S= 8 : pval = 4.270299e-16 
+x= 3  y= 10  S= 9 : pval = 5.036861e-12 
+x= 4  y= 3  S= 1 : pval = 0.03434374 
+x= 4  y= 5  S= 1 : pval = 2.601747e-07 
+x= 4  y= 5  S= 3 : pval = 3.508417e-08 
+x= 4  y= 5  S= 7 : pval = 8.302049e-10 
+x= 4  y= 5  S= 8 : pval = 1.992759e-07 
+x= 4  y= 5  S= 10 : pval = 1.656698e-10 
+x= 4  y= 7  S= 1 : pval = 0.03367062 
+x= 4  y= 8  S= 1 : pval = 7.077962e-19 
+x= 4  y= 8  S= 3 : pval = 2.362531e-32 
+x= 4  y= 8  S= 5 : pval = 2.667738e-18 
+x= 4  y= 8  S= 7 : pval = 1.585023e-20 
+x= 4  y= 8  S= 10 : pval = 4.004206e-48 
+x= 4  y= 10  S= 1 : pval = 2.38332e-18 
+x= 4  y= 10  S= 3 : pval = 1.274764e-44 
+x= 4  y= 10  S= 5 : pval = 8.904164e-23 
+x= 4  y= 10  S= 7 : pval = 1.164544e-18 
+x= 4  y= 10  S= 8 : pval = 1.607599e-49 
+x= 5  y= 1  S= 3 : pval = 1.938226e-33 
+x= 5  y= 1  S= 4 : pval = 9.848197e-33 
+x= 5  y= 1  S= 6 : pval = 1.943907e-30 
+x= 5  y= 1  S= 10 : pval = 7.654505e-37 
+x= 5  y= 4  S= 1 : pval = 2.601747e-07 
+x= 5  y= 4  S= 3 : pval = 3.508417e-08 
+x= 5  y= 4  S= 6 : pval = 2.850275e-08 
+x= 5  y= 4  S= 10 : pval = 1.656698e-10 
+x= 5  y= 6  S= 1 : pval = 3.45894e-05 
+x= 5  y= 6  S= 3 : pval = 8.878448e-09 
+x= 5  y= 6  S= 4 : pval = 1.919756e-08 
+x= 5  y= 6  S= 10 : pval = 5.660331e-14 
+x= 5  y= 10  S= 1 : pval = 6.006414e-13 
+x= 5  y= 10  S= 3 : pval = 2.759646e-11 
+x= 5  y= 10  S= 4 : pval = 4.920771e-12 
+x= 5  y= 10  S= 6 : pval = 2.496159e-15 
+x= 6  y= 3  S= 1 : pval = 1.166613e-08 
+x= 6  y= 3  S= 5 : pval = 5.723622e-10 
+x= 6  y= 5  S= 1 : pval = 3.45894e-05 
+x= 6  y= 5  S= 3 : pval = 8.878448e-09 
+x= 7  y= 2  S= 4 : pval = 2.171167e-08 
+x= 7  y= 2  S= 8 : pval = 2.587688e-09 
+x= 7  y= 2  S= 9 : pval = 5.098395e-06 
+x= 7  y= 2  S= 10 : pval = 4.031403e-08 
+x= 7  y= 8  S= 2 : pval = 3.822041e-08 
+x= 7  y= 8  S= 4 : pval = 7.863709e-09 
+x= 7  y= 8  S= 9 : pval = 0.9276544 
+x= 7  y= 9  S= 2 : pval = 1.811956e-65 
+x= 7  y= 9  S= 4 : pval = 5.59855e-67 
+x= 7  y= 9  S= 8 : pval = 2.232117e-61 
+x= 7  y= 9  S= 10 : pval = 2.728139e-61 
+x= 7  y= 10  S= 2 : pval = 2.030127e-07 
+x= 7  y= 10  S= 4 : pval = 4.906479e-06 
+x= 7  y= 10  S= 8 : pval = 1.016912e-08 
+x= 7  y= 10  S= 9 : pval = 0.3865621 
+x= 8  y= 3  S= 4 : pval = 2.967088e-18 
+x= 8  y= 3  S= 7 : pval = 0.0009740094 
+x= 8  y= 3  S= 9 : pval = 0.004489649 
+x= 8  y= 3  S= 10 : pval = 1.538311e-10 
+x= 8  y= 4  S= 3 : pval = 2.362531e-32 
+x= 8  y= 4  S= 7 : pval = 1.585023e-20 
+x= 8  y= 4  S= 9 : pval = 8.527446e-22 
+x= 8  y= 4  S= 10 : pval = 4.004206e-48 
+x= 8  y= 9  S= 3 : pval = 1.585218e-23 
+x= 8  y= 9  S= 4 : pval = 3.781363e-28 
+x= 8  y= 9  S= 7 : pval = 8.291319e-19 
+x= 8  y= 9  S= 10 : pval = 4.655486e-28 
+x= 8  y= 10  S= 3 : pval = 2.662935e-10 
+x= 8  y= 10  S= 4 : pval = 8.705339e-34 
+x= 8  y= 10  S= 7 : pval = 1.307004e-05 
+x= 8  y= 10  S= 9 : pval = 2.28247e-07 
+x= 9  y= 7  S= 2 : pval = 1.811956e-65 
+x= 9  y= 7  S= 3 : pval = 6.271188e-67 
+x= 9  y= 7  S= 8 : pval = 2.232117e-61 
+x= 9  y= 7  S= 10 : pval = 2.728139e-61 
+x= 9  y= 8  S= 2 : pval = 3.374053e-26 
+x= 9  y= 8  S= 3 : pval = 1.585218e-23 
+x= 9  y= 8  S= 7 : pval = 8.291319e-19 
+x= 9  y= 8  S= 10 : pval = 4.655486e-28 
+x= 9  y= 10  S= 2 : pval = 1.339686e-18 
+x= 9  y= 10  S= 3 : pval = 2.934064e-21 
+x= 9  y= 10  S= 7 : pval = 4.641095e-13 
+x= 9  y= 10  S= 8 : pval = 2.132123e-22 
+x= 10  y= 1  S= 3 : pval = 3.07571e-07 
+x= 10  y= 1  S= 4 : pval = 4.579749e-05 
+x= 10  y= 1  S= 5 : pval = 2.0885e-10 
+x= 10  y= 1  S= 7 : pval = 1.04971e-06 
+x= 10  y= 1  S= 8 : pval = 2.604997e-07 
+x= 10  y= 1  S= 9 : pval = 1.241586e-09 
+x= 10  y= 3  S= 1 : pval = 1.389926e-10 
+x= 10  y= 3  S= 4 : pval = 1.106969e-34 
+x= 10  y= 3  S= 5 : pval = 4.336298e-12 
+x= 10  y= 3  S= 7 : pval = 1.680163e-10 
+x= 10  y= 3  S= 8 : pval = 4.270299e-16 
+x= 10  y= 3  S= 9 : pval = 5.036861e-12 
+x= 10  y= 4  S= 1 : pval = 2.38332e-18 
+x= 10  y= 4  S= 3 : pval = 1.274764e-44 
+x= 10  y= 4  S= 5 : pval = 8.904164e-23 
+x= 10  y= 4  S= 7 : pval = 1.164544e-18 
+x= 10  y= 4  S= 8 : pval = 1.607599e-49 
+x= 10  y= 4  S= 9 : pval = 1.15181e-20 
+x= 10  y= 5  S= 1 : pval = 6.006414e-13 
+x= 10  y= 5  S= 3 : pval = 2.759646e-11 
+x= 10  y= 5  S= 4 : pval = 4.920771e-12 
+x= 10  y= 5  S= 7 : pval = 5.314431e-09 
+x= 10  y= 5  S= 8 : pval = 1.976644e-35 
+x= 10  y= 5  S= 9 : pval = 1.350404e-11 
+x= 10  y= 8  S= 1 : pval = 7.341011e-05 
+x= 10  y= 8  S= 3 : pval = 2.662935e-10 
+x= 10  y= 8  S= 4 : pval = 8.705339e-34 
+x= 10  y= 8  S= 5 : pval = 1.936852e-30 
+x= 10  y= 8  S= 7 : pval = 1.307004e-05 
+x= 10  y= 8  S= 9 : pval = 2.28247e-07 
+x= 10  y= 9  S= 1 : pval = 3.268382e-22 
+x= 10  y= 9  S= 3 : pval = 2.934064e-21 
+x= 10  y= 9  S= 4 : pval = 5.826346e-20 
+x= 10  y= 9  S= 5 : pval = 1.236059e-21 
+x= 10  y= 9  S= 7 : pval = 4.641095e-13 
+x= 10  y= 9  S= 8 : pval = 2.132123e-22 
+Order=2; remaining edges:32
+x= 3  y= 2  S= 6 8 : pval = 1.246561e-10 
+x= 3  y= 2  S= 6 10 : pval = 2.495417e-10 
+x= 3  y= 2  S= 8 10 : pval = 3.835376e-12 
+x= 3  y= 6  S= 2 8 : pval = 3.807369e-09 
+x= 3  y= 6  S= 2 10 : pval = 3.497397e-11 
+x= 3  y= 6  S= 8 10 : pval = 8.315232e-23 
+x= 3  y= 8  S= 2 6 : pval = 2.355532e-06 
+x= 3  y= 8  S= 2 10 : pval = 4.36607e-10 
+x= 3  y= 8  S= 6 10 : pval = 7.583084e-20 
+x= 3  y= 10  S= 2 6 : pval = 3.024844e-14 
+x= 3  y= 10  S= 2 8 : pval = 5.34767e-16 
+x= 3  y= 10  S= 6 8 : pval = 3.118868e-28 
+x= 4  y= 5  S= 8 10 : pval = 0.8598188 
+x= 4  y= 8  S= 5 10 : pval = 1.10868e-36 
+x= 4  y= 10  S= 5 8 : pval = 4.132582e-41 
+x= 5  y= 1  S= 4 6 : pval = 3.509863e-29 
+x= 5  y= 1  S= 4 10 : pval = 3.860901e-42 
+x= 5  y= 1  S= 6 10 : pval = 6.453923e-28 
+x= 5  y= 6  S= 1 4 : pval = 1.435439e-05 
+x= 5  y= 6  S= 1 10 : pval = 1.067235e-05 
+x= 5  y= 6  S= 4 10 : pval = 1.659281e-15 
+x= 5  y= 10  S= 1 4 : pval = 1.018562e-21 
+x= 5  y= 10  S= 1 6 : pval = 4.036621e-13 
+x= 5  y= 10  S= 4 6 : pval = 5.162164e-19 
+x= 8  y= 3  S= 4 9 : pval = 1.68602e-06 
+x= 8  y= 3  S= 4 10 : pval = 2.404182e-12 
+x= 8  y= 3  S= 9 10 : pval = 1.183185e-14 
+x= 8  y= 4  S= 3 9 : pval = 1.125908e-24 
+x= 8  y= 4  S= 3 10 : pval = 2.361978e-49 
+x= 8  y= 4  S= 9 10 : pval = 1.198678e-45 
+x= 8  y= 9  S= 3 4 : pval = 5.005878e-16 
+x= 8  y= 9  S= 3 10 : pval = 7.519784e-32 
+x= 8  y= 9  S= 4 10 : pval = 8.036023e-26 
+x= 8  y= 10  S= 3 4 : pval = 1.51412e-27 
+x= 8  y= 10  S= 3 9 : pval = 7.636917e-19 
+x= 8  y= 10  S= 4 9 : pval = 2.231695e-31 
+x= 9  y= 7  S= 8 10 : pval = 1.405438e-52 
+x= 9  y= 8  S= 7 10 : pval = 9.328044e-20 
+x= 9  y= 10  S= 7 8 : pval = 3.802508e-14 
+x= 10  y= 1  S= 3 4 : pval = 0.0001585391 
+x= 10  y= 1  S= 3 5 : pval = 1.791951e-10 
+x= 10  y= 1  S= 3 8 : pval = 1.682367e-06 
+x= 10  y= 1  S= 3 9 : pval = 9.813385e-09 
+x= 10  y= 1  S= 4 5 : pval = 6.626446e-15 
+x= 10  y= 1  S= 4 8 : pval = 0.0002862474 
+x= 10  y= 1  S= 4 9 : pval = 6.706287e-07 
+x= 10  y= 1  S= 5 8 : pval = 0.4029362 
+x= 10  y= 3  S= 1 4 : pval = 2.515522e-33 
+x= 10  y= 3  S= 1 5 : pval = 4.259923e-12 
+x= 10  y= 3  S= 1 8 : pval = 6.013402e-15 
+x= 10  y= 3  S= 1 9 : pval = 4.95315e-11 
+x= 10  y= 3  S= 4 5 : pval = 2.367682e-32 
+x= 10  y= 3  S= 4 8 : pval = 1.984651e-28 
+x= 10  y= 3  S= 4 9 : pval = 3.202255e-22 
+x= 10  y= 3  S= 5 8 : pval = 7.392346e-14 
+x= 10  y= 3  S= 5 9 : pval = 1.304025e-14 
+x= 10  y= 3  S= 8 9 : pval = 2.073382e-23 
+x= 10  y= 4  S= 1 3 : pval = 5.272113e-41 
+x= 10  y= 4  S= 1 5 : pval = 4.984485e-27 
+x= 10  y= 4  S= 1 8 : pval = 1.655369e-45 
+x= 10  y= 4  S= 1 9 : pval = 1.494753e-17 
+x= 10  y= 4  S= 3 5 : pval = 6.39217e-43 
+x= 10  y= 4  S= 3 8 : pval = 1.580244e-61 
+x= 10  y= 4  S= 3 9 : pval = 9.996545e-31 
+x= 10  y= 4  S= 5 8 : pval = 4.132582e-41 
+x= 10  y= 4  S= 5 9 : pval = 1.34262e-21 
+x= 10  y= 4  S= 8 9 : pval = 1.580443e-44 
+x= 10  y= 5  S= 1 3 : pval = 2.168367e-14 
+x= 10  y= 5  S= 1 4 : pval = 1.018562e-21 
+x= 10  y= 5  S= 1 8 : pval = 6.879627e-28 
+x= 10  y= 5  S= 1 9 : pval = 3.840927e-12 
+x= 10  y= 5  S= 3 4 : pval = 3.504444e-10 
+x= 10  y= 5  S= 3 8 : pval = 7.801144e-33 
+x= 10  y= 5  S= 3 9 : pval = 3.401864e-14 
+x= 10  y= 5  S= 4 8 : pval = 3.408979e-27 
+x= 10  y= 5  S= 4 9 : pval = 9.542599e-13 
+x= 10  y= 5  S= 8 9 : pval = 1.846843e-49 
+x= 10  y= 8  S= 1 3 : pval = 2.055985e-09 
+x= 10  y= 8  S= 1 4 : pval = 3.643298e-32 
+x= 10  y= 8  S= 1 5 : pval = 6.097545e-20 
+x= 10  y= 8  S= 1 9 : pval = 1.244654e-07 
+x= 10  y= 8  S= 3 4 : pval = 1.51412e-27 
+x= 10  y= 8  S= 3 5 : pval = 7.312574e-32 
+x= 10  y= 8  S= 3 9 : pval = 7.636917e-19 
+x= 10  y= 8  S= 4 5 : pval = 1.059818e-48 
+x= 10  y= 8  S= 4 9 : pval = 2.231695e-31 
+x= 10  y= 8  S= 5 9 : pval = 2.863987e-45 
+x= 10  y= 9  S= 1 3 : pval = 2.276035e-22 
+x= 10  y= 9  S= 1 4 : pval = 2.468829e-21 
+x= 10  y= 9  S= 1 5 : pval = 3.541822e-21 
+x= 10  y= 9  S= 1 8 : pval = 1.667299e-24 
+x= 10  y= 9  S= 3 4 : pval = 6.369928e-08 
+x= 10  y= 9  S= 3 5 : pval = 5.95108e-24 
+x= 10  y= 9  S= 3 8 : pval = 1.297471e-29 
+x= 10  y= 9  S= 4 5 : pval = 1.771346e-20 
+x= 10  y= 9  S= 4 8 : pval = 8.672202e-18 
+x= 10  y= 9  S= 5 8 : pval = 1.485416e-36 
+Order=3; remaining edges:28
+x= 3  y= 2  S= 6 8 10 : pval = 1.516014e-08 
+x= 3  y= 6  S= 2 8 10 : pval = 1.2901e-18 
+x= 3  y= 8  S= 2 6 10 : pval = 1.520584e-17 
+x= 3  y= 10  S= 2 6 8 : pval = 2.416384e-25 
+x= 8  y= 3  S= 4 9 10 : pval = 4.900147e-08 
+x= 8  y= 4  S= 3 9 10 : pval = 9.179114e-38 
+x= 8  y= 9  S= 3 4 10 : pval = 8.97263e-21 
+x= 8  y= 10  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 3  S= 4 5 8 : pval = 1.308696e-25 
+x= 10  y= 3  S= 4 5 9 : pval = 6.97414e-20 
+x= 10  y= 3  S= 4 8 9 : pval = 4.277846e-23 
+x= 10  y= 3  S= 5 8 9 : pval = 1.085116e-18 
+x= 10  y= 4  S= 3 5 8 : pval = 1.831095e-52 
+x= 10  y= 4  S= 3 5 9 : pval = 1.080782e-26 
+x= 10  y= 4  S= 3 8 9 : pval = 9.880046e-44 
+x= 10  y= 4  S= 5 8 9 : pval = 1.47866e-30 
+x= 10  y= 5  S= 3 4 8 : pval = 2.064717e-24 
+x= 10  y= 5  S= 3 4 9 : pval = 7.486739e-11 
+x= 10  y= 5  S= 3 8 9 : pval = 4.707113e-44 
+x= 10  y= 5  S= 4 8 9 : pval = 2.319181e-35 
+x= 10  y= 8  S= 3 4 5 : pval = 1.465747e-41 
+x= 10  y= 8  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 8  S= 3 5 9 : pval = 1.066083e-48 
+x= 10  y= 8  S= 4 5 9 : pval = 7.338012e-54 
+x= 10  y= 9  S= 3 4 5 : pval = 1.003839e-08 
+x= 10  y= 9  S= 3 4 8 : pval = 6.489156e-13 
+x= 10  y= 9  S= 3 5 8 : pval = 7.037315e-41 
+x= 10  y= 9  S= 4 5 8 : pval = 3.911813e-26 
+Order=4; remaining edges:28
+x= 10  y= 3  S= 4 5 8 9 : pval = 2.126332e-15 
+x= 10  y= 4  S= 3 5 8 9 : pval = 1.519984e-26 
+x= 10  y= 5  S= 3 4 8 9 : pval = 7.565439e-27 
+x= 10  y= 8  S= 3 4 5 9 : pval = 8.918234e-48 
+x= 10  y= 9  S= 3 4 5 8 : pval = 7.070168e-16 
+Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.9190132 
+x= 1  y= 3  S=  : pval = 0.2138421 
+x= 1  y= 4  S=  : pval = 0.0009276346 
+x= 1  y= 5  S=  : pval = 5.84821e-34 
+x= 1  y= 6  S=  : pval = 3.578562e-05 
+x= 1  y= 7  S=  : pval = 0.6709733 
+x= 1  y= 8  S=  : pval = 0.08971711 
+x= 1  y= 9  S=  : pval = 0.6592214 
+x= 1  y= 10  S=  : pval = 3.704787e-07 
+x= 2  y= 3  S=  : pval = 9.308221e-12 
+x= 2  y= 4  S=  : pval = 0.03390656 
+x= 2  y= 5  S=  : pval = 0.4330355 
+x= 2  y= 6  S=  : pval = 0.1653736 
+x= 2  y= 7  S=  : pval = 1.456512e-08 
+x= 2  y= 8  S=  : pval = 0.9993333 
+x= 2  y= 9  S=  : pval = 0.003098469 
+x= 2  y= 10  S=  : pval = 0.1917027 
+x= 3  y= 2  S=  : pval = 9.308221e-12 
+x= 3  y= 4  S=  : pval = 0.0181809 
+x= 3  y= 5  S=  : pval = 0.01425301 
+x= 3  y= 6  S=  : pval = 1.318576e-09 
+x= 3  y= 7  S=  : pval = 0.07526368 
+x= 3  y= 8  S=  : pval = 7.591646e-05 
+x= 3  y= 9  S=  : pval = 0.004596977 
+x= 3  y= 10  S=  : pval = 1.341997e-10 
+x= 4  y= 1  S=  : pval = 0.0009276346 
+x= 4  y= 5  S=  : pval = 3.318095e-08 
+x= 4  y= 6  S=  : pval = 0.4338127 
+x= 4  y= 7  S=  : pval = 0.01910275 
+x= 4  y= 8  S=  : pval = 2.784033e-19 
+x= 4  y= 9  S=  : pval = 0.2916114 
+x= 4  y= 10  S=  : pval = 1.076568e-20 
+x= 5  y= 1  S=  : pval = 5.84821e-34 
+x= 5  y= 4  S=  : pval = 3.318095e-08 
+x= 5  y= 6  S=  : pval = 2.208037e-08 
+x= 5  y= 7  S=  : pval = 0.4834889 
+x= 5  y= 8  S=  : pval = 0.4352282 
+x= 5  y= 9  S=  : pval = 0.9337691 
+x= 5  y= 10  S=  : pval = 8.93257e-10 
+x= 6  y= 1  S=  : pval = 3.578562e-05 
+x= 6  y= 3  S=  : pval = 1.318576e-09 
+x= 6  y= 5  S=  : pval = 2.208037e-08 
+x= 6  y= 7  S=  : pval = 0.765002 
+x= 6  y= 8  S=  : pval = 0.09988014 
+x= 6  y= 9  S=  : pval = 0.6173472 
+x= 6  y= 10  S=  : pval = 0.381326 
+x= 7  y= 2  S=  : pval = 1.456512e-08 
+x= 7  y= 8  S=  : pval = 2.345368e-07 
+x= 7  y= 9  S=  : pval = 1.720956e-68 
+x= 7  y= 10  S=  : pval = 7.711053e-08 
+x= 8  y= 3  S=  : pval = 7.591646e-05 
+x= 8  y= 4  S=  : pval = 2.784033e-19 
+x= 8  y= 7  S=  : pval = 2.345368e-07 
+x= 8  y= 9  S=  : pval = 1.060742e-25 
+x= 8  y= 10  S=  : pval = 0.0001357752 
+x= 9  y= 2  S=  : pval = 0.003098469 
+x= 9  y= 3  S=  : pval = 0.004596977 
+x= 9  y= 7  S=  : pval = 1.720956e-68 
+x= 9  y= 8  S=  : pval = 1.060742e-25 
+x= 9  y= 10  S=  : pval = 5.547778e-20 
+x= 10  y= 1  S=  : pval = 3.704787e-07 
+x= 10  y= 3  S=  : pval = 1.341997e-10 
+x= 10  y= 4  S=  : pval = 1.076568e-20 
+x= 10  y= 5  S=  : pval = 8.93257e-10 
+x= 10  y= 7  S=  : pval = 7.711053e-08 
+x= 10  y= 8  S=  : pval = 0.0001357752 
+x= 10  y= 9  S=  : pval = 5.547778e-20 
+Order=1; remaining edges:44
+x= 1  y= 4  S= 5 : pval = 0.0045653 
+x= 1  y= 4  S= 6 : pval = 0.001498667 
+x= 1  y= 4  S= 10 : pval = 0.07781025 
+x= 1  y= 5  S= 4 : pval = 9.848197e-33 
+x= 1  y= 5  S= 6 : pval = 1.943907e-30 
+x= 1  y= 5  S= 10 : pval = 7.654505e-37 
+x= 1  y= 6  S= 4 : pval = 7.04077e-05 
+x= 1  y= 6  S= 5 : pval = 0.04233535 
+x= 1  y= 10  S= 4 : pval = 4.579749e-05 
+x= 1  y= 10  S= 5 : pval = 2.0885e-10 
+x= 1  y= 10  S= 6 : pval = 1.773323e-12 
+x= 2  y= 3  S= 7 : pval = 7.082137e-21 
+x= 2  y= 3  S= 9 : pval = 1.17427e-16 
+x= 2  y= 7  S= 3 : pval = 9.291147e-18 
+x= 2  y= 7  S= 9 : pval = 5.098395e-06 
+x= 2  y= 9  S= 3 : pval = 1.822405e-08 
+x= 2  y= 9  S= 7 : pval = 0.6031225 
+x= 3  y= 2  S= 6 : pval = 1.772441e-10 
+x= 3  y= 2  S= 8 : pval = 3.974006e-12 
+x= 3  y= 2  S= 9 : pval = 1.17427e-16 
+x= 3  y= 2  S= 10 : pval = 1.135332e-12 
+x= 3  y= 6  S= 2 : pval = 2.245293e-08 
+x= 3  y= 6  S= 8 : pval = 1.397298e-10 
+x= 3  y= 6  S= 9 : pval = 5.668788e-10 
+x= 3  y= 6  S= 10 : pval = 1.477027e-13 
+x= 3  y= 8  S= 2 : pval = 1.949296e-05 
+x= 3  y= 8  S= 6 : pval = 5.410498e-06 
+x= 3  y= 8  S= 9 : pval = 0.004489649 
+x= 3  y= 8  S= 10 : pval = 1.538311e-10 
+x= 3  y= 9  S= 2 : pval = 2.608218e-08 
+x= 3  y= 9  S= 6 : pval = 0.000993951 
+x= 3  y= 9  S= 8 : pval = 0.2033007 
+x= 3  y= 10  S= 2 : pval = 1.545918e-11 
+x= 3  y= 10  S= 6 : pval = 1.587635e-14 
+x= 3  y= 10  S= 8 : pval = 4.270299e-16 
+x= 3  y= 10  S= 9 : pval = 5.036861e-12 
+x= 4  y= 5  S= 1 : pval = 2.601747e-07 
+x= 4  y= 5  S= 8 : pval = 1.992759e-07 
+x= 4  y= 5  S= 10 : pval = 1.656698e-10 
+x= 4  y= 8  S= 1 : pval = 7.077962e-19 
+x= 4  y= 8  S= 5 : pval = 2.667738e-18 
+x= 4  y= 8  S= 10 : pval = 4.004206e-48 
+x= 4  y= 10  S= 1 : pval = 2.38332e-18 
+x= 4  y= 10  S= 5 : pval = 8.904164e-23 
+x= 4  y= 10  S= 8 : pval = 1.607599e-49 
+x= 5  y= 1  S= 4 : pval = 9.848197e-33 
+x= 5  y= 1  S= 6 : pval = 1.943907e-30 
+x= 5  y= 1  S= 10 : pval = 7.654505e-37 
+x= 5  y= 4  S= 1 : pval = 2.601747e-07 
+x= 5  y= 4  S= 6 : pval = 2.850275e-08 
+x= 5  y= 4  S= 10 : pval = 1.656698e-10 
+x= 5  y= 6  S= 1 : pval = 3.45894e-05 
+x= 5  y= 6  S= 4 : pval = 1.919756e-08 
+x= 5  y= 6  S= 10 : pval = 5.660331e-14 
+x= 5  y= 10  S= 1 : pval = 6.006414e-13 
+x= 5  y= 10  S= 4 : pval = 4.920771e-12 
+x= 5  y= 10  S= 6 : pval = 2.496159e-15 
+x= 6  y= 3  S= 1 : pval = 1.166613e-08 
+x= 6  y= 3  S= 5 : pval = 5.723622e-10 
+x= 6  y= 5  S= 1 : pval = 3.45894e-05 
+x= 6  y= 5  S= 3 : pval = 8.878448e-09 
+x= 7  y= 2  S= 8 : pval = 2.587688e-09 
+x= 7  y= 2  S= 9 : pval = 5.098395e-06 
+x= 7  y= 2  S= 10 : pval = 4.031403e-08 
+x= 7  y= 8  S= 2 : pval = 3.822041e-08 
+x= 7  y= 8  S= 9 : pval = 0.9276544 
+x= 7  y= 9  S= 2 : pval = 1.811956e-65 
+x= 7  y= 9  S= 8 : pval = 2.232117e-61 
+x= 7  y= 9  S= 10 : pval = 2.728139e-61 
+x= 7  y= 10  S= 2 : pval = 2.030127e-07 
+x= 7  y= 10  S= 8 : pval = 1.016912e-08 
+x= 7  y= 10  S= 9 : pval = 0.3865621 
+x= 8  y= 3  S= 4 : pval = 2.967088e-18 
+x= 8  y= 3  S= 7 : pval = 0.0009740094 
+x= 8  y= 3  S= 9 : pval = 0.004489649 
+x= 8  y= 3  S= 10 : pval = 1.538311e-10 
+x= 8  y= 4  S= 3 : pval = 2.362531e-32 
+x= 8  y= 4  S= 7 : pval = 1.585023e-20 
+x= 8  y= 4  S= 9 : pval = 8.527446e-22 
+x= 8  y= 4  S= 10 : pval = 4.004206e-48 
+x= 8  y= 9  S= 3 : pval = 1.585218e-23 
+x= 8  y= 9  S= 4 : pval = 3.781363e-28 
+x= 8  y= 9  S= 7 : pval = 8.291319e-19 
+x= 8  y= 9  S= 10 : pval = 4.655486e-28 
+x= 8  y= 10  S= 3 : pval = 2.662935e-10 
+x= 8  y= 10  S= 4 : pval = 8.705339e-34 
+x= 8  y= 10  S= 7 : pval = 1.307004e-05 
+x= 8  y= 10  S= 9 : pval = 2.28247e-07 
+x= 9  y= 7  S= 2 : pval = 1.811956e-65 
+x= 9  y= 7  S= 3 : pval = 6.271188e-67 
+x= 9  y= 7  S= 8 : pval = 2.232117e-61 
+x= 9  y= 7  S= 10 : pval = 2.728139e-61 
+x= 9  y= 8  S= 2 : pval = 3.374053e-26 
+x= 9  y= 8  S= 3 : pval = 1.585218e-23 
+x= 9  y= 8  S= 7 : pval = 8.291319e-19 
+x= 9  y= 8  S= 10 : pval = 4.655486e-28 
+x= 9  y= 10  S= 2 : pval = 1.339686e-18 
+x= 9  y= 10  S= 3 : pval = 2.934064e-21 
+x= 9  y= 10  S= 7 : pval = 4.641095e-13 
+x= 9  y= 10  S= 8 : pval = 2.132123e-22 
+x= 10  y= 1  S= 3 : pval = 3.07571e-07 
+x= 10  y= 1  S= 4 : pval = 4.579749e-05 
+x= 10  y= 1  S= 5 : pval = 2.0885e-10 
+x= 10  y= 1  S= 7 : pval = 1.04971e-06 
+x= 10  y= 1  S= 8 : pval = 2.604997e-07 
+x= 10  y= 1  S= 9 : pval = 1.241586e-09 
+x= 10  y= 3  S= 1 : pval = 1.389926e-10 
+x= 10  y= 3  S= 4 : pval = 1.106969e-34 
+x= 10  y= 3  S= 5 : pval = 4.336298e-12 
+x= 10  y= 3  S= 7 : pval = 1.680163e-10 
+x= 10  y= 3  S= 8 : pval = 4.270299e-16 
+x= 10  y= 3  S= 9 : pval = 5.036861e-12 
+x= 10  y= 4  S= 1 : pval = 2.38332e-18 
+x= 10  y= 4  S= 3 : pval = 1.274764e-44 
+x= 10  y= 4  S= 5 : pval = 8.904164e-23 
+x= 10  y= 4  S= 7 : pval = 1.164544e-18 
+x= 10  y= 4  S= 8 : pval = 1.607599e-49 
+x= 10  y= 4  S= 9 : pval = 1.15181e-20 
+x= 10  y= 5  S= 1 : pval = 6.006414e-13 
+x= 10  y= 5  S= 3 : pval = 2.759646e-11 
+x= 10  y= 5  S= 4 : pval = 4.920771e-12 
+x= 10  y= 5  S= 7 : pval = 5.314431e-09 
+x= 10  y= 5  S= 8 : pval = 1.976644e-35 
+x= 10  y= 5  S= 9 : pval = 1.350404e-11 
+x= 10  y= 8  S= 1 : pval = 7.341011e-05 
+x= 10  y= 8  S= 3 : pval = 2.662935e-10 
+x= 10  y= 8  S= 4 : pval = 8.705339e-34 
+x= 10  y= 8  S= 5 : pval = 1.936852e-30 
+x= 10  y= 8  S= 7 : pval = 1.307004e-05 
+x= 10  y= 8  S= 9 : pval = 2.28247e-07 
+x= 10  y= 9  S= 1 : pval = 3.268382e-22 
+x= 10  y= 9  S= 3 : pval = 2.934064e-21 
+x= 10  y= 9  S= 4 : pval = 5.826346e-20 
+x= 10  y= 9  S= 5 : pval = 1.236059e-21 
+x= 10  y= 9  S= 7 : pval = 4.641095e-13 
+x= 10  y= 9  S= 8 : pval = 2.132123e-22 
+Order=2; remaining edges:32
+x= 3  y= 2  S= 6 8 : pval = 1.246561e-10 
+x= 3  y= 2  S= 6 10 : pval = 2.495417e-10 
+x= 3  y= 2  S= 8 10 : pval = 3.835376e-12 
+x= 3  y= 6  S= 2 8 : pval = 3.807369e-09 
+x= 3  y= 6  S= 2 10 : pval = 3.497397e-11 
+x= 3  y= 6  S= 8 10 : pval = 8.315232e-23 
+x= 3  y= 8  S= 2 6 : pval = 2.355532e-06 
+x= 3  y= 8  S= 2 10 : pval = 4.36607e-10 
+x= 3  y= 8  S= 6 10 : pval = 7.583084e-20 
+x= 3  y= 10  S= 2 6 : pval = 3.024844e-14 
+x= 3  y= 10  S= 2 8 : pval = 5.34767e-16 
+x= 3  y= 10  S= 6 8 : pval = 3.118868e-28 
+x= 4  y= 5  S= 8 10 : pval = 0.8598188 
+x= 4  y= 8  S= 5 10 : pval = 1.10868e-36 
+x= 4  y= 10  S= 5 8 : pval = 4.132582e-41 
+x= 5  y= 1  S= 4 6 : pval = 3.509863e-29 
+x= 5  y= 1  S= 4 10 : pval = 3.860901e-42 
+x= 5  y= 1  S= 6 10 : pval = 6.453923e-28 
+x= 5  y= 6  S= 1 4 : pval = 1.435439e-05 
+x= 5  y= 6  S= 1 10 : pval = 1.067235e-05 
+x= 5  y= 6  S= 4 10 : pval = 1.659281e-15 
+x= 5  y= 10  S= 1 4 : pval = 1.018562e-21 
+x= 5  y= 10  S= 1 6 : pval = 4.036621e-13 
+x= 5  y= 10  S= 4 6 : pval = 5.162164e-19 
+x= 8  y= 3  S= 4 9 : pval = 1.68602e-06 
+x= 8  y= 3  S= 4 10 : pval = 2.404182e-12 
+x= 8  y= 3  S= 9 10 : pval = 1.183185e-14 
+x= 8  y= 4  S= 3 9 : pval = 1.125908e-24 
+x= 8  y= 4  S= 3 10 : pval = 2.361978e-49 
+x= 8  y= 4  S= 9 10 : pval = 1.198678e-45 
+x= 8  y= 9  S= 3 4 : pval = 5.005878e-16 
+x= 8  y= 9  S= 3 10 : pval = 7.519784e-32 
+x= 8  y= 9  S= 4 10 : pval = 8.036023e-26 
+x= 8  y= 10  S= 3 4 : pval = 1.51412e-27 
+x= 8  y= 10  S= 3 9 : pval = 7.636917e-19 
+x= 8  y= 10  S= 4 9 : pval = 2.231695e-31 
+x= 9  y= 7  S= 8 10 : pval = 1.405438e-52 
+x= 9  y= 8  S= 7 10 : pval = 9.328044e-20 
+x= 9  y= 10  S= 7 8 : pval = 3.802508e-14 
+x= 10  y= 1  S= 3 4 : pval = 0.0001585391 
+x= 10  y= 1  S= 3 5 : pval = 1.791951e-10 
+x= 10  y= 1  S= 3 8 : pval = 1.682367e-06 
+x= 10  y= 1  S= 3 9 : pval = 9.813385e-09 
+x= 10  y= 1  S= 4 5 : pval = 6.626446e-15 
+x= 10  y= 1  S= 4 8 : pval = 0.0002862474 
+x= 10  y= 1  S= 4 9 : pval = 6.706287e-07 
+x= 10  y= 1  S= 5 8 : pval = 0.4029362 
+x= 10  y= 3  S= 1 4 : pval = 2.515522e-33 
+x= 10  y= 3  S= 1 5 : pval = 4.259923e-12 
+x= 10  y= 3  S= 1 8 : pval = 6.013402e-15 
+x= 10  y= 3  S= 1 9 : pval = 4.95315e-11 
+x= 10  y= 3  S= 4 5 : pval = 2.367682e-32 
+x= 10  y= 3  S= 4 8 : pval = 1.984651e-28 
+x= 10  y= 3  S= 4 9 : pval = 3.202255e-22 
+x= 10  y= 3  S= 5 8 : pval = 7.392346e-14 
+x= 10  y= 3  S= 5 9 : pval = 1.304025e-14 
+x= 10  y= 3  S= 8 9 : pval = 2.073382e-23 
+x= 10  y= 4  S= 1 3 : pval = 5.272113e-41 
+x= 10  y= 4  S= 1 5 : pval = 4.984485e-27 
+x= 10  y= 4  S= 1 8 : pval = 1.655369e-45 
+x= 10  y= 4  S= 1 9 : pval = 1.494753e-17 
+x= 10  y= 4  S= 3 5 : pval = 6.39217e-43 
+x= 10  y= 4  S= 3 8 : pval = 1.580244e-61 
+x= 10  y= 4  S= 3 9 : pval = 9.996545e-31 
+x= 10  y= 4  S= 5 8 : pval = 4.132582e-41 
+x= 10  y= 4  S= 5 9 : pval = 1.34262e-21 
+x= 10  y= 4  S= 8 9 : pval = 1.580443e-44 
+x= 10  y= 5  S= 1 3 : pval = 2.168367e-14 
+x= 10  y= 5  S= 1 4 : pval = 1.018562e-21 
+x= 10  y= 5  S= 1 8 : pval = 6.879627e-28 
+x= 10  y= 5  S= 1 9 : pval = 3.840927e-12 
+x= 10  y= 5  S= 3 4 : pval = 3.504444e-10 
+x= 10  y= 5  S= 3 8 : pval = 7.801144e-33 
+x= 10  y= 5  S= 3 9 : pval = 3.401864e-14 
+x= 10  y= 5  S= 4 8 : pval = 3.408979e-27 
+x= 10  y= 5  S= 4 9 : pval = 9.542599e-13 
+x= 10  y= 5  S= 8 9 : pval = 1.846843e-49 
+x= 10  y= 8  S= 1 3 : pval = 2.055985e-09 
+x= 10  y= 8  S= 1 4 : pval = 3.643298e-32 
+x= 10  y= 8  S= 1 5 : pval = 6.097545e-20 
+x= 10  y= 8  S= 1 9 : pval = 1.244654e-07 
+x= 10  y= 8  S= 3 4 : pval = 1.51412e-27 
+x= 10  y= 8  S= 3 5 : pval = 7.312574e-32 
+x= 10  y= 8  S= 3 9 : pval = 7.636917e-19 
+x= 10  y= 8  S= 4 5 : pval = 1.059818e-48 
+x= 10  y= 8  S= 4 9 : pval = 2.231695e-31 
+x= 10  y= 8  S= 5 9 : pval = 2.863987e-45 
+x= 10  y= 9  S= 1 3 : pval = 2.276035e-22 
+x= 10  y= 9  S= 1 4 : pval = 2.468829e-21 
+x= 10  y= 9  S= 1 5 : pval = 3.541822e-21 
+x= 10  y= 9  S= 1 8 : pval = 1.667299e-24 
+x= 10  y= 9  S= 3 4 : pval = 6.369928e-08 
+x= 10  y= 9  S= 3 5 : pval = 5.95108e-24 
+x= 10  y= 9  S= 3 8 : pval = 1.297471e-29 
+x= 10  y= 9  S= 4 5 : pval = 1.771346e-20 
+x= 10  y= 9  S= 4 8 : pval = 8.672202e-18 
+x= 10  y= 9  S= 5 8 : pval = 1.485416e-36 
+Order=3; remaining edges:28
+x= 3  y= 2  S= 6 8 10 : pval = 1.516014e-08 
+x= 3  y= 6  S= 2 8 10 : pval = 1.2901e-18 
+x= 3  y= 8  S= 2 6 10 : pval = 1.520584e-17 
+x= 3  y= 10  S= 2 6 8 : pval = 2.416384e-25 
+x= 8  y= 3  S= 4 9 10 : pval = 4.900147e-08 
+x= 8  y= 4  S= 3 9 10 : pval = 9.179114e-38 
+x= 8  y= 9  S= 3 4 10 : pval = 8.97263e-21 
+x= 8  y= 10  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 3  S= 4 5 8 : pval = 1.308696e-25 
+x= 10  y= 3  S= 4 5 9 : pval = 6.97414e-20 
+x= 10  y= 3  S= 4 8 9 : pval = 4.277846e-23 
+x= 10  y= 3  S= 5 8 9 : pval = 1.085116e-18 
+x= 10  y= 4  S= 3 5 8 : pval = 1.831095e-52 
+x= 10  y= 4  S= 3 5 9 : pval = 1.080782e-26 
+x= 10  y= 4  S= 3 8 9 : pval = 9.880046e-44 
+x= 10  y= 4  S= 5 8 9 : pval = 1.47866e-30 
+x= 10  y= 5  S= 3 4 8 : pval = 2.064717e-24 
+x= 10  y= 5  S= 3 4 9 : pval = 7.486739e-11 
+x= 10  y= 5  S= 3 8 9 : pval = 4.707113e-44 
+x= 10  y= 5  S= 4 8 9 : pval = 2.319181e-35 
+x= 10  y= 8  S= 3 4 5 : pval = 1.465747e-41 
+x= 10  y= 8  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 8  S= 3 5 9 : pval = 1.066083e-48 
+x= 10  y= 8  S= 4 5 9 : pval = 7.338012e-54 
+x= 10  y= 9  S= 3 4 5 : pval = 1.003839e-08 
+x= 10  y= 9  S= 3 4 8 : pval = 6.489156e-13 
+x= 10  y= 9  S= 3 5 8 : pval = 7.037315e-41 
+x= 10  y= 9  S= 4 5 8 : pval = 3.911813e-26 
+Order=4; remaining edges:28
+x= 10  y= 3  S= 4 5 8 9 : pval = 2.126332e-15 
+x= 10  y= 4  S= 3 5 8 9 : pval = 1.519984e-26 
+x= 10  y= 5  S= 3 4 8 9 : pval = 7.565439e-27 
+x= 10  y= 8  S= 3 4 5 9 : pval = 8.918234e-48 
+x= 10  y= 9  S= 3 4 5 8 : pval = 7.070168e-16 
+Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.9190132 
+x= 1  y= 3  S=  : pval = 0.2138421 
+x= 1  y= 4  S=  : pval = 0.0009276346 
+x= 1  y= 5  S=  : pval = 5.84821e-34 
+x= 1  y= 6  S=  : pval = 3.578562e-05 
+x= 1  y= 7  S=  : pval = 0.6709733 
+x= 1  y= 8  S=  : pval = 0.08971711 
+x= 1  y= 9  S=  : pval = 0.6592214 
+x= 1  y= 10  S=  : pval = 3.704787e-07 
+x= 2  y= 3  S=  : pval = 9.308221e-12 
+x= 2  y= 4  S=  : pval = 0.03390656 
+x= 2  y= 5  S=  : pval = 0.4330355 
+x= 2  y= 6  S=  : pval = 0.1653736 
+x= 2  y= 7  S=  : pval = 1.456512e-08 
+x= 2  y= 8  S=  : pval = 0.9993333 
+x= 2  y= 9  S=  : pval = 0.003098469 
+x= 2  y= 10  S=  : pval = 0.1917027 
+x= 3  y= 2  S=  : pval = 9.308221e-12 
+x= 3  y= 4  S=  : pval = 0.0181809 
+x= 3  y= 5  S=  : pval = 0.01425301 
+x= 3  y= 6  S=  : pval = 1.318576e-09 
+x= 3  y= 7  S=  : pval = 0.07526368 
+x= 3  y= 8  S=  : pval = 7.591646e-05 
+x= 3  y= 9  S=  : pval = 0.004596977 
+x= 3  y= 10  S=  : pval = 1.341997e-10 
+x= 4  y= 1  S=  : pval = 0.0009276346 
+x= 4  y= 5  S=  : pval = 3.318095e-08 
+x= 4  y= 6  S=  : pval = 0.4338127 
+x= 4  y= 7  S=  : pval = 0.01910275 
+x= 4  y= 8  S=  : pval = 2.784033e-19 
+x= 4  y= 9  S=  : pval = 0.2916114 
+x= 4  y= 10  S=  : pval = 1.076568e-20 
+x= 5  y= 1  S=  : pval = 5.84821e-34 
+x= 5  y= 4  S=  : pval = 3.318095e-08 
+x= 5  y= 6  S=  : pval = 2.208037e-08 
+x= 5  y= 7  S=  : pval = 0.4834889 
+x= 5  y= 8  S=  : pval = 0.4352282 
+x= 5  y= 9  S=  : pval = 0.9337691 
+x= 5  y= 10  S=  : pval = 8.93257e-10 
+x= 6  y= 1  S=  : pval = 3.578562e-05 
+x= 6  y= 3  S=  : pval = 1.318576e-09 
+x= 6  y= 5  S=  : pval = 2.208037e-08 
+x= 6  y= 7  S=  : pval = 0.765002 
+x= 6  y= 8  S=  : pval = 0.09988014 
+x= 6  y= 9  S=  : pval = 0.6173472 
+x= 6  y= 10  S=  : pval = 0.381326 
+x= 7  y= 2  S=  : pval = 1.456512e-08 
+x= 7  y= 8  S=  : pval = 2.345368e-07 
+x= 7  y= 9  S=  : pval = 1.720956e-68 
+x= 7  y= 10  S=  : pval = 7.711053e-08 
+x= 8  y= 3  S=  : pval = 7.591646e-05 
+x= 8  y= 4  S=  : pval = 2.784033e-19 
+x= 8  y= 7  S=  : pval = 2.345368e-07 
+x= 8  y= 9  S=  : pval = 1.060742e-25 
+x= 8  y= 10  S=  : pval = 0.0001357752 
+x= 9  y= 2  S=  : pval = 0.003098469 
+x= 9  y= 3  S=  : pval = 0.004596977 
+x= 9  y= 7  S=  : pval = 1.720956e-68 
+x= 9  y= 8  S=  : pval = 1.060742e-25 
+x= 9  y= 10  S=  : pval = 5.547778e-20 
+x= 10  y= 1  S=  : pval = 3.704787e-07 
+x= 10  y= 3  S=  : pval = 1.341997e-10 
+x= 10  y= 4  S=  : pval = 1.076568e-20 
+x= 10  y= 5  S=  : pval = 8.93257e-10 
+x= 10  y= 7  S=  : pval = 7.711053e-08 
+x= 10  y= 8  S=  : pval = 0.0001357752 
+x= 10  y= 9  S=  : pval = 5.547778e-20 
+Order=1; remaining edges:44
+x= 1  y= 4  S= 5 : pval = 0.0045653 
+x= 1  y= 4  S= 6 : pval = 0.001498667 
+x= 1  y= 4  S= 10 : pval = 0.07781025 
+x= 1  y= 5  S= 4 : pval = 9.848197e-33 
+x= 1  y= 5  S= 6 : pval = 1.943907e-30 
+x= 1  y= 5  S= 10 : pval = 7.654505e-37 
+x= 1  y= 6  S= 4 : pval = 7.04077e-05 
+x= 1  y= 6  S= 5 : pval = 0.04233535 
+x= 1  y= 10  S= 4 : pval = 4.579749e-05 
+x= 1  y= 10  S= 5 : pval = 2.0885e-10 
+x= 1  y= 10  S= 6 : pval = 1.773323e-12 
+x= 2  y= 3  S= 7 : pval = 7.082137e-21 
+x= 2  y= 3  S= 9 : pval = 1.17427e-16 
+x= 2  y= 7  S= 3 : pval = 9.291147e-18 
+x= 2  y= 7  S= 9 : pval = 5.098395e-06 
+x= 2  y= 9  S= 3 : pval = 1.822405e-08 
+x= 2  y= 9  S= 7 : pval = 0.6031225 
+x= 3  y= 2  S= 6 : pval = 1.772441e-10 
+x= 3  y= 2  S= 8 : pval = 3.974006e-12 
+x= 3  y= 2  S= 9 : pval = 1.17427e-16 
+x= 3  y= 2  S= 10 : pval = 1.135332e-12 
+x= 3  y= 6  S= 2 : pval = 2.245293e-08 
+x= 3  y= 6  S= 8 : pval = 1.397298e-10 
+x= 3  y= 6  S= 9 : pval = 5.668788e-10 
+x= 3  y= 6  S= 10 : pval = 1.477027e-13 
+x= 3  y= 8  S= 2 : pval = 1.949296e-05 
+x= 3  y= 8  S= 6 : pval = 5.410498e-06 
+x= 3  y= 8  S= 9 : pval = 0.004489649 
+x= 3  y= 8  S= 10 : pval = 1.538311e-10 
+x= 3  y= 9  S= 2 : pval = 2.608218e-08 
+x= 3  y= 9  S= 6 : pval = 0.000993951 
+x= 3  y= 9  S= 8 : pval = 0.2033007 
+x= 3  y= 10  S= 2 : pval = 1.545918e-11 
+x= 3  y= 10  S= 6 : pval = 1.587635e-14 
+x= 3  y= 10  S= 8 : pval = 4.270299e-16 
+x= 3  y= 10  S= 9 : pval = 5.036861e-12 
+x= 4  y= 5  S= 1 : pval = 2.601747e-07 
+x= 4  y= 5  S= 8 : pval = 1.992759e-07 
+x= 4  y= 5  S= 10 : pval = 1.656698e-10 
+x= 4  y= 8  S= 1 : pval = 7.077962e-19 
+x= 4  y= 8  S= 5 : pval = 2.667738e-18 
+x= 4  y= 8  S= 10 : pval = 4.004206e-48 
+x= 4  y= 10  S= 1 : pval = 2.38332e-18 
+x= 4  y= 10  S= 5 : pval = 8.904164e-23 
+x= 4  y= 10  S= 8 : pval = 1.607599e-49 
+x= 5  y= 1  S= 4 : pval = 9.848197e-33 
+x= 5  y= 1  S= 6 : pval = 1.943907e-30 
+x= 5  y= 1  S= 10 : pval = 7.654505e-37 
+x= 5  y= 4  S= 1 : pval = 2.601747e-07 
+x= 5  y= 4  S= 6 : pval = 2.850275e-08 
+x= 5  y= 4  S= 10 : pval = 1.656698e-10 
+x= 5  y= 6  S= 1 : pval = 3.45894e-05 
+x= 5  y= 6  S= 4 : pval = 1.919756e-08 
+x= 5  y= 6  S= 10 : pval = 5.660331e-14 
+x= 5  y= 10  S= 1 : pval = 6.006414e-13 
+x= 5  y= 10  S= 4 : pval = 4.920771e-12 
+x= 5  y= 10  S= 6 : pval = 2.496159e-15 
+x= 6  y= 3  S= 1 : pval = 1.166613e-08 
+x= 6  y= 3  S= 5 : pval = 5.723622e-10 
+x= 6  y= 5  S= 1 : pval = 3.45894e-05 
+x= 6  y= 5  S= 3 : pval = 8.878448e-09 
+x= 7  y= 2  S= 8 : pval = 2.587688e-09 
+x= 7  y= 2  S= 9 : pval = 5.098395e-06 
+x= 7  y= 2  S= 10 : pval = 4.031403e-08 
+x= 7  y= 8  S= 2 : pval = 3.822041e-08 
+x= 7  y= 8  S= 9 : pval = 0.9276544 
+x= 7  y= 9  S= 2 : pval = 1.811956e-65 
+x= 7  y= 9  S= 8 : pval = 2.232117e-61 
+x= 7  y= 9  S= 10 : pval = 2.728139e-61 
+x= 7  y= 10  S= 2 : pval = 2.030127e-07 
+x= 7  y= 10  S= 8 : pval = 1.016912e-08 
+x= 7  y= 10  S= 9 : pval = 0.3865621 
+x= 8  y= 3  S= 4 : pval = 2.967088e-18 
+x= 8  y= 3  S= 7 : pval = 0.0009740094 
+x= 8  y= 3  S= 9 : pval = 0.004489649 
+x= 8  y= 3  S= 10 : pval = 1.538311e-10 
+x= 8  y= 4  S= 3 : pval = 2.362531e-32 
+x= 8  y= 4  S= 7 : pval = 1.585023e-20 
+x= 8  y= 4  S= 9 : pval = 8.527446e-22 
+x= 8  y= 4  S= 10 : pval = 4.004206e-48 
+x= 8  y= 9  S= 3 : pval = 1.585218e-23 
+x= 8  y= 9  S= 4 : pval = 3.781363e-28 
+x= 8  y= 9  S= 7 : pval = 8.291319e-19 
+x= 8  y= 9  S= 10 : pval = 4.655486e-28 
+x= 8  y= 10  S= 3 : pval = 2.662935e-10 
+x= 8  y= 10  S= 4 : pval = 8.705339e-34 
+x= 8  y= 10  S= 7 : pval = 1.307004e-05 
+x= 8  y= 10  S= 9 : pval = 2.28247e-07 
+x= 9  y= 7  S= 2 : pval = 1.811956e-65 
+x= 9  y= 7  S= 3 : pval = 6.271188e-67 
+x= 9  y= 7  S= 8 : pval = 2.232117e-61 
+x= 9  y= 7  S= 10 : pval = 2.728139e-61 
+x= 9  y= 8  S= 2 : pval = 3.374053e-26 
+x= 9  y= 8  S= 3 : pval = 1.585218e-23 
+x= 9  y= 8  S= 7 : pval = 8.291319e-19 
+x= 9  y= 8  S= 10 : pval = 4.655486e-28 
+x= 9  y= 10  S= 2 : pval = 1.339686e-18 
+x= 9  y= 10  S= 3 : pval = 2.934064e-21 
+x= 9  y= 10  S= 7 : pval = 4.641095e-13 
+x= 9  y= 10  S= 8 : pval = 2.132123e-22 
+x= 10  y= 1  S= 3 : pval = 3.07571e-07 
+x= 10  y= 1  S= 4 : pval = 4.579749e-05 
+x= 10  y= 1  S= 5 : pval = 2.0885e-10 
+x= 10  y= 1  S= 7 : pval = 1.04971e-06 
+x= 10  y= 1  S= 8 : pval = 2.604997e-07 
+x= 10  y= 1  S= 9 : pval = 1.241586e-09 
+x= 10  y= 3  S= 1 : pval = 1.389926e-10 
+x= 10  y= 3  S= 4 : pval = 1.106969e-34 
+x= 10  y= 3  S= 5 : pval = 4.336298e-12 
+x= 10  y= 3  S= 7 : pval = 1.680163e-10 
+x= 10  y= 3  S= 8 : pval = 4.270299e-16 
+x= 10  y= 3  S= 9 : pval = 5.036861e-12 
+x= 10  y= 4  S= 1 : pval = 2.38332e-18 
+x= 10  y= 4  S= 3 : pval = 1.274764e-44 
+x= 10  y= 4  S= 5 : pval = 8.904164e-23 
+x= 10  y= 4  S= 7 : pval = 1.164544e-18 
+x= 10  y= 4  S= 8 : pval = 1.607599e-49 
+x= 10  y= 4  S= 9 : pval = 1.15181e-20 
+x= 10  y= 5  S= 1 : pval = 6.006414e-13 
+x= 10  y= 5  S= 3 : pval = 2.759646e-11 
+x= 10  y= 5  S= 4 : pval = 4.920771e-12 
+x= 10  y= 5  S= 7 : pval = 5.314431e-09 
+x= 10  y= 5  S= 8 : pval = 1.976644e-35 
+x= 10  y= 5  S= 9 : pval = 1.350404e-11 
+x= 10  y= 8  S= 1 : pval = 7.341011e-05 
+x= 10  y= 8  S= 3 : pval = 2.662935e-10 
+x= 10  y= 8  S= 4 : pval = 8.705339e-34 
+x= 10  y= 8  S= 5 : pval = 1.936852e-30 
+x= 10  y= 8  S= 7 : pval = 1.307004e-05 
+x= 10  y= 8  S= 9 : pval = 2.28247e-07 
+x= 10  y= 9  S= 1 : pval = 3.268382e-22 
+x= 10  y= 9  S= 3 : pval = 2.934064e-21 
+x= 10  y= 9  S= 4 : pval = 5.826346e-20 
+x= 10  y= 9  S= 5 : pval = 1.236059e-21 
+x= 10  y= 9  S= 7 : pval = 4.641095e-13 
+x= 10  y= 9  S= 8 : pval = 2.132123e-22 
+Order=2; remaining edges:32
+x= 3  y= 2  S= 6 8 : pval = 1.246561e-10 
+x= 3  y= 2  S= 6 10 : pval = 2.495417e-10 
+x= 3  y= 2  S= 8 10 : pval = 3.835376e-12 
+x= 3  y= 6  S= 2 8 : pval = 3.807369e-09 
+x= 3  y= 6  S= 2 10 : pval = 3.497397e-11 
+x= 3  y= 6  S= 8 10 : pval = 8.315232e-23 
+x= 3  y= 8  S= 2 6 : pval = 2.355532e-06 
+x= 3  y= 8  S= 2 10 : pval = 4.36607e-10 
+x= 3  y= 8  S= 6 10 : pval = 7.583084e-20 
+x= 3  y= 10  S= 2 6 : pval = 3.024844e-14 
+x= 3  y= 10  S= 2 8 : pval = 5.34767e-16 
+x= 3  y= 10  S= 6 8 : pval = 3.118868e-28 
+x= 4  y= 5  S= 8 10 : pval = 0.8598188 
+x= 4  y= 8  S= 5 10 : pval = 1.10868e-36 
+x= 4  y= 10  S= 5 8 : pval = 4.132582e-41 
+x= 5  y= 1  S= 4 6 : pval = 3.509863e-29 
+x= 5  y= 1  S= 4 10 : pval = 3.860901e-42 
+x= 5  y= 1  S= 6 10 : pval = 6.453923e-28 
+x= 5  y= 6  S= 1 4 : pval = 1.435439e-05 
+x= 5  y= 6  S= 1 10 : pval = 1.067235e-05 
+x= 5  y= 6  S= 4 10 : pval = 1.659281e-15 
+x= 5  y= 10  S= 1 4 : pval = 1.018562e-21 
+x= 5  y= 10  S= 1 6 : pval = 4.036621e-13 
+x= 5  y= 10  S= 4 6 : pval = 5.162164e-19 
+x= 8  y= 3  S= 4 9 : pval = 1.68602e-06 
+x= 8  y= 3  S= 4 10 : pval = 2.404182e-12 
+x= 8  y= 3  S= 9 10 : pval = 1.183185e-14 
+x= 8  y= 4  S= 3 9 : pval = 1.125908e-24 
+x= 8  y= 4  S= 3 10 : pval = 2.361978e-49 
+x= 8  y= 4  S= 9 10 : pval = 1.198678e-45 
+x= 8  y= 9  S= 3 4 : pval = 5.005878e-16 
+x= 8  y= 9  S= 3 10 : pval = 7.519784e-32 
+x= 8  y= 9  S= 4 10 : pval = 8.036023e-26 
+x= 8  y= 10  S= 3 4 : pval = 1.51412e-27 
+x= 8  y= 10  S= 3 9 : pval = 7.636917e-19 
+x= 8  y= 10  S= 4 9 : pval = 2.231695e-31 
+x= 9  y= 7  S= 8 10 : pval = 1.405438e-52 
+x= 9  y= 8  S= 7 10 : pval = 9.328044e-20 
+x= 9  y= 10  S= 7 8 : pval = 3.802508e-14 
+x= 10  y= 1  S= 3 4 : pval = 0.0001585391 
+x= 10  y= 1  S= 3 5 : pval = 1.791951e-10 
+x= 10  y= 1  S= 3 8 : pval = 1.682367e-06 
+x= 10  y= 1  S= 3 9 : pval = 9.813385e-09 
+x= 10  y= 1  S= 4 5 : pval = 6.626446e-15 
+x= 10  y= 1  S= 4 8 : pval = 0.0002862474 
+x= 10  y= 1  S= 4 9 : pval = 6.706287e-07 
+x= 10  y= 1  S= 5 8 : pval = 0.4029362 
+x= 10  y= 3  S= 1 4 : pval = 2.515522e-33 
+x= 10  y= 3  S= 1 5 : pval = 4.259923e-12 
+x= 10  y= 3  S= 1 8 : pval = 6.013402e-15 
+x= 10  y= 3  S= 1 9 : pval = 4.95315e-11 
+x= 10  y= 3  S= 4 5 : pval = 2.367682e-32 
+x= 10  y= 3  S= 4 8 : pval = 1.984651e-28 
+x= 10  y= 3  S= 4 9 : pval = 3.202255e-22 
+x= 10  y= 3  S= 5 8 : pval = 7.392346e-14 
+x= 10  y= 3  S= 5 9 : pval = 1.304025e-14 
+x= 10  y= 3  S= 8 9 : pval = 2.073382e-23 
+x= 10  y= 4  S= 1 3 : pval = 5.272113e-41 
+x= 10  y= 4  S= 1 5 : pval = 4.984485e-27 
+x= 10  y= 4  S= 1 8 : pval = 1.655369e-45 
+x= 10  y= 4  S= 1 9 : pval = 1.494753e-17 
+x= 10  y= 4  S= 3 5 : pval = 6.39217e-43 
+x= 10  y= 4  S= 3 8 : pval = 1.580244e-61 
+x= 10  y= 4  S= 3 9 : pval = 9.996545e-31 
+x= 10  y= 4  S= 5 8 : pval = 4.132582e-41 
+x= 10  y= 4  S= 5 9 : pval = 1.34262e-21 
+x= 10  y= 4  S= 8 9 : pval = 1.580443e-44 
+x= 10  y= 5  S= 1 3 : pval = 2.168367e-14 
+x= 10  y= 5  S= 1 4 : pval = 1.018562e-21 
+x= 10  y= 5  S= 1 8 : pval = 6.879627e-28 
+x= 10  y= 5  S= 1 9 : pval = 3.840927e-12 
+x= 10  y= 5  S= 3 4 : pval = 3.504444e-10 
+x= 10  y= 5  S= 3 8 : pval = 7.801144e-33 
+x= 10  y= 5  S= 3 9 : pval = 3.401864e-14 
+x= 10  y= 5  S= 4 8 : pval = 3.408979e-27 
+x= 10  y= 5  S= 4 9 : pval = 9.542599e-13 
+x= 10  y= 5  S= 8 9 : pval = 1.846843e-49 
+x= 10  y= 8  S= 1 3 : pval = 2.055985e-09 
+x= 10  y= 8  S= 1 4 : pval = 3.643298e-32 
+x= 10  y= 8  S= 1 5 : pval = 6.097545e-20 
+x= 10  y= 8  S= 1 9 : pval = 1.244654e-07 
+x= 10  y= 8  S= 3 4 : pval = 1.51412e-27 
+x= 10  y= 8  S= 3 5 : pval = 7.312574e-32 
+x= 10  y= 8  S= 3 9 : pval = 7.636917e-19 
+x= 10  y= 8  S= 4 5 : pval = 1.059818e-48 
+x= 10  y= 8  S= 4 9 : pval = 2.231695e-31 
+x= 10  y= 8  S= 5 9 : pval = 2.863987e-45 
+x= 10  y= 9  S= 1 3 : pval = 2.276035e-22 
+x= 10  y= 9  S= 1 4 : pval = 2.468829e-21 
+x= 10  y= 9  S= 1 5 : pval = 3.541822e-21 
+x= 10  y= 9  S= 1 8 : pval = 1.667299e-24 
+x= 10  y= 9  S= 3 4 : pval = 6.369928e-08 
+x= 10  y= 9  S= 3 5 : pval = 5.95108e-24 
+x= 10  y= 9  S= 3 8 : pval = 1.297471e-29 
+x= 10  y= 9  S= 4 5 : pval = 1.771346e-20 
+x= 10  y= 9  S= 4 8 : pval = 8.672202e-18 
+x= 10  y= 9  S= 5 8 : pval = 1.485416e-36 
+Order=3; remaining edges:28
+x= 3  y= 2  S= 6 8 10 : pval = 1.516014e-08 
+x= 3  y= 6  S= 2 8 10 : pval = 1.2901e-18 
+x= 3  y= 8  S= 2 6 10 : pval = 1.520584e-17 
+x= 3  y= 10  S= 2 6 8 : pval = 2.416384e-25 
+x= 8  y= 3  S= 4 9 10 : pval = 4.900147e-08 
+x= 8  y= 4  S= 3 9 10 : pval = 9.179114e-38 
+x= 8  y= 9  S= 3 4 10 : pval = 8.97263e-21 
+x= 8  y= 10  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 3  S= 4 5 8 : pval = 1.308696e-25 
+x= 10  y= 3  S= 4 5 9 : pval = 6.97414e-20 
+x= 10  y= 3  S= 4 8 9 : pval = 4.277846e-23 
+x= 10  y= 3  S= 5 8 9 : pval = 1.085116e-18 
+x= 10  y= 4  S= 3 5 8 : pval = 1.831095e-52 
+x= 10  y= 4  S= 3 5 9 : pval = 1.080782e-26 
+x= 10  y= 4  S= 3 8 9 : pval = 9.880046e-44 
+x= 10  y= 4  S= 5 8 9 : pval = 1.47866e-30 
+x= 10  y= 5  S= 3 4 8 : pval = 2.064717e-24 
+x= 10  y= 5  S= 3 4 9 : pval = 7.486739e-11 
+x= 10  y= 5  S= 3 8 9 : pval = 4.707113e-44 
+x= 10  y= 5  S= 4 8 9 : pval = 2.319181e-35 
+x= 10  y= 8  S= 3 4 5 : pval = 1.465747e-41 
+x= 10  y= 8  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 8  S= 3 5 9 : pval = 1.066083e-48 
+x= 10  y= 8  S= 4 5 9 : pval = 7.338012e-54 
+x= 10  y= 9  S= 3 4 5 : pval = 1.003839e-08 
+x= 10  y= 9  S= 3 4 8 : pval = 6.489156e-13 
+x= 10  y= 9  S= 3 5 8 : pval = 7.037315e-41 
+x= 10  y= 9  S= 4 5 8 : pval = 3.911813e-26 
+Order=4; remaining edges:28
+x= 10  y= 3  S= 4 5 8 9 : pval = 2.126332e-15 
+x= 10  y= 4  S= 3 5 8 9 : pval = 1.519984e-26 
+x= 10  y= 5  S= 3 4 8 9 : pval = 7.565439e-27 
+x= 10  y= 8  S= 3 4 5 9 : pval = 8.918234e-48 
+x= 10  y= 9  S= 3 4 5 8 : pval = 7.070168e-16 
+Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.9190132 
+x= 1  y= 3  S=  : pval = 0.2138421 
+x= 1  y= 4  S=  : pval = 0.0009276346 
+x= 1  y= 5  S=  : pval = 5.84821e-34 
+x= 1  y= 6  S=  : pval = 3.578562e-05 
+x= 1  y= 7  S=  : pval = 0.6709733 
+x= 1  y= 8  S=  : pval = 0.08971711 
+x= 1  y= 9  S=  : pval = 0.6592214 
+x= 1  y= 10  S=  : pval = 3.704787e-07 
+x= 2  y= 3  S=  : pval = 9.308221e-12 
+x= 2  y= 4  S=  : pval = 0.03390656 
+x= 2  y= 5  S=  : pval = 0.4330355 
+x= 2  y= 6  S=  : pval = 0.1653736 
+x= 2  y= 7  S=  : pval = 1.456512e-08 
+x= 2  y= 8  S=  : pval = 0.9993333 
+x= 2  y= 9  S=  : pval = 0.003098469 
+x= 2  y= 10  S=  : pval = 0.1917027 
+x= 3  y= 2  S=  : pval = 9.308221e-12 
+x= 3  y= 4  S=  : pval = 0.0181809 
+x= 3  y= 5  S=  : pval = 0.01425301 
+x= 3  y= 6  S=  : pval = 1.318576e-09 
+x= 3  y= 7  S=  : pval = 0.07526368 
+x= 3  y= 8  S=  : pval = 7.591646e-05 
+x= 3  y= 9  S=  : pval = 0.004596977 
+x= 3  y= 10  S=  : pval = 1.341997e-10 
+x= 4  y= 1  S=  : pval = 0.0009276346 
+x= 4  y= 5  S=  : pval = 3.318095e-08 
+x= 4  y= 6  S=  : pval = 0.4338127 
+x= 4  y= 7  S=  : pval = 0.01910275 
+x= 4  y= 8  S=  : pval = 2.784033e-19 
+x= 4  y= 9  S=  : pval = 0.2916114 
+x= 4  y= 10  S=  : pval = 1.076568e-20 
+x= 5  y= 1  S=  : pval = 5.84821e-34 
+x= 5  y= 4  S=  : pval = 3.318095e-08 
+x= 5  y= 6  S=  : pval = 2.208037e-08 
+x= 5  y= 7  S=  : pval = 0.4834889 
+x= 5  y= 8  S=  : pval = 0.4352282 
+x= 5  y= 9  S=  : pval = 0.9337691 
+x= 5  y= 10  S=  : pval = 8.93257e-10 
+x= 6  y= 1  S=  : pval = 3.578562e-05 
+x= 6  y= 3  S=  : pval = 1.318576e-09 
+x= 6  y= 5  S=  : pval = 2.208037e-08 
+x= 6  y= 7  S=  : pval = 0.765002 
+x= 6  y= 8  S=  : pval = 0.09988014 
+x= 6  y= 9  S=  : pval = 0.6173472 
+x= 6  y= 10  S=  : pval = 0.381326 
+x= 7  y= 2  S=  : pval = 1.456512e-08 
+x= 7  y= 8  S=  : pval = 2.345368e-07 
+x= 7  y= 9  S=  : pval = 1.720956e-68 
+x= 7  y= 10  S=  : pval = 7.711053e-08 
+x= 8  y= 3  S=  : pval = 7.591646e-05 
+x= 8  y= 4  S=  : pval = 2.784033e-19 
+x= 8  y= 7  S=  : pval = 2.345368e-07 
+x= 8  y= 9  S=  : pval = 1.060742e-25 
+x= 8  y= 10  S=  : pval = 0.0001357752 
+x= 9  y= 2  S=  : pval = 0.003098469 
+x= 9  y= 7  S=  : pval = 1.720956e-68 
+x= 9  y= 8  S=  : pval = 1.060742e-25 
+x= 9  y= 10  S=  : pval = 5.547778e-20 
+x= 10  y= 1  S=  : pval = 3.704787e-07 
+x= 10  y= 3  S=  : pval = 1.341997e-10 
+x= 10  y= 4  S=  : pval = 1.076568e-20 
+x= 10  y= 5  S=  : pval = 8.93257e-10 
+x= 10  y= 7  S=  : pval = 7.711053e-08 
+x= 10  y= 8  S=  : pval = 0.0001357752 
+x= 10  y= 9  S=  : pval = 5.547778e-20 
+Order=1; remaining edges:42
+x= 1  y= 4  S= 5 : pval = 0.0045653 
+x= 1  y= 5  S= 4 : pval = 9.848197e-33 
+x= 1  y= 5  S= 6 : pval = 1.943907e-30 
+x= 1  y= 5  S= 10 : pval = 7.654505e-37 
+x= 1  y= 6  S= 4 : pval = 7.04077e-05 
+x= 1  y= 6  S= 5 : pval = 0.04233535 
+x= 1  y= 10  S= 4 : pval = 4.579749e-05 
+x= 1  y= 10  S= 5 : pval = 2.0885e-10 
+x= 1  y= 10  S= 6 : pval = 1.773323e-12 
+x= 2  y= 3  S= 7 : pval = 7.082137e-21 
+x= 2  y= 3  S= 9 : pval = 1.17427e-16 
+x= 2  y= 7  S= 3 : pval = 9.291147e-18 
+x= 2  y= 7  S= 9 : pval = 5.098395e-06 
+x= 2  y= 9  S= 3 : pval = 1.822405e-08 
+x= 2  y= 9  S= 7 : pval = 0.6031225 
+x= 3  y= 2  S= 6 : pval = 1.772441e-10 
+x= 3  y= 2  S= 8 : pval = 3.974006e-12 
+x= 3  y= 2  S= 10 : pval = 1.135332e-12 
+x= 3  y= 6  S= 2 : pval = 2.245293e-08 
+x= 3  y= 6  S= 8 : pval = 1.397298e-10 
+x= 3  y= 6  S= 10 : pval = 1.477027e-13 
+x= 3  y= 8  S= 2 : pval = 1.949296e-05 
+x= 3  y= 8  S= 6 : pval = 5.410498e-06 
+x= 3  y= 8  S= 10 : pval = 1.538311e-10 
+x= 3  y= 10  S= 2 : pval = 1.545918e-11 
+x= 3  y= 10  S= 6 : pval = 1.587635e-14 
+x= 3  y= 10  S= 8 : pval = 4.270299e-16 
+x= 4  y= 5  S= 1 : pval = 2.601747e-07 
+x= 4  y= 5  S= 8 : pval = 1.992759e-07 
+x= 4  y= 5  S= 10 : pval = 1.656698e-10 
+x= 4  y= 8  S= 1 : pval = 7.077962e-19 
+x= 4  y= 8  S= 5 : pval = 2.667738e-18 
+x= 4  y= 8  S= 10 : pval = 4.004206e-48 
+x= 4  y= 10  S= 1 : pval = 2.38332e-18 
+x= 4  y= 10  S= 5 : pval = 8.904164e-23 
+x= 4  y= 10  S= 8 : pval = 1.607599e-49 
+x= 5  y= 1  S= 4 : pval = 9.848197e-33 
+x= 5  y= 1  S= 6 : pval = 1.943907e-30 
+x= 5  y= 1  S= 10 : pval = 7.654505e-37 
+x= 5  y= 4  S= 1 : pval = 2.601747e-07 
+x= 5  y= 4  S= 6 : pval = 2.850275e-08 
+x= 5  y= 4  S= 10 : pval = 1.656698e-10 
+x= 5  y= 6  S= 1 : pval = 3.45894e-05 
+x= 5  y= 6  S= 4 : pval = 1.919756e-08 
+x= 5  y= 6  S= 10 : pval = 5.660331e-14 
+x= 5  y= 10  S= 1 : pval = 6.006414e-13 
+x= 5  y= 10  S= 4 : pval = 4.920771e-12 
+x= 5  y= 10  S= 6 : pval = 2.496159e-15 
+x= 6  y= 3  S= 1 : pval = 1.166613e-08 
+x= 6  y= 3  S= 5 : pval = 5.723622e-10 
+x= 6  y= 5  S= 1 : pval = 3.45894e-05 
+x= 6  y= 5  S= 3 : pval = 8.878448e-09 
+x= 7  y= 2  S= 8 : pval = 2.587688e-09 
+x= 7  y= 2  S= 9 : pval = 5.098395e-06 
+x= 7  y= 2  S= 10 : pval = 4.031403e-08 
+x= 7  y= 8  S= 2 : pval = 3.822041e-08 
+x= 7  y= 8  S= 9 : pval = 0.9276544 
+x= 7  y= 9  S= 2 : pval = 1.811956e-65 
+x= 7  y= 9  S= 8 : pval = 2.232117e-61 
+x= 7  y= 9  S= 10 : pval = 2.728139e-61 
+x= 7  y= 10  S= 2 : pval = 2.030127e-07 
+x= 7  y= 10  S= 8 : pval = 1.016912e-08 
+x= 7  y= 10  S= 9 : pval = 0.3865621 
+x= 8  y= 3  S= 4 : pval = 2.967088e-18 
+x= 8  y= 3  S= 7 : pval = 0.0009740094 
+x= 8  y= 3  S= 9 : pval = 0.004489649 
+x= 8  y= 4  S= 3 : pval = 2.362531e-32 
+x= 8  y= 4  S= 7 : pval = 1.585023e-20 
+x= 8  y= 4  S= 9 : pval = 8.527446e-22 
+x= 8  y= 4  S= 10 : pval = 4.004206e-48 
+x= 8  y= 9  S= 3 : pval = 1.585218e-23 
+x= 8  y= 9  S= 4 : pval = 3.781363e-28 
+x= 8  y= 9  S= 7 : pval = 8.291319e-19 
+x= 8  y= 9  S= 10 : pval = 4.655486e-28 
+x= 8  y= 10  S= 3 : pval = 2.662935e-10 
+x= 8  y= 10  S= 4 : pval = 8.705339e-34 
+x= 8  y= 10  S= 7 : pval = 1.307004e-05 
+x= 8  y= 10  S= 9 : pval = 2.28247e-07 
+x= 9  y= 7  S= 2 : pval = 1.811956e-65 
+x= 9  y= 7  S= 8 : pval = 2.232117e-61 
+x= 9  y= 7  S= 10 : pval = 2.728139e-61 
+x= 9  y= 8  S= 2 : pval = 3.374053e-26 
+x= 9  y= 8  S= 7 : pval = 8.291319e-19 
+x= 9  y= 8  S= 10 : pval = 4.655486e-28 
+x= 9  y= 10  S= 2 : pval = 1.339686e-18 
+x= 9  y= 10  S= 7 : pval = 4.641095e-13 
+x= 9  y= 10  S= 8 : pval = 2.132123e-22 
+x= 10  y= 1  S= 3 : pval = 3.07571e-07 
+x= 10  y= 1  S= 4 : pval = 4.579749e-05 
+x= 10  y= 1  S= 5 : pval = 2.0885e-10 
+x= 10  y= 1  S= 7 : pval = 1.04971e-06 
+x= 10  y= 1  S= 8 : pval = 2.604997e-07 
+x= 10  y= 1  S= 9 : pval = 1.241586e-09 
+x= 10  y= 3  S= 1 : pval = 1.389926e-10 
+x= 10  y= 3  S= 4 : pval = 1.106969e-34 
+x= 10  y= 3  S= 5 : pval = 4.336298e-12 
+x= 10  y= 3  S= 7 : pval = 1.680163e-10 
+x= 10  y= 3  S= 8 : pval = 4.270299e-16 
+x= 10  y= 3  S= 9 : pval = 5.036861e-12 
+x= 10  y= 4  S= 1 : pval = 2.38332e-18 
+x= 10  y= 4  S= 3 : pval = 1.274764e-44 
+x= 10  y= 4  S= 5 : pval = 8.904164e-23 
+x= 10  y= 4  S= 7 : pval = 1.164544e-18 
+x= 10  y= 4  S= 8 : pval = 1.607599e-49 
+x= 10  y= 4  S= 9 : pval = 1.15181e-20 
+x= 10  y= 5  S= 1 : pval = 6.006414e-13 
+x= 10  y= 5  S= 3 : pval = 2.759646e-11 
+x= 10  y= 5  S= 4 : pval = 4.920771e-12 
+x= 10  y= 5  S= 7 : pval = 5.314431e-09 
+x= 10  y= 5  S= 8 : pval = 1.976644e-35 
+x= 10  y= 5  S= 9 : pval = 1.350404e-11 
+x= 10  y= 8  S= 1 : pval = 7.341011e-05 
+x= 10  y= 8  S= 3 : pval = 2.662935e-10 
+x= 10  y= 8  S= 4 : pval = 8.705339e-34 
+x= 10  y= 8  S= 5 : pval = 1.936852e-30 
+x= 10  y= 8  S= 7 : pval = 1.307004e-05 
+x= 10  y= 8  S= 9 : pval = 2.28247e-07 
+x= 10  y= 9  S= 1 : pval = 3.268382e-22 
+x= 10  y= 9  S= 3 : pval = 2.934064e-21 
+x= 10  y= 9  S= 4 : pval = 5.826346e-20 
+x= 10  y= 9  S= 5 : pval = 1.236059e-21 
+x= 10  y= 9  S= 7 : pval = 4.641095e-13 
+x= 10  y= 9  S= 8 : pval = 2.132123e-22 
+Order=2; remaining edges:30
+x= 3  y= 2  S= 6 10 : pval = 2.495417e-10 
+x= 3  y= 6  S= 2 10 : pval = 3.497397e-11 
+x= 3  y= 10  S= 2 6 : pval = 3.024844e-14 
+x= 4  y= 5  S= 8 10 : pval = 0.8598188 
+x= 4  y= 8  S= 5 10 : pval = 1.10868e-36 
+x= 4  y= 10  S= 5 8 : pval = 4.132582e-41 
+x= 5  y= 1  S= 4 6 : pval = 3.509863e-29 
+x= 5  y= 1  S= 4 10 : pval = 3.860901e-42 
+x= 5  y= 1  S= 6 10 : pval = 6.453923e-28 
+x= 5  y= 6  S= 1 4 : pval = 1.435439e-05 
+x= 5  y= 6  S= 1 10 : pval = 1.067235e-05 
+x= 5  y= 6  S= 4 10 : pval = 1.659281e-15 
+x= 5  y= 10  S= 1 4 : pval = 1.018562e-21 
+x= 5  y= 10  S= 1 6 : pval = 4.036621e-13 
+x= 5  y= 10  S= 4 6 : pval = 5.162164e-19 
+x= 8  y= 4  S= 9 10 : pval = 1.198678e-45 
+x= 8  y= 9  S= 4 10 : pval = 8.036023e-26 
+x= 8  y= 10  S= 4 9 : pval = 2.231695e-31 
+x= 9  y= 7  S= 8 10 : pval = 1.405438e-52 
+x= 9  y= 8  S= 7 10 : pval = 9.328044e-20 
+x= 9  y= 10  S= 7 8 : pval = 3.802508e-14 
+x= 10  y= 1  S= 3 4 : pval = 0.0001585391 
+x= 10  y= 1  S= 3 5 : pval = 1.791951e-10 
+x= 10  y= 1  S= 3 8 : pval = 1.682367e-06 
+x= 10  y= 1  S= 3 9 : pval = 9.813385e-09 
+x= 10  y= 1  S= 4 5 : pval = 6.626446e-15 
+x= 10  y= 1  S= 4 8 : pval = 0.0002862474 
+x= 10  y= 1  S= 4 9 : pval = 6.706287e-07 
+x= 10  y= 1  S= 5 8 : pval = 0.4029362 
+x= 10  y= 3  S= 1 4 : pval = 2.515522e-33 
+x= 10  y= 3  S= 1 5 : pval = 4.259923e-12 
+x= 10  y= 3  S= 1 8 : pval = 6.013402e-15 
+x= 10  y= 3  S= 1 9 : pval = 4.95315e-11 
+x= 10  y= 3  S= 4 5 : pval = 2.367682e-32 
+x= 10  y= 3  S= 4 8 : pval = 1.984651e-28 
+x= 10  y= 3  S= 4 9 : pval = 3.202255e-22 
+x= 10  y= 3  S= 5 8 : pval = 7.392346e-14 
+x= 10  y= 3  S= 5 9 : pval = 1.304025e-14 
+x= 10  y= 3  S= 8 9 : pval = 2.073382e-23 
+x= 10  y= 4  S= 1 3 : pval = 5.272113e-41 
+x= 10  y= 4  S= 1 5 : pval = 4.984485e-27 
+x= 10  y= 4  S= 1 8 : pval = 1.655369e-45 
+x= 10  y= 4  S= 1 9 : pval = 1.494753e-17 
+x= 10  y= 4  S= 3 5 : pval = 6.39217e-43 
+x= 10  y= 4  S= 3 8 : pval = 1.580244e-61 
+x= 10  y= 4  S= 3 9 : pval = 9.996545e-31 
+x= 10  y= 4  S= 5 8 : pval = 4.132582e-41 
+x= 10  y= 4  S= 5 9 : pval = 1.34262e-21 
+x= 10  y= 4  S= 8 9 : pval = 1.580443e-44 
+x= 10  y= 5  S= 1 3 : pval = 2.168367e-14 
+x= 10  y= 5  S= 1 4 : pval = 1.018562e-21 
+x= 10  y= 5  S= 1 8 : pval = 6.879627e-28 
+x= 10  y= 5  S= 1 9 : pval = 3.840927e-12 
+x= 10  y= 5  S= 3 4 : pval = 3.504444e-10 
+x= 10  y= 5  S= 3 8 : pval = 7.801144e-33 
+x= 10  y= 5  S= 3 9 : pval = 3.401864e-14 
+x= 10  y= 5  S= 4 8 : pval = 3.408979e-27 
+x= 10  y= 5  S= 4 9 : pval = 9.542599e-13 
+x= 10  y= 5  S= 8 9 : pval = 1.846843e-49 
+x= 10  y= 8  S= 1 3 : pval = 2.055985e-09 
+x= 10  y= 8  S= 1 4 : pval = 3.643298e-32 
+x= 10  y= 8  S= 1 5 : pval = 6.097545e-20 
+x= 10  y= 8  S= 1 9 : pval = 1.244654e-07 
+x= 10  y= 8  S= 3 4 : pval = 1.51412e-27 
+x= 10  y= 8  S= 3 5 : pval = 7.312574e-32 
+x= 10  y= 8  S= 3 9 : pval = 7.636917e-19 
+x= 10  y= 8  S= 4 5 : pval = 1.059818e-48 
+x= 10  y= 8  S= 4 9 : pval = 2.231695e-31 
+x= 10  y= 8  S= 5 9 : pval = 2.863987e-45 
+x= 10  y= 9  S= 1 3 : pval = 2.276035e-22 
+x= 10  y= 9  S= 1 4 : pval = 2.468829e-21 
+x= 10  y= 9  S= 1 5 : pval = 3.541822e-21 
+x= 10  y= 9  S= 1 8 : pval = 1.667299e-24 
+x= 10  y= 9  S= 3 4 : pval = 6.369928e-08 
+x= 10  y= 9  S= 3 5 : pval = 5.95108e-24 
+x= 10  y= 9  S= 3 8 : pval = 1.297471e-29 
+x= 10  y= 9  S= 4 5 : pval = 1.771346e-20 
+x= 10  y= 9  S= 4 8 : pval = 8.672202e-18 
+x= 10  y= 9  S= 5 8 : pval = 1.485416e-36 
+Order=3; remaining edges:26
+x= 10  y= 3  S= 4 5 8 : pval = 1.308696e-25 
+x= 10  y= 3  S= 4 5 9 : pval = 6.97414e-20 
+x= 10  y= 3  S= 4 8 9 : pval = 4.277846e-23 
+x= 10  y= 3  S= 5 8 9 : pval = 1.085116e-18 
+x= 10  y= 4  S= 3 5 8 : pval = 1.831095e-52 
+x= 10  y= 4  S= 3 5 9 : pval = 1.080782e-26 
+x= 10  y= 4  S= 3 8 9 : pval = 9.880046e-44 
+x= 10  y= 4  S= 5 8 9 : pval = 1.47866e-30 
+x= 10  y= 5  S= 3 4 8 : pval = 2.064717e-24 
+x= 10  y= 5  S= 3 4 9 : pval = 7.486739e-11 
+x= 10  y= 5  S= 3 8 9 : pval = 4.707113e-44 
+x= 10  y= 5  S= 4 8 9 : pval = 2.319181e-35 
+x= 10  y= 8  S= 3 4 5 : pval = 1.465747e-41 
+x= 10  y= 8  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 8  S= 3 5 9 : pval = 1.066083e-48 
+x= 10  y= 8  S= 4 5 9 : pval = 7.338012e-54 
+x= 10  y= 9  S= 3 4 5 : pval = 1.003839e-08 
+x= 10  y= 9  S= 3 4 8 : pval = 6.489156e-13 
+x= 10  y= 9  S= 3 5 8 : pval = 7.037315e-41 
+x= 10  y= 9  S= 4 5 8 : pval = 3.911813e-26 
+Order=4; remaining edges:26
+x= 10  y= 3  S= 4 5 8 9 : pval = 2.126332e-15 
+x= 10  y= 4  S= 3 5 8 9 : pval = 1.519984e-26 
+x= 10  y= 5  S= 3 4 8 9 : pval = 7.565439e-27 
+x= 10  y= 8  S= 3 4 5 9 : pval = 8.918234e-48 
+x= 10  y= 9  S= 3 4 5 8 : pval = 7.070168e-16 
+Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.9190132 
+x= 1  y= 3  S=  : pval = 0.2138421 
+x= 1  y= 4  S=  : pval = 0.0009276346 
+x= 1  y= 5  S=  : pval = 5.84821e-34 
+x= 1  y= 6  S=  : pval = 3.578562e-05 
+x= 1  y= 7  S=  : pval = 0.6709733 
+x= 1  y= 8  S=  : pval = 0.08971711 
+x= 1  y= 9  S=  : pval = 0.6592214 
+x= 1  y= 10  S=  : pval = 3.704787e-07 
+x= 2  y= 3  S=  : pval = 9.308221e-12 
+x= 2  y= 4  S=  : pval = 0.03390656 
+x= 2  y= 5  S=  : pval = 0.4330355 
+x= 2  y= 6  S=  : pval = 0.1653736 
+x= 2  y= 7  S=  : pval = 1.456512e-08 
+x= 2  y= 8  S=  : pval = 0.9993333 
+x= 2  y= 9  S=  : pval = 0.003098469 
+x= 2  y= 10  S=  : pval = 0.1917027 
+x= 3  y= 2  S=  : pval = 9.308221e-12 
+x= 3  y= 4  S=  : pval = 0.0181809 
+x= 3  y= 5  S=  : pval = 0.01425301 
+x= 3  y= 6  S=  : pval = 1.318576e-09 
+x= 3  y= 7  S=  : pval = 0.07526368 
+x= 3  y= 8  S=  : pval = 7.591646e-05 
+x= 3  y= 9  S=  : pval = 0.004596977 
+x= 3  y= 10  S=  : pval = 1.341997e-10 
+x= 4  y= 1  S=  : pval = 0.0009276346 
+x= 4  y= 5  S=  : pval = 3.318095e-08 
+x= 4  y= 6  S=  : pval = 0.4338127 
+x= 4  y= 7  S=  : pval = 0.01910275 
+x= 4  y= 8  S=  : pval = 2.784033e-19 
+x= 4  y= 9  S=  : pval = 0.2916114 
+x= 4  y= 10  S=  : pval = 1.076568e-20 
+x= 5  y= 1  S=  : pval = 5.84821e-34 
+x= 5  y= 4  S=  : pval = 3.318095e-08 
+x= 5  y= 6  S=  : pval = 2.208037e-08 
+x= 5  y= 7  S=  : pval = 0.4834889 
+x= 5  y= 8  S=  : pval = 0.4352282 
+x= 5  y= 9  S=  : pval = 0.9337691 
+x= 5  y= 10  S=  : pval = 8.93257e-10 
+x= 6  y= 1  S=  : pval = 3.578562e-05 
+x= 6  y= 3  S=  : pval = 1.318576e-09 
+x= 6  y= 5  S=  : pval = 2.208037e-08 
+x= 6  y= 7  S=  : pval = 0.765002 
+x= 6  y= 8  S=  : pval = 0.09988014 
+x= 6  y= 9  S=  : pval = 0.6173472 
+x= 6  y= 10  S=  : pval = 0.381326 
+x= 7  y= 2  S=  : pval = 1.456512e-08 
+x= 7  y= 8  S=  : pval = 2.345368e-07 
+x= 7  y= 9  S=  : pval = 1.720956e-68 
+x= 7  y= 10  S=  : pval = 7.711053e-08 
+x= 8  y= 3  S=  : pval = 7.591646e-05 
+x= 8  y= 4  S=  : pval = 2.784033e-19 
+x= 8  y= 7  S=  : pval = 2.345368e-07 
+x= 8  y= 9  S=  : pval = 1.060742e-25 
+x= 8  y= 10  S=  : pval = 0.0001357752 
+x= 9  y= 7  S=  : pval = 1.720956e-68 
+x= 9  y= 8  S=  : pval = 1.060742e-25 
+x= 9  y= 10  S=  : pval = 5.547778e-20 
+x= 10  y= 1  S=  : pval = 3.704787e-07 
+x= 10  y= 3  S=  : pval = 1.341997e-10 
+x= 10  y= 4  S=  : pval = 1.076568e-20 
+x= 10  y= 5  S=  : pval = 8.93257e-10 
+x= 10  y= 7  S=  : pval = 7.711053e-08 
+x= 10  y= 8  S=  : pval = 0.0001357752 
+x= 10  y= 9  S=  : pval = 5.547778e-20 
+Order=1; remaining edges:40
+x= 1  y= 4  S= 5 : pval = 0.0045653 
+x= 1  y= 5  S= 4 : pval = 9.848197e-33 
+x= 1  y= 5  S= 6 : pval = 1.943907e-30 
+x= 1  y= 5  S= 10 : pval = 7.654505e-37 
+x= 1  y= 6  S= 4 : pval = 7.04077e-05 
+x= 1  y= 6  S= 5 : pval = 0.04233535 
+x= 1  y= 10  S= 4 : pval = 4.579749e-05 
+x= 1  y= 10  S= 5 : pval = 2.0885e-10 
+x= 1  y= 10  S= 6 : pval = 1.773323e-12 
+x= 2  y= 3  S= 7 : pval = 7.082137e-21 
+x= 2  y= 7  S= 3 : pval = 9.291147e-18 
+x= 3  y= 2  S= 6 : pval = 1.772441e-10 
+x= 3  y= 2  S= 8 : pval = 3.974006e-12 
+x= 3  y= 2  S= 10 : pval = 1.135332e-12 
+x= 3  y= 6  S= 2 : pval = 2.245293e-08 
+x= 3  y= 6  S= 8 : pval = 1.397298e-10 
+x= 3  y= 6  S= 10 : pval = 1.477027e-13 
+x= 3  y= 8  S= 2 : pval = 1.949296e-05 
+x= 3  y= 8  S= 6 : pval = 5.410498e-06 
+x= 3  y= 8  S= 10 : pval = 1.538311e-10 
+x= 3  y= 10  S= 2 : pval = 1.545918e-11 
+x= 3  y= 10  S= 6 : pval = 1.587635e-14 
+x= 3  y= 10  S= 8 : pval = 4.270299e-16 
+x= 4  y= 5  S= 1 : pval = 2.601747e-07 
+x= 4  y= 5  S= 8 : pval = 1.992759e-07 
+x= 4  y= 5  S= 10 : pval = 1.656698e-10 
+x= 4  y= 8  S= 1 : pval = 7.077962e-19 
+x= 4  y= 8  S= 5 : pval = 2.667738e-18 
+x= 4  y= 8  S= 10 : pval = 4.004206e-48 
+x= 4  y= 10  S= 1 : pval = 2.38332e-18 
+x= 4  y= 10  S= 5 : pval = 8.904164e-23 
+x= 4  y= 10  S= 8 : pval = 1.607599e-49 
+x= 5  y= 1  S= 4 : pval = 9.848197e-33 
+x= 5  y= 1  S= 6 : pval = 1.943907e-30 
+x= 5  y= 1  S= 10 : pval = 7.654505e-37 
+x= 5  y= 4  S= 1 : pval = 2.601747e-07 
+x= 5  y= 4  S= 6 : pval = 2.850275e-08 
+x= 5  y= 4  S= 10 : pval = 1.656698e-10 
+x= 5  y= 6  S= 1 : pval = 3.45894e-05 
+x= 5  y= 6  S= 4 : pval = 1.919756e-08 
+x= 5  y= 6  S= 10 : pval = 5.660331e-14 
+x= 5  y= 10  S= 1 : pval = 6.006414e-13 
+x= 5  y= 10  S= 4 : pval = 4.920771e-12 
+x= 5  y= 10  S= 6 : pval = 2.496159e-15 
+x= 6  y= 3  S= 1 : pval = 1.166613e-08 
+x= 6  y= 3  S= 5 : pval = 5.723622e-10 
+x= 6  y= 5  S= 1 : pval = 3.45894e-05 
+x= 6  y= 5  S= 3 : pval = 8.878448e-09 
+x= 7  y= 2  S= 8 : pval = 2.587688e-09 
+x= 7  y= 2  S= 9 : pval = 5.098395e-06 
+x= 7  y= 2  S= 10 : pval = 4.031403e-08 
+x= 7  y= 8  S= 2 : pval = 3.822041e-08 
+x= 7  y= 8  S= 9 : pval = 0.9276544 
+x= 7  y= 9  S= 2 : pval = 1.811956e-65 
+x= 7  y= 9  S= 8 : pval = 2.232117e-61 
+x= 7  y= 9  S= 10 : pval = 2.728139e-61 
+x= 7  y= 10  S= 2 : pval = 2.030127e-07 
+x= 7  y= 10  S= 8 : pval = 1.016912e-08 
+x= 7  y= 10  S= 9 : pval = 0.3865621 
+x= 8  y= 3  S= 4 : pval = 2.967088e-18 
+x= 8  y= 3  S= 7 : pval = 0.0009740094 
+x= 8  y= 3  S= 9 : pval = 0.004489649 
+x= 8  y= 4  S= 3 : pval = 2.362531e-32 
+x= 8  y= 4  S= 7 : pval = 1.585023e-20 
+x= 8  y= 4  S= 9 : pval = 8.527446e-22 
+x= 8  y= 4  S= 10 : pval = 4.004206e-48 
+x= 8  y= 9  S= 3 : pval = 1.585218e-23 
+x= 8  y= 9  S= 4 : pval = 3.781363e-28 
+x= 8  y= 9  S= 7 : pval = 8.291319e-19 
+x= 8  y= 9  S= 10 : pval = 4.655486e-28 
+x= 8  y= 10  S= 3 : pval = 2.662935e-10 
+x= 8  y= 10  S= 4 : pval = 8.705339e-34 
+x= 8  y= 10  S= 7 : pval = 1.307004e-05 
+x= 8  y= 10  S= 9 : pval = 2.28247e-07 
+x= 9  y= 7  S= 8 : pval = 2.232117e-61 
+x= 9  y= 7  S= 10 : pval = 2.728139e-61 
+x= 9  y= 8  S= 7 : pval = 8.291319e-19 
+x= 9  y= 8  S= 10 : pval = 4.655486e-28 
+x= 9  y= 10  S= 7 : pval = 4.641095e-13 
+x= 9  y= 10  S= 8 : pval = 2.132123e-22 
+x= 10  y= 1  S= 3 : pval = 3.07571e-07 
+x= 10  y= 1  S= 4 : pval = 4.579749e-05 
+x= 10  y= 1  S= 5 : pval = 2.0885e-10 
+x= 10  y= 1  S= 7 : pval = 1.04971e-06 
+x= 10  y= 1  S= 8 : pval = 2.604997e-07 
+x= 10  y= 1  S= 9 : pval = 1.241586e-09 
+x= 10  y= 3  S= 1 : pval = 1.389926e-10 
+x= 10  y= 3  S= 4 : pval = 1.106969e-34 
+x= 10  y= 3  S= 5 : pval = 4.336298e-12 
+x= 10  y= 3  S= 7 : pval = 1.680163e-10 
+x= 10  y= 3  S= 8 : pval = 4.270299e-16 
+x= 10  y= 3  S= 9 : pval = 5.036861e-12 
+x= 10  y= 4  S= 1 : pval = 2.38332e-18 
+x= 10  y= 4  S= 3 : pval = 1.274764e-44 
+x= 10  y= 4  S= 5 : pval = 8.904164e-23 
+x= 10  y= 4  S= 7 : pval = 1.164544e-18 
+x= 10  y= 4  S= 8 : pval = 1.607599e-49 
+x= 10  y= 4  S= 9 : pval = 1.15181e-20 
+x= 10  y= 5  S= 1 : pval = 6.006414e-13 
+x= 10  y= 5  S= 3 : pval = 2.759646e-11 
+x= 10  y= 5  S= 4 : pval = 4.920771e-12 
+x= 10  y= 5  S= 7 : pval = 5.314431e-09 
+x= 10  y= 5  S= 8 : pval = 1.976644e-35 
+x= 10  y= 5  S= 9 : pval = 1.350404e-11 
+x= 10  y= 8  S= 1 : pval = 7.341011e-05 
+x= 10  y= 8  S= 3 : pval = 2.662935e-10 
+x= 10  y= 8  S= 4 : pval = 8.705339e-34 
+x= 10  y= 8  S= 5 : pval = 1.936852e-30 
+x= 10  y= 8  S= 7 : pval = 1.307004e-05 
+x= 10  y= 8  S= 9 : pval = 2.28247e-07 
+x= 10  y= 9  S= 1 : pval = 3.268382e-22 
+x= 10  y= 9  S= 3 : pval = 2.934064e-21 
+x= 10  y= 9  S= 4 : pval = 5.826346e-20 
+x= 10  y= 9  S= 5 : pval = 1.236059e-21 
+x= 10  y= 9  S= 7 : pval = 4.641095e-13 
+x= 10  y= 9  S= 8 : pval = 2.132123e-22 
+Order=2; remaining edges:30
+x= 3  y= 2  S= 6 10 : pval = 2.495417e-10 
+x= 3  y= 6  S= 2 10 : pval = 3.497397e-11 
+x= 3  y= 10  S= 2 6 : pval = 3.024844e-14 
+x= 4  y= 5  S= 8 10 : pval = 0.8598188 
+x= 4  y= 8  S= 5 10 : pval = 1.10868e-36 
+x= 4  y= 10  S= 5 8 : pval = 4.132582e-41 
+x= 5  y= 1  S= 4 6 : pval = 3.509863e-29 
+x= 5  y= 1  S= 4 10 : pval = 3.860901e-42 
+x= 5  y= 1  S= 6 10 : pval = 6.453923e-28 
+x= 5  y= 6  S= 1 4 : pval = 1.435439e-05 
+x= 5  y= 6  S= 1 10 : pval = 1.067235e-05 
+x= 5  y= 6  S= 4 10 : pval = 1.659281e-15 
+x= 5  y= 10  S= 1 4 : pval = 1.018562e-21 
+x= 5  y= 10  S= 1 6 : pval = 4.036621e-13 
+x= 5  y= 10  S= 4 6 : pval = 5.162164e-19 
+x= 8  y= 4  S= 9 10 : pval = 1.198678e-45 
+x= 8  y= 9  S= 4 10 : pval = 8.036023e-26 
+x= 8  y= 10  S= 4 9 : pval = 2.231695e-31 
+x= 9  y= 7  S= 8 10 : pval = 1.405438e-52 
+x= 9  y= 8  S= 7 10 : pval = 9.328044e-20 
+x= 9  y= 10  S= 7 8 : pval = 3.802508e-14 
+x= 10  y= 1  S= 3 4 : pval = 0.0001585391 
+x= 10  y= 1  S= 3 5 : pval = 1.791951e-10 
+x= 10  y= 1  S= 3 8 : pval = 1.682367e-06 
+x= 10  y= 1  S= 3 9 : pval = 9.813385e-09 
+x= 10  y= 1  S= 4 5 : pval = 6.626446e-15 
+x= 10  y= 1  S= 4 8 : pval = 0.0002862474 
+x= 10  y= 1  S= 4 9 : pval = 6.706287e-07 
+x= 10  y= 1  S= 5 8 : pval = 0.4029362 
+x= 10  y= 3  S= 1 4 : pval = 2.515522e-33 
+x= 10  y= 3  S= 1 5 : pval = 4.259923e-12 
+x= 10  y= 3  S= 1 8 : pval = 6.013402e-15 
+x= 10  y= 3  S= 1 9 : pval = 4.95315e-11 
+x= 10  y= 3  S= 4 5 : pval = 2.367682e-32 
+x= 10  y= 3  S= 4 8 : pval = 1.984651e-28 
+x= 10  y= 3  S= 4 9 : pval = 3.202255e-22 
+x= 10  y= 3  S= 5 8 : pval = 7.392346e-14 
+x= 10  y= 3  S= 5 9 : pval = 1.304025e-14 
+x= 10  y= 3  S= 8 9 : pval = 2.073382e-23 
+x= 10  y= 4  S= 1 3 : pval = 5.272113e-41 
+x= 10  y= 4  S= 1 5 : pval = 4.984485e-27 
+x= 10  y= 4  S= 1 8 : pval = 1.655369e-45 
+x= 10  y= 4  S= 1 9 : pval = 1.494753e-17 
+x= 10  y= 4  S= 3 5 : pval = 6.39217e-43 
+x= 10  y= 4  S= 3 8 : pval = 1.580244e-61 
+x= 10  y= 4  S= 3 9 : pval = 9.996545e-31 
+x= 10  y= 4  S= 5 8 : pval = 4.132582e-41 
+x= 10  y= 4  S= 5 9 : pval = 1.34262e-21 
+x= 10  y= 4  S= 8 9 : pval = 1.580443e-44 
+x= 10  y= 5  S= 1 3 : pval = 2.168367e-14 
+x= 10  y= 5  S= 1 4 : pval = 1.018562e-21 
+x= 10  y= 5  S= 1 8 : pval = 6.879627e-28 
+x= 10  y= 5  S= 1 9 : pval = 3.840927e-12 
+x= 10  y= 5  S= 3 4 : pval = 3.504444e-10 
+x= 10  y= 5  S= 3 8 : pval = 7.801144e-33 
+x= 10  y= 5  S= 3 9 : pval = 3.401864e-14 
+x= 10  y= 5  S= 4 8 : pval = 3.408979e-27 
+x= 10  y= 5  S= 4 9 : pval = 9.542599e-13 
+x= 10  y= 5  S= 8 9 : pval = 1.846843e-49 
+x= 10  y= 8  S= 1 3 : pval = 2.055985e-09 
+x= 10  y= 8  S= 1 4 : pval = 3.643298e-32 
+x= 10  y= 8  S= 1 5 : pval = 6.097545e-20 
+x= 10  y= 8  S= 1 9 : pval = 1.244654e-07 
+x= 10  y= 8  S= 3 4 : pval = 1.51412e-27 
+x= 10  y= 8  S= 3 5 : pval = 7.312574e-32 
+x= 10  y= 8  S= 3 9 : pval = 7.636917e-19 
+x= 10  y= 8  S= 4 5 : pval = 1.059818e-48 
+x= 10  y= 8  S= 4 9 : pval = 2.231695e-31 
+x= 10  y= 8  S= 5 9 : pval = 2.863987e-45 
+x= 10  y= 9  S= 1 3 : pval = 2.276035e-22 
+x= 10  y= 9  S= 1 4 : pval = 2.468829e-21 
+x= 10  y= 9  S= 1 5 : pval = 3.541822e-21 
+x= 10  y= 9  S= 1 8 : pval = 1.667299e-24 
+x= 10  y= 9  S= 3 4 : pval = 6.369928e-08 
+x= 10  y= 9  S= 3 5 : pval = 5.95108e-24 
+x= 10  y= 9  S= 3 8 : pval = 1.297471e-29 
+x= 10  y= 9  S= 4 5 : pval = 1.771346e-20 
+x= 10  y= 9  S= 4 8 : pval = 8.672202e-18 
+x= 10  y= 9  S= 5 8 : pval = 1.485416e-36 
+Order=3; remaining edges:26
+x= 10  y= 3  S= 4 5 8 : pval = 1.308696e-25 
+x= 10  y= 3  S= 4 5 9 : pval = 6.97414e-20 
+x= 10  y= 3  S= 4 8 9 : pval = 4.277846e-23 
+x= 10  y= 3  S= 5 8 9 : pval = 1.085116e-18 
+x= 10  y= 4  S= 3 5 8 : pval = 1.831095e-52 
+x= 10  y= 4  S= 3 5 9 : pval = 1.080782e-26 
+x= 10  y= 4  S= 3 8 9 : pval = 9.880046e-44 
+x= 10  y= 4  S= 5 8 9 : pval = 1.47866e-30 
+x= 10  y= 5  S= 3 4 8 : pval = 2.064717e-24 
+x= 10  y= 5  S= 3 4 9 : pval = 7.486739e-11 
+x= 10  y= 5  S= 3 8 9 : pval = 4.707113e-44 
+x= 10  y= 5  S= 4 8 9 : pval = 2.319181e-35 
+x= 10  y= 8  S= 3 4 5 : pval = 1.465747e-41 
+x= 10  y= 8  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 8  S= 3 5 9 : pval = 1.066083e-48 
+x= 10  y= 8  S= 4 5 9 : pval = 7.338012e-54 
+x= 10  y= 9  S= 3 4 5 : pval = 1.003839e-08 
+x= 10  y= 9  S= 3 4 8 : pval = 6.489156e-13 
+x= 10  y= 9  S= 3 5 8 : pval = 7.037315e-41 
+x= 10  y= 9  S= 4 5 8 : pval = 3.911813e-26 
+Order=4; remaining edges:26
+x= 10  y= 3  S= 4 5 8 9 : pval = 2.126332e-15 
+x= 10  y= 4  S= 3 5 8 9 : pval = 1.519984e-26 
+x= 10  y= 5  S= 3 4 8 9 : pval = 7.565439e-27 
+x= 10  y= 8  S= 3 4 5 9 : pval = 8.918234e-48 
+x= 10  y= 9  S= 3 4 5 8 : pval = 7.070168e-16 
+Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.9190132 
+x= 1  y= 3  S=  : pval = 0.2138421 
+x= 1  y= 4  S=  : pval = 0.0009276346 
+x= 1  y= 5  S=  : pval = 5.84821e-34 
+x= 1  y= 6  S=  : pval = 3.578562e-05 
+x= 1  y= 7  S=  : pval = 0.6709733 
+x= 1  y= 8  S=  : pval = 0.08971711 
+x= 1  y= 9  S=  : pval = 0.6592214 
+x= 1  y= 10  S=  : pval = 3.704787e-07 
+x= 2  y= 3  S=  : pval = 9.308221e-12 
+x= 2  y= 4  S=  : pval = 0.03390656 
+x= 2  y= 5  S=  : pval = 0.4330355 
+x= 2  y= 6  S=  : pval = 0.1653736 
+x= 2  y= 7  S=  : pval = 1.456512e-08 
+x= 2  y= 8  S=  : pval = 0.9993333 
+x= 2  y= 9  S=  : pval = 0.003098469 
+x= 2  y= 10  S=  : pval = 0.1917027 
+x= 3  y= 2  S=  : pval = 9.308221e-12 
+x= 3  y= 4  S=  : pval = 0.0181809 
+x= 3  y= 5  S=  : pval = 0.01425301 
+x= 3  y= 6  S=  : pval = 1.318576e-09 
+x= 3  y= 7  S=  : pval = 0.07526368 
+x= 3  y= 8  S=  : pval = 7.591646e-05 
+x= 3  y= 9  S=  : pval = 0.004596977 
+x= 3  y= 10  S=  : pval = 1.341997e-10 
+x= 4  y= 5  S=  : pval = 3.318095e-08 
+x= 4  y= 6  S=  : pval = 0.4338127 
+x= 4  y= 7  S=  : pval = 0.01910275 
+x= 4  y= 8  S=  : pval = 2.784033e-19 
+x= 4  y= 9  S=  : pval = 0.2916114 
+x= 4  y= 10  S=  : pval = 1.076568e-20 
+x= 5  y= 1  S=  : pval = 5.84821e-34 
+x= 5  y= 4  S=  : pval = 3.318095e-08 
+x= 5  y= 6  S=  : pval = 2.208037e-08 
+x= 5  y= 7  S=  : pval = 0.4834889 
+x= 5  y= 8  S=  : pval = 0.4352282 
+x= 5  y= 9  S=  : pval = 0.9337691 
+x= 5  y= 10  S=  : pval = 8.93257e-10 
+x= 6  y= 1  S=  : pval = 3.578562e-05 
+x= 6  y= 3  S=  : pval = 1.318576e-09 
+x= 6  y= 5  S=  : pval = 2.208037e-08 
+x= 6  y= 7  S=  : pval = 0.765002 
+x= 6  y= 8  S=  : pval = 0.09988014 
+x= 6  y= 9  S=  : pval = 0.6173472 
+x= 6  y= 10  S=  : pval = 0.381326 
+x= 7  y= 2  S=  : pval = 1.456512e-08 
+x= 7  y= 8  S=  : pval = 2.345368e-07 
+x= 7  y= 9  S=  : pval = 1.720956e-68 
+x= 7  y= 10  S=  : pval = 7.711053e-08 
+x= 8  y= 3  S=  : pval = 7.591646e-05 
+x= 8  y= 4  S=  : pval = 2.784033e-19 
+x= 8  y= 7  S=  : pval = 2.345368e-07 
+x= 8  y= 9  S=  : pval = 1.060742e-25 
+x= 8  y= 10  S=  : pval = 0.0001357752 
+x= 9  y= 7  S=  : pval = 1.720956e-68 
+x= 9  y= 8  S=  : pval = 1.060742e-25 
+x= 9  y= 10  S=  : pval = 5.547778e-20 
+x= 10  y= 1  S=  : pval = 3.704787e-07 
+x= 10  y= 3  S=  : pval = 1.341997e-10 
+x= 10  y= 4  S=  : pval = 1.076568e-20 
+x= 10  y= 5  S=  : pval = 8.93257e-10 
+x= 10  y= 7  S=  : pval = 7.711053e-08 
+x= 10  y= 8  S=  : pval = 0.0001357752 
+x= 10  y= 9  S=  : pval = 5.547778e-20 
+Order=1; remaining edges:38
+x= 1  y= 5  S= 6 : pval = 1.943907e-30 
+x= 1  y= 5  S= 10 : pval = 7.654505e-37 
+x= 1  y= 6  S= 5 : pval = 0.04233535 
+x= 1  y= 10  S= 5 : pval = 2.0885e-10 
+x= 1  y= 10  S= 6 : pval = 1.773323e-12 
+x= 2  y= 3  S= 7 : pval = 7.082137e-21 
+x= 2  y= 7  S= 3 : pval = 9.291147e-18 
+x= 3  y= 2  S= 6 : pval = 1.772441e-10 
+x= 3  y= 2  S= 8 : pval = 3.974006e-12 
+x= 3  y= 2  S= 10 : pval = 1.135332e-12 
+x= 3  y= 6  S= 2 : pval = 2.245293e-08 
+x= 3  y= 6  S= 8 : pval = 1.397298e-10 
+x= 3  y= 6  S= 10 : pval = 1.477027e-13 
+x= 3  y= 8  S= 2 : pval = 1.949296e-05 
+x= 3  y= 8  S= 6 : pval = 5.410498e-06 
+x= 3  y= 8  S= 10 : pval = 1.538311e-10 
+x= 3  y= 10  S= 2 : pval = 1.545918e-11 
+x= 3  y= 10  S= 6 : pval = 1.587635e-14 
+x= 3  y= 10  S= 8 : pval = 4.270299e-16 
+x= 4  y= 5  S= 8 : pval = 1.992759e-07 
+x= 4  y= 5  S= 10 : pval = 1.656698e-10 
+x= 4  y= 8  S= 5 : pval = 2.667738e-18 
+x= 4  y= 8  S= 10 : pval = 4.004206e-48 
+x= 4  y= 10  S= 5 : pval = 8.904164e-23 
+x= 4  y= 10  S= 8 : pval = 1.607599e-49 
+x= 5  y= 1  S= 4 : pval = 9.848197e-33 
+x= 5  y= 1  S= 6 : pval = 1.943907e-30 
+x= 5  y= 1  S= 10 : pval = 7.654505e-37 
+x= 5  y= 4  S= 1 : pval = 2.601747e-07 
+x= 5  y= 4  S= 6 : pval = 2.850275e-08 
+x= 5  y= 4  S= 10 : pval = 1.656698e-10 
+x= 5  y= 6  S= 1 : pval = 3.45894e-05 
+x= 5  y= 6  S= 4 : pval = 1.919756e-08 
+x= 5  y= 6  S= 10 : pval = 5.660331e-14 
+x= 5  y= 10  S= 1 : pval = 6.006414e-13 
+x= 5  y= 10  S= 4 : pval = 4.920771e-12 
+x= 5  y= 10  S= 6 : pval = 2.496159e-15 
+x= 6  y= 3  S= 1 : pval = 1.166613e-08 
+x= 6  y= 3  S= 5 : pval = 5.723622e-10 
+x= 6  y= 5  S= 1 : pval = 3.45894e-05 
+x= 6  y= 5  S= 3 : pval = 8.878448e-09 
+x= 7  y= 2  S= 8 : pval = 2.587688e-09 
+x= 7  y= 2  S= 9 : pval = 5.098395e-06 
+x= 7  y= 2  S= 10 : pval = 4.031403e-08 
+x= 7  y= 8  S= 2 : pval = 3.822041e-08 
+x= 7  y= 8  S= 9 : pval = 0.9276544 
+x= 7  y= 9  S= 2 : pval = 1.811956e-65 
+x= 7  y= 9  S= 8 : pval = 2.232117e-61 
+x= 7  y= 9  S= 10 : pval = 2.728139e-61 
+x= 7  y= 10  S= 2 : pval = 2.030127e-07 
+x= 7  y= 10  S= 8 : pval = 1.016912e-08 
+x= 7  y= 10  S= 9 : pval = 0.3865621 
+x= 8  y= 3  S= 4 : pval = 2.967088e-18 
+x= 8  y= 3  S= 7 : pval = 0.0009740094 
+x= 8  y= 4  S= 3 : pval = 2.362531e-32 
+x= 8  y= 4  S= 7 : pval = 1.585023e-20 
+x= 8  y= 4  S= 9 : pval = 8.527446e-22 
+x= 8  y= 4  S= 10 : pval = 4.004206e-48 
+x= 8  y= 9  S= 3 : pval = 1.585218e-23 
+x= 8  y= 9  S= 4 : pval = 3.781363e-28 
+x= 8  y= 9  S= 7 : pval = 8.291319e-19 
+x= 8  y= 9  S= 10 : pval = 4.655486e-28 
+x= 8  y= 10  S= 3 : pval = 2.662935e-10 
+x= 8  y= 10  S= 4 : pval = 8.705339e-34 
+x= 8  y= 10  S= 7 : pval = 1.307004e-05 
+x= 8  y= 10  S= 9 : pval = 2.28247e-07 
+x= 9  y= 7  S= 8 : pval = 2.232117e-61 
+x= 9  y= 7  S= 10 : pval = 2.728139e-61 
+x= 9  y= 8  S= 7 : pval = 8.291319e-19 
+x= 9  y= 8  S= 10 : pval = 4.655486e-28 
+x= 9  y= 10  S= 7 : pval = 4.641095e-13 
+x= 9  y= 10  S= 8 : pval = 2.132123e-22 
+x= 10  y= 1  S= 3 : pval = 3.07571e-07 
+x= 10  y= 1  S= 4 : pval = 4.579749e-05 
+x= 10  y= 1  S= 5 : pval = 2.0885e-10 
+x= 10  y= 1  S= 7 : pval = 1.04971e-06 
+x= 10  y= 1  S= 8 : pval = 2.604997e-07 
+x= 10  y= 1  S= 9 : pval = 1.241586e-09 
+x= 10  y= 3  S= 1 : pval = 1.389926e-10 
+x= 10  y= 3  S= 4 : pval = 1.106969e-34 
+x= 10  y= 3  S= 5 : pval = 4.336298e-12 
+x= 10  y= 3  S= 7 : pval = 1.680163e-10 
+x= 10  y= 3  S= 8 : pval = 4.270299e-16 
+x= 10  y= 3  S= 9 : pval = 5.036861e-12 
+x= 10  y= 4  S= 1 : pval = 2.38332e-18 
+x= 10  y= 4  S= 3 : pval = 1.274764e-44 
+x= 10  y= 4  S= 5 : pval = 8.904164e-23 
+x= 10  y= 4  S= 7 : pval = 1.164544e-18 
+x= 10  y= 4  S= 8 : pval = 1.607599e-49 
+x= 10  y= 4  S= 9 : pval = 1.15181e-20 
+x= 10  y= 5  S= 1 : pval = 6.006414e-13 
+x= 10  y= 5  S= 3 : pval = 2.759646e-11 
+x= 10  y= 5  S= 4 : pval = 4.920771e-12 
+x= 10  y= 5  S= 7 : pval = 5.314431e-09 
+x= 10  y= 5  S= 8 : pval = 1.976644e-35 
+x= 10  y= 5  S= 9 : pval = 1.350404e-11 
+x= 10  y= 8  S= 1 : pval = 7.341011e-05 
+x= 10  y= 8  S= 3 : pval = 2.662935e-10 
+x= 10  y= 8  S= 4 : pval = 8.705339e-34 
+x= 10  y= 8  S= 5 : pval = 1.936852e-30 
+x= 10  y= 8  S= 7 : pval = 1.307004e-05 
+x= 10  y= 8  S= 9 : pval = 2.28247e-07 
+x= 10  y= 9  S= 1 : pval = 3.268382e-22 
+x= 10  y= 9  S= 3 : pval = 2.934064e-21 
+x= 10  y= 9  S= 4 : pval = 5.826346e-20 
+x= 10  y= 9  S= 5 : pval = 1.236059e-21 
+x= 10  y= 9  S= 7 : pval = 4.641095e-13 
+x= 10  y= 9  S= 8 : pval = 2.132123e-22 
+Order=2; remaining edges:30
+x= 3  y= 2  S= 6 10 : pval = 2.495417e-10 
+x= 3  y= 6  S= 2 10 : pval = 3.497397e-11 
+x= 3  y= 10  S= 2 6 : pval = 3.024844e-14 
+x= 4  y= 5  S= 8 10 : pval = 0.8598188 
+x= 4  y= 8  S= 5 10 : pval = 1.10868e-36 
+x= 4  y= 10  S= 5 8 : pval = 4.132582e-41 
+x= 5  y= 1  S= 4 6 : pval = 3.509863e-29 
+x= 5  y= 1  S= 4 10 : pval = 3.860901e-42 
+x= 5  y= 1  S= 6 10 : pval = 6.453923e-28 
+x= 5  y= 6  S= 1 4 : pval = 1.435439e-05 
+x= 5  y= 6  S= 1 10 : pval = 1.067235e-05 
+x= 5  y= 6  S= 4 10 : pval = 1.659281e-15 
+x= 5  y= 10  S= 1 4 : pval = 1.018562e-21 
+x= 5  y= 10  S= 1 6 : pval = 4.036621e-13 
+x= 5  y= 10  S= 4 6 : pval = 5.162164e-19 
+x= 8  y= 4  S= 9 10 : pval = 1.198678e-45 
+x= 8  y= 9  S= 4 10 : pval = 8.036023e-26 
+x= 8  y= 10  S= 4 9 : pval = 2.231695e-31 
+x= 9  y= 7  S= 8 10 : pval = 1.405438e-52 
+x= 9  y= 8  S= 7 10 : pval = 9.328044e-20 
+x= 9  y= 10  S= 7 8 : pval = 3.802508e-14 
+x= 10  y= 1  S= 3 4 : pval = 0.0001585391 
+x= 10  y= 1  S= 3 5 : pval = 1.791951e-10 
+x= 10  y= 1  S= 3 8 : pval = 1.682367e-06 
+x= 10  y= 1  S= 3 9 : pval = 9.813385e-09 
+x= 10  y= 1  S= 4 5 : pval = 6.626446e-15 
+x= 10  y= 1  S= 4 8 : pval = 0.0002862474 
+x= 10  y= 1  S= 4 9 : pval = 6.706287e-07 
+x= 10  y= 1  S= 5 8 : pval = 0.4029362 
+x= 10  y= 3  S= 1 4 : pval = 2.515522e-33 
+x= 10  y= 3  S= 1 5 : pval = 4.259923e-12 
+x= 10  y= 3  S= 1 8 : pval = 6.013402e-15 
+x= 10  y= 3  S= 1 9 : pval = 4.95315e-11 
+x= 10  y= 3  S= 4 5 : pval = 2.367682e-32 
+x= 10  y= 3  S= 4 8 : pval = 1.984651e-28 
+x= 10  y= 3  S= 4 9 : pval = 3.202255e-22 
+x= 10  y= 3  S= 5 8 : pval = 7.392346e-14 
+x= 10  y= 3  S= 5 9 : pval = 1.304025e-14 
+x= 10  y= 3  S= 8 9 : pval = 2.073382e-23 
+x= 10  y= 4  S= 1 3 : pval = 5.272113e-41 
+x= 10  y= 4  S= 1 5 : pval = 4.984485e-27 
+x= 10  y= 4  S= 1 8 : pval = 1.655369e-45 
+x= 10  y= 4  S= 1 9 : pval = 1.494753e-17 
+x= 10  y= 4  S= 3 5 : pval = 6.39217e-43 
+x= 10  y= 4  S= 3 8 : pval = 1.580244e-61 
+x= 10  y= 4  S= 3 9 : pval = 9.996545e-31 
+x= 10  y= 4  S= 5 8 : pval = 4.132582e-41 
+x= 10  y= 4  S= 5 9 : pval = 1.34262e-21 
+x= 10  y= 4  S= 8 9 : pval = 1.580443e-44 
+x= 10  y= 5  S= 1 3 : pval = 2.168367e-14 
+x= 10  y= 5  S= 1 4 : pval = 1.018562e-21 
+x= 10  y= 5  S= 1 8 : pval = 6.879627e-28 
+x= 10  y= 5  S= 1 9 : pval = 3.840927e-12 
+x= 10  y= 5  S= 3 4 : pval = 3.504444e-10 
+x= 10  y= 5  S= 3 8 : pval = 7.801144e-33 
+x= 10  y= 5  S= 3 9 : pval = 3.401864e-14 
+x= 10  y= 5  S= 4 8 : pval = 3.408979e-27 
+x= 10  y= 5  S= 4 9 : pval = 9.542599e-13 
+x= 10  y= 5  S= 8 9 : pval = 1.846843e-49 
+x= 10  y= 8  S= 1 3 : pval = 2.055985e-09 
+x= 10  y= 8  S= 1 4 : pval = 3.643298e-32 
+x= 10  y= 8  S= 1 5 : pval = 6.097545e-20 
+x= 10  y= 8  S= 1 9 : pval = 1.244654e-07 
+x= 10  y= 8  S= 3 4 : pval = 1.51412e-27 
+x= 10  y= 8  S= 3 5 : pval = 7.312574e-32 
+x= 10  y= 8  S= 3 9 : pval = 7.636917e-19 
+x= 10  y= 8  S= 4 5 : pval = 1.059818e-48 
+x= 10  y= 8  S= 4 9 : pval = 2.231695e-31 
+x= 10  y= 8  S= 5 9 : pval = 2.863987e-45 
+x= 10  y= 9  S= 1 3 : pval = 2.276035e-22 
+x= 10  y= 9  S= 1 4 : pval = 2.468829e-21 
+x= 10  y= 9  S= 1 5 : pval = 3.541822e-21 
+x= 10  y= 9  S= 1 8 : pval = 1.667299e-24 
+x= 10  y= 9  S= 3 4 : pval = 6.369928e-08 
+x= 10  y= 9  S= 3 5 : pval = 5.95108e-24 
+x= 10  y= 9  S= 3 8 : pval = 1.297471e-29 
+x= 10  y= 9  S= 4 5 : pval = 1.771346e-20 
+x= 10  y= 9  S= 4 8 : pval = 8.672202e-18 
+x= 10  y= 9  S= 5 8 : pval = 1.485416e-36 
+Order=3; remaining edges:26
+x= 10  y= 3  S= 4 5 8 : pval = 1.308696e-25 
+x= 10  y= 3  S= 4 5 9 : pval = 6.97414e-20 
+x= 10  y= 3  S= 4 8 9 : pval = 4.277846e-23 
+x= 10  y= 3  S= 5 8 9 : pval = 1.085116e-18 
+x= 10  y= 4  S= 3 5 8 : pval = 1.831095e-52 
+x= 10  y= 4  S= 3 5 9 : pval = 1.080782e-26 
+x= 10  y= 4  S= 3 8 9 : pval = 9.880046e-44 
+x= 10  y= 4  S= 5 8 9 : pval = 1.47866e-30 
+x= 10  y= 5  S= 3 4 8 : pval = 2.064717e-24 
+x= 10  y= 5  S= 3 4 9 : pval = 7.486739e-11 
+x= 10  y= 5  S= 3 8 9 : pval = 4.707113e-44 
+x= 10  y= 5  S= 4 8 9 : pval = 2.319181e-35 
+x= 10  y= 8  S= 3 4 5 : pval = 1.465747e-41 
+x= 10  y= 8  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 8  S= 3 5 9 : pval = 1.066083e-48 
+x= 10  y= 8  S= 4 5 9 : pval = 7.338012e-54 
+x= 10  y= 9  S= 3 4 5 : pval = 1.003839e-08 
+x= 10  y= 9  S= 3 4 8 : pval = 6.489156e-13 
+x= 10  y= 9  S= 3 5 8 : pval = 7.037315e-41 
+x= 10  y= 9  S= 4 5 8 : pval = 3.911813e-26 
+Order=4; remaining edges:26
+x= 10  y= 3  S= 4 5 8 9 : pval = 2.126332e-15 
+x= 10  y= 4  S= 3 5 8 9 : pval = 1.519984e-26 
+x= 10  y= 5  S= 3 4 8 9 : pval = 7.565439e-27 
+x= 10  y= 8  S= 3 4 5 9 : pval = 8.918234e-48 
+x= 10  y= 9  S= 3 4 5 8 : pval = 7.070168e-16 
+Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.9190132 
+x= 1  y= 3  S=  : pval = 0.2138421 
+x= 1  y= 4  S=  : pval = 0.0009276346 
+x= 1  y= 5  S=  : pval = 5.84821e-34 
+x= 1  y= 6  S=  : pval = 3.578562e-05 
+x= 1  y= 7  S=  : pval = 0.6709733 
+x= 1  y= 8  S=  : pval = 0.08971711 
+x= 1  y= 9  S=  : pval = 0.6592214 
+x= 1  y= 10  S=  : pval = 3.704787e-07 
+x= 2  y= 3  S=  : pval = 9.308221e-12 
+x= 2  y= 4  S=  : pval = 0.03390656 
+x= 2  y= 5  S=  : pval = 0.4330355 
+x= 2  y= 6  S=  : pval = 0.1653736 
+x= 2  y= 7  S=  : pval = 1.456512e-08 
+x= 2  y= 8  S=  : pval = 0.9993333 
+x= 2  y= 9  S=  : pval = 0.003098469 
+x= 2  y= 10  S=  : pval = 0.1917027 
+x= 3  y= 2  S=  : pval = 9.308221e-12 
+x= 3  y= 4  S=  : pval = 0.0181809 
+x= 3  y= 5  S=  : pval = 0.01425301 
+x= 3  y= 6  S=  : pval = 1.318576e-09 
+x= 3  y= 7  S=  : pval = 0.07526368 
+x= 3  y= 8  S=  : pval = 7.591646e-05 
+x= 3  y= 9  S=  : pval = 0.004596977 
+x= 3  y= 10  S=  : pval = 1.341997e-10 
+x= 4  y= 5  S=  : pval = 3.318095e-08 
+x= 4  y= 6  S=  : pval = 0.4338127 
+x= 4  y= 7  S=  : pval = 0.01910275 
+x= 4  y= 8  S=  : pval = 2.784033e-19 
+x= 4  y= 9  S=  : pval = 0.2916114 
+x= 4  y= 10  S=  : pval = 1.076568e-20 
+x= 5  y= 1  S=  : pval = 5.84821e-34 
+x= 5  y= 4  S=  : pval = 3.318095e-08 
+x= 5  y= 6  S=  : pval = 2.208037e-08 
+x= 5  y= 7  S=  : pval = 0.4834889 
+x= 5  y= 8  S=  : pval = 0.4352282 
+x= 5  y= 9  S=  : pval = 0.9337691 
+x= 5  y= 10  S=  : pval = 8.93257e-10 
+x= 6  y= 1  S=  : pval = 3.578562e-05 
+x= 6  y= 3  S=  : pval = 1.318576e-09 
+x= 6  y= 5  S=  : pval = 2.208037e-08 
+x= 6  y= 7  S=  : pval = 0.765002 
+x= 6  y= 8  S=  : pval = 0.09988014 
+x= 6  y= 9  S=  : pval = 0.6173472 
+x= 6  y= 10  S=  : pval = 0.381326 
+x= 7  y= 2  S=  : pval = 1.456512e-08 
+x= 7  y= 8  S=  : pval = 2.345368e-07 
+x= 7  y= 9  S=  : pval = 1.720956e-68 
+x= 7  y= 10  S=  : pval = 7.711053e-08 
+x= 8  y= 3  S=  : pval = 7.591646e-05 
+x= 8  y= 4  S=  : pval = 2.784033e-19 
+x= 8  y= 7  S=  : pval = 2.345368e-07 
+x= 8  y= 9  S=  : pval = 1.060742e-25 
+x= 8  y= 10  S=  : pval = 0.0001357752 
+x= 9  y= 7  S=  : pval = 1.720956e-68 
+x= 9  y= 8  S=  : pval = 1.060742e-25 
+x= 9  y= 10  S=  : pval = 5.547778e-20 
+x= 10  y= 1  S=  : pval = 3.704787e-07 
+x= 10  y= 3  S=  : pval = 1.341997e-10 
+x= 10  y= 4  S=  : pval = 1.076568e-20 
+x= 10  y= 5  S=  : pval = 8.93257e-10 
+x= 10  y= 7  S=  : pval = 7.711053e-08 
+x= 10  y= 8  S=  : pval = 0.0001357752 
+x= 10  y= 9  S=  : pval = 5.547778e-20 
+Order=1; remaining edges:38
+x= 1  y= 5  S= 6 : pval = 1.943907e-30 
+x= 1  y= 5  S= 10 : pval = 7.654505e-37 
+x= 1  y= 6  S= 5 : pval = 0.04233535 
+x= 1  y= 10  S= 5 : pval = 2.0885e-10 
+x= 1  y= 10  S= 6 : pval = 1.773323e-12 
+x= 2  y= 3  S= 7 : pval = 7.082137e-21 
+x= 2  y= 7  S= 3 : pval = 9.291147e-18 
+x= 3  y= 2  S= 6 : pval = 1.772441e-10 
+x= 3  y= 2  S= 8 : pval = 3.974006e-12 
+x= 3  y= 2  S= 10 : pval = 1.135332e-12 
+x= 3  y= 6  S= 2 : pval = 2.245293e-08 
+x= 3  y= 6  S= 8 : pval = 1.397298e-10 
+x= 3  y= 6  S= 10 : pval = 1.477027e-13 
+x= 3  y= 8  S= 2 : pval = 1.949296e-05 
+x= 3  y= 8  S= 6 : pval = 5.410498e-06 
+x= 3  y= 8  S= 10 : pval = 1.538311e-10 
+x= 3  y= 10  S= 2 : pval = 1.545918e-11 
+x= 3  y= 10  S= 6 : pval = 1.587635e-14 
+x= 3  y= 10  S= 8 : pval = 4.270299e-16 
+x= 4  y= 5  S= 8 : pval = 1.992759e-07 
+x= 4  y= 5  S= 10 : pval = 1.656698e-10 
+x= 4  y= 8  S= 5 : pval = 2.667738e-18 
+x= 4  y= 8  S= 10 : pval = 4.004206e-48 
+x= 4  y= 10  S= 5 : pval = 8.904164e-23 
+x= 4  y= 10  S= 8 : pval = 1.607599e-49 
+x= 5  y= 1  S= 4 : pval = 9.848197e-33 
+x= 5  y= 1  S= 6 : pval = 1.943907e-30 
+x= 5  y= 1  S= 10 : pval = 7.654505e-37 
+x= 5  y= 4  S= 1 : pval = 2.601747e-07 
+x= 5  y= 4  S= 6 : pval = 2.850275e-08 
+x= 5  y= 4  S= 10 : pval = 1.656698e-10 
+x= 5  y= 6  S= 1 : pval = 3.45894e-05 
+x= 5  y= 6  S= 4 : pval = 1.919756e-08 
+x= 5  y= 6  S= 10 : pval = 5.660331e-14 
+x= 5  y= 10  S= 1 : pval = 6.006414e-13 
+x= 5  y= 10  S= 4 : pval = 4.920771e-12 
+x= 5  y= 10  S= 6 : pval = 2.496159e-15 
+x= 6  y= 3  S= 1 : pval = 1.166613e-08 
+x= 6  y= 3  S= 5 : pval = 5.723622e-10 
+x= 6  y= 5  S= 1 : pval = 3.45894e-05 
+x= 6  y= 5  S= 3 : pval = 8.878448e-09 
+x= 7  y= 2  S= 8 : pval = 2.587688e-09 
+x= 7  y= 2  S= 9 : pval = 5.098395e-06 
+x= 7  y= 2  S= 10 : pval = 4.031403e-08 
+x= 7  y= 8  S= 2 : pval = 3.822041e-08 
+x= 7  y= 8  S= 9 : pval = 0.9276544 
+x= 7  y= 9  S= 2 : pval = 1.811956e-65 
+x= 7  y= 9  S= 8 : pval = 2.232117e-61 
+x= 7  y= 9  S= 10 : pval = 2.728139e-61 
+x= 7  y= 10  S= 2 : pval = 2.030127e-07 
+x= 7  y= 10  S= 8 : pval = 1.016912e-08 
+x= 7  y= 10  S= 9 : pval = 0.3865621 
+x= 8  y= 3  S= 4 : pval = 2.967088e-18 
+x= 8  y= 3  S= 7 : pval = 0.0009740094 
+x= 8  y= 4  S= 3 : pval = 2.362531e-32 
+x= 8  y= 4  S= 7 : pval = 1.585023e-20 
+x= 8  y= 4  S= 9 : pval = 8.527446e-22 
+x= 8  y= 4  S= 10 : pval = 4.004206e-48 
+x= 8  y= 9  S= 3 : pval = 1.585218e-23 
+x= 8  y= 9  S= 4 : pval = 3.781363e-28 
+x= 8  y= 9  S= 7 : pval = 8.291319e-19 
+x= 8  y= 9  S= 10 : pval = 4.655486e-28 
+x= 8  y= 10  S= 3 : pval = 2.662935e-10 
+x= 8  y= 10  S= 4 : pval = 8.705339e-34 
+x= 8  y= 10  S= 7 : pval = 1.307004e-05 
+x= 8  y= 10  S= 9 : pval = 2.28247e-07 
+x= 9  y= 7  S= 8 : pval = 2.232117e-61 
+x= 9  y= 7  S= 10 : pval = 2.728139e-61 
+x= 9  y= 8  S= 7 : pval = 8.291319e-19 
+x= 9  y= 8  S= 10 : pval = 4.655486e-28 
+x= 9  y= 10  S= 7 : pval = 4.641095e-13 
+x= 9  y= 10  S= 8 : pval = 2.132123e-22 
+x= 10  y= 1  S= 3 : pval = 3.07571e-07 
+x= 10  y= 1  S= 4 : pval = 4.579749e-05 
+x= 10  y= 1  S= 5 : pval = 2.0885e-10 
+x= 10  y= 1  S= 7 : pval = 1.04971e-06 
+x= 10  y= 1  S= 8 : pval = 2.604997e-07 
+x= 10  y= 1  S= 9 : pval = 1.241586e-09 
+x= 10  y= 3  S= 1 : pval = 1.389926e-10 
+x= 10  y= 3  S= 4 : pval = 1.106969e-34 
+x= 10  y= 3  S= 5 : pval = 4.336298e-12 
+x= 10  y= 3  S= 7 : pval = 1.680163e-10 
+x= 10  y= 3  S= 8 : pval = 4.270299e-16 
+x= 10  y= 3  S= 9 : pval = 5.036861e-12 
+x= 10  y= 4  S= 1 : pval = 2.38332e-18 
+x= 10  y= 4  S= 3 : pval = 1.274764e-44 
+x= 10  y= 4  S= 5 : pval = 8.904164e-23 
+x= 10  y= 4  S= 7 : pval = 1.164544e-18 
+x= 10  y= 4  S= 8 : pval = 1.607599e-49 
+x= 10  y= 4  S= 9 : pval = 1.15181e-20 
+x= 10  y= 5  S= 1 : pval = 6.006414e-13 
+x= 10  y= 5  S= 3 : pval = 2.759646e-11 
+x= 10  y= 5  S= 4 : pval = 4.920771e-12 
+x= 10  y= 5  S= 7 : pval = 5.314431e-09 
+x= 10  y= 5  S= 8 : pval = 1.976644e-35 
+x= 10  y= 5  S= 9 : pval = 1.350404e-11 
+x= 10  y= 8  S= 1 : pval = 7.341011e-05 
+x= 10  y= 8  S= 3 : pval = 2.662935e-10 
+x= 10  y= 8  S= 4 : pval = 8.705339e-34 
+x= 10  y= 8  S= 5 : pval = 1.936852e-30 
+x= 10  y= 8  S= 7 : pval = 1.307004e-05 
+x= 10  y= 8  S= 9 : pval = 2.28247e-07 
+x= 10  y= 9  S= 1 : pval = 3.268382e-22 
+x= 10  y= 9  S= 3 : pval = 2.934064e-21 
+x= 10  y= 9  S= 4 : pval = 5.826346e-20 
+x= 10  y= 9  S= 5 : pval = 1.236059e-21 
+x= 10  y= 9  S= 7 : pval = 4.641095e-13 
+x= 10  y= 9  S= 8 : pval = 2.132123e-22 
+Order=2; remaining edges:30
+x= 3  y= 2  S= 6 10 : pval = 2.495417e-10 
+x= 3  y= 6  S= 2 10 : pval = 3.497397e-11 
+x= 3  y= 10  S= 2 6 : pval = 3.024844e-14 
+x= 4  y= 5  S= 8 10 : pval = 0.8598188 
+x= 4  y= 8  S= 5 10 : pval = 1.10868e-36 
+x= 4  y= 10  S= 5 8 : pval = 4.132582e-41 
+x= 5  y= 1  S= 4 6 : pval = 3.509863e-29 
+x= 5  y= 1  S= 4 10 : pval = 3.860901e-42 
+x= 5  y= 1  S= 6 10 : pval = 6.453923e-28 
+x= 5  y= 6  S= 1 4 : pval = 1.435439e-05 
+x= 5  y= 6  S= 1 10 : pval = 1.067235e-05 
+x= 5  y= 6  S= 4 10 : pval = 1.659281e-15 
+x= 5  y= 10  S= 1 4 : pval = 1.018562e-21 
+x= 5  y= 10  S= 1 6 : pval = 4.036621e-13 
+x= 5  y= 10  S= 4 6 : pval = 5.162164e-19 
+x= 8  y= 4  S= 9 10 : pval = 1.198678e-45 
+x= 8  y= 9  S= 4 10 : pval = 8.036023e-26 
+x= 8  y= 10  S= 4 9 : pval = 2.231695e-31 
+x= 9  y= 7  S= 8 10 : pval = 1.405438e-52 
+x= 9  y= 8  S= 7 10 : pval = 9.328044e-20 
+x= 9  y= 10  S= 7 8 : pval = 3.802508e-14 
+x= 10  y= 1  S= 3 4 : pval = 0.0001585391 
+x= 10  y= 1  S= 3 5 : pval = 1.791951e-10 
+x= 10  y= 1  S= 3 8 : pval = 1.682367e-06 
+x= 10  y= 1  S= 3 9 : pval = 9.813385e-09 
+x= 10  y= 1  S= 4 5 : pval = 6.626446e-15 
+x= 10  y= 1  S= 4 8 : pval = 0.0002862474 
+x= 10  y= 1  S= 4 9 : pval = 6.706287e-07 
+x= 10  y= 1  S= 5 8 : pval = 0.4029362 
+x= 10  y= 3  S= 1 4 : pval = 2.515522e-33 
+x= 10  y= 3  S= 1 5 : pval = 4.259923e-12 
+x= 10  y= 3  S= 1 8 : pval = 6.013402e-15 
+x= 10  y= 3  S= 1 9 : pval = 4.95315e-11 
+x= 10  y= 3  S= 4 5 : pval = 2.367682e-32 
+x= 10  y= 3  S= 4 8 : pval = 1.984651e-28 
+x= 10  y= 3  S= 4 9 : pval = 3.202255e-22 
+x= 10  y= 3  S= 5 8 : pval = 7.392346e-14 
+x= 10  y= 3  S= 5 9 : pval = 1.304025e-14 
+x= 10  y= 3  S= 8 9 : pval = 2.073382e-23 
+x= 10  y= 4  S= 1 3 : pval = 5.272113e-41 
+x= 10  y= 4  S= 1 5 : pval = 4.984485e-27 
+x= 10  y= 4  S= 1 8 : pval = 1.655369e-45 
+x= 10  y= 4  S= 1 9 : pval = 1.494753e-17 
+x= 10  y= 4  S= 3 5 : pval = 6.39217e-43 
+x= 10  y= 4  S= 3 8 : pval = 1.580244e-61 
+x= 10  y= 4  S= 3 9 : pval = 9.996545e-31 
+x= 10  y= 4  S= 5 8 : pval = 4.132582e-41 
+x= 10  y= 4  S= 5 9 : pval = 1.34262e-21 
+x= 10  y= 4  S= 8 9 : pval = 1.580443e-44 
+x= 10  y= 5  S= 1 3 : pval = 2.168367e-14 
+x= 10  y= 5  S= 1 4 : pval = 1.018562e-21 
+x= 10  y= 5  S= 1 8 : pval = 6.879627e-28 
+x= 10  y= 5  S= 1 9 : pval = 3.840927e-12 
+x= 10  y= 5  S= 3 4 : pval = 3.504444e-10 
+x= 10  y= 5  S= 3 8 : pval = 7.801144e-33 
+x= 10  y= 5  S= 3 9 : pval = 3.401864e-14 
+x= 10  y= 5  S= 4 8 : pval = 3.408979e-27 
+x= 10  y= 5  S= 4 9 : pval = 9.542599e-13 
+x= 10  y= 5  S= 8 9 : pval = 1.846843e-49 
+x= 10  y= 8  S= 1 3 : pval = 2.055985e-09 
+x= 10  y= 8  S= 1 4 : pval = 3.643298e-32 
+x= 10  y= 8  S= 1 5 : pval = 6.097545e-20 
+x= 10  y= 8  S= 1 9 : pval = 1.244654e-07 
+x= 10  y= 8  S= 3 4 : pval = 1.51412e-27 
+x= 10  y= 8  S= 3 5 : pval = 7.312574e-32 
+x= 10  y= 8  S= 3 9 : pval = 7.636917e-19 
+x= 10  y= 8  S= 4 5 : pval = 1.059818e-48 
+x= 10  y= 8  S= 4 9 : pval = 2.231695e-31 
+x= 10  y= 8  S= 5 9 : pval = 2.863987e-45 
+x= 10  y= 9  S= 1 3 : pval = 2.276035e-22 
+x= 10  y= 9  S= 1 4 : pval = 2.468829e-21 
+x= 10  y= 9  S= 1 5 : pval = 3.541822e-21 
+x= 10  y= 9  S= 1 8 : pval = 1.667299e-24 
+x= 10  y= 9  S= 3 4 : pval = 6.369928e-08 
+x= 10  y= 9  S= 3 5 : pval = 5.95108e-24 
+x= 10  y= 9  S= 3 8 : pval = 1.297471e-29 
+x= 10  y= 9  S= 4 5 : pval = 1.771346e-20 
+x= 10  y= 9  S= 4 8 : pval = 8.672202e-18 
+x= 10  y= 9  S= 5 8 : pval = 1.485416e-36 
+Order=3; remaining edges:26
+x= 10  y= 3  S= 4 5 8 : pval = 1.308696e-25 
+x= 10  y= 3  S= 4 5 9 : pval = 6.97414e-20 
+x= 10  y= 3  S= 4 8 9 : pval = 4.277846e-23 
+x= 10  y= 3  S= 5 8 9 : pval = 1.085116e-18 
+x= 10  y= 4  S= 3 5 8 : pval = 1.831095e-52 
+x= 10  y= 4  S= 3 5 9 : pval = 1.080782e-26 
+x= 10  y= 4  S= 3 8 9 : pval = 9.880046e-44 
+x= 10  y= 4  S= 5 8 9 : pval = 1.47866e-30 
+x= 10  y= 5  S= 3 4 8 : pval = 2.064717e-24 
+x= 10  y= 5  S= 3 4 9 : pval = 7.486739e-11 
+x= 10  y= 5  S= 3 8 9 : pval = 4.707113e-44 
+x= 10  y= 5  S= 4 8 9 : pval = 2.319181e-35 
+x= 10  y= 8  S= 3 4 5 : pval = 1.465747e-41 
+x= 10  y= 8  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 8  S= 3 5 9 : pval = 1.066083e-48 
+x= 10  y= 8  S= 4 5 9 : pval = 7.338012e-54 
+x= 10  y= 9  S= 3 4 5 : pval = 1.003839e-08 
+x= 10  y= 9  S= 3 4 8 : pval = 6.489156e-13 
+x= 10  y= 9  S= 3 5 8 : pval = 7.037315e-41 
+x= 10  y= 9  S= 4 5 8 : pval = 3.911813e-26 
+Order=4; remaining edges:26
+x= 10  y= 3  S= 4 5 8 9 : pval = 2.126332e-15 
+x= 10  y= 4  S= 3 5 8 9 : pval = 1.519984e-26 
+x= 10  y= 5  S= 3 4 8 9 : pval = 7.565439e-27 
+x= 10  y= 8  S= 3 4 5 9 : pval = 8.918234e-48 
+x= 10  y= 9  S= 3 4 5 8 : pval = 7.070168e-16 
+Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.9190132 
+x= 1  y= 3  S=  : pval = 0.2138421 
+x= 1  y= 4  S=  : pval = 0.0009276346 
+x= 1  y= 5  S=  : pval = 5.84821e-34 
+x= 1  y= 6  S=  : pval = 3.578562e-05 
+x= 1  y= 7  S=  : pval = 0.6709733 
+x= 1  y= 8  S=  : pval = 0.08971711 
+x= 1  y= 9  S=  : pval = 0.6592214 
+x= 1  y= 10  S=  : pval = 3.704787e-07 
+x= 2  y= 3  S=  : pval = 9.308221e-12 
+x= 2  y= 4  S=  : pval = 0.03390656 
+x= 2  y= 5  S=  : pval = 0.4330355 
+x= 2  y= 6  S=  : pval = 0.1653736 
+x= 2  y= 7  S=  : pval = 1.456512e-08 
+x= 2  y= 8  S=  : pval = 0.9993333 
+x= 2  y= 9  S=  : pval = 0.003098469 
+x= 2  y= 10  S=  : pval = 0.1917027 
+x= 3  y= 2  S=  : pval = 9.308221e-12 
+x= 3  y= 4  S=  : pval = 0.0181809 
+x= 3  y= 5  S=  : pval = 0.01425301 
+x= 3  y= 6  S=  : pval = 1.318576e-09 
+x= 3  y= 7  S=  : pval = 0.07526368 
+x= 3  y= 8  S=  : pval = 7.591646e-05 
+x= 3  y= 9  S=  : pval = 0.004596977 
+x= 3  y= 10  S=  : pval = 1.341997e-10 
+x= 4  y= 5  S=  : pval = 3.318095e-08 
+x= 4  y= 6  S=  : pval = 0.4338127 
+x= 4  y= 7  S=  : pval = 0.01910275 
+x= 4  y= 8  S=  : pval = 2.784033e-19 
+x= 4  y= 9  S=  : pval = 0.2916114 
+x= 4  y= 10  S=  : pval = 1.076568e-20 
+x= 5  y= 1  S=  : pval = 5.84821e-34 
+x= 5  y= 4  S=  : pval = 3.318095e-08 
+x= 5  y= 6  S=  : pval = 2.208037e-08 
+x= 5  y= 7  S=  : pval = 0.4834889 
+x= 5  y= 8  S=  : pval = 0.4352282 
+x= 5  y= 9  S=  : pval = 0.9337691 
+x= 5  y= 10  S=  : pval = 8.93257e-10 
+x= 6  y= 1  S=  : pval = 3.578562e-05 
+x= 6  y= 3  S=  : pval = 1.318576e-09 
+x= 6  y= 5  S=  : pval = 2.208037e-08 
+x= 6  y= 7  S=  : pval = 0.765002 
+x= 6  y= 8  S=  : pval = 0.09988014 
+x= 6  y= 9  S=  : pval = 0.6173472 
+x= 6  y= 10  S=  : pval = 0.381326 
+x= 7  y= 2  S=  : pval = 1.456512e-08 
+x= 7  y= 8  S=  : pval = 2.345368e-07 
+x= 7  y= 9  S=  : pval = 1.720956e-68 
+x= 7  y= 10  S=  : pval = 7.711053e-08 
+x= 8  y= 3  S=  : pval = 7.591646e-05 
+x= 8  y= 4  S=  : pval = 2.784033e-19 
+x= 8  y= 7  S=  : pval = 2.345368e-07 
+x= 8  y= 9  S=  : pval = 1.060742e-25 
+x= 8  y= 10  S=  : pval = 0.0001357752 
+x= 9  y= 7  S=  : pval = 1.720956e-68 
+x= 9  y= 8  S=  : pval = 1.060742e-25 
+x= 9  y= 10  S=  : pval = 5.547778e-20 
+x= 10  y= 1  S=  : pval = 3.704787e-07 
+x= 10  y= 3  S=  : pval = 1.341997e-10 
+x= 10  y= 4  S=  : pval = 1.076568e-20 
+x= 10  y= 5  S=  : pval = 8.93257e-10 
+x= 10  y= 7  S=  : pval = 7.711053e-08 
+x= 10  y= 8  S=  : pval = 0.0001357752 
+x= 10  y= 9  S=  : pval = 5.547778e-20 
+Order=1; remaining edges:38
+x= 1  y= 5  S= 6 : pval = 1.943907e-30 
+x= 1  y= 5  S= 10 : pval = 7.654505e-37 
+x= 1  y= 6  S= 5 : pval = 0.04233535 
+x= 1  y= 10  S= 5 : pval = 2.0885e-10 
+x= 1  y= 10  S= 6 : pval = 1.773323e-12 
+x= 2  y= 3  S= 7 : pval = 7.082137e-21 
+x= 2  y= 7  S= 3 : pval = 9.291147e-18 
+x= 3  y= 2  S= 6 : pval = 1.772441e-10 
+x= 3  y= 2  S= 8 : pval = 3.974006e-12 
+x= 3  y= 2  S= 10 : pval = 1.135332e-12 
+x= 3  y= 6  S= 2 : pval = 2.245293e-08 
+x= 3  y= 6  S= 8 : pval = 1.397298e-10 
+x= 3  y= 6  S= 10 : pval = 1.477027e-13 
+x= 3  y= 8  S= 2 : pval = 1.949296e-05 
+x= 3  y= 8  S= 6 : pval = 5.410498e-06 
+x= 3  y= 8  S= 10 : pval = 1.538311e-10 
+x= 3  y= 10  S= 2 : pval = 1.545918e-11 
+x= 3  y= 10  S= 6 : pval = 1.587635e-14 
+x= 3  y= 10  S= 8 : pval = 4.270299e-16 
+x= 4  y= 5  S= 8 : pval = 1.992759e-07 
+x= 4  y= 5  S= 10 : pval = 1.656698e-10 
+x= 4  y= 8  S= 5 : pval = 2.667738e-18 
+x= 4  y= 8  S= 10 : pval = 4.004206e-48 
+x= 4  y= 10  S= 5 : pval = 8.904164e-23 
+x= 4  y= 10  S= 8 : pval = 1.607599e-49 
+x= 5  y= 1  S= 4 : pval = 9.848197e-33 
+x= 5  y= 1  S= 6 : pval = 1.943907e-30 
+x= 5  y= 1  S= 10 : pval = 7.654505e-37 
+x= 5  y= 4  S= 1 : pval = 2.601747e-07 
+x= 5  y= 4  S= 6 : pval = 2.850275e-08 
+x= 5  y= 4  S= 10 : pval = 1.656698e-10 
+x= 5  y= 6  S= 1 : pval = 3.45894e-05 
+x= 5  y= 6  S= 4 : pval = 1.919756e-08 
+x= 5  y= 6  S= 10 : pval = 5.660331e-14 
+x= 5  y= 10  S= 1 : pval = 6.006414e-13 
+x= 5  y= 10  S= 4 : pval = 4.920771e-12 
+x= 5  y= 10  S= 6 : pval = 2.496159e-15 
+x= 6  y= 3  S= 1 : pval = 1.166613e-08 
+x= 6  y= 3  S= 5 : pval = 5.723622e-10 
+x= 6  y= 5  S= 1 : pval = 3.45894e-05 
+x= 6  y= 5  S= 3 : pval = 8.878448e-09 
+x= 7  y= 2  S= 8 : pval = 2.587688e-09 
+x= 7  y= 2  S= 9 : pval = 5.098395e-06 
+x= 7  y= 2  S= 10 : pval = 4.031403e-08 
+x= 7  y= 8  S= 2 : pval = 3.822041e-08 
+x= 7  y= 8  S= 9 : pval = 0.9276544 
+x= 7  y= 9  S= 2 : pval = 1.811956e-65 
+x= 7  y= 9  S= 8 : pval = 2.232117e-61 
+x= 7  y= 9  S= 10 : pval = 2.728139e-61 
+x= 7  y= 10  S= 2 : pval = 2.030127e-07 
+x= 7  y= 10  S= 8 : pval = 1.016912e-08 
+x= 7  y= 10  S= 9 : pval = 0.3865621 
+x= 8  y= 3  S= 4 : pval = 2.967088e-18 
+x= 8  y= 3  S= 7 : pval = 0.0009740094 
+x= 8  y= 4  S= 3 : pval = 2.362531e-32 
+x= 8  y= 4  S= 7 : pval = 1.585023e-20 
+x= 8  y= 4  S= 9 : pval = 8.527446e-22 
+x= 8  y= 4  S= 10 : pval = 4.004206e-48 
+x= 8  y= 9  S= 3 : pval = 1.585218e-23 
+x= 8  y= 9  S= 4 : pval = 3.781363e-28 
+x= 8  y= 9  S= 7 : pval = 8.291319e-19 
+x= 8  y= 9  S= 10 : pval = 4.655486e-28 
+x= 8  y= 10  S= 3 : pval = 2.662935e-10 
+x= 8  y= 10  S= 4 : pval = 8.705339e-34 
+x= 8  y= 10  S= 7 : pval = 1.307004e-05 
+x= 8  y= 10  S= 9 : pval = 2.28247e-07 
+x= 9  y= 7  S= 8 : pval = 2.232117e-61 
+x= 9  y= 7  S= 10 : pval = 2.728139e-61 
+x= 9  y= 8  S= 7 : pval = 8.291319e-19 
+x= 9  y= 8  S= 10 : pval = 4.655486e-28 
+x= 9  y= 10  S= 7 : pval = 4.641095e-13 
+x= 9  y= 10  S= 8 : pval = 2.132123e-22 
+x= 10  y= 1  S= 3 : pval = 3.07571e-07 
+x= 10  y= 1  S= 4 : pval = 4.579749e-05 
+x= 10  y= 1  S= 5 : pval = 2.0885e-10 
+x= 10  y= 1  S= 7 : pval = 1.04971e-06 
+x= 10  y= 1  S= 8 : pval = 2.604997e-07 
+x= 10  y= 1  S= 9 : pval = 1.241586e-09 
+x= 10  y= 3  S= 1 : pval = 1.389926e-10 
+x= 10  y= 3  S= 4 : pval = 1.106969e-34 
+x= 10  y= 3  S= 5 : pval = 4.336298e-12 
+x= 10  y= 3  S= 7 : pval = 1.680163e-10 
+x= 10  y= 3  S= 8 : pval = 4.270299e-16 
+x= 10  y= 3  S= 9 : pval = 5.036861e-12 
+x= 10  y= 4  S= 1 : pval = 2.38332e-18 
+x= 10  y= 4  S= 3 : pval = 1.274764e-44 
+x= 10  y= 4  S= 5 : pval = 8.904164e-23 
+x= 10  y= 4  S= 7 : pval = 1.164544e-18 
+x= 10  y= 4  S= 8 : pval = 1.607599e-49 
+x= 10  y= 4  S= 9 : pval = 1.15181e-20 
+x= 10  y= 5  S= 1 : pval = 6.006414e-13 
+x= 10  y= 5  S= 3 : pval = 2.759646e-11 
+x= 10  y= 5  S= 4 : pval = 4.920771e-12 
+x= 10  y= 5  S= 7 : pval = 5.314431e-09 
+x= 10  y= 5  S= 8 : pval = 1.976644e-35 
+x= 10  y= 5  S= 9 : pval = 1.350404e-11 
+x= 10  y= 8  S= 1 : pval = 7.341011e-05 
+x= 10  y= 8  S= 3 : pval = 2.662935e-10 
+x= 10  y= 8  S= 4 : pval = 8.705339e-34 
+x= 10  y= 8  S= 5 : pval = 1.936852e-30 
+x= 10  y= 8  S= 7 : pval = 1.307004e-05 
+x= 10  y= 8  S= 9 : pval = 2.28247e-07 
+x= 10  y= 9  S= 1 : pval = 3.268382e-22 
+x= 10  y= 9  S= 3 : pval = 2.934064e-21 
+x= 10  y= 9  S= 4 : pval = 5.826346e-20 
+x= 10  y= 9  S= 5 : pval = 1.236059e-21 
+x= 10  y= 9  S= 7 : pval = 4.641095e-13 
+x= 10  y= 9  S= 8 : pval = 2.132123e-22 
+Order=2; remaining edges:30
+x= 3  y= 2  S= 6 10 : pval = 2.495417e-10 
+x= 3  y= 6  S= 2 10 : pval = 3.497397e-11 
+x= 3  y= 10  S= 2 6 : pval = 3.024844e-14 
+x= 4  y= 5  S= 8 10 : pval = 0.8598188 
+x= 4  y= 8  S= 5 10 : pval = 1.10868e-36 
+x= 4  y= 10  S= 5 8 : pval = 4.132582e-41 
+x= 5  y= 1  S= 4 6 : pval = 3.509863e-29 
+x= 5  y= 1  S= 4 10 : pval = 3.860901e-42 
+x= 5  y= 1  S= 6 10 : pval = 6.453923e-28 
+x= 5  y= 6  S= 1 4 : pval = 1.435439e-05 
+x= 5  y= 6  S= 1 10 : pval = 1.067235e-05 
+x= 5  y= 6  S= 4 10 : pval = 1.659281e-15 
+x= 5  y= 10  S= 1 4 : pval = 1.018562e-21 
+x= 5  y= 10  S= 1 6 : pval = 4.036621e-13 
+x= 5  y= 10  S= 4 6 : pval = 5.162164e-19 
+x= 8  y= 4  S= 9 10 : pval = 1.198678e-45 
+x= 8  y= 9  S= 4 10 : pval = 8.036023e-26 
+x= 8  y= 10  S= 4 9 : pval = 2.231695e-31 
+x= 9  y= 7  S= 8 10 : pval = 1.405438e-52 
+x= 9  y= 8  S= 7 10 : pval = 9.328044e-20 
+x= 9  y= 10  S= 7 8 : pval = 3.802508e-14 
+x= 10  y= 1  S= 3 4 : pval = 0.0001585391 
+x= 10  y= 1  S= 3 5 : pval = 1.791951e-10 
+x= 10  y= 1  S= 3 8 : pval = 1.682367e-06 
+x= 10  y= 1  S= 3 9 : pval = 9.813385e-09 
+x= 10  y= 1  S= 4 5 : pval = 6.626446e-15 
+x= 10  y= 1  S= 4 8 : pval = 0.0002862474 
+x= 10  y= 3  S= 1 4 : pval = 2.515522e-33 
+x= 10  y= 3  S= 1 5 : pval = 4.259923e-12 
+x= 10  y= 3  S= 1 8 : pval = 6.013402e-15 
+x= 10  y= 3  S= 1 9 : pval = 4.95315e-11 
+x= 10  y= 3  S= 4 5 : pval = 2.367682e-32 
+x= 10  y= 3  S= 4 8 : pval = 1.984651e-28 
+x= 10  y= 3  S= 4 9 : pval = 3.202255e-22 
+x= 10  y= 3  S= 5 8 : pval = 7.392346e-14 
+x= 10  y= 3  S= 5 9 : pval = 1.304025e-14 
+x= 10  y= 3  S= 8 9 : pval = 2.073382e-23 
+x= 10  y= 4  S= 1 3 : pval = 5.272113e-41 
+x= 10  y= 4  S= 1 5 : pval = 4.984485e-27 
+x= 10  y= 4  S= 1 8 : pval = 1.655369e-45 
+x= 10  y= 4  S= 1 9 : pval = 1.494753e-17 
+x= 10  y= 4  S= 3 5 : pval = 6.39217e-43 
+x= 10  y= 4  S= 3 8 : pval = 1.580244e-61 
+x= 10  y= 4  S= 3 9 : pval = 9.996545e-31 
+x= 10  y= 4  S= 5 8 : pval = 4.132582e-41 
+x= 10  y= 4  S= 5 9 : pval = 1.34262e-21 
+x= 10  y= 4  S= 8 9 : pval = 1.580443e-44 
+x= 10  y= 5  S= 1 3 : pval = 2.168367e-14 
+x= 10  y= 5  S= 1 4 : pval = 1.018562e-21 
+x= 10  y= 5  S= 1 8 : pval = 6.879627e-28 
+x= 10  y= 5  S= 1 9 : pval = 3.840927e-12 
+x= 10  y= 5  S= 3 4 : pval = 3.504444e-10 
+x= 10  y= 5  S= 3 8 : pval = 7.801144e-33 
+x= 10  y= 5  S= 3 9 : pval = 3.401864e-14 
+x= 10  y= 5  S= 4 8 : pval = 3.408979e-27 
+x= 10  y= 5  S= 4 9 : pval = 9.542599e-13 
+x= 10  y= 5  S= 8 9 : pval = 1.846843e-49 
+x= 10  y= 8  S= 1 3 : pval = 2.055985e-09 
+x= 10  y= 8  S= 1 4 : pval = 3.643298e-32 
+x= 10  y= 8  S= 1 5 : pval = 6.097545e-20 
+x= 10  y= 8  S= 1 9 : pval = 1.244654e-07 
+x= 10  y= 8  S= 3 4 : pval = 1.51412e-27 
+x= 10  y= 8  S= 3 5 : pval = 7.312574e-32 
+x= 10  y= 8  S= 3 9 : pval = 7.636917e-19 
+x= 10  y= 8  S= 4 5 : pval = 1.059818e-48 
+x= 10  y= 8  S= 4 9 : pval = 2.231695e-31 
+x= 10  y= 8  S= 5 9 : pval = 2.863987e-45 
+x= 10  y= 9  S= 1 3 : pval = 2.276035e-22 
+x= 10  y= 9  S= 1 4 : pval = 2.468829e-21 
+x= 10  y= 9  S= 1 5 : pval = 3.541822e-21 
+x= 10  y= 9  S= 1 8 : pval = 1.667299e-24 
+x= 10  y= 9  S= 3 4 : pval = 6.369928e-08 
+x= 10  y= 9  S= 3 5 : pval = 5.95108e-24 
+x= 10  y= 9  S= 3 8 : pval = 1.297471e-29 
+x= 10  y= 9  S= 4 5 : pval = 1.771346e-20 
+x= 10  y= 9  S= 4 8 : pval = 8.672202e-18 
+x= 10  y= 9  S= 5 8 : pval = 1.485416e-36 
+Order=3; remaining edges:26
+x= 10  y= 3  S= 4 5 8 : pval = 1.308696e-25 
+x= 10  y= 3  S= 4 5 9 : pval = 6.97414e-20 
+x= 10  y= 3  S= 4 8 9 : pval = 4.277846e-23 
+x= 10  y= 3  S= 5 8 9 : pval = 1.085116e-18 
+x= 10  y= 4  S= 3 5 8 : pval = 1.831095e-52 
+x= 10  y= 4  S= 3 5 9 : pval = 1.080782e-26 
+x= 10  y= 4  S= 3 8 9 : pval = 9.880046e-44 
+x= 10  y= 4  S= 5 8 9 : pval = 1.47866e-30 
+x= 10  y= 5  S= 3 4 8 : pval = 2.064717e-24 
+x= 10  y= 5  S= 3 4 9 : pval = 7.486739e-11 
+x= 10  y= 5  S= 3 8 9 : pval = 4.707113e-44 
+x= 10  y= 5  S= 4 8 9 : pval = 2.319181e-35 
+x= 10  y= 8  S= 3 4 5 : pval = 1.465747e-41 
+x= 10  y= 8  S= 3 4 9 : pval = 5.137571e-32 
+x= 10  y= 8  S= 3 5 9 : pval = 1.066083e-48 
+x= 10  y= 8  S= 4 5 9 : pval = 7.338012e-54 
+x= 10  y= 9  S= 3 4 5 : pval = 1.003839e-08 
+x= 10  y= 9  S= 3 4 8 : pval = 6.489156e-13 
+x= 10  y= 9  S= 3 5 8 : pval = 7.037315e-41 
+x= 10  y= 9  S= 4 5 8 : pval = 3.911813e-26 
+Order=4; remaining edges:26
+x= 10  y= 3  S= 4 5 8 9 : pval = 2.126332e-15 
+x= 10  y= 4  S= 3 5 8 9 : pval = 1.519984e-26 
+x= 10  y= 5  S= 3 4 8 9 : pval = 7.565439e-27 
+x= 10  y= 8  S= 3 4 5 9 : pval = 8.918234e-48 
+x= 10  y= 9  S= 3 4 5 8 : pval = 7.070168e-16 
+Order=0; remaining edges:90
+x= 1  y= 2  S=  : pval = 0.9190132 
+x= 1  y= 3  S=  : pval = 0.2138421 
+x= 1  y= 4  S=  : pval = 0.0009276346 
+x= 1  y= 5  S=  : pval = 5.84821e-34 
+x= 1  y= 6  S=  : pval = 3.578562e-05 
+x= 1  y= 7  S=  : pval = 0.6709733 
+x= 1  y= 8  S=  : pval = 0.08971711 
+x= 1  y= 9  S=  : pval = 0.6592214 
+x= 1  y= 10  S=  : pval = 3.704787e-07 
+x= 2  y= 3  S=  : pval = 9.308221e-12 
+x= 2  y= 4  S=  : pval = 0.03390656 
+x= 2  y= 5  S=  : pval = 0.4330355 
+x= 2  y= 6  S=  : pval = 0.1653736 
+x= 2  y= 7  S=  : pval = 1.456512e-08 
+x= 2  y= 8  S=  : pval = 0.9993333 
+x= 2  y= 9  S=  : pval = 0.003098469 
+x= 2  y= 10  S=  : pval = 0.1917027 
+x= 3  y= 2  S=  : pval = 9.308221e-12 
+x= 3  y= 4  S=  : pval = 0.0181809 
+x= 3  y= 5  S=  : pval = 0.01425301 
+x= 3  y= 6  S=  : pval = 1.318576e-09 
+x= 3  y= 7  S=  : pval = 0.07526368 
+x= 3  y= 8  S=  : pval = 7.591646e-05 
+x= 3  y= 9  S=  : pval = 0.004596977 
+x= 3  y= 10  S=  : pval = 1.341997e-10 
+x= 4  y= 5  S=  : pval = 3.318095e-08 
+x= 4  y= 6  S=  : pval = 0.4338127 
+x= 4  y= 7  S=  : pval = 0.01910275 
+x= 4  y= 8  S=  : pval = 2.784033e-19 
+x= 4  y= 9  S=  : pval = 0.2916114 
+x= 4  y= 10  S=  : pval = 1.076568e-20 
+x= 5  y= 1  S=  : pval = 5.84821e-34 
+x= 5  y= 4  S=  : pval = 3.318095e-08 
+x= 5  y= 6  S=  : pval = 2.208037e-08 
+x= 5  y= 7  S=  : pval = 0.4834889 
+x= 5  y= 8  S=  : pval = 0.4352282 
+x= 5  y= 9  S=  : pval = 0.9337691 
+x= 5  y= 10  S=  : pval = 8.93257e-10 
+x= 6  y= 1  S=  : pval = 3.578562e-05 
+x= 6  y= 3  S=  : pval = 1.318576e-09 
+x= 6  y= 5  S=  : pval = 2.208037e-08 
+x= 6  y= 7  S=  : pval = 0.765002 
+x= 6  y= 8  S=  : pval = 0.09988014 
+x= 6  y= 9  S=  : pval = 0.6173472 
+x= 6  y= 10  S=  : pval = 0.381326 
+x= 7  y= 2  S=  : pval = 1.456512e-08 
+x= 7  y= 8  S=  : pval = 2.345368e-07 
+x= 7  y= 9  S=  : pval = 1.720956e-68 
+x= 7  y= 10  S=  : pval = 7.711053e-08 
+x= 8  y= 3  S=  : pval = 7.591646e-05 
+x= 8  y= 4  S=  : pval = 2.784033e-19 
+x= 8  y= 7  S=  : pval = 2.345368e-07 
+x= 8  y= 9  S=  : pval = 1.060742e-25 
+x= 8  y= 10  S=  : pval = 0.0001357752 
+x= 9  y= 7  S=  : pval = 1.720956e-68 
+x= 9  y= 8  S=  : pval = 1.060742e-25 
+x= 9  y= 10  S=  : pval = 5.547778e-20 
+x= 10  y= 1  S=  : pval = 3.704787e-07 
+x= 10  y= 3  S=  : pval = 1.341997e-10 
+x= 10  y= 4  S=  : pval = 1.076568e-20 
+x= 10  y= 5  S=  : pval = 8.93257e-10 
+x= 10  y= 7  S=  : pval = 7.711053e-08 
+x= 10  y= 9  S=  : pval = 5.547778e-20 
+Order=1; remaining edges:36
+x= 1  y= 5  S= 6 : pval = 1.943907e-30 
+x= 1  y= 5  S= 10 : pval = 7.654505e-37 
+x= 1  y= 6  S= 5 : pval = 0.04233535 
+x= 1  y= 10  S= 5 : pval = 2.0885e-10 
+x= 1  y= 10  S= 6 : pval = 1.773323e-12 
+x= 2  y= 3  S= 7 : pval = 7.082137e-21 
+x= 2  y= 7  S= 3 : pval = 9.291147e-18 
+x= 3  y= 2  S= 6 : pval = 1.772441e-10 
+x= 3  y= 2  S= 8 : pval = 3.974006e-12 
+x= 3  y= 2  S= 10 : pval = 1.135332e-12 
+x= 3  y= 6  S= 2 : pval = 2.245293e-08 
+x= 3  y= 6  S= 8 : pval = 1.397298e-10 
+x= 3  y= 6  S= 10 : pval = 1.477027e-13 
+x= 3  y= 8  S= 2 : pval = 1.949296e-05 
+x= 3  y= 8  S= 6 : pval = 5.410498e-06 
+x= 3  y= 8  S= 10 : pval = 1.538311e-10 
+x= 3  y= 10  S= 2 : pval = 1.545918e-11 
+x= 3  y= 10  S= 6 : pval = 1.587635e-14 
+x= 3  y= 10  S= 8 : pval = 4.270299e-16 
+x= 4  y= 5  S= 8 : pval = 1.992759e-07 
+x= 4  y= 5  S= 10 : pval = 1.656698e-10 
+x= 4  y= 8  S= 5 : pval = 2.667738e-18 
+x= 4  y= 8  S= 10 : pval = 4.004206e-48 
+x= 4  y= 10  S= 5 : pval = 8.904164e-23 
+x= 4  y= 10  S= 8 : pval = 1.607599e-49 
+x= 5  y= 1  S= 4 : pval = 9.848197e-33 
+x= 5  y= 1  S= 6 : pval = 1.943907e-30 
+x= 5  y= 1  S= 10 : pval = 7.654505e-37 
+x= 5 search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi75_pcskel_ptree_order_ess1_epf2_N1000_r01.rds
+Runtime
+Time difference of 17.54214 secs
+Error in unserialize(node$con) : error reading from connection
+Calls: local ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+In addition: Warning messages:
+1: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=300 is too small (n < n.min = 360 ) for G^2 test (=> treated as independence)
+2: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=300 is too small (n < n.min = 360 ) for G^2 test (=> treated as independence)
+3: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=300 is too small (n < n.min = 360 ) for G^2 test (=> treated as independence)
+4: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=300 is too small (n < n.min = 360 ) for G^2 test (=> treated as independence)
+Execution halted
+ S= 3 : pval = 1.585218e-23 
+x= 8  y= 9  S= 4 : pval = 3.781363e-28 
+x= 8  y= 9  S= 7 : pval = 8.291319e-19 
+x= 9  y= 7  S= 8 : pval = 2.232117e-61 
+x= 9  y= 7  S= 10 : pval = 2.728139e-61 
+x= 9  y= 8  S= 7 : pval = 8.291319e-19 
+x= 9  y= 8  S= 10 : pval = 4.655486e-28 
+x= 9  y= 10  S= 7 : pval = 4.641095e-13 
+x= 9  y= 10  S= 8 : pval = 2.132123e-22 
+x= 10  y= 1  S= 3 : pval = 3.07571e-07 
+x= 10  y= 1  S= 4 : pval = 4.579749e-05 
+x= 10  y= 1  S= 5 : pval = 2.0885e-10 
+x= 10  y= 1  S= 7 : pval = 1.04971e-06 
+x= 10  y= 1  S= 9 : pval = 1.241586e-09 
+x= 10  y= 3  S= 1 : pval = 1.389926e-10 
+x= 10  y= 3  S= 4 : pval = 1.106969e-34 
+x= 10  y= 3  S= 5 : pval = 4.336298e-12 
+x= 10  y= 3  S= 7 : pval = 1.680163e-10 
+x= 10  y= 3  S= 9 : pval = 5.036861e-12 
+x= 10  y= 4  S= 1 : pval = 2.38332e-18 
+x= 10  y= 4  S= 3 : pval = 1.274764e-44 
+x= 10  y= 4  S= 5 : pval = 8.904164e-23 
+x= 10  y= 4  S= 7 : pval = 1.164544e-18 
+x= 10  y= 4  S= 9 : pval = 1.15181e-20 
+x= 10  y= 5  S= 1 : pval = 6.006414e-13 
+x= 10  y= 5  S= 3 : pval = 2.759646e-11 
+x= 10  y= 5  S= 4 : pval = 4.920771e-12 
+x= 10  y= 5  S= 7 : pval = 5.314431e-09 
+x= 10  y= 5  S= 9 : pval = 1.350404e-11 
+x= 10  y= 9  S= 1 : pval = 3.268382e-22 
+x= 10  y= 9  S= 3 : pval = 2.934064e-21 
+x= 10  y= 9  S= 4 : pval = 5.826346e-20 
+x= 10  y= 9  S= 5 : pval = 1.236059e-21 
+x= 10  y= 9  S= 7 : pval = 4.641095e-13 
+Order=2; remaining edges:28
+x= 3  y= 2  S= 6 10 : pval = 2.495417e-10 
+x= 3  y= 6  S= 2 10 : pval = 3.497397e-11 
+x= 3  y= 10  S= 2 6 : pval = 3.024844e-14 
+x= 4  y= 5  S= 8 10 : pval = 0.8598188 
+x= 4  y= 8  S= 5 10 : pval = 1.10868e-36 
+x= 4  y= 10  S= 5 8 : pval = 4.132582e-41 
+x= 5  y= 1  S= 4 6 : pval = 3.509863e-29 
+x= 5  y= 1  S= 4 10 : pval = 3.860901e-42 
+x= 5  y= 1  S= 6 10 : pval = 6.453923e-28 
+x= 5  y= 6  S= 1 4 : pval = 1.435439e-05 
+x= 5  y= 6  S= 1 10 : pval = 1.067235e-05 
+x= 5  y= 6  S= 4 10 : pval = 1.659281e-15 
+x= 5  y= 10  S= 1 4 : pval = 1.018562e-21 
+x= 5  y= 10  S= 1 6 : pval = 4.036621e-13 
+x= 5  y= 10  S= 4 6 : pval = 5.162164e-19 
+x= 9  y= 7  S= 8 10 : pval = 1.405438e-52 
+x= 9  y= 8  S= 7 10 : pval = 9.328044e-20 
+x= 9  y= 10  S= 7 8 : pval = 3.802508e-14 
+x= 10  y= 1  S= 3 4 : pval = 0.0001585391 
+x= 10  y= 3  S= 1 4 : pval = 2.515522e-33 
+x= 10  y= 3  S= 1 5 : pval = 4.259923e-12 
+x= 10  y= 3  S= 1 9 : pval = 4.95315e-11 
+x= 10  y= 3  S= 4 5 : pval = 2.367682e-32 
+x= 10  y= 3  S= 4 9 : pval = 3.202255e-22 
+x= 10  y= 3  S= 5 9 : pval = 1.304025e-14 
+x= 10  y= 4  S= 1 3 : pval = 5.272113e-41 
+x= 10  y= 4  S= 1 5 : pval = 4.984485e-27 
+x= 10  y= 4  S= 1 9 : pval = 1.494753e-17 
+x= 10  y= 4  S= 3 5 : pval = 6.39217e-43 
+x= 10  y= 4  S= 3 9 : pval = 9.996545e-31 
+x= 10  y= 4  S= 5 9 : pval = 1.34262e-21 
+x= 10  y= 5  S= 1 3 : pval = 2.168367e-14 
+x= 10  y= 5  S= 1 4 : pval = 1.018562e-21 
+x= 10  y= 5  S= 1 9 : pval = 3.840927e-12 
+x= 10  y= 5  S= 3 4 : pval = 3.504444e-10 
+x= 10  y= 5  S= 3 9 : pval = 3.401864e-14 
+x= 10  y= 5  S= 4 9 : pval = 9.542599e-13 
+x= 10  y= 9  S= 1 3 : pval = 2.276035e-22 
+x= 10  y= 9  S= 1 4 : pval = 2.468829e-21 
+x= 10  y= 9  S= 1 5 : pval = 3.541822e-21 
+x= 10  y= 9  S= 3 4 : pval = 6.369928e-08 
+x= 10  y= 9  S= 3 5 : pval = 5.95108e-24 
+x= 10  y= 9  S= 4 5 : pval = 1.771346e-20 
+Order=3; remaining edges:24
+x= 10  y= 3  S= 4 5 9 : pval = 6.97414e-20 
+x= 10  y= 4  S= 3 5 9 : pval = 1.080782e-26 
+x= 10  y= 5  S= 3 4 9 : pval = 7.486739e-11 
+x= 10  y= 9  S= 3 4 5 : pval = 1.003839e-08 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi75_pcskel_none_order_ess1_epf8_N1000_r01.rds
+Runtime
+Time difference of 11.56325 secs
+Error in unserialize(node$con) : error reading from connection
+Calls: local ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+In addition: Warning messages:
+1: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=300 is too small (n < n.min = 360 ) for G^2 test (=> treated as independence)
+2: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=300 is too small (n < n.min = 360 ) for G^2 test (=> treated as independence)
+3: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=300 is too small (n < n.min = 360 ) for G^2 test (=> treated as independence)
+4: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=300 is too small (n < n.min = 360 ) for G^2 test (=> treated as independence)
+Execution halted
+ize is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi75_pcskel_none_order_ess1_epf2_N1000_r01.rds
+Runtime
+Time difference of 12.29183 secs
+Error in unserialize(node$con) : error reading from connection
+Calls: local ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+In addition: Warning messages:
+1: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=1000 is too small (n < n.min = 1080 ) for G^2 test (=> treated as independence)
+2: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=1000 is too small (n < n.min = 1080 ) for G^2 test (=> treated as independence)
+3: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=1000 is too small (n < n.min = 1080 ) for G^2 test (=> treated as independence)
+4: In gSquareDis(x = x, y = y, S = S, dm = dm, nlev = nlev, adaptDF = adaptDF,  :
+  n=1000 is too small (n < n.min = 1080 ) for G^2 test (=> treated as independence)
+Execution halted

@@ -38,7 +38,7 @@ simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 # specify simulation params ----
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) == 0) {
-  nClusters <- 6
+  nClusters <- 4
   bnnames <- c("asia", "sachs", "child")
 } else {
   nClusters <- as.numeric(args[1])
@@ -49,19 +49,20 @@ if (length(args) == 0) {
 
 # additional params
 par <- list(init = c("pcskel"),
-            local_struct = c("none", "ptree", "tree", "pcart"),
+            local_struct = c("none", "ptree"),
             sample = "order",
             ess = 1,
-            edgepf = c(2, 4, 16),
+            edgepf = c(2, 8, 16),
             hardlimit = 4,
-            N = c(300, 1000), # 3000, 10000),
-            n = c(8),
-            k = 2,
+            N = c(300, 1000, 3000, 10000),
+            n = c(10),
+            k = c(2, 3),
             complexity = c(.25, .75),
             r = 1:10)
 
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
 indx <- with(pargrid, local_struct == "none" & (edgepf > 2))
+indx <- indx | with(pargrid, local_struct == "pcart" & (k > 2))
 pargrid <- pargrid[!indx, ]
 
 
@@ -108,29 +109,29 @@ sim_rand_partitions <- function(dag, nlev, splitprob, depth_ratio) {
 
 sim_rand_partition <- function(nlev, splitprob, nextsplitprob = function(x) x, maxdepth = length(nlev)) {
   n <- length(nlev)
-  
-  
+
+
   # define routine for growing a tree
   grow_tree <- function(splitprob, vars, subset) {
     if (length(vars) <= (n-maxdepth) || runif(1) > splitprob) {
       return(list(subset = subset))
     }
-    
+
     # sample a split variable
     pos <- sample.int(length(vars), 1)
     x <- vars[pos]
-    
+
     # split the current subset by values of x
     xval <- (subset%/%stride[x])%%nlev[x]
     new_subsets <- unname(split(subset, xval))
-    
+
     # grow a new tree for each value of the split variable
     list(var = x,
          branches = lapply(new_subsets,
                            function(y) grow_tree(nextsplitprob(splitprob), vars[-pos], y)))
   }
-  
-  
+
+
   # define routine for extracting subsets in each leaf
   unlist_tree <- function(tree) {
     if (is.null(tree$subset)) {
@@ -139,7 +140,7 @@ sim_rand_partition <- function(nlev, splitprob, nextsplitprob = function(x) x, m
       unname(tree["subset"])
     }
   }
-  
+
   stride <- c(1, cumprod(nlev[-length(nlev)]))
   vars   <- seq_along(nlev)
   subset <- seq_len(prod(nlev))-1
@@ -155,7 +156,7 @@ sim_run <- function(par, verbose = FALSE) {
   r <- par$r
 
   nlev <- rep(k, n)
-  
+
   # draw bn and compute ground truth
   set.seed(r)
   dag <- bida:::randDAG(n, d = 4)
@@ -171,9 +172,9 @@ sim_run <- function(par, verbose = FALSE) {
 
   # define scorepars
   lookup <- rlang::new_environment()
-  scorepar  <- bida:::define_scoreparameters(data, 
-                                             scoretype = "bdecat", 
-                                             par = c(par, nlev = list(nlev)), 
+  scorepar  <- bida:::define_scoreparameters(data,
+                                             scoretype = "bdecat",
+                                             par = c(par, nlev = list(nlev)),
                                              lookup = lookup)
 
   # run MCMC ----
@@ -211,21 +212,33 @@ sim_run <- function(par, verbose = FALSE) {
 
   ## compute mse of point-estimates (mean) of intervention distribution
   set.seed(r)
-  mse <- matrix(NA, n, n)
+  mse_known <- mse_unknown <- matrix(NA, n, n)
   for (x in seq_len(n)) {
     for (y in seq_len(n)[-x]) {
-      type <- ifelse(par$local_struct == "none", "cat", local_par$struct)
+      type <- ifelse(par$local_struct == "none", "cat", par$local_struct)
       pair <- bida::bida_pair(type, data, x, y,
                                sets = ps$sets[[x]],
                                support = ps$support[[x]],
                                hyperpar = c(list(nlev = nlev), par),
-                               lookup = scorepar$lookup)
+                               lookup = NULL)
 
-      mse[x, y] <- mean( (pdo[[x, y]]-bida::posterior_mean(pair))**2 )
+      mse_unknown[x, y] <- mean( (pdo[[x, y]]-bida::posterior_mean(pair))**2 )
+
+      # estimate intervention prob given true parents
+      pa   <- which(dag[x, ] == 1) # true parents
+      pair <- bida::bida_pair(type, data, x, y,
+                              sets = matrix(pa, nrow = 1),
+                              support = 1,
+                              hyperpar = c(list(nlev = nlev), par),
+                              lookup = NULL)
+      mse_known[x, y] <- mean( (pdo[[x, y]]-bida::posterior_mean(pair))**2 )
+
     }
   }
 
-  mse <- sum(mse[!dindx])/(n*(n-1))
+  mse <- colSums(cbind(unknown = mse_unknown[!dindx], known = mse_known[!dindx]))/(n*(n-1))
+
+  # repeat with known DAG
 
   list(res = c(avgppv, mse = mse),
        par = par,
@@ -235,7 +248,8 @@ sim_run <- function(par, verbose = FALSE) {
 # test ----
 if (FALSE) {
   # test
-  i <- 2
+  i <- 3
+  pargrid[3, ]
   filename <- params_to_filename(pargrid[i, ])
   simulate_and_write_to_file(simId,
                              outdir,
