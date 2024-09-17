@@ -45,7 +45,7 @@
 #' table(get_parts(bdeu_tree$partition), get_parts(bdeu_lookup$partition))
 #'
 backdoor_params <- function(type, data, x, y, z, hyperpar, lookup) {
-  if (type %in% c("cat", "ldag", "tree")) {
+  if (type %in% c("cat", "ldag", "tree", "ptree", "pcart")) {
     if (length(z) > 0 && any(y == z)) {
       bida_bdeu(data, y, integer(0), hyperpar$ess, hyperpar$nlev)
     } else if (length(z) == 0 || type == "cat") {

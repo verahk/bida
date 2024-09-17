@@ -50,7 +50,7 @@
 define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
 
   if (scoretype == "bdecat") {
-    if (is.null(par$local_struct)) {
+    if (is.null(par$local_struct) || par$local_struct == "none") {
       # use BiDAG-package score function
 
       # generate data.frame, removing unobserved levels in data, as required by BiDAG

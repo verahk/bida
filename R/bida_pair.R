@@ -93,7 +93,7 @@ bida_pair <- function(type, data, x, y, sets, support, hyperpar, lookup = NULL) 
   }
 
 
-  if (match(type, c("cat", "ldag", "tree"), 0L) > 0) {
+  if (match(type, c("cat", "ldag", "tree", "ptree", "pcart"), 0L) > 0) {
     new_bida_pair_bdeu(x, y, params, support, zerosupp, dim = hyperpar$nlev[c(y, x)])
   }
 }
