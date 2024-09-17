@@ -1,2 +1,2728 @@
 starting worker for localhost:11784 
 Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.196309 
+x= 1  y= 3  S=  : pval = 0.3415496 
+x= 1  y= 4  S=  : pval = 0.8992613 
+x= 1  y= 5  S=  : pval = 1.199274e-06 
+x= 1  y= 6  S=  : pval = 0.196309 
+x= 1  y= 7  S=  : pval = 0.6741501 
+x= 1  y= 8  S=  : pval = 0.0005110955 
+x= 2  y= 3  S=  : pval = 0.4936672 
+x= 2  y= 4  S=  : pval = 1.443254e-05 
+x= 2  y= 5  S=  : pval = 0.08800622 
+x= 2  y= 6  S=  : pval = 0.08035043 
+x= 2  y= 7  S=  : pval = 0.7793206 
+x= 2  y= 8  S=  : pval = 2.267582e-14 
+x= 3  y= 4  S=  : pval = 0.2770883 
+x= 3  y= 5  S=  : pval = 0.001075912 
+x= 3  y= 6  S=  : pval = 0.1351464 
+x= 3  y= 7  S=  : pval = 0.2212322 
+x= 3  y= 8  S=  : pval = 0.9806629 
+x= 4  y= 2  S=  : pval = 1.443254e-05 
+x= 4  y= 5  S=  : pval = 0.4884704 
+x= 4  y= 6  S=  : pval = 0.006033372 
+x= 4  y= 7  S=  : pval = 0.3354148 
+x= 4  y= 8  S=  : pval = 0.0004042311 
+x= 5  y= 1  S=  : pval = 1.199274e-06 
+x= 5  y= 3  S=  : pval = 0.001075912 
+x= 5  y= 6  S=  : pval = 0.7765556 
+x= 5  y= 7  S=  : pval = 0.3108757 
+x= 5  y= 8  S=  : pval = 0.2144129 
+x= 6  y= 4  S=  : pval = 0.006033372 
+x= 6  y= 7  S=  : pval = 0.003789784 
+x= 6  y= 8  S=  : pval = 0.7930937 
+x= 7  y= 6  S=  : pval = 0.003789784 
+x= 7  y= 8  S=  : pval = 0.8256777 
+x= 8  y= 1  S=  : pval = 0.0005110955 
+x= 8  y= 2  S=  : pval = 2.267582e-14 
+x= 8  y= 4  S=  : pval = 0.0004042311 
+Order=1; remaining edges:16
+x= 1  y= 5  S= 8 : pval = 1.404584e-05 
+x= 1  y= 8  S= 5 : pval = 0.00442111 
+x= 2  y= 4  S= 8 : pval = 0.00578486 
+x= 2  y= 8  S= 4 : pval = 1.551053e-11 
+x= 4  y= 2  S= 6 : pval = 9.816569e-05 
+x= 4  y= 2  S= 8 : pval = 0.00578486 
+x= 4  y= 6  S= 2 : pval = 0.02750294 
+x= 4  y= 6  S= 8 : pval = 0.01850939 
+x= 4  y= 8  S= 2 : pval = 0.1348985 
+x= 5  y= 1  S= 3 : pval = 6.981755e-06 
+x= 5  y= 3  S= 1 : pval = 0.00438707 
+x= 6  y= 4  S= 7 : pval = 0.009215433 
+x= 6  y= 7  S= 4 : pval = 0.006050188 
+x= 8  y= 1  S= 2 : pval = 0.004510614 
+x= 8  y= 1  S= 4 : pval = 0.0006135953 
+x= 8  y= 2  S= 1 : pval = 4.166677e-13 
+x= 8  y= 2  S= 4 : pval = 1.551053e-11 
+Order=2; remaining edges:14
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.0009924093 
+x= 1  y= 3  S=  : pval = 0.05407387 
+x= 1  y= 4  S=  : pval = 0.8453144 
+x= 1  y= 5  S=  : pval = 2.751293e-15 
+x= 1  y= 6  S=  : pval = 0.4802771 
+x= 1  y= 7  S=  : pval = 0.1443896 
+x= 1  y= 8  S=  : pval = 0.2882759 
+x= 2  y= 1  S=  : pval = 0.0009924093 
+x= 2  y= 3  S=  : pval = 0.4526053 
+x= 2  y= 4  S=  : pval = 4.554769e-17 
+x= 2  y= 5  S=  : pval = 3.872322e-12 
+x= 2  y= 6  S=  : pval = 0.00371263 
+x= 2  y= 7  S=  : pval = 0.02259201 
+x= 2  y= 8  S=  : pval = 7.731002e-31 
+x= 3  y= 4  S=  : pval = 0.567806 
+x= 3  y= 5  S=  : pval = 9.084079e-14 
+x= 3  y= 6  S=  : pval = 0.7374597 
+x= 3  y= 7  S=  : pval = 0.003057627 
+x= 3  y= 8  S=  : pval = 0.2717883 
+x= 4  y= 2  S=  : pval = 4.554769e-17 
+x= 4  y= 5  S=  : pval = 0.07981135 
+x= 4  y= 6  S=  : pval = 1.213824e-12 
+x= 4  y= 7  S=  : pval = 0.6423256 
+x= 4  y= 8  S=  : pval = 0.006223941 
+x= 5  y= 1  S=  : pval = 2.751293e-15 
+x= 5  y= 2  S=  : pval = 3.872322e-12 
+x= 5  y= 3  S=  : pval = 9.084079e-14 
+x= 5  y= 6  S=  : pval = 0.03432484 
+x= 5  y= 7  S=  : pval = 0.1974439 
+x= 5  y= 8  S=  : pval = 0.002201164 
+x= 6  y= 2  S=  : pval = 0.00371263 
+x= 6  y= 4  S=  : pval = 1.213824e-12 
+x= 6  y= 5  S=  : pval = 0.03432484 
+x= 6  y= 7  S=  : pval = 2.951422e-08 
+x= 6  y= 8  S=  : pval = 0.06897548 
+x= 7  y= 2  S=  : pval = 0.02259201 
+x= 7  y= 3  S=  : pval = 0.003057627 
+x= 7  y= 6  S=  : pval = 2.951422e-08 
+x= 7  y= 8  S=  : pval = 0.3943665 
+x= 8  y= 2  S=  : pval = 7.731002e-31 
+x= 8  y= 4  S=  : pval = 0.006223941 
+x= 8  y= 5  S=  : pval = 0.002201164 
+Order=1; remaining edges:28
+x= 1  y= 2  S= 5 : pval = 0.2247265 
+x= 1  y= 5  S= 2 : pval = 1.405751e-12 
+x= 2  y= 4  S= 1 : pval = 1.00953e-16 
+x= 2  y= 4  S= 5 : pval = 6.744768e-16 
+x= 2  y= 4  S= 6 : pval = 1.569317e-14 
+x= 2  y= 4  S= 7 : pval = 5.364852e-16 
+x= 2  y= 4  S= 8 : pval = 1.833992e-14 
+x= 2  y= 5  S= 1 : pval = 1.745751e-09 
+x= 2  y= 5  S= 4 : pval = 4.768883e-11 
+x= 2  y= 5  S= 6 : pval = 9.324313e-11 
+x= 2  y= 5  S= 7 : pval = 5.535202e-11 
+x= 2  y= 5  S= 8 : pval = 2.448451e-09 
+x= 2  y= 6  S= 1 : pval = 0.01747861 
+x= 2  y= 6  S= 4 : pval = 0.4795667 
+x= 2  y= 7  S= 1 : pval = 0.07259199 
+x= 2  y= 8  S= 1 : pval = 3.269838e-30 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 6.247051e-12 
+x= 1  y= 3  S=  : pval = 6.423621e-07 
+x= 1  y= 4  S=  : pval = 0.7277322 
+x= 1  y= 5  S=  : pval = 2.520594e-24 
+x= 1  y= 6  S=  : pval = 0.04794376 
+x= 1  y= 7  S=  : pval = 0.7084142 
+x= 1  y= 8  S=  : pval = 0.0001105486 
+x= 2  y= 1  S=  : pval = 6.247051e-12 
+x= 2  y= 3  S=  : pval = 8.010025e-05 
+x= 2  y= 4  S=  : pval = 0.2034476 
+x= 2  y= 5  S=  : pval = 1.247844e-27 
+x= 2  y= 6  S=  : pval = 0.1629473 
+x= 2  y= 7  S=  : pval = 0.166696 
+x= 2  y= 8  S=  : pval = 4.115796e-15 
+x= 3  y= 1  S=  : pval = 6.423621e-07 
+x= 3  y= 2  S=  : pval = 8.010025e-05 
+x= 3  y= 4  S=  : pval = 0.6554798 
+x= 3  y= 5  S=  : pval = 4.725918e-13 
+x= 3  y= 6  S=  : pval = 0.6545376 
+x= 3  y= 7  S=  : pval = 0.6520499 
+x= 3  y= 8  S=  : pval = 0.003384012 
+x= 4  y= 5  S=  : pval = 0.6793645 
+x= 4  y= 6  S=  : pval = 1.774364e-07 
+x= 4  y= 7  S=  : pval = 0.3254526 
+x= 4  y= 8  S=  : pval = 0.8020859 
+x= 5  y= 1  S=  : pval = 2.520594e-24 
+x= 5  y= 2  S=  : pval = 1.247844e-27 
+x= 5  y= 3  S=  : pval = 4.725918e-13 
+x= 5  y= 6  S=  : pval = 0.144144 
+x= 5  y= 7  S=  : pval = 0.01835183 
+x= 5  y= 8  S=  : pval = 3.822435e-09 
+x= 6  y= 1  S=  : pval = 0.04794376 
+x= 6  y= 4  S=  : pval = 1.774364e-07 
+x= 6  y= 7  S=  : pval = 5.333234e-05 
+x= 6  y= 8  S=  : pval = 0.09902404 
+x= 7  y= 5  S=  : pval = 0.01835183 
+x= 7  y= 6  S=  : pval = 5.333234e-05 
+x= 7  y= 8  S=  : pval = 0.07783537 
+x= 8  y= 1  S=  : pval = 0.0001105486 
+x= 8  y= 2  S=  : pval = 4.115796e-15 
+x= 8  y= 3  S=  : pval = 0.003384012 
+x= 8  y= 5  S=  : pval = 3.822435e-09 
+Order=1; remaining edges:28
+x= 1  y= 2  S= 3 : pval = 4.162249e-09 
+x= 1  yscore tables completed, iterative MCMC is running 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 1.407637e-29 
+x= 1  y= 3  S=  : pval = 1.725253e-09 
+x= 1  y= 4  S=  : pval = 0.2228195 
+x= 1  y= 5  S=  : pval = 2.893277e-74 
+x= 1  y= 6  S=  : pval = 0.7978802 
+x= 1  y= 7  S=  : pval = 0.6026353 
+x= 1  y= 8  S=  : pval = 1.483015e-07 
+x= 2  y= 1  S=  : pval = 1.407637e-29 
+x= 2  y= 3  S=  : pval = 8.350096e-17 
+x= 2  y= 4  S=  : pval = 0.4669779 
+x= 2  y= 5  S=  : pval = 8.051586e-107 
+x= 2  y= 6  S=  : pval = 0.3358996 
+x= 2  y= 7  S=  : pval = 0.002635087 
+x= 2  y= 8  S=  : pval = 1.685229e-35 
+x= 3  y= 1  S=  : pval = 1.725253e-09 
+x= 3  y= 2  S=  : pval = 8.350096e-17 
+x= 3  y= 4  S=  : pval = 0.9156425 
+x= 3  y= 5  S=  : pval = 2.815344e-29 
+x= 3  y= 6  S=  : pval = 0.5812606 
+x= 3  y= 7  S=  : pval = 0.5478282 
+x= 3  y= 8  S=  : pval = 0.000307876 
+x= 4  y= 5  S=  : pval = 0.8793053 
+x= 4  y= 6  S=  : pval = 2.672008e-11 
+x= 4  y= 7  S=  : pval = 0.08086029 
+x= 4  y= 8  S=  : pval = 0.6371403 
+x= 5  y= 1  S=  : pval = 2.893277e-74 
+x= 5  y= 2  S=  : pval = 8.051586e-107 
+x= 5  y= 3  S=  : pval = 2.815344e-29 
+x= 5  y= 6  S=  : pval = 0.2106002 
+x= 5  y= 7  S=  : pval = 0.0001371288 
+x= 5  y= 8  S=  : pval = 1.863573e-15 
+x= 6  y= 4  S=  : pval = 2.672008e-11 
+x= 6  y= 7  S=  : pval = 8.577729e-21 
+x= 6  y= 8  S=  : pval = 0.9743135 
+x= 7  y= 2  S=  : pval = 0.002635087 
+x= 7  y= 5  S=  : pval = 0.0001371288 
+x= 7  y= 6  S=  : pval = 8.577729e-21 
+x= 7  y= 8  S=  : pval = 0.645511 
+x= 8  y= 1  S=  : pval = 1.483015e-07 
+x= 8  y= 2  S=  : pval = 1.685229e-35 
+x= 8  y= 3  S=  : pval = 0.000307876 
+x= 8  y= 5  S=  : pval = 1.863573e-15 
+Order=1; remaining edges:28
+x= 1  y= 2  S= 3 : pval = 4.450368e-24 
+x= 1  y= 2  S= 5 : pval = 0.776865 
+x= 1  y= 3  S= 2 : pval = 0.000296173 
+x= 1  y= 3  S= 5 : pval = 0.9686915 
+x= 1  y= 5  S= 2 : pval = 2.565584e-45 
+x= 1  y= 5  S= 3 : pval = 4.807028e-65 
+x= 1  y= 5  S= 8 : pval = 2.200072e-67 
+x= 1  search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.1639068 
+x= 1  y= 3  S=  : pval = 0.02681722 
+x= 1  y= 4  S=  : pval = 1.637535e-09 
+x= 1  y= 5  S=  : pval = 0.8932078 
+x= 1  y= 6  S=  : pval = 0.07827086 
+x= 1  y= 7  S=  : pval = 0.4952385 
+x= 1  y= 8  S=  : pval = 0.05968077 
+x= 2  y= 3  S=  : pval = 0.5823453 
+x= 2  y= 4  S=  : pval = 2.703697e-05 
+x= 2  y= 5  S=  : pval = 0.009910581 
+x= 2  y= 6  S=  : pval = 0.6028357 
+x= 2  y= 7  S=  : pval = 0.1727855 
+x= 2  y= 8  S=  : pval = 0.4906125 
+x= 3  y= 1  S=  : pval = 0.02681722 
+x= 3  y= 4  S=  : pval = 0.6859013 
+x= 3  y= 5  S=  : pval = 0.05319832 
+x= 3  y= 6  S=  : pval = 0.1075481 
+x= 3  y= 7  S=  : pval = 0.7923251 
+x= 3  y= 8  S=  : pval = 0.3350616 
+x= 4  y= 1  S=  : pval = 1.637535e-09 
+x= 4  y= 2  S=  : pval = 2.703697e-05 
+x= 4  y= 5  S=  : pval = 1.557917e-09 
+x= 4  y= 6  S=  : pval = 0.8867203 
+x= 4  y= 7  S=  : pval = 0.1436666 
+x= 4  y= 8  S=  : pval = 0.6449299 
+x= 5  y= 2  S=  : pval = 0.009910581 
+x= 5  y= 4  S=  : pval = 1.557917e-09 
+x= 5  y= 6  S=  : pval = 0.1598792 
+x= 5  y= 7  S=  : pval = 0.6501908 
+x= 5  y= 8  S=  : pval = 0.1145437 
+x= 6  y= 7  S=  : pval = 0.001463978 
+x= 6  y= 8  S=  : pval = 0.5347884 
+x= 7  y= 6  S=  : pval = 0.001463978 
+x= 7  y= 8  S=  : pval = 0.6180943 
+Order=1; remaining edges:12
+x= 1  y= 3  S= 4 : pval = 0.04875613 
+x= 1  y= 4  S= 3 : pval = 7.184567e-09 
+x= 2  y= 4  S= 5 : pval = 0.0007090213 
+x= 2  y= 5  S= 4 : pval = 0.1704517 
+x= 4  y= 1  S= 2 : pval = 2.802166e-08 
+x= 4  y= 1  S= 5 : pval = 2.051199e-09 
+x= 4  y= 2  S= 1 : pval = 0.0003300117 
+x= 4  y= 2  S= 5 : pval = 0.0007090213 
+x= 4  y= 5  S= 1 : pval = 1.953947e-09 
+x= 4  y= 5  S= 2 : pval = 5.734941e-08 
+x= 5  y= 4  S= 2 : pval = 5.734941e-08 
+Order=2; remaining edges:10
+x= 4  y= 1  S= 2 5 : pval = 4.051726e-08 
+x= 4  y= 2  S= 1 5 : pval = 0.005527925 
+x= 4  y= 5  S= 1 2 : pval = 8.010431e-08 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.477925 
+x= 1  y= 3  S=  : pval = 0.0001895569 
+x= 1  y= 4  S=  : pval = 1.455096e-21 
+x= 1  y= 5  S=  : pval = 3.620998e-05 
+x= 1  y= 6  S=  : pval = 0.1021373 
+x= 1  y= 7  S=  : pval = 0.2503325 
+x= 1  y= 8  S=  : pval = 0.1070998 
+x= 2  y= 3  S=  : pval = 0.9320319 
+x= 2  y= 4  S=  : pval = 0.0002082869 
+x= 2  y= 5  S=  : pval Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.477925 
+x= 1  y= 3  S=  : pval = 0.0001895569 
+x= 1  y= 4  S=  : pval = 1.455096e-21 
+x= 1  y= 5  S=  : pval = 3.620998e-05 
+x= 1  y= 6  S=  : pval = 0.1021373 
+x= 1  y= 7  S=  : pval = 0.2503325 
+x= 1  y= 8  S=  : pval = 0.1070998 
+x= 2  y= 3  S=  : pval = 0.9320319 
+x= 2  y= 4  S=  : pval = 0.0002082869 
+x= 2  y= 5  S=  : pval = 0.02496934 
+x= 2  y= 6  S=  : pval = 0.8102784 
+x= 2  y= 7  S=  : pval = 0.4130084 
+x= 2  y= 8  S=  : pval = 0.4260611 
+x= 3  y= 1  S=  : pval = 0.0001895569 
+x= 3  y= 4  S=  : pval = 0.4715125 
+x= 3  y= 5  S=  : pval = 0.01503761 
+x= 3  y= 6  S=  : pval = 0.005537622 
+x= 3  y= 7  S=  : pval = 0.2494455 
+x= 3  y= 8  S=  : pval = 0.497743 
+x= 4  y= 1  S=  : pval = 1.455096e-21 
+x= 4  y= 2  S=  : pval = 0.0002082869 
+x= 4  y= 5  S=  : pval = 5.943499e-45 
+x= 4  y= 6  S=  : pval = 0.4188313 
+x= 4  y= 7  S=  : pval = 0.8773084 
+x= 4  y= 8  S=  : pval = 0.5583945 
+x= 5  y= 1  S=  : pval = 3.620998e-05 
+x= 5  y= 2  S=  : pval = 0.02496934 
+x= 5  y= 3  S=  : pval = 0.01503761 
+x= 5  y= 4  S=  : pval = 5.943499e-45 
+x= 5  y= 6  S=  : pval = 0.6173908 
+x= 5  y= 7  S=  : pval = 0.4610762 
+x= 5  y= 8  S=  : pval = 0.7914567 
+x= 6  y= 3  S=  : pval = 0.005537622 
+x= 6  y= 7  S=  : pval = 3.557412e-17 
+x= 6  y= 8  S=  : pval = 0.3869972 
+x= 7  y= 6  S=  : pval = 3.557412e-17 
+x= 7  y= 8  S=  : pval = 0.8288856 
+Order=1; remaining edges:18
+x= 1  y= 3  S= 4 : pval = 0.001166032 
+x= 1  y= 3  S= 5 : pval = 0.002431262 
+x= 1  y= 4  S= 3 : pval = 2.172898e-20 
+x= 1  y= 4  S= 5 : pval = 7.678824e-17 
+x= 1  y= 5  S= 3 : pval = 0.000508728 
+x= 1  y= 5  S= 4 : pval = 0.8622233 
+x= 2  y= 4  S= 5 : pval = 0.009450453 
+x= 2  y= 5  S= 4 : pval = 0.7428255 
+x= 3  y= 1  S= 5 : pval = 0.002431262 
+x= 3  y= 1  S= 6 : pval = 0.00047565 
+x= 3  y= 5  S= 1 : pval = 0.1340641 
+x= 3  y= 6  S= 1 : pval = 0.0107553 
+x= 3  y= 6  S= 5 : pval = 0.02013533 
+x= 4  y= 1  S= 2 : pval = 2.753058e-21 
+x= 4  y= 1  S= 5 : pval = 7.678824e-17 
+x= 4  y= 2  S= 1 : pval = 0.0001614118 
+x= 4  y= 2  S= 5 : pval = 0.009450453 
+x= 4  y= 5  S= 1 : pval = 4.599876e-40 
+x= 4  y= 5  S= 2 : pval = 9.655708e-43 
+x= 5  y= 4  S= 1 : pval = 4.599876e-40 
+x= 5  y= 4  S= 2 : pval = 9.655708e-43 
+x= 5  y= 4  S= 3 : pval = 1.10136search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/results/n8_k2_csi25_pcskel_none_order_ess1_epf2_N1000_r02.rds
+Runtime
+Time difference of 8.035336 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.477925 
+x= 1  y= 3  S=  : pval = 0.0001895569 
+x= 1 search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.477925 
+x= 1  y= 3  S=  : pval = 0.0001895569 
+x= 1  y= 4  S=  : pval = 1.455096e-21 
+x= 1  y= 5  S=  : pval = 3.620998e-05 
+x= 1  y= 6  S=  : pval = 0.1021373 
+x= 1  y= 7  S=  : pval = 0.2503325 
+x= 1  y= 8  S=  : pval = 0.1070998 
+x= 2  y= 3  S=  : pval = 0.9320319 
+x= 2  y= 4  S=  : pval = 0.0002082869 
+x= 2  y= 5  S=  : pval = 0.02496934 
+x= 2  y= 6  S=  : pval = 0.8102784 
+x= 2  y= 7  S=  : pval = 0.4130084 
+x= 2  y= 8  S=  : pval = 0.4260611 
+x= 3  y= 1  S=  : pval = 0.0001895569 
+x= 3  y= 4  S=  : pval = 0.4715125 
+x= 3  y= 5  S=  : pval = 0.01503761 
+x= 3  y= 6  S=  : pval = 0.005537622 
+x= 3  y= 7  S=  : pval = 0.2494455 
+x= 3  y= 8  S=  : pval = 0.497743 
+x= 4  y= 1  S=  : pval = 1.455096e-21 
+x= 4  y= 2  S=  : pval = 0.0002082869 
+x= 4  y= 5  S=  : pval = 5.943499e-45 
+x= 4  y= 6  S=  : pval = 0.4188313 
+x= 4  y= 7  S=  : pval = 0.8773084 
+x= 4  y= 8  S=  : pval = 0.5583945 
+x= 5  y= 1  S=  : pval = 3.620998e-05 
+x= 5  y= 2  S=  : pval = 0.02496934 
+x= 5  y= 3  S=  : pval = 0.01503761 
+x= 5  y= 4  S=  : pval = 5.943499e-45 
+x= 5  y= 6  S=  : pval = 0.6173908 
+x= 5  y= 7  S=  : pval = 0.4610762 
+x= 5  y= 8  S=  : pval = 0.7914567 
+x= 6  y= 3  S=  : pval = 0.005537622 
+x= 6  y= 7  S=  : pval = 3.557412e-17 
+x= 6  y= 8  S=  : pval = 0.3869972 
+x= 7  y= 6  S=  : pval = 3.557412e-17 
+x= 7  y= 8  S=  : pval = 0.8288856 
+Order=1; remaining edges:18
+x= 1  y= 3  S= 4 : pval = 0.001166032 
+x= 1  y= 3  S= 5 : pval = 0.002431262 
+x= 1  y= 4  S= 3 : pval = 2.172898e-20 
+x= 1  y= 4  S= 5 : pval = 7.678824e-17 
+x= 1  y= 5  S= 3 : pval = 0.000508728 
+x= 1  y= 5  S= 4 : pval = 0.8622233 
+x= 2  y= 4  S= 5 : pval = 0.009450453 
+x= 2  y= 5  S= 4 : pval = 0.7428255 
+x= 3  y= 1  S= 5 : pval = 0.002431262 
+x= 3  y= 1  S= 6 : pval = 0.00047565 
+x= 3  y= 5  S= 1 : pval = 0.1340641 
+x= 3  y= 6  S= 1 : pval = 0.0107553 
+x= 3  y= 6  S= 5 : pval = 0.02013533 
+x= 4  y= 1  S= 2 : pval = 2.753058e-21 
+x= 4  y= 1  S= 5 : pval = 7.678824e-17 
+x= 4  y= 2  S= 1 : pval = 0.0001614118 
+x= 4  y= 2  S= 5 : pval = 0.009450453 
+x= 4  y= 5  S= 1 : pval = 4.599876e-40 
+x= 4  y= 5  S= 2 : pval = 9.655708e-43 
+x= 5  y= 4  S= 1 : pval = 4.599876e-40 
+x= 5  y= 4  S= 2 : pval = 9.655708e-43 
+x= 5  y= 4  S= 3 : pval = 1.101364e-43 
+x= 6  y= 3  S= 7 : pval = 0.03787207 
+x= 6  y= 7  S= 3 : pval = 6.761051e-16 
+Order=2; remaining edges:12
+x= 4  y= 1  S= 2 5 : pval = search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.477925 
+x= 1  y= 3  S=  : pval = 0.0001895569 
+x= 1  y= 4  S=  : pval = 1.455096e-21 
+x= 1  y= 5  S=  : pval = 3.620998e-05 
+x= 1  y= 6  S=  : pval = 0.1021373 
+x= 1  y= 7  S=  : pval = 0.2503325 
+x= 1 
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.477925 
+x= 1  y= 3  S=  : pval = 0.0001895569 
+x= 1  y= 4  S=  : pval = 1.455096e-21 
+x= 1  y= 5  S=  : pval = 3.620998e-05 
+x= 1  y= 6  S=  : pval = 0.1021373 
+x= 1  y= 7  S=  : pval = 0.2503325 
+x= 1  y= 8  S=  : pval = 0.1070998 
+x= 2  y= 3  S=  : pval = 0.9320319 
+x= 2  y= 4  S=  : pval = 0.0002082869 
+x= 2  y= 5  S=  : pval = 0.02496934 
+x= 2  y= 6  S=  : pval = 0.8102784 
+x= 2  y= 7  S=  : pval = 0.4130084 
+x= 2  y= 8  S=  : pval = 0.4260611 
+x= 3  y= 1  S=  : pval = 0.0001895569 
+x= 3  y= 4  S=  : pval = 0.4715125 
+x= 3  y= 5  S=  : pval = 0.01503761 
+x= 3  y= 6  S=  : pval = 0.005537622 
+x= 3  y= 7  S=  : pval = 0.2494455 
+x= 3  y= 8  S=  : pval = 0.497743 
+x= 4  y= 1  S=  : pval = 1.455096e-21 
+x= 4  y= 2  S=  : pval = 0.0002082869 
+x= 4  y= 5  S=  : pval = 5.943499e-45 
+x= 4  y= 6  S=  : pval = 0.4188313 
+x= 4  y= 7  S=  : pval = 0.8773084 
+x= 4  y= 8  S=  : pval = 0.5583945 
+x= 5  y= 1  S=  : pval = 3.620998e-05 
+x= 5  y= 2  S=  : pval = 0.02496934 
+x= 5  y= 3  S=  : pval = 0.01503761 
+x= 5  y= 4  S=  : pval = 5.943499e-45 
+x= 5  y= 6  S=  : pval = 0.6173908 
+x= 5  y= 7  S=  : pval = 0.4610762 
+x= 5  y= 8  S=  : pval = 0.7914567 
+x= 6  y= 3  S=  : pval = 0.005537622 
+x= 6  y= 7  S=  : pval = 3.557412e-17 
+x= 6  y= 8  S=  : pval = 0.3869972 
+x= 7  y= 6  S=  : pval = 3.557412e-17 
+x= 7  y= 8  S=  : pval = 0.8288856 
+Order=1; remaining edges:18
+x= 1  y= 3  S= 4 : pval = 0.001166032 
+x= 1  y= 3  S= 5 : pval = 0.002431262 
+x= 1  y= 4  S= 3 : pval = 2.172898e-20 
+x= 1  y= 4  S= 5 : pval = 7.678824e-17 
+x= 1  y= 5  S= 3 : pval = 0.000508728 
+x= 1  y= 5  S= 4 : pval = 0.8622233 
+x= 2  y= 4  S= 5 : pval = 0.009450453 
+x= 2  y= 5  S= 4 : pval = 0.7428255 
+x= 3  y= 1  S= 5 : pval = 0.002431262 
+x= 3  y= 1  S= 6 : pval = 0.00047565 
+x= 3  y= 5  S= 1 : pval = 0.1340641 
+x= 3  y= 6  S= 1 : pval = 0.0107553 
+x= 3  y= 6  S= 5 : pval = 0.02013533 
+x= 4  y= 1  S= 2 : pval = 2.753058e-21 
+x= 4  y= 1  S= 5 : pval = 7.678824e-17 
+x= 4  y= 2  S= 1 : pval = 0.0001614118 
+x= 4  y= 2  S= 5 : pval = 0.009450453 
+x= 4  y= 5  S= 1 : pval = 4.599876e-40 
+x= 4  y= 5  S= 2 : pval = 9.655708e-43 
+x= 5  y= 4  S= 1 : pval = 4.599876e-40 
+x= 5  y= 4  S= 2 : pval = 9.655708e-43 
+x= 5  y= 4  S= 3 : pval = 1.101364e-43 
+x= 6  y= 3  S= 7 : pval = 0.03787207 
+x= 6  y= 7  S= 3 : pval = 6.761051e-16 
+Orderscore tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.08679218 
+x= 1  y= 3  S=  : pval = 0.2781706 
+x= 1  y= 4  S=  : pval = 0.0393298 
+x= 1  y= 5  S=  : pval = 0.5468008 
+x= 1  y= 6  S=  : pval = 3.11473e-05 
+x= 1  y= 7  S=  : pval = 2.625838e-05 
+x= 1  y
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.08679218 
+x= 1  y= 3  S=  : pval = 0.2781706 
+x= 1  y= 4  S=  : pval = 0.0393298 
+x= 1  y= 5  S=  : pval = 0.5468008 
+x= 1  y= 6  S=  : pval = 3.11473e-05 
+x= 1  y= 7  S=  : pval = 2.625838e-05 
+x= 1  y= 8  S=  : pval = 0.345913 
+x= 2  y= 3  S=  : pval = 0.1490665 
+x= 2  y= 4  S=  : pval = 3.950195e-10 
+x= 2  y= 5  S=  : pval = 0.00151125 
+x= 2  y= 6  S=  : pval = 0.1022695 
+x= 2  y= 7  S=  : pval = 3.410244e-09 
+x= 2  y= 8  S=  : pval = 0.01154288 
+x= 3  y= 4  S=  : pval = 0.5677261 
+x= 3  y= 5  S=  : pval = 0.05677681 
+x= 3  y= 6  S=  : pval = 5.980923e-05 
+x= 3  y= 7  S=  : pval = 0.04364054 
+x= 3  y= 8  S=  : pval = 0.1344309 
+x= 4  y= 1  S=  : pval = 0.0393298 
+x= 4  y= 2  S=  : pval = 3.950195e-10 
+x= 4  y= 5  S=  : pval = 1.158881e-15 
+x= 4  y= 6  S=  : pval = 1.783402e-05 
+x= 4  y= 7  S=  : pval = 0.008315272 
+x= 4  y= 8  S=  : pval = 0.06253029 
+x= 5  y= 2  S=  : pval = 0.00151125 
+x= 5  y= 4  S=  : pval = 1.158881e-15 
+x= 5  y= 6  S=  : pval = 0.04505459 
+x= 5  y= 7  S=  : pval = 0.2058422 
+x= 5  y= 8  S=  : pval = 1.216265e-14 
+x= 6  y= 1  S=  : pval = 3.11473e-05 
+x= 6  y= 3  S=  : pval = 5.980923e-05 
+x= 6  y= 4  S=  : pval = 1.783402e-05 
+x= 6  y= 5  S=  : pval = 0.04505459 
+x= 6  y= 7  S=  : pval = 0.8577416 
+x= 6  y= 8  S=  : pval = 0.1084583 
+x= 7  y= 1  S=  : pval = 2.625838e-05 
+x= 7  y= 2  S=  : pval = 3.410244e-09 
+x= 7  y= 3  S=  : pval = 0.04364054 
+x= 7  y= 4  S=  : pval = 0.008315272 
+x= 7  y= 8  S=  : pval = 0.5789849 
+x= 8  y= 2  S=  : pval = 0.01154288 
+x= 8  y= 5  S=  : pval = 1.216265e-14 
+Order=1; remaining edges:28
+x= 1  y= 4  S= 6 : pval = 0.0003518313 
+x= 1  y= 4  S= 7 : pval = 0.02497089 
+x= 1  y= 6  S= 4 : pval = 5.031783e-07 
+x= 1  y= 6  S= 7 : pval = 3.378713e-05 
+x= 1  y= 7  S= 4 : pval = 3.036196e-05 
+x= 1  y= 7  S= 6 : pval = 2.872497e-05 
+x= 2  y= 4  S= 5 : pval = 1.546566e-07 
+x= 2  y= 4  S= 7 : pval = 1.017982e-07 
+x= 2  y= 4  S= 8 : pval = 5.23785e-15 
+x= 2  y= 5  S= 4 : pval = 0.3179628 
+x= 2  y= 7  S= 4 : pval = 8.325699e-07 
+x= 2  y= 7  S= 5 : pval = 5.635975e-08 
+x= 2  y= 7  S= 8 : pval = 7.016788e-09 
+x= 2  y= 8  S= 4 : pval = 6.797777e-08 
+x= 2  y= 8  S= 5 : pval = 4.63249e-08 
+x= 2  y= 8  S= 7 : pval = 0.01113453 
+x= 3  y= 6  S= 7 : pval = 0.000214329 
+x= 3  y= 7  S= 6 : pval = 0.08813678 
+x= 4  y= 1  S= 2 : pval = 0.2565505 
+x= 4  y= 2  S= 1 : pval = 6.80363e-09 
+x= 4  y= 2  S= 5 : pval = 1.546566e-07 
+x= 4  y= 2  S= 6 : pval = 4.099966e-12 
+x= 4  y= 2  S= 7 : pval = 1.017982e-07 
+x= 4  y= 5  S= 1 : pval = 9.831949e-15 
+x= 4  y= 5  S= 2 : pval = 5.755977e-13 
+x= 4  y= 5  S= 6 : pval = 3.299397e-14 
+x= 4  y= 5  S= 7 : pval = 1.303817e-14 
+x= 4  y= 6  S= 1 : pval = 2.96001e-07 
+x= 4  y= 6  S= 2 : pval = 1.300682e-07 
+x= 4  y= 6  S= 5 : pval = 0.0002812385 
+x= 4  y= 6  S= 7 : pval = 2.301755e-05 
+x= 4  y= 7  S= 1 : pval = 0.006416364 
+x= 4  y= 7  S= 2 : pval = 0.9863415 
+x= 5  y= 4  S= 2 : pval = 5.755977e-13 
+x= 5  y= 4  S= 6 : pval = 3.299397e-14 
+x= 5  y= 4  S= 8 : pval = 2.463054e-16 
+x= 5  y= 6  S= 2 : pval = 0.01892194 
+x= 5  y= 6  S= 4 : pval = 0.3750191 
+x= 5  y= 8  S= 2 : pval = 1.344505e-19 
+x= 5  y= 8  S= 4 : pval = 2.492786e-15 
+x= 5  y= 8  S= 6 : pval = 9.756942e-14 
+x= 6  y= 1  S= 3 : pval = 1.897217e-06 
+x= 6  y= 1  S= 4 : pval = 5.031783e-07 
+x= 6  y= 1  S= 5 : pval = 4.995508e-06 
+x= 6  y= 3  S= 1 : pval = 3.522928e-06 
+x= 6  y= 3  S= 4 : pval = 5.725211e-05 
+x= 6  y= 3  S= 5 : pval = 7.458949e-05 
+x= 6  y= 4  S= 1 : pval = 2.96001e-07 
+x= 6  y= 4  S= 3 : pval = 1.813744e-05 
+x= 6  y= 4  S= 5 : pval = 0.0002812385 
+x= 7  y= 1  S= 2 : pval = 0.0002856113 
+x= 7  y= 1  S= 3 : pval = 3.57896e-05 
+x= 7  y= 1  S= 4 : pval = 3.036196e-05 
+x= 7  y= 2  S= 1 : pval = 5.09481e-08 
+x= 7  y= 2  S= 3 : pval = 4.8284e-09 
+x= 7  y= 2  S= 4 : pval = 8.325699e-07 
+x= 8  y= 2  S= 5 : pval = 4.63249e-08 
+x= 8  y= 5  S= 2 : pval = 1.344505e-19 
+Order=2; remaining edges:18
+x= 2  y= 4  S= 7 8 : pval = 1.444208e-13 
+x= 2  y= 7  S= 4 8 : pval = 1.134164e-07 
+x= 2  y= 8  S= 4 7 : pval = 1.042097e-08 
+x= 4  y= 2  S= 5 6 : pval = 3.421555e-09 
+x= 4  y= 5  S= 2 6 : pval = 3.314741e-11 
+x= 4  y= 6  S= 2 5 : score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+search space expansion 5 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.08679218 
+x= 1  y= 3  S=  : pval = 0.2781706 
+x= 1  y= 4  S=  : pval = 0.0393298 
+x= 1  y= 5  S=  : pval = 0.5468008 
+x= 1  y= 6  S=  : pval = 3.11473e-05 
+x= 1  y= 7  S=  : pval = 2.625838e-05 
+x= 1  y
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.08679218 
+x= 1  y= 3  S=  : pval = 0.2781706 
+x= 1  y= 4  S=  : pval = 0.0393298 
+x= 1  y= 5  S=  : pval = 0.5468008 
+x= 1  y= 6  S=  : pval = 3.11473e-05 
+x= 1  y= 7  S=  : pval = 2.625838e-05 
+x= 1  y= 8  S=  : pval = 0.345913 
+x= 2  y= 3  S=  : pval = 0.1490665 
+x= 2  y= 4  S=  : pval = 3.950195e-10 
+x= 2  y= 5  S=  : pval = 0.00151125 
+x= 2  y= 6  S=  : pval = 0.1022695 
+x= 2  y= 7  S=  : pval = 3.410244e-09 
+x= 2  y= 8  S=  : pval = 0.01154288 
+x= 3  y= 4  S=  : pval = 0.5677261 
+x= 3  y= 5  S=  : pval = 0.05677681 
+x= 3  y= 6  S=  : pval = 5.980923e-05 
+x= 3  y= 7  S=  : pval = 0.04364054 
+x= 3  y= 8  S=  : pval = 0.1344309 
+x= 4  y= 1  S=  : pval = 0.0393298 
+x= 4  y= 2  S=  : pval = 3.950195e-10 
+x= 4  y= 5  S=  : pval = 1.158881e-15 
+x= 4  y= 6  S=  : pval = 1.783402e-05 
+x= 4  y= 7  S=  : pval = 0.008315272 
+x= 4  y= 8  S=  : pval = 0.06253029 
+x= 5  y= 2  S=  : pval = 0.00151125 
+x= 5  y= 4  S=  : pval = 1.158881e-15 
+x= 5  y= 6  S=  : pval = 0.04505459 
+x= 5  y= 7  S=  : pval = 0.2058422 
+x= 5  y= 8  S=  : pval = 1.216265e-14 
+x= 6  y= 1  S=  : pval = 3.11473e-05 
+x= 6  y= 3  S=  : pval = 5.980923e-05 
+x= 6  y= 4  S=  : pval = 1.783402e-05 
+x= 6  y= 5  S=  : pval = 0.04505459 
+x= 6  y= 7  S=  : pval = 0.8577416 
+x= 6  y= 8  S=  : pval = 0.1084583 
+x= 7  y= 1  S=  : pval = 2.625838e-05 
+x= 7  y= 2  S=  : pval = 3.410244e-09 
+x= 7  y= 3  S=  : pval = 0.04364054 
+x= 7  y= 4  S=  : pval = 0.008315272 
+x= 7  y= 8  S=  : pval = 0.5789849 
+x= 8  y= 2  S=  : pval = 0.01154288 
+x= 8  y= 5  S=  : pval = 1.216265e-14 
+Order=1; remaining edges:28
+x= 1  y= 4  S= 6 : pval = 0.0003518313 
+x= 1  y= 4  S= 7 : pval = 0.02497089 
+x= 1  y= 6  S= 4 : pval = 5.031783e-07 
+x= 1  y= 6  S= 7 : pval = 3.378713e-05 
+x= 1  y= 7  S= 4 : pval = 3.036196e-05 
+x= 1  y= 7  S= 6 : pval = 2.872497e-05 
+x= 2  y= 4  S= 5 : pval = 1.546566e-07 
+x= 2  y= 4  S= 7 : pval = 1.017982e-07 
+x= 2  y= 4  S= 8 : pval = 5.23785e-15 
+x= 2  y= 5  S= 4 : pval = 0.3179628 
+x= 2  y= 7  S= 4 : pval = 8.325699e-07 
+x= 2  y= 7  S= 5 : pval = 5.635975e-08 
+x= 2  y= 7  S= 8 : pval = 7.016788e-09 
+x= 2  y= 8  S= 4 : pval = 6.797777e-08 
+x= 2  y= 8  S= 5 : pval = 4.63249e-08 
+x= 2  y= 8  S= 7 : pval = 0.01113453 
+x= 3  y= 6  S= 7 : pval = 0.000214329 
+x= 3  y= 7  S= 6 : pval = 0.08813678 
+x= 4  y= 1  S= 2 : pval = 0.2565505 
+x= 4  y= 2  S= 1 : pval = 6.80363e-09 
+x= 4  y= 2  S= 5 : pval = 1.546566e-07 
+x= 4  y= 2  S= 6 : pval = 4.099966e-12 
+x= 4  y= 2  S= 7 : pval = 1.017982e-07 
+x= 4  y= 5  S= 1 : pval = 9.831949e-15 
+x= 4  y= 5  S= 2 : pval = 5.755977e-13 
+x= 4  y= 5  S= 6 : pval = 3.299397e-14 
+x= 4  y= 5  S= 7 : pval = 1.303817e-14 
+x= 4  y= 6  S= 1 : pval = 2.96001e-07 
+x= 4  y= 6  S= 2 : pval = 1.300682e-07 
+x= 4  y= 6  S= 5 : pval = 0.0002812385 
+x= 4  y= 6  S= 7 : pval = 2.301755e-05 
+x= 4  y= 7  S= 1 : pval = 0.006416364 
+x= 4  y= 7  S= 2 : pval = 0.9863415 
+x= 5  y= 4  S= 2 : pval = 5.755977e-13 
+x= 5  y= 4  S= 6 : pval = 3.299397e-14 
+x= 5  y= 4  S= 8 : pval = 2.463054e-16 
+x= 5  y= 6  S= 2 : pval = 0.01892194 
+x= 5  y= 6  S= 4 : pval = 0.3750191 
+x= 5  y= 8  S= 2 : pval = 1.344505e-19 
+x= 5  y= 8  S= 4 : pval = 2.492786e-15 
+x= 5  y= 8  S= 6 : pval = 9.756942e-14 
+x= 6  y= 1  S= 3 : pval = 1.897217e-06 
+x= 6  y= 1  S= 4 : pval = 5.031783e-07 
+x= 6  y= 1  S= 5 : pval = 4.995508e-06 
+x= 6  y= 3  S= 1 : pval = 3.522928e-06 
+x= 6  y= 3  S= 4 : pval = 5.725211e-05 
+x= 6  y= 3  S= 5 : pval = 7.458949e-05 
+x= 6  y= 4  S= 1 : pval = 2.96001e-07 
+x= 6  y= 4  S= 3 : pval = 1.813744e-05 
+x= 6  y= 4  S= 5 : pval = 0.0002812385 
+x= 7  y= 1  S= 2 : pval = 0.0002856113 
+x= 7  y= 1  S= 3 : pval = 3.57896e-05 
+x= 7  y= 1  S= 4 : pval = 3.036196e-05 
+x= 7  y= 2  S= 1 : pval = 5.09481e-08 
+x= 7  y= 2  S= 3 : pval = 4.8284e-09 
+x= 7  y= 2  S= 4 : pval = 8.325699e-07 
+x= 8  y= 2  S= 5 : pval = 4.63249e-08 
+x= 8  y= 5  S= 2 : pval = 1.344505e-19 
+Order=2; remaining edges:18
+x= 2  y= 4  S= 7 8 : pval = 1.444208e-13 
+x= 2  y= 7  S= 4 8 : pval = 1.134164e-07 
+x= 2  y= 8  S= 4 7 : pval = 1.042097e-08 
+x= 4  y= 2  S= 5 6 : pval = 3.421555e-09 
+x= 4  y= 5  S= 2 6 : pval = 3.314741e-11 
+x= 4  y= 6  S= 2 5 : score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.08679218 
+x= 1  y= 3  S=  : pval = 0.2781706 
+x= 1  y= 4  S=  : pval = 0.0393298 
+x= 1  y= 5  S=  : pval = 0.5468008 
+x= 1  y= 6  S=  : pval = 3.11473e-05 
+x= 1  y= 7  S=  : pval = 2.625838e-05 
+x= 1  y= 8  S=  : pval = 0.345913 
+x= 2  y= 3  S=  : pval = 0.1490665 
+x= 2  y= 4  S=  : pval = 3.950195e-10 
+x= 2  y= 5  S=  : pval = 0.00151125 
+x= 2  y= 6  S=  : pval = 0.1022695 
+x= 2  y= 7  S=  : pval = 3.410244e-09 
+x= 2  y= 8  S=  : pval = 0.01154288 
+x= 3  y= 4  S=  : pval = 0.5677261 
+x= 3  y= 5  S=  : pval = 0.05677681 
+x= 3  y= 6  S=  : pval = 5.980923e-05 
+x= 3  y= 7  S=  : pval = 0.04364054 
+x= 3  y= 8  S=  : pval = 0.1344309 
+x= 4  y= 1  S=  : pval =score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+.158881e-15 
+x= 5  y= 6  S=  : pval = 0.04505459 
+x= 5  y= 7  S=  : pval = 0.2058422 
+x= 5  y= 8  S=  : pval = 1.216265e-14 
+x= 6  y= 1  S=  : pval = 3.11473e-05 
+x= 6  y= 3  S=  : pval = 5.980923e-05 
+x= 6  y= 4  S=  : pval = 1.783402e-05 
+x= 6  y= 5  S=  : pval = 0.04505459 
+x= 6  y= 7  S=  : pval = 0.8577416 
+x= 6  y= 8  S=  : pval = 0.1084583 
+x= 7  y= 1  S=  : pval = 2.625838e-05 
+x= 7  y= 2  S=  : pval = 3.410244e-09 
+x= 7  y= 3  S=  : pval = 0.04364054 
+x= 7  y= 4  S=  : pval = 0.008315272 
+x= 7  y= 8  S=  : pval = 0.5789849 
+x= 8  y= 2  S=  : pval = 0.01154288 
+x= 8  y= 5  S=  : pval = 1.216265e-14 
+Order=1; remaining edges:28
+x= 1  y= 4  S= 6 : pval = 0.0003518313 
+x= 1  y= 4  S= 7 : pval = 0.02497089 
+x= 1  y= 6  S= 4 : pval = 5.031783e-07 
+x= 1  y= 6  S= 7 : pval = 3.378713e-05 
+x= 1  y= 7  S= 4 : pval = 3.036196e-05 
+x= 1  y= 7  S= 6 : pval = 2.872497e-05 
+x= 2  y= 4  S= 5 : pval = 1.546566e-07 
+x= 2  y= 4  S= 7 : pval = 1.017982e-07 
+x= 2  y= 4  S= 8 : pval = 5.23785e-15 
+x= 2  y= 5  S= 4 : pval = 0.3179628 
+x= 2  y= 7  S= 4 : pval = 8.325699e-07 
+x= 2  y= 7  S= 5 : pval = 5.635975e-08 
+x= 2  y= 7  S= 8 : pval = 7.0167
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.08679218 
+x= 1  y= 3  S=  : pval = 0.2781706 
+x= 1  y= 4  S=  : pval = 0.0393298 
+x= 1  y= 5  S=  : pval = 0.5468008 
+x= 1  y= 6  S=  : pval = 3.11473e-05 
+x= 1  y= 7  S=  : pval = 2.625838e-05 
+x= 1  y= 8  S=  : pval = 0.345913 
+x= 2  y= 3  S=  : pval = 0.1490665 
+x= 2  y= 4  S=  : pval = 3.950195e-10 
+x= 2  y= 5  S=  : pval = 0.00151125 
+x= 2  y= 6  S=  : pval = 0.1022695 
+x= 2  y= 7  S=  : pval = 3.410244e-09 
+x= 2  y= 8  S=  : pval = 0.01154288 
+x= 3  y= 4  S=  : pval = 0.5677261 
+x= 3  y= 5  S=  : pval = 0.05677681 
+x= 3  y= 6  S=  : pval = 5.980923e-05 
+x= 3  y= 7  S=  : pval = 0.04364054 
+x= 3  y= 8  S=  : pval = 0.1344309 
+x= 4  y= 1  S=  : pval = 0.0393298 
+x= 4  y= 2  S=  : pval = 3.950195e-10 
+x= 4  y= 5  S=  : pval = 1.158881e-15 
+x= 4  y= 6  S=  : pval = 1.783402e-05 
+x= 4  y= 7  S=  : pval = 0.008315272 
+x= 4  y= 8  S=  : pval = 0.06253029 
+x= 5  y= 2  S=  : pval = 0.00151125 
+x= 5  y= 4  S=  : pval = 1.158881e-15 
+x= 5  y= 6  S=  : pval = 0.04505459 
+x= 5  y= 7  S=  : pval = 0.2058422 
+x= 5  y= 8  S=  : pval = 1.216265e-14 
+x= 6  y= 1  S=  : pval = 3.11473e-05 
+x= 6  y= 3  S=  : pval = 5.980923e-05 
+x= 6  y= 4  S=  : pval = 1.783402e-05 
+x= 6  y= 5  S=  : pval = 0.04505459 
+x= 6  y= 7  S=  : pval = 0.8577416 
+x= 6  y= 8  S=  : pval = 0.1084583 
+x= 7  y= 1  S=  : pval = 2.625838e-05 
+x= 7  y= 2  S=  : pval = 3.410244e-09 
+x= 7  y= 3  S=  : pval = 0.04364054 
+x= 7  y= 4  S=  : pval = 0.008315272 
+x= 7  y= 8  S=  : pval = 0.5789849 
+x= 8  y= 2  S=  : pval = 0.01154288 
+x= 8  y= 5  S=  : pval = 1.216265e-14 
+Order=1; remaining edges:28
+x= 1  y= 4  S= 6 : pval = 0.0003518313 
+x= 1  y= 4  S= 7 : pval = 0.02497089 
+x= 1  y= 6  S= 4 : pval = 5.031783e-07 
+x= 1  y= 6  S= 7 : pval = 3.378713e-05 
+x= 1  y= 7  S= 4 : pval = 3.036196e-05 
+x= 1  y= 7  S= 6 : pval = 2.872497e-05 
+x= 2  y= 4  S= 5 : pval = 1.546566e-07 
+x= 2  y= 4  S= 7 : pval = 1.017982e-07 
+x= 2  y= 4  S= 8 : pval = 5.23785e-15 
+x= 2  y= 5  S= 4 : pval = 0.3179628 
+x= 2  y= 7  S= 4 : pval = 8.325699e-07 
+x= 2  y= 7  S= 5 : pval = 5.635975e-08 
+x= 2  y= 7  S= 8 : pval = 7.016788e-09 
+x= 2  y= 8  S= 4 : pval = 6.797777e-08 
+x= 2  y= 8  S= search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXECscore tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+401 
+x= 1  y= 8  S=  : pval = 0.1082658 
+x= 2  y= 1  S=  : pval = 0.01782203 
+x= 2  y= 3  S=  : pval = 0.5040478 
+x= 2  y= 4  S=  : pval = 3.344834e-27 
+x= 2  y= 5  S=  : pval = 1.612473e-15 
+x= 2  y= 6  S=  : pval = 0.001441371 
+x= 2  y= 7  S=  : pval = 7.963733e-11 
+x= 2  y= 8  S=  : pval = 1.924782e-14 
+x= 3  y= 4  S=  : pval = 0.6094046 
+x= 3  y= 5  S=  : pval = 0.1584668 
+x= 3  y= 6  S=  : pval = 0.00017049 
+x= 3  y= 7  S=  : pval = 0.02740445 
+x= 3  y= 8  S=  : pval = 0.5531443 
+x= 4  y= 2  S=  : pval = 3.344834e-27 
+x= 4  y= 5  S=  : pval = 2.459053e-73 
+x= 4  y= 6  S=  : pval = 9.013578e-29 
+x= 4  y= 7  S=  : pval = 6.171128e-05 
+x= 4  y= 8  S=  : pval = 2.851166e-15 
+x= 5  y= 2  S=  : pval = 1.612473e-15 
+x= 5  y= 4  S=  : pval = 2.459053e-73 
+x= 5  y= 6  S=  : pval = 3.676286e-18 
+x= 5  y= 7  S=  : pval = 7.411293e-05 
+x= 5  y= 8  S=  : pval = 2.459965e-35 
+x= 6  y= 1  S=  : pval = 2.779045e-07 
+x= 6  y= 2  S=  : pval = 0.001441371 
+x= 6  y= 3  S=  : pval = 0.00017049 
+x= 6  y= 4  S=  : pval = 9.013578e-29 
+x= 6  y= 5  S=  : pval = 3.676286e-18 
+x= 6  y= 7  S=  : pval = 0.3581968 
+x= 6  y= 8  S=  : pval = 7.534955e-15 
+x= 7  y= 1  S=  : pval = 0.0009637401 
+x= 7  y= 2  S=  : pval = 7.963733e-11 
+x= 7  y= 3  S=  : pval = 0.02740445 
+x= 7  y= 4  S=  : pval = 6.171128e-05 
+x= 7  y= 5  S=  : pval = 7.411293e-05 
+x= 7  y= 8  S=  : pval = 0.004377319 
+x= 8  y= 2  S=  : pval = 1.924782e-14 
+x= 8  y= 4  S=  : pval = 2.851166e-15 
+x= 8  y= 5  S=  : pval = 2.459965e-35 
+x= 8  y= 6  S=  : pval = 7.534955e-15 
+x= 8  y= 7  S=  : pval = 0.004377319 
+Order=1; remaining edges:38
+x= 1  y= 2  S= 6 : pval = 0.003949861 
+x= 1  y= 2  S= 7 : pval = 0.2056963 
+x= 1  y= 6  S= 2 : pval = 1.21175e-07 
+x= 1  y= 6  S= 7 : pval = 2.440983e-06 
+x= 1  y= 7  S= 2 : pval = 0.01466111 
+x= 1  y= 7  S= 6 : pval = 0.005671182 
+x= 2  y= 4  S= 1 : pval = 2.503519e-27 
+x= 2  y= 4  S= 5 
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.01782203 
+x= 1  y= 3  S=  : pval = 0.5503424 
+x= 1  y= 4  S=  : pval = 0.253899 
+x= 1  y= 5  S=  : pval = 0.8183722 
+x= 1  y= 6  S=  : pval = 2.779045e-07 
+x= 1  y= 7  S=  : pval = 0.0009637401 
+x= 1  y= 8  S=  : pval = 0.1082658 
+x= 2  y= 1  S=  : pval = 0.01782203 
+x= 2  y= 3  S=  : pval = 0.5040478 
+x= 2  y= 4  S=  : pval = 3.344834e-27 
+x= 2  y= 5  S=  : pval = 1.612473e-15 
+x= 2  y= 6  S=  : pval = 0.001441371 
+x= 2  y= 7  S=  : pval = 7.963733e-11 
+x= 2  y= 8  S=  : pval = 1.924782e-14 
+x= 3  y= 4  S=  : pval = 0.6094046 
+x= 3  y= 5  S=  : pval = 0.1584668 
+x= 3  y= 6  S=  : pval = 0.00017049 
+x= 3  y= 7  S=  : pval = 0.02740445 
+x= 3  y= 8  S=  : pval = 0.5531443 
+x= 4  y= 2  S=  : pval = 3.344834e-27 
+x= 4  y= 5  S=  : pval = 2.459053e-73 
+x= 4  y= 6  S=  : pval = 9.013578e-29 
+x= 4  y= 7  S=  : pval = 6.171128e-05 
+x= 4  y= 8  S=  : pval = 2.851166e-15 
+x= 5  y= 2  S=  : pval = 1.612473e-15 
+x= 5  y= 4  S=  : pval = 2.459053e-73 
+x= 5  y= 6  S=  : pval = 3.676286e-18 
+x= 5  y= 7  S=  : pval = 7.411293e-05 
+x= 5  y= 8  S=  : pval = 2.459965e-35 
+x= 6  y= 1  S=  : pval = 2.779045e-07 
+x= 6  y= 2  S=  : pval = 0.001441371 
+x= 6  y= 3  S=  : pval = 0.00017049 
+x= 6  y= 4  S=  : pval = 9.013578e-29 
+x= 6  y= 5  S=  : pval = 3.676286e-18 
+x= 6  y= 7  S=  : pval = 0.3581968 
+x= 6  y= 8  S=  : pval = 7.534955e-15 
+x= 7  y= 1  S=  : pval = 0.0009637401 
+x= 7  y= 2  S=  : pval = 7.963733e-11 
+x= 7  y= 3  S=  : pval = 0.02740445 
+x= 7  y= 4  S=  : pval = 6.171128e-05 
+x= 7  y= 5  S=  : pval = 7.411293e-05 
+x= 7  y= 8  S=  : pval = 0.004377319 
+x= 8  y= 2  S=  : pval = 1.924782e-14 
+x= 8  y= 4  S=  : pval = 2.851166e-15 
+x= 8  y= 5  S=  : pval = 2.459965e-35 
+x= 8  y= 6  S=  : pval = 7.534955e-15 
+x= 8  y= 7  S=  : pval = 0.004377319 
+Order=1; remaining edges:38
+x= 1  y= 2  S= 6 : pval = 0.003949861 
+x= 1  y= 2  S= 7 : pval = 0.2056963 
+x= 1  y= 6  S= 2 : pval = 1.21175e-07 
+x= 1  y= 6  S= 7 : pval = 2.440983e-06 
+x= 1  y= 7  S= 2 : pval = 0.01466111 
+x= 1  y= 7  S= 6 : pval = 0.005671182 
+x= 2  y= 4  S= 1 : pval = 2.503519e-27 
+x= 2  y= 4  S= 5 : pval = 2.510602e-12 
+x= 2  y= 4  S= 6 : pval = 1.233043e-29 
+x= 2  y= 4  S= 7 : pval = 2.658431e-23 
+x= 2  y= 4  S= 8 : pval = 9.258464e-32 
+x= 2  y= 5  S= 1 : pval = 4.465997e-15 
+x= 2  y= 5  S= 4 : pval = 0.8987963 
+x= 2  y= 6  S= 1 : pval = 0.0004083669 
+x= 2  y= 6  S= 4 : pval = 1.686045e-06 
+x= 2  y= 6  S= 5 : pval = 0.1250932 
+x= 2  y= 7  S= 1 : pval = 2.259953e-09 
+x= 2  y= 7  S= 4 : pval = 3.862963e-07 
+x= 2  y= 7  S= 5 : pval = 1.551944e-07 
+x= 2  y= 7  S= 6 : pval = 1.741183e-10 
+x= 2  y= 7  S= 8 : pval = 3.697796e-09 
+x= 2  y= 8  S= 1 : pval = 5.142811e-14 
+x= 2  y= 8  S= 4 : pval = 3.805976e-19 
+x= 2  y= 8  S= 5 : pval = 2.661991e-24 
+x= 2  y= 8  S= 6 : pval = 2.990139e-12 
+x= 2  y= 8  S= 7 : pval = 1.046104e-12 
+x= 3  y= 6  S= 7 : pval = 0.0005093998 
+x= 3  y= 7  S= 6 : pval = 0.05237959 
+x= 4  y= 2  S= 5 : pval = 2.510602e-12 
+x= 4  y= 2  S= 6 : pval = 1.233043e-29 
+x= 4  y= 2  S= 7 : pval = 2.658431e-23 
+x= 4  y= 2  S= 8 : pval = 9.258464e-32 
+x= 4  y= 5  S= 2 : pval = 3.078444e-58 
+x= 4  y= 5  S= 6 : pval = 3.986972e-56 
+x= 4  y= 5  S= 7 : pval = 3.119603e-69 
+x= 4  y= 5  S= 8 : pval = 1.917647e-59 
+x= 4  y= 6  S= 2 : pval = 3.421687e-31 
+x= 4  y= 6  S= 5 : pval = 9.023019e-12 
+x= 4  y= 6  S= 7 : pval = 2.514336e-29 
+x= 4  y= 6  S= 8 : pval = 9.612472e-28 
+x= 4  y= 7  S= 2 : pval = 0.1905172 
+x= 4  y= 8  S= 2 : pval = 5.810223e-20 
+x= 4  y= 8  S= 5 : pval = 0.09814524 
+x= 5  y= 4  S= 2 : pval = 3.078444e-58 
+x= 5  y= 4  S= 6 : pval = 3.986972e-56 
+x= 5  y= 4  S= 7 : pval = 3.119603e-69 
+x= 5  y= 4  S= 8 : pval = 1.917647e-59 
+x= 5  y= 6  S= 2 : pval = 8.122994e-16 
+x= 5  y= 6  S= 4 : pval = 0.2887109 
+x= 5  y= 7  S= 2 : pval = 0.09102156 
+x= 5  y= 8  S= 2 : pval = 5.457935e-45 
+x= 5  y= 8  S= 4 : pval = 1.318149e-21 
+x= 5  y= 8  S= 6 : pval = 3.816207e-28 
+x= 5  y= 8  S= 7 : pval = 5.156096e-35 
+x= 6  y= 1  S= 2 : pval = 1.21175e-07 
+x= 6  y= 1  S= 3 : pval = 7.13344e-07 
+x= 6  y= 1  S= 4 : pval = 3.566891e-12 
+x= 6  y= 1  S= 5 : pval = 2.119337e-10 
+x= 6  y= 1  S= 8 : pval = 1.317001e-12 
+x= 6  y= 3  S= 1 : pval = 0.0003287606 
+x= 6  y= 3  S= 2 : pval = 5.953061e-07 
+x= 6  y= 3  S= 4 : pval = 3.566596e-05 
+x= 6  y= 3  S= 5 : pval = 0.001635006 
+x= 6  y= 3  S= 8 : pval = 0.0005871838 
+x= 6  y= 4  S= 1 : pval = 2.439486e-33 
+x= 6  y= 4  S= 2 : pval = 3.421687e-31 
+x= 6  y= 4  S= 3 : pval = 5.292754e-29 
+x= 6  y= 4  S= 5 : pval = 9.023019e-12 
+x= 6  y= 4  S= 8 : pval = 9.612472e-28 
+x= 6  y= 8  S= 1 : pval = 5.302522e-20 
+x= 6  y= 8  S= 2 : pval = 1.188267e-12 
+x= 6  y= 8  S= 3 : pval = 5.129672e-14 
+x= 6  y= 8  S= 4 : pval = 5.658781e-14 
+x=
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/results/n8_k2_csi75_pcskel_none_order_ess1_epf2_N1000_r02.rds
+Runtime
+Time difference of 9.037402 secs
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.01782203 
+x= 1  y= 3  S=  : pval = 0.5503424 
+x= 1  y= 4  S=  : pval = 0.253899 
+x= 1  y= 5  S=  : pval = 0.8183722 
+x= 1  y= 6  S=  : pval = 2.779045e-07 
+x= 1  y= 7  S=  : pval = 0.0009637401 
+x= 1  y= 8  S=  : pval = 0.1082658 
+x= 2  y= 1  S=  : pval = 0.01782203 
+x= 2  y= 3  S=  : pval = 0.5040478 
+x= 2  y= 4  S=  : pval = 3.344834e-27 
+x= 2  y= 5  S=  : pval = 1.612473e-15 
+x= 2  y= 6  S=  : pval = 0.001441371 
+x= 2  y= 7  S=  : pval = 7.963733e-11 
+x= 2  y= 8  S=  : pval = 1.924782e-14 
+x= 3  y= 4  S=  : pval = 0.6094046 
+x= 3  y= 5  S=  : pval = 0.1584668 
+x= 3  y= 6  S=  : pval = 0.00017049 
+x= 3  y= 7  S=  : pval = 0.02740445 
+x= 3  y= 8  S=  : pval = 0.5531443 
+x= 4  y= 2  S=  : pval = 3.344834e-27 
+x= 4  y= 5  S=  : pval = 2.459053e-73 
+x= 4  y= 6  S=  : pval = 9.013578e-29 
+x= 4  y= 7  S=  : pval = 6.171128e-05 
+x= 4  y= 8  S=  : pval = 2.851166e-15 
+x= 5  y= 2  S=  : pval = 1.612473e-15 
+x= 5  y= 4  S=  : pval = 2.459053e-73 
+x= 5  y= 6  S=  : pval = 3.676286e-18 
+x= 5  y= 7  S=  : pval = 7.411293e-05 
+x= 5  y= 8  S=  : pval = 2.459965e-35 
+x= 6  y= 1  S=  : pval = 2.779045e-07 
+x= 6  y= 2  S=  : pval = 0.001441371 
+x= 6  y= 3  S=  : pval = 0.00017049 
+x= 6  y= 4  S=  : pval = 9.013578e-29 
+x= 6  y= 5  S=  : pval = 3.676286e-18 
+x= 6  y= 7  S=  : pval = 0.3581968 
+x= 6  y= 8  S=  : pval = 7.534955e-15 
+x= 7  y= 1  S=  : pval = 0.0009637401 
+x= 7  y= 2  S=  : pval = 7.963733e-11 
+x= 7  y= 3  S=  : pval = 0.02740445 
+x= 7  y= 4  S=  : pval = 6.171128e-05 
+x= 7  y= 5  S=  : pval = 7.411293e-05 
+x= 7  y= 8  S=  : pval = 0.004377319 
+x= 8  y= 2  S=  : pval = 1.924782e-14 
+x= 8  y= 4  S=  : pval = 2.851166e-15 
+x= 8  y= 5  S=  : pval = 2.459965e-35 
+x= 8  y= 6  S=  : pval = 7.534955e-15 
+x= 8  y= 7  S=  : pval = 0.004377319 
+Order=1; remaining edges:38
+x= 1  y= 2  S= 6 : pval = 0.003949861 
+x= 1  y= 2  S= 7 : pval = 0.2056963 
+x= 1  y= 6  S= 2 : pval = 1.21175e-07 
+x= 1  y= 6  S= 7 : pval = 2.44098search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.01782203 
+x= 1  y= 3  S=  : pval = 0.5503424 
+x= 1  y= 4  S=  : pval = 0.253899 
+x= 1  y= 5  S=  : pval = 0.8183722 
+x= 1  y= 6  S=  : pval = 2.779045e-07 
+x= 1  y= 7  S=  : pval = 0.0009637401 
+x= 1  y= 8  S=  : pval = 0.1082658 
+x= 2  y= 1  S=  : pval = 0.01782203 
+x= 2  y= 3  S=  : pval = 0.5040478 
+x= 2  y= 4  S=  : pval = 3.344834e-27 
+x= 2  y= 5  S=  : pval = 1.612473e-15 
+x= 2  y= 6  S=  : pval = 0.001441371 
+x= 2  y= 7  S=  : pval = 7.963733e-11 
+x= 2  y= 8  S=  : pval = 1.924782e-14 
+x= 3  y= 4  S=  : pval = 0.6094046 
+x= 3  y= 5  S=  : pval = 0.1584668 
+x= 3  y= 6  S=  : pval = 0.00017049 
+x= 3  y= 7  S=  : pval = 0.02740445 
+x= 3  y= 8  S=  : pval = 0.5531443 
+x= 4  y= 2  S=  : pval = 3.344834e-27 
+x= 4  y= 5  S=  : pval = 2.459053e-73 
+x= 4  y= 6  S=  : pval = 9.013578e-29 
+x= 4  y= 7  S=  : pval = 6.171128e-05 
+x= 4  y= 8  S=  : pval = 2.851166e-15 
+x= 5  y= 2  S=  : pval = 1.612473e-15 
+x= 5  y= 4  S=  : pval = 2.459053e-73 
+x= 5  y= 6  S=  : pval = 3.676286e-18 
+x= 5  y= 7  S=  : pval = 7.411293e-05 
+x= 5  y= 8  S=  : pval = 2.459965e-35 
+x= 6  y= 1  S=  : pval = 2.779045e-07 
+x= 6  y= 2  S=  : pval = 0.001441371 
+x= 6  y= 3  S=  : pval = 0.00017049 
+x= 6  y= 4  S=  : pval = 9.013578e-29 
+x= 6  y= 5  S=  : pval = 3.676286e-18 
+x= 6  y= 7  S=  : pval = 0.3581968 
+x= 6  y= 8  S=  : pval = 7.534955e-15 
+x= 7  y= 1  S=  : pval = 0.0009637401 
+x= 7  y= 2  S=  : pval = 7.963733e-11 
+x= 7  y= 3  S=  : pval = 0.02740445 
+x= 7  y= 4  S=  : pval = 6.171128e-05 
+x= 7  y= 5  S=  : pval = 7.411293e-05 
+x= 7  y= 8  S=  : pval = 0.004377319 
+x= 8  y= 2  S=  : pval = 1.924782e-14 
+x= 8  y= 4  S=  : pval = 2.851166e-15 
+x= 8  y= 5  S=  : pval = 2.459965e-35 
+x= 8  y= 6  S=  : pval = 7.534955e-15 
+x= 8  y= 7  S=  : pval = 0.004377319 
+Order=1; remaining edges:38
+x= 1  y= 2  S= 6 : pval = 0.003949861 
+x= 1  y= 2  S= 7 : pval = 0.2056963 
+x= 1  y= 6  S= 2 : pval = 1.21175e-07 
+x= 1  y= 6  S= 7 : pval = 2.440983e-06 
+x= 1  y= 7  S= 2 : pval = 0.01466111 
+x= 1  y= 7  S= 6 : pval = 0.005671182 
+x= 2  y= 4  S= 1 : pval = 2.503519e-27 
+x= 2  y= 4  S= 5 : pval = 2.510602e-12 
+x= 2  y= 4  S= 6 : pval = 1.233043e-29 
+x= 2  y= 4  S= 7 : pval = 2.658431e-23 
+x= 2  y= 4  S= 8 : pval = 9.258464e-32 
+x= 2  y= 5  S= 1 : pval = 4.465997e-15 
+x= 2  y= 5  S= 4 : pval = 0.8987963 
+x= 2  y= 6  S= 1 : pval = 0.0004083669 
+x= 2  y= 6  S= 4 : pval = 1.686045e-06 
+x= 2  y= 6  S= 5 : pval = 0.1250932 
+x= 2  y= 7  S= 1 : pval = 2.259953e-09 
+x= 2  y= 7  S= 4 : pval = 3.862963e-07 
+x= 2  y= 7  S= 5 : pval = 1.551944e-07 
+x= 2  y= 7  S= 6 : pval = 1.741183e-10 
+x= 2  y= 7  S= 8 : pval = 3.697796e-09 
+x= 2  y= 8  S= 1 : pval = 5.142811e-14 
+x= 2  y= 8  S= 4 : pval = 3.805976e-19 
+x= 2  y= 8  S= 5 : pval = 2.661991e-24 
+x= 2  y= 8  S= 6 : pval = 2.990139e-12 
+x= 2  y= 8  S= 7 : pval = 1.046104e-12 
+x= 3  y= 6  S= 7 : pval = 0.0005093998 
+x= 3  y= 7  S= 6 : pval = 0.05237959 
+x= 4  y= 2  S= 5 : pval = 2.510602e-12 
+x= 4  y= 2  S= 6 : pval = 1.233043e-29 
+x= 4  y= 2  S= 7 : pval = 2.658431e-23 
+x= 4  y= 2  S= 8 : pval = 9.258464e-32 
+x= 4  y= 5  S= 2 : pval = 3.078444e-58 
+x= 4  y= 5  S= 6 : pval = 3.986972e-56 
+x= 4  y= 5  S= 7 : pval = 3.119603e-69 
+x= 4  y= 5  S= 8 : pval = 1.917647e-59 
+x= 4  y= 6  S= 2 : pval = 3.421687e-31 
+x= 4  y= 6  S= 5 : pval = 9.023019e-12 
+x= 4  y= 6  S= 7 : pval = 2.514336e-29 
+x= 4  y= 6  S= 8 : pval = 9.612472e-28 
+x= 4  y= 7  S= 2 : pval = 0.1905172 
+x= 4  y= 8  S= 2 : pval = 5.810223e-20 
+x= 4  y= 8  S= 5 : pval = 0.09814524 
+x= 5  y= 4  S= 2 : pval = 3.078444e-58 
+x= 5  y= 4  S= 6 : pval = 3.986972e-56 
+x= 5  y= 4  S= 7 : pval = 3.119603e-69 
+x= 5  y= 4  S= 8 : pval = 1.917647e-59 
+x= 5  y= 6  S= 2 : pval = 8.122994e-16 
+x= 5  y= 6  S= 4 : pval = 0.2887109 
+x= 5  y= 7  S= 2 : pval = 0.09102156 
+x= 5  y= 8  S= 2 : pval = 5.457935e-45 
+x= 5  y= 8  S= 4 : pval = 1.318149e-21 
+x= 5  y= 8  S= 6 : pval = 3.816207e-28 
+x= 5  y= 8  S= 7 : pval = 5.156096e-35 
+x= 6  y= 1  S= 2 : pval = 1.21175e-07 
+x= 6  y= 1  S= 3 : pval = 7.13344e-07 
+x= 6  y= 1  S= 4 : pval = 3.566891e-12 
+x= 6  y= 1  S= 5 : pval = 2.119337e-10 
+x= 6  y= 1  S= 8 : pval = 1.317001e-12 
+x= 6  y= 3  S= 1 : pval = 0.0003287606 
+x= 6  y= 3  S= 2 : pval = 5.953061e-07 
+x= 6  y= 3  S= 4 : pval = 3.566596e-05 
+x= 6  y= 3  S= 5 : pval = 0.001635006 
+x= 6  y= 3  S= 8 : pval = 0.0005871838 
+x= 6  y= 4  S= 1 : pval = 2.439486e-33 
+x= 6  y= 4  S= 2 : pval = 3.421687e-31 
+x= 6  y= 4  S= 3 : pval = 5.292754e-29 
+x= 6  y= 4  S= 5 : pval = 9.023019e-12 
+x= 6  y= 4  S= 8 : pval = 9.612472e-28 
+x= 6  y= 8  S= 1 : pval = 5.302522e-20 
+x= 6  y= 8  S= 2 : pval = 1.188267e-12 
+x= 6  y= 8  S= 3 : pval = 5.129672e-14 
+x= 6  y= 8  S= 4 : pval = 5.658781e-14 
+x= 6  y= 8  S=score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+6e-11 
+x= 7  y= 2  S= 4 : pval = 3.862963e-07 
+x= 7  y= 2  S= 5 : pval = 1.551944e-07 
+x= 7  y= 2  S= 8 : pval = 3.697796e-09 
+x= 7  y= 8  S= 1 : pval = 3.715771e-08 
+x= 7  y= 8  S= 2 : pval = 0.09610498 
+x= 8  y= 2  S= 4 : pval = 3.805976e-19 
+x= 8  y= 2  S= 5 : pval = 2.661991e-24 
+x= 8  y= 2  S= 6 : pval = 2.990139e-12 
+x= 8  y= 2  S= 7 : pval = 1.046104e-12 
+x= 8  y= 5  S= 2 : pval = 5.457935e-45 
+x= 8  y= 5  S= 4 : pval = 1.318149e-21 
+x= 8  y= 5  S= 6 : pval = 3.816207e-28 
+x= 8  y= 5  S= 7 : pval = 5.156096e-35 
+x= 8  y= 6  S= 2 : pval = 1.188267e-12 
+x= 8  y= 6  S= 4 : pval = 5.658781e-14 
+x= 8  y= 6  S= 5 : pval = 7.39661e-08 
+x= 8  y= 6  S= 7 : pval = 2.267068e-14 
+Order=2; remaining edges:20
+x= 2  y= 4  S= 7 8 : pval = 4.046265e-27 
+x= 2  y= 7  S= 4 8 : pval = 3.410291e-05 
+x= 2  y= 8  S= 4 7 : pval = 1.003337e-16 
+x= 4  y= 2  S= 5 6 : pval = 2.048606e-16 
+x= 4  y= 5  S= 2 6 : pval = 1.651886e-42 
+x= 4  y= 6  S= 2 5 : pval = 7.131962e-16 
+x= 6  y= 1  S= 3 4 : pval = 1.749962e-11 
+x= 6  y= 1  S= 3 8 : pval = 1.762639e-12 
+x= 6  y= 1  S= 4 8 : pval = 1.296411e-14 
+x= 6  y= 3  S= 1 4 : pval = 7.819855e-05 
+x= 6  y= 3  S= 1 8 : pval = 0.0002892447 
+x= 6  y= 3  S= 4 8 : pval = 0.001572192 
+x= 6  y= 4  S= 1 3 : pval = 3.568778e-33 
+x= 6  y= 4  S= 1 8 : pval = 1.847882e-29 
+x= 6  y= 4  S= 3 8 : pval = 1.70603e-26 
+x= 6  y= 8  S= 1 3 : pval = 1.929049e-19 
+x= 6  y= 8  S= 1 4 : pval = 2.289728e-16 
+x= 6  y= 8  S= 3 4 : pval = 7.68857e-12 
+x= 8  y= 2  S= 5 6 : pval = 2.924201e-23 
+x= 8  y= 5  S= 2 6 : pval = 6.131275e-39 
+x= 8  y= 6  S= 2 5 : pval = 2.721076e-07 
+Order=3; remaining edges:20
+x= 6  y= 1  S= 3 4 8 : pval = 3.630297e-13 
+x= 6  y= 3  S= 1 4 8 : pval = 0.004964694 
+x= 6  y= 4  S= 1 3 8 : pval = 1.084441e-26 
+x= 6  y= 8  S= 1 3 4 : pval = 1.653747e-13 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.01782203 
+x= 1  y= 3  S=  : pval = 0.5503424 
+x= 1  y= 4  S=  : pval = 0.253899 
+x= 1  y= 5  S=  : pval = 0.8183722 
+x= 1  y= 6  S=  : pval = 2.779045e-07 
+x= 1  y= 7  S=  : pval = 0.0009637401 
+x= 1  y= 8  S=  : pval = 0.1082658 
+x= 2  y= 1  S=  : pval = 0.01782203 
+x= 2  y= 3  S=  : pval = 0.5040478 
+x= 2  y= 4  S=  : pval = 3.344834e-27 
+x= 2  y= 5  S=  : pval = 1.612473e-15 
+x= 2  y= 6  S=  : pval = 0.001441371 
+x= 2  y= 7  S=  : pval = 7.963733e-11 
+x= 2  y= 8  S=  : pval = 1.924782e-14 
+x= 3  y= 4  S=  : pval = 0.6094046 
+x= 3  y= 5  S=  : pval = 0.1584668 
+x= 3  y= 6  S=  : pval = 0.00017049 
+x= 3  y= 7  S=  : pval = 0.02740445 
+x= 3  y= 8  S=  : pval = 0.5531443 
+x= 4  y= 2  S=  : pval = 3.344834e-27 
+x= 4  y= 5  S=  : pval = 2.459053e-73 
+x= 4  y= 6  S=  : pval = 9.013578e-29 
+x= 4  y= 7  S=  : pval = 6.171128e-05 
+x= 4  y= 8  S=  : pval = 2.851166e-15 
+x= 5  y= 2  S=  : pval = 1.612473e-15 
+x= 5  y= 4  S=  : pval = 2.459053e-73 
+x= 5  y= 6  S=  : pval = 3.676286e-18 
+x= 5  y= 7  S=  : pval = 7.411293e-05 
+x= 5  y= 8  S=  : pval = 2.459965e-35 
+x= 6  y= 1  S=  : pval = 2.779045e-07 
+x= 6  y= 2  S=  : pval = 0.001441371 
+x= 6  y= 3  S=  : pval = 0.00017049 
+x= 6  y= 4  S=  : pval = 9.013578e-29 
+x= 6  y= 5  S=  : pval = 3.676286e-18 
+x= 6  y= 7  S=  : pval = 0.3581968 
+x= 6  y= 8  S=  : pval = 7.534955e-15 
+x= 7  y= 1  S=  : pval = 0.0009637401 
+x= 7  y= 2  S=  : pval = 7.963733e-11 
+x= 7  y= 3  S=  : pval = 0.02740445 
+x= 7  y= 4  S=  : pval = 6.171128e-05 
+x= 7  y= 5  S=  : pval = 7.411293e-05 
+x= 7  y= 8  S=  : pval = 0.004377319 
+x= 8  y= 2  S=  : pval = 1.924782e-14 
+x= 8  y= 4  S=  : pval = 2.851166e-15 
+x= 8  y= 5  S=  : pval = 2.459965e-35 
+x= 8  y= 6  S=  : pval = 7.534955e-15 
+x= 8  y= 7  S=  : pval = 0.004377319 
+Order=1; remaining edges:38
+x= 1  y= 2  S= 6 : pval = 0.003949861 
+x= 1  y= 2  S= 7 : pval = 0.2056963 
+x= 1  y= 6  S= 2 : pval = 1.21175e-07 
+x= 1  y= 6  S= 7 : pval = 2.440983e-06 
+x= 1  y= 7  S= 2 : pval = 0.01466111 
+x= 1  y= 7  S= 6 : pval = 0.005671182 
+x= 2  y= 4  S= 1 : pval = 2.503519e-27 
+x= 2  y= 4  S= 5 : pval = 2.510602e-12 
+x= 2  y= 4  S= 6 : pval = 1.233043e-29 
+x= 2  y= 4  S= 7 : pval = 2.658431e-23 
+x= 2  y= 4  S= 8 : pval = 9.258464e-32 
+x= 2  y= 5  S= 1 : pval = 4.465997e-15 
+x= 2  y= 5  S= 4 : pval = 0.8987963 
+x= 2  y= 6  S= 1 : pval = 0.0004083669 
+x= 2  y= 6  S= 4 : pval = 1.686045e-06 
+x= 2  y= 6  S= 5 : pval = 0.1250932 
+x= 2  y= 7  S= 1 : pval = 2.259953e-09 
+x= 2  y= 7  S= 4 : pval = 3.862963e-07 
+x= 2  y= 7  S= 5 : pval = 1.551944e-07 
+x= 2  y= 7  S= 6 : pval = 1.741183e-10 
+x= 2  y= 7  S= 8 : pval = 3.697796e-09 
+x= 2  y= 8  S= 1 : pval = 5.142811e-14 
+x= 2  y= 8  S= 4 : pval = 3.805976e-19 
+x= 2  y= 8  S= 5 : pval = 2.661991e-24 
+x= 2  y= 8  S= 6 : pval = 2.990139e-12 
+x= 2  y= 8  S= 7 : pval = 1.046104e-12 
+x= 3  y= 6  S= 7 : pval = 0.0005093998 
+x= 3  y= 7  S= 6 : pval = 0.05237959 
+x= 4  y= 2  S= 5 : pval = 2.510602e-12 
+x= 4  y= 2  S= 6 : pval = 1.233043e-29 
+x= 4  y= 2  S= 7 : pval = 2.658431e-23 
+x= 4  y= 2  S= 8 : pval = 9.258464e-32 
+x= 4  y= 5  S= 2 : pval = 3.078444e-58 
+x= 4  y= 5  S= 6 : pval = 3.986972e-56 
+x= 4  y= 5  S= 7 : pval = 3.119603e-69 
+x= 4  y= 5  S= 8 : pval = 1.917647e-59 
+x= 4  y= 6  S= 2 : pval = 3.421687e-31 
+x= 4  y= 6  S= 5 : pval = 9.023019e-12 
+x= 4  y= 6  S= 7 : pval = 2.514336e-29 
+x= 4  y= 6  S= 8 : pval = 9.612472e-28 
+x= 4  y= 7  S= 2 : pval = 0.1905172 
+x= 4  y= 8  S= 2 : pval = 5.810223e-20 
+x= 4  y= 8  S= 5 : pval = 0.09814524 
+x= 5  y= 4  S= 2 : pval = 3.078444e-58 
+x= 5  y= 4  S= 6 : pval = 3.986972e-56 
+x= 5  y= 4  S= 7 : pval = 3.119603e-69 
+x= 5  y= 4  S= 8 : pval = 1.917647e-59 
+x= 5  y= 6  S= 2 : pval = 8.122994e-16 
+x= 5  y= 6  S= 4 : pval = 0.2887109 
+x= 5  y= 7  S= 2 : pval = 0.09102156 
+x= 5  y= 8  S= 2 : pval = 5.457935e-45 
+x= 5  y= 8  S= 4 : pval = 1.318149e-21 
+x= 5  y= 8  S= 6 : pval = 3.816207e-28 
+x= 5  y= 8  S= 7 : pval = 5.156096e-35 
+x= 6  y= 1  S= 2 : pval = 1.21175e-07 
+x= 6  y= 1  S= 3 : pval = 7.13344e-07 
+x= 6  y= 1  S= 4 : pval = 3.566891e-12 
+x= 6  y= 1  S= 5 : pval = 2.119337e-10 
+x= 6  y= 1  S= 8 : pval = 1.317001e-12 
+x= 6  y= 3  S= 1 : pval = 0.0003287606 
+x= 6  y= 3  S= 2 : pval = 5.953061e-07 
+x= 6  y= 3  S= 4 : pval = 3.566596e-05 
+x= 6  y= 3  S= 5 : pval = 0.001635006 
+x= 6  y= 3  S= 8 : pval = 0.0005871838 
+x= 6  y= 4  S= 1 : pval = 2.439486e-33 
+x= 6  y= 4  S= 2 : pvascore tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+8  S= 4 : pval = 5.658781e-14 
+x= 6  y= 8  S= 5 : pval = 7.39661e-08 
+x= 7  y= 1  S= 2 : pval = 0.01466111 
+x= 7  y= 1  S= 3 : pval = 0.0004540783 
+x= 7  y= 1  S= 4 : pval = 0.006117518 
+x= 7  y= 1  S= 5 : pval = 0.001451448 
+x= 7  y= 1  S= 8 : pval = 9.274986e-09 
+x= 7  y= 2  S= 1 : pval = 2.259953e-09 
+x= 7  y= 2  S= 3 : pval = 9.304776e-11 
+x= 7  y= 2  S= 4 : pval = 3.862963e-07 
+x= 7  y= 2  S= 5 : pval = 1.551944e-07 
+x= 7  y= 2  S= 8 : pval = 3.697796e-09 
+x= 7  y= 8  S= 1 : pval = 3.715771e-08 
+x= 7  y= 8  S= 2 : pval = 0.09610498 
+x= 8  y= 2  S= 4 : pval = 3.805976e-19 
+x= 8  y= 2  S= 5 : pval = 2.661991e-24 
+x= 8  y= 2  S= 6 : pval = 2.990139e-12 
+x= 8  y= 2  S= 7 : pval = 1.046104e-12 
+x= 8  y= 5  S= 2 : pval = 5.457935e-45 
+x= 8  y= 5  S= 4 : pval = 1.318149e-21 
+x= 8  y= 5  S= 6 : pval = 3.816207e-28 
+x= 8  y= 5  S= 7 : pval = 5.156096e-35 
+x= 8  y= 6  S= 2 : pval = 1.188267e-12 
+x= 8  y= 6  S= 4 : pval = 5.658781e-14 
+x= 8  y= 6  S= 5 : pval = 7.39661e-08 
+x= 8  y= 6  S= 7 : pval = 2.267068e-14 
+Order=2; remaining edges:20
+x= 2  y= 4  S= 7 8 : pval = 4.046265e-27 
+x= 2  y= 7  S= 4 8 : pval = 3.410291e-05 
+x= 2  y= 8  S= 4 7 : pval = 1.003337e-16 
+x= 4  y= 2  S= 5 6 : pval = 2.048606e-16 
+x= 4  y= 5  S= 2 6 : pval = 1.651886e-42 
+x= 4  y= 6  S= 2 5 : pval = 7.131962e-16 
+x= 6  y= 1  S= 3 4 : pval = 1.749962e-11 
+x= 6  y= 1  S= 3 8 : pval = 1.762639e-12 
+x= 6  y= 1  S= 4 8 : pval = 1.296411e-14 
+x= 6  y= 3  S= 1 4 : pval = 7.819855e-05 
+x= 6  y= 3  S= 1 8 : pval = 0.0002892447 
+x= 6  y= 3  S= 4 8 : pval = 0.001572192 
+x= 6  y= 4  S= 1 3 : pval = 3.568778e-33 
+x= 6  y= 4  S= 1 8 : pval = 1.847882e-29 
+x= 6  y= 4  S= 3 8 : pval = 1.70603e-26 
+x= 6  y= 8  S= 1 3 : pval = 1.929049e-19 
+x= 6  y= 8  S= 1 4 : pval = 2.289728e-16 
+x= 6  y= 8  S= 3 4 : pval = 7.68857e-12 
+x= 8  y= 2  S= 5 6 : pval = 2.924201e-23 
+x= 8  y= 5  S= 2 6 : pval = 6.131275e-39 
+x= 8  y= 6  S= 2 5 : pval = 2.721076e-07 
+Order=3; remaining edges:20
+x= 6  y= 1  S= 3 4 8 : pval = 3.630297e-13 
+x= 6  y= 3  S= 1 4 8 : pval = 0.004964694 
+x= 6  y= 4  S= 1 3 8 : pval = 1.084441e-26 
+x= 6  y= 8  S= 1 3 4 : pval = 1.653747e-13 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+= 0.8932078 
+x= 1  y= 6  S=  : pval = 0.07827086 
+x= 1  y= 7  S=  : pval = 0.4952385 
+x= 1  y= 8  S=  : pval = 0.05968077 
+x= 2  y= 3  S=  : pval = 0.5823453 
+x= 2  y= 4  S=  : pval = 2.703697e-05 
+x= 2  y= 5  S=  : pval = 0.009910581 
+x= 2  y= 6  S=  : pval = 0.6028357 
+x= 2  y= 7  S=  : pval = 0.1727855 
+x= 2  y= 8  S=  : pval = 0.4906125 
+x= 3  y= 1  S=  : pval = 0.02681722 
+x= 3  y= 4  S=  : pval = 0.6859013 
+x= 3  y= 5  S=  : pval = 0.05319832 
+x= 3  y= 6  S=  : pval = 0.1075481 
+x= 3  y= 7  S=  : pval = 0.7923251 
+x= 3  y= 8  S=  : pval = 0.3350616 
+x= 4  y= 1  S=  : pval = 1.637535e-09 
+x= 4  y= 2  S=  : pval = 2.703697e-05 
+x= 4  y= 5  S=  : pval = 1.557917e-09 
+x= 4  y= 6  S=  : pval = 0.8867203 
+x= 4  y= 7  S=  : pval = 0.1436666 
+x= 4  y= 8  S=  : pval = 0.6449299 
+x= 5  y= 2  S=  : pval = 0.009910581 
+x= 5  y= 4  S=  : pval = 1.557917e-09 
+x= 5  y= 6  S=  : pval = 0.1598792 
+x= 5  y= 7  S=  : pval = 0.6501908 
+x= 5  y= 8  S=  : pval = 0.1145437 
+x= 6  y= 7  S=  : pval = 0.001463978 
+x= 6  y= 8  S=  : pval = 0.5347884 
+x= 7  y= 6  S=  : pval = 0.001463978 
+x= 7  y= 8  S=  : pval = 0.6180943 
+Order=1; remaining edges:12
+x= 1  y= 3  S= 4 : pval = 0.04875613 
+x= 1  y= 4  S= 3 : pval = 7.184567e-09 
+x= 2  y= 4  S= 5 : pval = 0.0007090213 
+x= 2  y= 5  S= 4 : pval = 0.1704517 
+x= 4  y= 1  S= 2 : pval = 2.802166e-08 
+x= 4  y= 1  S= 5 : pval = 2.051199e-09 
+x= 4  y= 2  S= 1 : pval = 0.0003300117 
+x= 4  y= 2  S= 5 : pval = 0.0007090213 
+x= 4  y= 5  S= 1 : pval = 1.953947e-09 
+x= 4  y= 5  S= 2 : pval = 5.734941e-08 
+x= 5  y= 4  S= 2 : pval = 5.734941e-08 
+Order=2; remaining edges:10
+x= 4  y= 1  S= 2 5 : pval = 4.051726e-08 
+x= 4  y= 2  S= 1 5 : pval = 0.005527925 
+x= 4  y= 5  S= 1 2 : pval = 8.010431e-08 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.1639068 
+x= 1  y= 3  S=  : pval = 0.02681722 
+x= 1  y= 4  S=  : pval = 1.637535e-09 
+x= 1  y= 5  S=  : pval = 0.8932078 
+x= 1  y= 6  S=  : pval = 0.07827086 
+x= 1  y= 7  S=  : pval = 0.4952385 
+x= 1  y= 8  S=  : pval = 0.05968077 
+x= 2  y= 3  S=  : pval = 0.5823453 
+x= 2  y= 4  S=  : pval = 2.703697e-05 
+x= 2  y= 5  S=  : pval = 0.009910581 
+x= 2  y= 6  S=  : pval = 0.6028357 
+x= 2  y= 7  S=  : pval = 0.1727855 
+x= 2  y= 8  S=  : pval = 0.4906125 
+x= 3  y= 1  S=  : pval = 0.02681722 
+x= 3  y= 4  S=  : pval = 0.6859013 
+x= 3  y= 5  S=  : pval = 0.05319832 
+x= 3  y= 6  S=  : pval = 0.1075481 
+x= 3  y= 7  S=  : pval = 0.7923251 
+x= 3  y= 8  S=  : pval = 0.3350616 
+x= 4  y= 1  S=  : pval = 1.637535e-09 
+x= 4  y= 2  S=  : pval = 2.703697e-05 
+x= 4  y= 5  S=  : pval = 1.557917e-09 
+x= 4  y= 6  S=  : pval = 0.8867203 
+x= 4  y= 7  S=  : pval = 0.1436666 
+x= 4  y= 8  S=  : pval = 0.6449299 
+x= 5  y= 2  S=  : pval = 0.009910581 
+x= 5  y= 4  S=  : pval = 1.557917e-09 
+x= 5  y= 6  S=  : pval = 0.1598792 
+x= 5  y= 7  S=  : pval = 0.6501908 
+x= 5  y= 8  S=  : pval = 0.1145437 
+x= 6  y= 7  S=  : pval = 0.001463978 
+x= 6  y= 8  S=  : pval = 0.5347884 
+x= 7  y= 6  S=  : pval = 0.001463978 
+x= 7  y= 8  S=  : pval = 0.6180943 
+Order=1; remaining edges:12
+x= 1  y= 3  S= 4 : pval = 0.04875613 
+x= 1  y= 4  S= 3 : pval = 7.184567e-09 
+x= 2  y= 4  S= 5 : pval = 0.0007090213 
+x= 2  y= 5  S= 4 : pval = 0.1704517 
+x= 4  y= 1  S= 2 : pval = 2.802166e-08 
+x= 4  y= 1  S= 5 : pval = 2.051199e-09 
+x= 4  y= 2  S= 1 : pval = 0.0003300117 
+x= 4  y= 2  S= 5 : pval = 0.0007090213 
+x= 4  y= 5  S= 1 : pval = 1.953947e-09 
+x= 4  y= 5  S= 2 : pval = 5.734941e-08 
+x= 5  y= 4  S= 2 : pval = 5.734941e-08 
+Order=2; remaining edges:10
+x= 4  y= 1  S= 2 5 : pval = 4.051726e-08 
+x= 4  y= 2  S= 1 5 : pval = 0.005527925 
+x= 4  y= 5  S= 1 2 : pval = 8.010431e-08 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.477925 
+x= 1  y= 3  S=  : pval = 0.0001895569 
+x= 1  y= 4  S=  : pval = 1.455096e-21 
+x= 1  y= 5  S=  : pval = 3.620998e-05 
+x= 1  y= 6  S=  : pval = 0.1021373 
+x= 1  y= 7  S=  : pval = 0.2503325 
+x= 1  y= 8  S=  : pval = 0.1070998 
+x= 2  y= 3  S=  : pval = 0.9320319 
+x= 2  y= 4  S=  : pval = 0.0002082869 
+x= 2  y= 5  S=  : pval = 0.02496934 
+x= 2  y= 6  S=  : pval = 0.8102784 
+x= 2  y= 7  S=  : pval = 0.4130084 
+x= 2  y= 8  S=  : pval = 0.4260611 
+x= 3  y= 1  S=  : pval = 0.0001895569 
+x= 3  y= 4  S=  : pval = 0.4715125 
+x= 3  y= 5  S=  : pval = 0.01503761 
+x= 3  y= 6  S=  : pval = 0.005537622 
+x= 3  y= 7  S=  : pval = 0.2494455 
+x= 3  y= 8  S=  : pval = 0.497743 
+x= 4  y= 1  S=  : pval = 1.455096e-21 
+x= 4  y= 2  S=  : pval = 0.0002082869 
+x= 4  y= 5  S=  : pval = 5.943499e-45 
+x= 4  y= 6  S=  : pval = 0.4188313 
+x= 4  y= 7  S=  : pval = 0.8773084 
+x= 4  y= 8  S=  : pval = 0.5583945 
+x= 5  y= 1  S=  : pval = 3.620998e-05 
+x= 5  y= 2  S=  : pval = 0.02496934 
+x= 5  y= 3  S=  : pval = 0.01503761 
+x= 5  y= 4  S=  : pval = 5.943499e-45 
+x= 5  y= 6  S=  : pval = 0.6173908 
+x= 5  y= 7  S=  : pval = 0.4610762 
+x= 5  y= 8  S=  : pval = 0.7914567 
+x= 6  y= 3  S=  : pval = 0.005537622 
+x= 6  y= 7  S=  : pval = 3.557412e-17 
+x= 6  y= 8  S=  : pval = 0.3869972 
+x= 7  y= 6  S=  : pval = 3.557412e-17 
+x= 7  y= 8  S=  : pval = 0.8288856 
+Order=1; remaining edges:18
+x= 1  y= 3  S= 4 : pval = 0.001166032 
+x= 1  y= 3  S= 5 : pval = 0.002431262 
+x= 1  y= 4  S= 3 : pval = 2.172898e-20 
+x= 1  y= 4  S= 5 : pval = 7.678824e-17 
+x= 1  y= 5  S= 3 : pval = 0.000508728 
+x= 1  y= 5  S= 4 : pval = 0.8622233 
+x= 2  y= 4  S= 5 : pval = 0.009450453 
+x= 2  y= 5  S= 4 : pval = 0.7428255 
+x= 3  y= 1  S= 5 : pval = 0.002431262 
+x= 3  y= 1  S= 6 : pval = 0.00047565 
+x= 3  y= 5  S= 1 : pval = 0.1340641 
+x= 3  y= 6  S= 1 : pval = 0.0107553 
+x= 3  y= 6  S= 5 : pval = 0.02013533 
+x= 4  y= 1  S= 2 : pval = 2.753058e-21 
+x= 4  y= 1  S= 5 : pval = 7.678824e-17 
+x= 4  y= 2  S= 1 : pval = 0.0001614118 
+x= 4  y= 2  S= 5 : pval = 0.009450453 
+x= 4  y= 5  S= 1 : pval = 4.599876e-40 
+x= 4  y= 5  S= 2 : pval = 9.655708e-43 
+x= 5  y= 4  S= 1 : pval = 4.599876e-40 
+x= 5  y= 4  S= 2 : pval = 9.655708e-43 
+x= 5  y= 4  S= 3 : pval = 1.101364e-43 
+x= 6  y= 3  S= 7 : pval = 0.03787207 
+x= 6  y= 7  S= 3 : pval = 6.761051e-16 
+Order=2; remaining edges:12
+x= 4  y= 1  S= 2 5 : pval = 6.048331e-17 
+x= 4  y= 2  S= 1 5 : pval = 0.001705128 
+x= 4  y= 5  S= 1 2 : pval = 4.61151e-38 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.01782203 
+x= 1  y= 3  S=  : pval = 0.5503424 
+x= 1  y= 4  S=  : pval = 0.253899 
+x= 1  y= 5  S=  : pval = 0.8183722 
+x= 1  y= 6  S=  : pval = 2.779045e-07 
+x= 1  y= 7  S=  : pval = 0.0009637401 
+x= 1  y= 8  S=  : pval = 0.1082658 
+x= 2  y= 1  S=  : pval = 0.01782203 
+x= 2  y= 3  S=  : pval = 0.5040478 
+x= 2  y= 4  S=  : pval = 3.344834e-27 
+x= 2  y= 5  S=  : pval = 1.612473e-15 
+x= 2  y= 6  S=  : pval = 0.001441371 
+x= 2  y= 7  S=  : pval = 7.963733e-11 
+x= 2  y= 8  S=  : pval = 1.924782e-14 
+x= 3  y= 4  S=  : pval = 0.6094046 
+x= 3  y= 5  S=  : pval = 0.1584668 
+x= 3  y= 6  S=  : pval = 0.00017049 
+x= 3  y= 7  S=  : pval = 0.02740445 
+x= 3  y= 8  S=  : pval = 0.5531443 
+x= 4  y= 2  S=  : pval = 3.344834e-27 
+x= 4  y= 5  S=  : pval = 2.459053e-73 
+x= 4  y= 6  S=  : pval = 9.013578e-29 
+x= 4  y= 7  S=  : pval = 6.171128e-05 
+x= 4  y= 8  S=  : pval = 2.851166e-15 
+x= 5  y= 2  S=  : pval = 1.612473e-15 
+x= 5  y= 4  S=  : pval = 2.459053e-73 
+x= 5  y= 6  S=  : pval = 3.676286e-18 
+x= 5  y= 7  S=  : pval = 7.411293e-05 
+x= 5  y= 8  S=  : pval = 2.459965e-35 
+x= 6  y= 1  S=  : pval = 2.779045e-07 
+x= 6  y= 2  S=  : pval = 0.001441371 
+x= 6  y= 3  S=  : pval = 0.00017049 
+x= 6  y= 4  S=  : pval = 9.013578e-29 
+x= 6  y= 5  S=  : pval = 3.676286e-18 
+x= 6  y= 7  S=  : pval = 0.3581968 
+x= 6  y= 8  S=  : pval = 7.534955e-15 
+x= 7  y= 1  S=  : pval = 0.0009637401 
+x= 7  y= 2  S=  : pval = 7.963733e-11 
+x= 7  y= 3  S=  : pval = 0.02740445 
+x= 7  y= 4  S=  : pval = 6.171128e-05 
+x= 7  y= 5  S=  : pval = 7.411293e-05 
+x= 7  y= 8  S=  : pval = 0.004377319 
+x= 8  y= 2  S=  : pval = 1.924782e-14 
+x= 8  y= 4  S=  : pval = 2.851166e-15 
+x= 8  y= 5  S=  : pval = 2.459965e-35 
+x= 8  y= 6  S=  : pval = 7.534955e-15 
+x= 8  y= 7  S=  : pval = 0.004377319 
+Order=1; remaining edges:38
+x= 1  y= 2  S= 6 : pval = 0.003949861 
+x= 1  y= 2  S= 7 : pval = 0.2056963 
+x= 1  y= 6  S= 2 : pval = 1.21175e-07 
+x= 1  y= 6  S= 7 : pval = 2.440983e-06 
+x= 1  y= 7  S= 2 : pval = 0.01466111 
+x= 1  y= 7  S= 6 : pval = 0.005671182 
+x= 2  y= 4  S= 1 : pval = 2.503519e-27 
+x= 2  y= 4  S= 5 : pval = 2.510602e-12 
+x= 2  y= 4  S= 6 : pval = 1.233043e-29 
+x= 2  y= 4  S= 7 : pval = 2.658431e-23 
+x= 2  y= 4  S= 8 : pval = 9.258464e-32 
+x= 2  y= 5  S= 1 : pval = 4.465997e-15 
+x= 2  y= 5  S= 4 : pval = 0.8987963 
+x= 2  y= 6  S= 1 : pval = 0.0004083669 
+x= 2  y= 6  S= 4 : pval = 1.686045e-06 
+x= 2  y= 6  S= 5 : pval = 0.1250932 
+x= 2  y= 7  S= 1 : pval = 2.259953e-09 
+x= 2  y= 7  S= 4 : pval = 3.862963e-07 
+x= 2  y= 7  S= 5 : pval = 1.551944e-07 
+x= 2  y= 7  S= 6 : pval = 1.741183e-10 
+x= 2  y= 7  S= 8 : pval = 3.697796e-09 
+x= 2  y= 8  S= 1 : pval = 5.142811e-14 
+x= 2  y= 8  S= 4 : pval = 3.805976e-19 
+x= 2  y= 8  S= 5 : pval = 2.661991e-24 
+x= 2  y= 8  S= 6 : pval = 2.990139e-12 
+x= 2  y= 8  S= 7 : pval = 1.046104e-12 
+x= 3  y= 6  S= 7 : pval = 0.0005093998 
+x= 3  y= 7  S= 6 : pval = 0.05237959 
+x= 4  y= 2  S= 5 : pval = 2.510602e-12 
+x= 4  y= 2  S= 6 : pval = 1.233043e-29 
+x= 4  y= 2  S= 7 : pval = 2.658431e-23 
+x= 4  y= 2  S= 8 : pval = 9.258464e-32 
+x= 4  y= 5  S= 2 : pval = 3.078444e-58 
+x= 4  y= 5  S= 6 : pval = 3.986972e-56 
+x= 4  y= 5  S= 7 : pval = 3.119603e-69 
+x= 4  y= 5  S= 8 : pval = 1.917647e-59 
+x= 4  y= 6  S= 2 : pval = 3.421687e-31 
+x= 4  y= 6  S= 5 : pval = 9.023019e-12 
+x= 4  y= 6  S= 7 : pval = 2.514336e-29 
+x= 4  y= 6  S= 8 : pval = 9.612472e-28 
+x= 4  y= 7  S= 2 : pval = 0.1905172 
+x= 4  y= 8  S= 2 : pval = 5.810223e-20 
+x= 4  y= 8  S= 5 : pval = 0.09814524 
+x= 5  y= 4  S= 2 : pval = 3.078444e-58 
+x= 5  y= 4  S= 6 : pval = 3.986972e-56 
+x= 5  y= 4  S= 7 : pval = 3.119603e-69 
+x= 5  y= 4  S= 8 : pval = 1.917647e-59 
+x= 5  y= 6  S= 2 : pval = 8.122994e-16 
+x= 5  y= 6  S= 4 : pval = 0.2887109 
+x= 5  y= 7  S= 2 : pval = 0.09102156 
+x= 5  y= 8  S= 2 : pval = 5.457935e-45 
+x= 5  y= 8  S= 4 : pval = 1.318149e-21 
+x= 5  y= 8  S= 6 : pval = 3.816207e-28 
+x= 5  y= 8  S= 7 : pval = 5.156096e-35 
+x= 6  y= 1  S= 2 : pval = 1.21175e-07 
+x= 6  y= 1  S= 3 : pval = 7.13344e-07 
+x= 6  y= 1  S= 4 : pval = 3.566891e-12 
+x= 6  y= 1  S= 5 : pval = 2.119337e-10 
+x= 6  y= 1  S= 8 : pval = 1.317001e-12 
+x= 6  y= 3  S= 1 : pval = 0.0003287606 
+x= 6  y= 3  S= 2 : pval = 5.953061e-07 
+x= 6  y= 3  S= 4 : pval = 3.566596e-05 
+x= 6  y= 3  S= 5 : pval = 0.001635006 
+x= 6  y= 3  S= 8 : pval = 0.0005871838 
+x= 6  y= 4  S= 1 : pval = 2.439486e-33 
+x= 6  y= 4  S= 2 : pval = 3.421687e-31 
+x= 6  y= 4  S= 3 : pval = 5.292754e-29 
+x= 6  y= 4  S= 5 : pval = 9.023019e-12 
+x= 6  y= 4  S= 8 : pval = 9.612472e-28 
+x= 6  y= 8  S= 1 : pval = 5.302522e-20 
+x= 6  y= 8  S= 2 : pval = 1.188267e-12 
+x= 6  y= 8  S= 3 : pval = 5.129672e-14 
+x= 6  y= 8  S= 4 : pval = 5.658781e-14 
+x= 6  y= 8  S= 5 : pval = 7.39661e-08 
+x= 7  y= 1  S= 2 : pval = 0.01466111 
+x= 7  y= 1  S= 3 : pval = 0.0004540783 
+x= 7  y= 1  S= 4 : pval = 0.006117518 
+x= 7  y= 1  S= 5 : pval = 0.001451448 
+x= 7  y= 1  S= 8 : pval = 9.274986e-09 
+x= 7  y= 2  S= 1 : pval = 2.259953e-09 
+x= 7  y= 2  S= 3 : pval = 9.304776e-11 
+x= 7  y= 2  S= 4 : pval = 3.862963e-07 
+x= 7  y= 2  S= 5 : pval = 1.551944e-07 
+x= 7  y= 2  S= 8 : pval = 3.697796e-09 
+x= 7  y= 8  S= 1 : pval = 3.715771e-08 
+x= 7  y= 8  S= 2 : pval = 0.09610498 
+x= 8  y= 2  S= 4 : pval = 3.805976e-19 
+x= 8  y= 2  S= 5 : pval = 2.661991e-24 
+x= 8  y= 2  S= 6 : pval = 2.990139e-12 
+x= 8  y= 2  S= 7 : pval = 1.046104e-12 
+x= 8  y= 5  S= 2 : pval = 5.457935e-45 
+x= 8  y= 5  S= 4 : pval = 1.318149e-21 
+x= 8  y= 5  S= 6 : pval = 3.816207e-28 
+x= 8  y= 5  S= 7 : pval = 5.156096e-35 
+x= 8  y= 6  S= 2 : pval = 1.188267e-12 
+x= 8  y= 6  S= 4 : pval = 5.658781e-14 
+x= 8  y= 6  S= 5 : pval = 7.39661e-08 
+x= 8  y= 6  S= 7 : pval = 2.267068e-14 
+Order=2; remaining edges:20
+x= 2  y= 4  S= 7 8 : pval = 4.046265e-27 
+x= 2  y= 7  S= 4 8 : pval = 3.410291e-05 
+x= 2  y= 8  S= 4 7 : pval = 1.003337e-16 
+x= 4  y= 2  S= 5 6 : pval = 2.048606e-16 
+x= 4  y= 5  S= 2 6 : pval = 1.651886e-42 
+x= 4  y= 6  S= 2 5 : pval = 7.131962e-16 
+x= 6  y= 1  S= 3 4 : pval = 1.749962e-11 
+x= 6  y= 1  S= 3 8 : pval = 1.762639e-12 
+x= 6  y= 1  S= 4 8 : pval = 1.296411e-14 
+x= 6  y= 3  S= 1 4 : pval = 7.819855e-05 
+x= 6  y= 3  S= 1 8 : pval = 0.0002892447 
+x= 6  y= 3  S= 4 8 : pval = 0.001572192 
+x= 6  y= 4  S= 1 3 : pval = 3.568778e-33 
+x= 6  y= 4  S= 1 8 : pval = 1.847882e-29 
+x= 6  y= 4  S= 3 8 : pval = 1.70603e-26 
+x= 6  y= 8  S= 1 3 : pval = 1.929049e-19 
+x= 6  y= 8  S= 1 4 : pval = 2.289728e-16 
+x= 6  y= 8  S= 3 4 : pval = 7.68857e-12 
+x= 8  y= 2  S= 5 6 : pval = 2.924201e-23 
+x= 8  y= 5  S= 2 6 : pval = 6.131275e-39 
+x= 8  y= 6  S= 2 5 : pval = 2.721076e-07 
+Order=3; remaining edges:20
+x= 6  y= 1  S= 3 4 8 : pval = 3.630297e-13 
+x= 6  y= 3  S= 1 4 8 : pval = 0.004964694 
+x= 6  y= 4  S= 1 3 8 : pval = 1.084441e-26 
+x= 6  y= 8  S= 1 3 4 : pval = 1.653747e-13 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.01782203 
+x= 1  y= 3  S=  : pval = 0.5503424 
+x= 1  y= 4  S=  : pval = 0.253899 
+x= 1  y= 5  S=  : pval = 0.8183722 
+x= 1  y= 6  S=  : pval = 2.779045e-07 
+x= 1  y= 7  S=  : pval = 0.0009637401 
+x= 1  y= 8  S=  : pval = 0.1082658 
+x= 2  y= 1  S=  : pval = 0.01782203 
+x= 2  y= 3  S=  : pval = 0.5040478 
+x= 2  y= 4  S=  : pval = 3.344834e-27 
+x= 2  y= 5  S=  : pval = 1.612473e-15 
+x= 2  y= 6  S=  : pval = 0.001441371 
+x= 2  y= 7  S=  : pval = 7.963733e-11 
+x= 2  y= 8  S=  : pval = 1.924782e-14 
+x= 3  y= 4  S=  : pval = 0.6094046 
+x= 3  y= 5  S=  : pval = 0.1584668 
+x= 3  y= 6  S=  : pval = 0.00017049 
+x= 3  y= 7  S=  : pval = 0.02740445 
+x= 3  y= 8  S=  : pval = 0.5531443 
+x= 4  y= 2  S=  : pval = 3.344834e-27 
+x= 4  y= 5  S=  : pval = 2.459053e-73 
+x= 4  y= 6  S=  : pval = 9.013578e-29 
+x= 4  y= 7  S=  : pval = 6.171128e-05 
+x= 4  y= 8  S=  : pval = 2.851166e-15 
+x= 5  y= 2  S=  : pval = 1.612473e-15 
+x= 5  y= 4  S=  : pval = 2.459053e-73 
+x= 5  y= 6  S=  : pval = 3.676286e-18 
+x= 5  y= 7  S=  : pval = 7.411293e-05 
+x= 5  y= 8  S=  : pval = 2.459965e-35 
+x= 6  y= 1  S=  : pval = 2.779045e-07 
+x= 6  y= 2  S=  : pval = 0.001441371 
+x= 6  y= 3  S=  : pval = 0.00017049 
+x= 6  y= 4  S=  : pval = 9.013578e-29 
+x= 6  y= 5  S=  : pval = 3.676286e-18 
+x= 6  y= 7  S=  : pval = 0.3581968 
+x= 6  y= 8  S=  : pval = 7.534955e-15 
+x= 7  y= 1  S=  : pval = 0.0009637401 
+x= 7  y= 2  S=  : pval = 7.963733e-11 
+x= 7  y= 3  S=  : pval = 0.02740445 
+x= 7  y= 4  S=  : pval = 6.171128e-05 
+x= 7  y= 5  S=  : pval = 7.411293e-05 
+x= 7  y= 8  S=  : pval = 0.004377319 
+x= 8  y= 2  S=  : pval = 1.924782e-14 
+x= 8  y= 4  S=  : pval = 2.851166e-15 
+x= 8  y= 5  S=  : pval = 2.459965e-35 
+x= 8  y= 6  S=  : pval = 7.534955e-15 
+x= 8  y= 7  S=  : pval = 0.004377319 
+Order=1; remaining edges:38
+x= 1  y= 2  S= 6 : pval = 0.003949861 
+x= 1  y= 2  S= 7 : pval = 0.2056963 
+x= 1  y= 6  S= 2 : pval = 1.21175e-07 
+x= 1  y= 6  S= 7 : pval = 2.440983e-06 
+x= 1  y= 7  S= 2 : pval = 0.01466111 
+x= 1  y= 7  S= 6 : pval = 0.005671182 
+x= 2  y= 4  S= 1 : pval = 2.503519e-27 
+x= 2  y= 4  S= 5 : pval = 2.510602e-12 
+x= 2  y= 4  S= 6 : pval = 1.233043e-29 
+x= 2  y= 4  S= 7 : pval = 2.658431e-23 
+x= 2  y= 4  S= 8 : pval = 9.258464e-32 
+x= 2  y= 5  S= 1 : pval = 4.465997e-15 
+x= 2  y= 5  S= 4 : pval = 0.8987963 
+x= 2  y= 6  S= 1 : pval = 0.0004083669 
+x= 2  y= 6  S= 4 : pval = 1.686045e-06 
+x= 2  y= 6  S= 5 : pval = 0.1250932 
+x= 2  y= 7  S= 1 : pval = 2.259953e-09 
+x= 2  y= 7  S= 4 : pval = 3.862963e-07 
+x= 2  y= 7  S= 5 : pval = 1.551944e-07 
+x= 2  y= 7  S= 6 : pval = 1.741183e-10 
+x= 2  y= 7  S= 8 : pval = 3.697796e-09 
+x= 2  y= 8  S= 1 : pval = 5.142811e-14 
+x= 2  y= 8  S= 4 : pval = 3.805976e-19 
+x= 2  y= 8  S= 5 : pval = 2.661991e-24 
+x= 2  y= 8  S= 6 : pval = 2.990139e-12 
+x= 2  y= 8  S= 7 : pval = 1.046104e-12 
+x= 3  y= 6  S= 7 : pval = 0.0005093998 
+x= 3  y= 7  S= 6 : pval = 0.05237959 
+x= 4  y= 2  S= 5 : pval = 2.510602e-12 
+x= 4  y= 2  S= 6 : pval = 1.233043e-29 
+x= 4  y= 2  S= 7 : pval = 2.658431e-23 
+x= 4  y= 2  S= 8 : pval = 9.258464e-32 
+x= 4  y= 5  S= 2 : pval = 3.078444e-58 
+x= 4  y= 5  S= 6 : pval = 3.986972e-56 
+x= 4  y= 5  S= 7 : pval = 3.119603e-69 
+x= 4  y= 5  S= 8 : pval = 1.917647e-59 
+x= 4  y= 6  S= 2 : pval = 3.421687e-31 
+x= 4  y= 6  S= 5 : pval = 9.023019e-12 
+x= 4  y= 6  S= 7 : pval = 2.514336e-29 
+x= 4  y= 6  S= 8 : pval = 9.612472e-28 
+x= 4  y= 7  S= 2 : pval = 0.1905172 
+x= 4  y= 8  S= 2 : pval = 5.810223e-20 
+x= 4  y= 8  S= 5 : pval = 0.09814524 
+x= 5  y= 4  S= 2 : pval = 3.078444e-58 
+x= 5  y= 4  S= 6 : pval = 3.986972e-56 
+x= 5  y= 4  S= 7 : pval = 3.119603e-69 
+x= 5  y= 4  S= 8 : pval = 1.917647e-59 
+x= 5  y= 6  S= 2 : pval = 8.122994e-16 
+x= 5  y= 6  S= 4 : pval = 0.2887109 
+x= 5  y= 7  S= 2 : pval = 0.09102156 
+x= 5  y= 8  S= 2 : pval = 5.457935e-45 
+x= 5  y= 8  S= 4 : pval = 1.318149e-21 
+x= 5  y= 8  S= 6 : pval = 3.816207e-28 
+x= 5  y= 8  S= 7 : pval = 5.156096e-35 
+x= 6  y= 1  S= 2 : pval = 1.21175e-07 
+x= 6  y= 1  S= 3 : pval = 7.13344e-07 
+x= 6  y= 1  S= 4 : pval = 3.566891e-12 
+x= 6  y= 1  S= 5 : pval = 2.119337e-10 
+x= 6  y= 1  S= 8 : pval = 1.317001e-12 
+x= 6  y= 3  S= 1 : pval = 0.0003287606 
+x= 6  y= 3  S= 2 : pval = 5.953061e-07 
+x= 6  y= 3  S= 4 : pval = 3.566596e-05 
+x= 6  y= 3  S= 5 : pval = 0.001635006 
+x= 6  y= 3  S= 8 : pval = 0.0005871838 
+x= 6  y= 4  S= 1 : pval = 2.439486e-33 
+x= 6  y= 4  S= 2 : pval = 3.421687e-31 
+x= 6  y= 4  S= 3 : pval = 5.292754e-29 
+x= 6  y= 4  S= 5 : pval = 9.023019e-12 
+x= 6  y= 4  S= 8 : pval = 9.612472e-28 
+x= 6  y= 8  S= 1 : pval = 5.302522e-20 
+x= 6  y= 8  S= 2 : pval = 1.188267e-12 
+x= 6  y= 8  S= 3 : pval = 5.129672e-14 
+x= 6  y= 8  S= 4 : pval = 5.658781e-14 
+x= 6  y= 8  S= 5 : pval = 7.39661e-08 
+x= 7  y= 1  S= 2 : pval = 0.01466111 
+x= 7  y= 1  S= 3 : pval = 0.0004540783 
+x= 7  y= 1  S= 4 : pval = 0.006117518 
+x= 7  y= 1  S= 5 : pval = 0.001451448 
+x= 7  y= 1  S= 8 : pval = 9.274986e-09 
+x= 7  y= 2  S= 1 : pval = 2.259953e-09 
+x= 7  y= 2  S= 3 : pval = 9.304776e-11 
+x= 7  y= 2  S= 4 : pval = 3.862963e-07 
+x= 7  y= 2  S= 5 : pval = 1.551944e-07 
+x= 7  y= 2  S= 8 : pval = 3.697796e-09 
+x= 7  y= 8  S= 1 : pval = 3.715771e-08 
+x= 7  y= 8  S= 2 : pval = 0.09610498 
+x= 8  y= 2  S= 4 : pval = 3.805976e-19 
+x= 8  y= 2  S= 5 : pval = 2.661991e-24 
+x= 8  y= 2  S= 6 : pval = 2.990139e-12 
+x= 8  y= 2  S= 7 : pval = 1.046104e-12 
+x= 8  y= 5  S= 2 : pval = 5.457935e-45 
+x= 8  y= 5  S= 4 : pval = 1.318149e-21 
+x= 8  y= 5  S= 6 : pval = 3.816207e-28 
+x= 8  y= 5  S= 7 : pval = 5.156096e-35 
+x= 8  y= 6  S= 2 : pval = 1.188267e-12 
+x= 8  y= 6  S= 4 : pval = 5.658781e-14 
+x= 8  y= 6  S= 5 : pval = 7.39661e-08 
+x= 8  y= 6  S= 7 : pval = 2.267068e-14 
+Order=2; remaining edges:20
+x= 2  y= 4  S= 7 8 : pval = 4.046265e-27 
+x= 2  y= 7  S= 4 8 : pval = 3.410291e-05 
+x= 2  y= 8  S= 4 7 : pval = 1.003337e-16 
+x= 4  y= 2  S= 5 6 : pval = 2.048606e-16 
+x= 4  y= 5  S= 2 6 : pval = 1.651886e-42 
+x= 4  y= 6  S= 2 5 : pval = 7.131962e-16 
+x= 6  y= 1  S= 3 4 : pval = 1.749962e-11 
+x= 6  y= 1  S= 3 8 : pval = 1.762639e-12 
+x= 6  y= 1  S= 4 8 : pval = 1.296411e-14 
+x= 6  y= 3  S= 1 4 : pval = 7.819855e-05 
+x= 6  y= 3  S= 1 8 : pval = 0.0002892447 
+x= 6  y= 3  S= 4 8 : pval = 0.001572192 
+x= 6  y= 4  S= 1 3 : pval = 3.568778e-33 
+x= 6  y= 4  S= 1 8 : pval = 1.847882e-29 
+x= 6  y= 4  S= 3 8 : pval = 1.70603e-26 
+x= 6  y= 8  S= 1 3 : pval = 1.929049e-19 
+x= 6  y= 8  S= 1 4 : pval = 2.289728e-16 
+x= 6  y= 8  S= 3 4 : pval = 7.68857e-12 
+x= 8  y= 2  S= 5 6 : pval = 2.924201e-23 
+x= 8  y= 5  S= 2 6 : pval = 6.131275e-39 
+x= 8  y= 6  S= 2 5 : pval = 2.721076e-07 
+Order=3; remaining edges:20
+x= 6  y= 1  S= 3 4 8 : pval = 3.630297e-13 
+x= 6  y= 3  S= 1 4 8 : pval = 0.004964694 
+x= 6  y= 4  S= 1 3 8 : pval = 1.084441e-26 
+x= 6  y= 8  S= 1 3 4 : pval = 1.653747e-13 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.01782203 
+x= 1  y= 3  S=  : pval = 0.5503424 
+x= 1  y= 4  S=  : pval = 0.253899 
+x= 1  y= 5  S=  : pval = 0.8183722 
+x= 1  y= 6  S=  : pval = 2.779045e-07 
+x= 1  y= 7  S=  : pval = 0.0009637401 
+x= 1  y= 8  S=  : pval = 0.1082658 
+x= 2  y= 1  S=  : pval = 0.01782203 
+x= 2  y= 3  S=  : pval = 0.5040478 
+x= 2  y= 4  S=  : pval = 3.344834e-27 
+x= 2  y= 5  S=  : pval = 1.612473e-15 
+x= 2  y= 6  S=  : pval = 0.001441371 
+x= 2  y= 7  S=  : pval = 7.963733e-11 
+x= 2  y= 8  S=  : pval = 1.924782e-14 
+x= 3  y= 4  S=  : pval = 0.6094046 
+x= 3  y= 5  S=  : pval = 0.1584668 
+x= 3  y= 6  S=  : pval = 0.00017049 
+x= 3  y= 7  S=  : pval = 0.02740445 
+x= 3  y= 8  S=  : pval = 0.5531443 
+x= 4  y= 2  S=  : pval = 3.344834e-27 
+x= 4  y= 5  S=  : pval = 2.459053e-73 
+x= 4  y= 6  S=  : pval = 9.013578e-29 
+x= 4  y= 7  S=  : pval = 6.171128e-05 
+x= 4  y= 8  S=  : pval = 2.851166e-15 
+x= 5  y= 2  S=  : pval = 1.612473e-15 
+x= 5  y= 4  S=  : pval = 2.459053e-73 
+x= 5  y= 6  S=  : pval = 3.676286e-18 
+x= 5  y= 7  S=  : pval = 7.411293e-05 
+x= 5  y= 8  S=  : pval = 2.459965e-35 
+x= 6  y= 1  S=  : pval = 2.779045e-07 
+x= 6  y= 2  S=  : pval = 0.001441371 
+x= 6  y= 3  S=  : pval = 0.00017049 
+x= 6  y= 4  S=  : pval = 9.013578e-29 
+x= 6  y= 5  S=  : pval = 3.676286e-18 
+x= 6  y= 7  S=  : pval = 0.3581968 
+x= 6  y= 8  S=  : pval = 7.534955e-15 
+x= 7  y= 1  S=  : pval = 0.0009637401 
+x= 7  y= 2  S=  : pval = 7.963733e-11 
+x= 7  y= 3  S=  : pval = 0.02740445 
+x= 7  y= 4  S=  : pval = 6.171128e-05 
+x= 7  y= 5  S=  : pval = 7.411293e-05 
+x= 7  y= 8  S=  : pval = 0.004377319 
+x= 8  y= 2  S=  : pval = 1.924782e-14 
+x= 8  y= 4  S=  : pval = 2.851166e-15 
+x= 8  y= 5  S=  : pval = 2.459965e-35 
+x= 8  y= 6  S=  : pval = 7.534955e-15 
+x= 8  y= 7  S=  : pval = 0.004377319 
+Order=1; remaining edges:38
+x= 1  y= 2  S= 6 : pval = 0.003949861 
+x= 1  y= 2  S= 7 : pval = 0.2056963 
+x= 1  y= 6  S= 2 : pval = 1.21175e-07 
+x= 1  y= 6  S= 7 : pval = 2.440983e-06 
+x= 1  y= 7  S= 2 : pval = 0.01466111 
+x= 1  y= 7  S= 6 : pval = 0.005671182 
+x= 2  y= 4  S= 1 : pval = 2.503519e-27 
+x= 2  y= 4  S= 5 : pval = 2.510602e-12 
+x= 2  y= 4  S= 6 : pval = 1.233043e-29 
+x= 2  y= 4  S= 7 : pval = 2.658431e-23 
+x= 2  y= 4  S= 8 : pval = 9.258464e-32 
+x= 2  y= 5  S= 1 : pval = 4.465997e-15 
+x= 2  y= 5  S= 4 : pval = 0.8987963 
+x= 2  y= 6  S= 1 : pval = 0.0004083669 
+x= 2  y= 6  S= 4 : pval = 1.686045e-06 
+x= 2  y= 6  S= 5 : pval = 0.1250932 
+x= 2  y= 7  S= 1 : pval = 2.259953e-09 
+x= 2  y= 7  S= 4 : pval = 3.862963e-07 
+x= 2  y= 7  S= 5 : pval = 1.551944e-07 
+x= 2  y= 7  S= 6 : pval = 1.741183e-10 
+x= 2  y= 7  S= 8 : pval = 3.697796e-09 
+x= 2  y= 8  S= 1 : pval = 5.142811e-14 
+x= 2  y= 8  S= 4 : pval = 3.805976e-19 
+x= 2  y= 8  S= 5 : pval = 2.661991e-24 
+x= 2  y= 8  S= 6 : pval = 2.990139e-12 
+x= 2  y= 8  S= 7 : pval = 1.046104e-12 
+x= 3  y= 6  S= 7 : pval = 0.0005093998 
+x= 3  y= 7  S= 6 : pval = 0.05237959 
+x= 4  y= 2  S= 5 : pval = 2.510602e-12 
+x= 4  y= 2  S= 6 : pval = 1.233043e-29 
+x= 4  y= 2  S= 7 : pval = 2.658431e-23 
+x= 4  y= 2  S= 8 : pval = 9.258464e-32 
+x= 4  y= 5  S= 2 : pval = 3.078444e-58 
+x= 4  y= 5  S= 6 : pval = 3.986972e-56 
+x= 4  y= 5  S= 7 : pval = 3.119603e-69 
+x= 4  y= 5  S= 8 : pval = 1.917647e-59 
+x= 4  y= 6  S= 2 : pval = 3.421687e-31 
+x= 4  y= 6  S= 5 : pval = 9.023019e-12 
+x= 4  y= 6  S= 7 : pval = 2.514336e-29 
+x= 4  y= 6  S= 8 : pval = 9.612472e-28 
+x= 4  y= 7  S= 2 : pval = 0.1905172 
+x= 4  y= 8  S= 2 : pval = 5.810223e-20 
+x= 4  y= 8  S= 5 : pval = 0.09814524 
+x= 5  y= 4  S= 2 : pval = 3.078444e-58 
+x= 5  y= 4  S= 6 : pval = 3.986972e-56 
+x= 5  y= 4  S= 7 : pval = 3.119603e-69 
+x= 5  y= 4  S= 8 : pval = 1.917647e-59 
+x= 5  y= 6  S= 2 : pval = 8.122994e-16 
+x= 5  y= 6  S= 4 : pval = 0.2887109 
+x= 5  y= 7  S= 2 : pval = 0.09102156 
+x= 5  y= 8  S= 2 : pval = 5.457935e-45 
+x= 5  y= 8  S= 4 : pval = 1.318149e-21 
+x= 5  y= 8  S= 6 : pval = 3.816207e-28 
+x= 5  y= 8  S= 7 : pval = 5.156096e-35 
+x= 6  y= 1  S= 2 : pval = 1.21175e-07 
+x= 6  y= 1  S= 3 : pval = 7.13344e-07 
+x= 6  y= 1  S= 4 : pval = 3.566891e-12 
+x= 6  y= 1  S= 5 : pval = 2.119337e-10 
+x= 6  y= 1  S= 8 : pval = 1.317001e-12 
+x= 6  y= 3  S= 1 : pval = 0.0003287606 
+x= 6  y= 3  S= 2 : pval = 5.953061e-07 
+x= 6  y= 3  S= 4 : pval = 3.566596e-05 
+x= 6  y= 3  S= 5 : pval = 0.001635006 
+x= 6  y= 3  S= 8 : pval = 0.0005871838 
+x= 6  y= 4  S= 1 : pval = 2.439486e-33 
+x= 6  y= 4  S= 2 : pval = 3.421687e-31 
+x= 6  y= 4  S= 3 : pval = 5.292754e-29 
+x= 6  y= 4  S= 5 : pval = 9.023019e-12 
+x= 6  y= 4  S= 8 : pval = 9.612472e-28 
+x= 6  y= 8  S= 1 : pval = 5.302522e-20 
+x= 6  y= 8  S= 2 : pval = 1.188267e-12 
+x= 6  y= 8  S= 3 : pval = 5.129672e-14 
+x= 6  y= 8  S= 4 : pval = 5.658781e-14 
+x= 6  y= 8  S= 5 : pval = 7.39661e-08 
+x= 7  y= 1  S= 2 : pval = 0.01466111 
+x= 7  y= 1  S= 3 : pval = 0.0004540783 
+x= 7  y= 1  S= 4 : pval = 0.006117518 
+x= 7  y= 1  S= 5 : pval = 0.001451448 
+x= 7  y= 1  S= 8 : pval = 9.274986e-09 
+x= 7  y= 2  S= 1 : pval = 2.259953e-09 
+x= 7  y= 2  S= 3 : pval = 9.304776e-11 
+x= 7  y= 2  S= 4 : pval = 3.862963e-07 
+x= 7  y= 2  S= 5 : pval = 1.551944e-07 
+x= 7  y= 2  S= 8 : pval = 3.697796e-09 
+x= 7  y= 8  S= 1 : pval = 3.715771e-08 
+x= 7  y= 8  S= 2 : pval = 0.09610498 
+x= 8  y= 2  S= 4 : pval = 3.805976e-19 
+x= 8  y= 2  S= 5 : pval = 2.661991e-24 
+x= 8  y= 2  S= 6 : pval = 2.990139e-12 
+x= 8  y= 2  S= 7 : pval = 1.046104e-12 
+x= 8  y= 5  S= 2 : pval = 5.457935e-45 
+x= 8  y= 5  S= 4 : pval = 1.318149e-21 
+x= 8  y= 5  S= 6 : pval = 3.816207e-28 
+x= 8  y= 5  S= 7 : pval = 5.156096e-35 
+x= 8  y= 6  S= 2 : pval = 1.188267e-12 
+x= 8  y= 6  S= 4 : pval = 5.658781e-14 
+x= 8  y= 6  S= 5 : pval = 7.39661e-08 
+x= 8  y= 6  S= 7 : pval = 2.267068e-14 
+Order=2; remaining edges:20
+x= 2  y= 4  S= 7 8 : pval = 4.046265e-27 
+x= 2  y= 7  S= 4 8 : pval = 3.410291e-05 
+x= 2  y= 8  S= 4 7 : pval = 1.003337e-16 
+x= 4  y= 2  S= 5 6 : pval = 2.048606e-16 
+x= 4  y= 5  S= 2 6 : pval = 1.651886e-42 
+x= 4  y= 6  S= 2 5 : pval = 7.131962e-16 
+x= 6  y= 1  S= 3 4 : pval = 1.749962e-11 
+x= 6  y= 1  S= 3 8 : pval = 1.762639e-12 
+x= 6  y= 1  S= 4 8 : pval = 1.296411e-14 
+x= 6  y= 3  S= 1 4 : pval = 7.819855e-05 
+x= 6  y= 3  S= 1 8 : pval = 0.0002892447 
+x= 6  y= 3  S= 4 8 : pval = 0.001572192 
+x= 6  y= 4  S= 1 3 : pval = 3.568778e-33 
+x= 6  y= 4  S= 1 8 : pval = 1.847882e-29 
+x= 6  y= 4  S= 3 8 : pval = 1.70603e-26 
+x= 6  y= 8  S= 1 3 : pval = 1.929049e-19 
+x= 6  y= 8  S= 1 4 : pval = 2.289728e-16 
+x= 6  y= 8  S= 3 4 : pval = 7.68857e-12 
+x= 8  y= 2  S= 5 6 : pval = 2.924201e-23 
+x= 8  y= 5  S= 2 6 : pval = 6.131275e-39 
+x= 8  y= 6  S= 2 5 : pval = 2.721076e-07 
+Order=3; remaining edges:20
+x= 6  y= 1  S= 3 4 8 : pval = 3.630297e-13 
+x= 6  y= 3  S= 1 4 8 : pval = 0.004964694 
+x= 6  y= 4  S= 1 3 8 : pval = 1.084441e-26 
+x= 6  y= 8  S= 1 3 4 : pval = 1.653747e-13 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+search space expansion 5 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.01782203 
+x= 1  y= 3  S=  : pval = 0.5503424 
+x= 1  y= 4  S=  : pval = 0.253899 
+x= 1  y= 5  S=  : pval = 0.8183722 
+x= 1  y= 6  S=  : pval = 2.779045e-07 
+x= 1  y= 7  S=  : pval = 0.0009637401 
+x= 1  y= 8  S=  : pval = 0.1082658 
+x= 2  y= 1  S=  : pval = 0.01782203 
+x= 2  y= 3  S=  : pval = 0.5040478 
+x= 2  y= 4  S=  : pval = 3.344834e-27 
+x= 2  y= 5  S=  : pval = 1.612473e-15 
+x= 2  y= 6  S=  : pval = 0.001441371 
+x= 2  y= 7  S=  : pval = 7.963733e-11 
+x= 2  y= 8  S=  : pval = 1.924782e-14 
+x= 3  y= 4  S=  : pval = 0.6094046 
+x= 3  y= 5  S=  : pval = 0.1584668 
+x= 3  y= 6  S=  : pval = 0.00017049 
+x= 3  y= 7  S=  : pval = 0.02740445 
+x= 3  y= 8  S=  : pval = 0.5531443 
+x= 4  y= 2  S=  : pval = 3.344834e-27 
+x= 4  y= 5  S=  : pval = 2.459053e-73 
+x= 4  y= 6  S=  : pval = 9.013578e-29 
+x= 4  y= 7  S=  : pval = 6.171128e-05 
+x= 4  y= 8  S=  : pval = 2.851166e-15 
+x= 5  y= 2  S=  : pval = 1.612473e-15 
+x= 5  y= 4  S=  : pval = 2.459053e-73 
+x= 5  y= 6  S=  : pval = 3.676286e-18 
+x= 5  y= 7  S=  : pval = 7.411293e-05 
+x= 5  y= 8  S=  : pval = 2.459965e-35 
+x= 6  y= 1  S=  : pval = 2.779045e-07 
+x= 6  y= 2  S=  : pval = 0.001441371 
+x= 6  y= 3  S=  : pval = 0.00017049 
+x= 6  y= 4  S=  : pval = 9.013578e-29 
+x= 6  y= 5  S=  : pval = 3.676286e-18 
+x= 6  y= 7  S=  : pval = 0.3581968 
+x= 6  y= 8  S=  : pval = 7.534955e-15 
+x= 7  y= 1  S=  : pval = 0.0009637401 
+x= 7  y= 2  S=  : pval = 7.963733e-11 
+x= 7  y= 3  S=  : pval = 0.02740445 
+x= 7  y= 4  S=  : pval = 6.171128e-05 
+x= 7  y= 5  S=  : pval = 7.411293e-05 
+x= 7  y= 8  S=  : pval = 0.004377319 
+x= 8  y= 2  S=  : pval = 1.924782e-14 
+x= 8  y= 4  S=  : pval = 2.851166e-15 
+x= 8  y= 5  S=  : pval = 2.459965e-35 
+x= 8  y= 6  S=  : pval = 7.534955e-15 
+x= 8  y= 7  S=  : pval = 0.004377319 
+Order=1; remaining edges:38
+x= 1  y= 2  S= 6 : pval = 0.003949861 
+x= 1  y= 2  S= 7 : pval = 0.2056963 
+x= 1  y= 6  S= 2 : pval = 1.21175e-07 
+x= 1  y= 6  S= 7 : pval = 2.440983e-06 
+x= 1  y= 7  S= 2 : pval = 0.01466111 
+x= 1  y= 7  S= 6 : pval = 0.005671182 
+x= 2  y= 4  S= 1 : pval = 2.503519e-27 
+x= 2  y= 4  S= 5 : pval = 2.510602e-12 
+x= 2  y= 4  S= 6 : pval = 1.233043e-29 
+x= 2  y= 4  S= 7 : pval = 2.658431e-23 
+x= 2  y= 4  S= 8 : pval = 9.258464e-32 
+x= 2  y= 5  S= 1 : pval = 4.465997e-15 
+x= 2  y= 5  S= 4 : pval = 0.8987963 
+x= 2  y= 6  S= 1 : pval = 0.0004083669 
+x= 2  y= 6  S= 4 : pval = 1.686045e-06 
+x= 2  y= 6  S= 5 : pval = 0.1250932 
+x= 2  y= 7  S= 1 : pval = 2.259953e-09 
+x= 2  y= 7  S= 4 : pval = 3.862963e-07 
+x= 2  y= 7  S= 5 : pval = 1.551944e-07 
+x= 2  y= 7  S= 6 : pval = 1.741183e-10 
+x= 2  y= 7  S= 8 : pval = 3.697796e-09 
+x= 2  y= 8  S= 1 : pval = 5.142811e-14 
+x= 2  y= 8  S= 4 : pval = 3.805976e-19 
+x= 2  y= 8  S= 5 : pval = 2.661991e-24 
+x= 2  y= 8  S= 6 : pval = 2.990139e-12 
+x= 2  y= 8  S= 7 : pval = 1.046104e-12 
+x= 3  y= 6  S= 7 : pval = 0.0005093998 
+x= 3  y= 7  S= 6 : pval = 0.05237959 
+x= 4  y= 2  S= 5 : pval = 2.510602e-12 
+x= 4  y= 2  S= 6 : pval = 1.233043e-29 
+x= 4  y= 2  S= 7 : pval = 2.658431e-23 
+x= 4  y= 2  S= 8 : pval = 9.258464e-32 
+x= 4  y= 5  S= 2 : pval = 3.078444e-58 
+x= 4  y= 5  S= 6 : pval = 3.986972e-56 
+x= 4  y= 5  S= 7 : pval = 3.119603e-69 
+x= 4  y= 5  S= 8 : pval = 1.917647e-59 
+x= 4  y= 6  S= 2 : pval = 3.421687e-31 
+x= 4  y= 6  S= 5 : pval = 9.023019e-12 
+x= 4  y= 6  S= 7 : pval = 2.514336e-29 
+x= 4  y= 6  S= 8 : pval = 9.612472e-28 
+x= 4  y= 7  S= 2 : pval = 0.1905172 
+x= 4  y= 8  S= 2 : pval = 5.810223e-20 
+x= 4  y= 8  S= 5 : pval = 0.09814524 
+x= 5  y= 4  S= 2 : pval = 3.078444e-58 
+x= 5  y= 4  S= 6 : pval = 3.986972e-56 
+x= 5  y= 4  S= 7 : pval = 3.119603e-69 
+x= 5  y= 4  S= 8 : pval = 1.917647e-59 
+x= 5  y= 6  S= 2 : pval = 8.122994e-16 
+x= 5  y= 6  S= 4 : pval = 0.2887109 
+x= 5  y= 7  S= 2 : pval = 0.09102156 
+x= 5  y= 8  S= 2 : pval = 5.457935e-45 
+x= 5  y= 8  S= 4 : pval = 1.318149e-21 
+x= 5  y= 8  S= 6 : pval = 3.816207e-28 
+x= 5  y= 8  S= 7 : pval = 5.156096e-35 
+x= 6  y= 1  S= 2 : pval = 1.21175e-07 
+x= 6  y= 1  S= 3 : pval = 7.13344e-07 
+x= 6  y= 1  S= 4 : pval = 3.566891e-12 
+x= 6  y= 1  S= 5 : pval = 2.119337e-10 
+x= 6  y= 1  S= 8 : pval = 1.317001e-12 
+x= 6  y= 3  S= 1 : pval = 0.0003287606 
+x= 6  y= 3  S= 2 : pval = 5.953061e-07 
+x= 6  y= 3  S= 4 : pval = 3.566596e-05 
+x= 6  y= 3  S= 5 : pval = 0.001635006 
+x= 6  y= 3  S= 8 : pval = 0.0005871838 
+x= 6  y= 4  S= 1 : pval = 2.439486e-33 
+x= 6  y= 4  S= 2 : pval = 3.421687e-31 
+x= 6  y= 4  S= 3 : pval = 5.292754e-29 
+x= 6  y= 4  S= 5 : pval = 9.023019e-12 
+x= 6  y= 4  S= 8 : pval = 9.612472e-28 
+x= 6  y= 8  S= 1 : pval = 5.302522e-20 
+x= 6  y= 8  S= 2 : pval = 1.188267e-12 
+x= 6  y= 8  S= 3 : pval = 5.129672e-14 
+x= 6  y= 8  S= 4 : pval = 5.658781e-14 
+x= 6  y= 8  S= 5 : pval = 7.39661e-08 
+x= 7  y= 1  S= 2 : pval = 0.01466111 
+x= 7  y= 1  S= 3 : pval = 0.0004540783 
+x= 7  y= 1  S= 4 : pval = 0.006117518 
+x= 7  y= 1  S= 5 : pval = 0.001451448 
+x= 7  y= 1  S= 8 : pval = 9.274986e-09 
+x= 7  y= 2  S= 1 : pval = 2.259953e-09 
+x= 7  y= 2  S= 3 : pval = 9.304776e-11 
+x= 7  y= 2  S= 4 : pval = 3.862963e-07 
+x= 7  y= 2  S= 5 : pval = 1.551944e-07 
+x= 7  y= 2  S= 8 : pval = 3.697796e-09 
+x= 7  y= 8  S= 1 : pval = 3.715771e-08 
+x= 7  y= 8  S= 2 : pval = 0.09610498 
+x= 8  y= 2  S= 4 : pval = 3.805976e-19 
+x= 8  y= 2  S= 5 : pval = 2.661991e-24 
+x= 8  y= 2  S= 6 : pval = 2.990139e-12 
+x= 8  y= 2  S= 7 : pval = 1.046104e-12 
+x= 8  y= 5  S= 2 : pval = 5.457935e-45 
+x= 8  y= 5  S= 4 : pval = 1.318149e-21 
+x= 8  y= 5  S= 6 : pval = 3.816207e-28 
+x= 8  y= 5  S= 7 : pval = 5.156096e-35 
+x= 8  y= 6  S= 2 : pval = 1.188267e-12 
+x= 8  y= 6  S= 4 : pval = 5.658781e-14 
+x= 8  y= 6  S= 5 : pval = 7.39661e-08 
+x= 8  y= 6  S= 7 : pval = 2.267068e-14 
+Order=2; remaining edges:20
+x= 2  y= 4  S= 7 8 : pval = 4.046265e-27 
+x= 2  y= 7  S= 4 8 : pval = 3.410291e-05 
+x= 2  y= 8  S= 4 7 : pval = 1.003337e-16 
+x= 4  y= 2  S= 5 6 : pval = 2.048606e-16 
+x= 4  y= 5  S= 2 6 : pval = 1.651886e-42 
+x= 4  y= 6  S= 2 5 : pval = 7.131962e-16 
+x= 6  y= 1  S= 3 4 : pval = 1.749962e-11 
+x= 6  y= 1  S= 3 8 : pval = 1.762639e-12 
+x= 6  y= 1  S= 4 8 : pval = 1.296411e-14 
+x= 6  y= 3  S= 1 4 : pval = 7.819855e-05 
+x= 6  y= 3  S= 1 8 : pval = 0.0002892447 
+x= 6  y= 3  S= 4 8 : pval = 0.001572192 
+x= 6  y= 4  S= 1 3 : pval = 3.568778e-33 
+x= 6  y= 4  S= 1 8 : pval = 1.847882e-29 
+x= 6  y= 4  S= 3 8 : pval = 1.70603e-26 
+x= 6  y= 8  S= 1 3 : pval = 1.929049e-19 
+x= 6  y= 8  S= 1 4 : pval = 2.289728e-16 
+x= 6  y= 8  S= 3 4 : pval = 7.68857e-12 
+x= 8  y= 2  S= 5 6 : pval = 2.924201e-23 
+x= 8  y= 5  S= 2 6 : pval = 6.131275e-39 
+x= 8  y= 6  S= 2 5 : pval = 2.721076e-07 
+Order=3; remaining edges:20
+x= 6  y= 1  S= 3 4 8 : pval = 3.630297e-13 
+x= 6  y= 3  S= 1 4 8 : pval = 0.004964694 
+x= 6  y= 4  S= 1 3 8 : pval = 1.084441e-26 
+x= 6  y= 8  S= 1 3 4 : pval = 1.653747e-13 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+search space expansion 5 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:56
+x= 1  y= 2  S=  : pval = 0.01782203 
+x= 1  y= 3  S=  : pval = 0.5503424 
+x= 1  y= 4  S=  : pval = 0.253899 
+x= 1  y= 5  S=  : pval = 0.8183722 
+x= 1  y= 6  S=  : pval = 2.779045e-07 
+x= 1  y= 7  S=  : pval = 0.0009637401 
+x= 1  y= 8  S=  : pval = 0.1082658 
+x= 2  y= 1  S=  : pval = 0.01782203 
+x= 2  y= 3  S=  : pval = 0.5040478 
+x= 2  y= 4  S=  : pval = 3.344834e-27 
+x= 2  y= 5  S=  : pval = 1.612473e-15 
+x= 2  y= 6  S=  : pval = 0.001441371 
+x= 2  y= 7  S=  : pval = 7.963733e-11 
+x= 2  y= 8  S=  : pval = 1.924782e-14 
+x= 3  y= 4  S=  : pval = 0.6094046 
+x= 3  y= 5  S=  : pval = 0.1584668 
+x= 3  y= 6  S=  : pval = 0.00017049 
+x= 3  y= 7  S=  : pval = 0.02740445 
+x= 3  y= 8  S=  : pval = 0.5531443 
+x= 4  y= 2  S=  : pval = 3.344834e-27 
+x= 4  y= 5  S=  : pval = 2.459053e-73 
+x= 4  y= 6  S=  : pval = 9.013578e-29 
+x= 4  y= 7  S=  : pval = 6.171128e-05 
+x= 4  y= 8  S=  : pval = 2.851166e-15 
+x= 5  y= 2  S=  : pval = 1.612473e-15 
+x= 5  y= 4  S=  : pval = 2.459053e-73 
+x= 5  y= 6  S=  : pval = 3.676286e-18 
+x= 5  y= 7  S=  : pval = 7.411293e-05 
+x= 5  y= 8  S=  : pval = 2.459965e-35 
+x= 6  y= 1  S=  : pval = 2.779045e-07 
+x= 6  y= 2  S=  : pval = 0.001441371 
+x= 6  y= 3  S=  : pval = 0.00017049 
+x= 6  y= 4  S=  : pval = 9.013578e-29 
+x= 6  y= 5  S=  : pval = 3.676286e-18 
+x= 6  y= 7  S=  : pval = 0.3581968 
+x= 6  y= 8  S=  : pval = 7.534955e-15 
+x= 7  y= 1  S=  : pval = 0.0009637401 
+x= 7  y= 2  S=  : pval = 7.963733e-11 
+x= 7  y= 3  S=  : pval = 0.02740445 
+x= 7  y= 4  S=  : pval = 6.171128e-05 
+x= 7  y= 5  S=  : pval = 7.411293e-05 
+x= 7  y= 8  S=  : pval = 0.004377319 
+x= 8  y= 2  S=  : pval = 1.924782e-14 
+x= 8  y= 4  S=  : pval = 2.851166e-15 
+x= 8  y= 5  S=  : pval = 2.459965e-35 
+x= 8  y= 6  S=  : pval = 7.534955e-15 
+x= 8  y= 7  S=  : pval = 0.004377319 
+Order=1; remaining edges:38
+x= 1  y= 2  S= 6 : pval = 0.003949861 
+x= 1  y= 2  S= 7 : pval = 0.2056963 
+x= 1  y= 6  S= 2 : pval = 1.21175e-07 
+x= 1  y= 6  S= 7 : pval = 2.440983e-06 
+x= 1  y= 7  S= 2 : pval = 0.01466111 
+x= 1  y= 7  S= 6 : pval = 0.005671182 
+x= 2  y= 4  S= 1 : pval = 2.503519e-27 
+x= 2  y= 4  S= 5 : pval = 2.510602e-12 
+x= 2  y= 4  S= 6 : pval = 1.233043e-29 
+x= 2  y= 4  S= 7 : pval = 2.658431e-23 
+x= 2  y= 4  S= 8 : pval = 9.258464e-32 
+x= 2  y= 5  S= 1 : pval = 4.465997e-15 
+x= 2  y= 5  S= 4 : pval = 0.8987963 
+x= 2  y= 6  S= 1 : pval = 0.0004083669 
+x= 2  y= 6  S= 4 : pval = 1.686045e-06 
+x= 2  y= 6  S= 5 : pval = 0.1250932 
+x= 2  y= 7  S= 1 : pval = 2.259953e-09 
+x= 2  y= 7  S= 4 : pval = 3.862963e-07 
+x= 2  y= 7  S= 5 : pval = 1.551944e-07 
+x= 2  y= 7  S= 6 : pval = 1.741183e-10 
+x= 2  y= 7  S= 8 : pval = 3.697796e-09 
+x= 2  y= 8  S= 1 : pval = 5.142811e-14 
+x= 2  y= 8  S= 4 : pval = 3.805976e-19 
+x= 2  y= 8  S= 5 : pval = 2.661991e-24 
+x= 2  y= 8  S= 6 : pval = 2.990139e-12 
+x= 2  y= 8  S= 7 : pval = 1.046104e-12 
+x= 3  y= 6  S= 7 : pval = 0.0005093998 
+x= 3  y= 7  S= 6 : pval = 0.05237959 
+x= 4  y= 2  S= 5 : pval = 2.510602e-12 
+x= 4  y= 2  S= 6 : pval = 1.233043e-29 
+x= 4  y= 2  S= 7 : pval = 2.658431e-23 
+x= 4  y= 2  S= 8 : pval = 9.258464e-32 
+x= 4  y= 5  S= 2 : pval = 3.078444e-58 
+x= 4  y= 5  S= 6 : pval = 3.986972e-56 
+x= 4  y= 5  S= 7 : pval = 3.119603e-69 
+x= 4  y= 5  S= 8 : pval = 1.917647e-59 
+x= 4  y= 6  S= 2 : pval = 3.421687e-31 
+x= 4  y= 6  S= 5 : pval = 9.023019e-12 
+x= 4  y= 6  S= 7 : pval = 2.514336e-29 
+x= 4  y= 6  S= 8 : pval = 9.612472e-28 
+x= 4  y= 7  S= 2 : pval = 0.1905172 
+x= 4  y= 8  S= 2 : pval = 5.810223e-20 
+x= 4  y= 8  S= 5 : pval = 0.09814524 
+x= 5  y= 4  S= 2 : pval = 3.078444e-58 
+x= 5  y= 4  S= 6 : pval = 3.986972e-56 
+x= 5  y= 4  S= 7 : pval = 3.119603e-69 
+x= 5  y= 4  S= 8 : pval = 1.917647e-59 
+x= 5  y= 6  S= 2 : pval = 8.122994e-16 
+x= 5  y= 6  S= 4 : pval = 0.2887109 
+x= 5  y= 7  S= 2 : pval = 0.09102156 
+x= 5  y= 8  S= 2 : pval = 5.457935e-45 
+x= 5  y= 8  S= 4 : pval = 1.318149e-21 
+x= 5  y= 8  S= 6 : pval = 3.816207e-28 
+x= 5  y= 8  S= 7 : pval = 5.156096e-35 
+x= 6  y= 1  S= 2 : pval = 1.21175e-07 
+x= 6  y= 1  S= 3 : pval = 7.13344e-07 
+x= 6  y= 1  S= 4 : pval = 3.566891e-12 
+x= 6  y= 1  S= 5 : pval = 2.119337e-10 
+x= 6  y= 1  S= 8 : pval = 1.317001e-12 
+x= 6  y= 3  S= 1 : pval = 0.0003287606 
+x= 6  y= 3  S= 2 : pval = 5.953061e-07 
+x= 6  y= 3  S= 4 : pval = 3.566596e-05 
+x= 6  y= 3  S= 5 : pval = 0.001635006 
+x= 6  y= 3  S= 8 : pval = 0.0005871838 
+x= 6  y= 4  S= 1 : pval = 2.439486e-33 
+x= 6  y= 4  S= 2 : pval = 3.421687e-31 
+x= 6  y= 4  S= 3 : pval = 5.292754e-29 
+x= 6  y= 4  S= 5 : pval = 9.023019e-12 
+x= 6  y= 4  S= 8 : pval = 9.612472e-28 
+x= 6  y= 8  S= 1 : pval = 5.302522e-20 
+x= 6  y= 8  S= 2 : pval = 1.188267e-12 
+x= 6  y= 8  S= 3 : pval = 5.129672e-14 
+x= 6  y= 8  S= 4 : pval = 5.658781e-14 
+x= 6  y= 8  S= 5 : pval = 7.39661e-08 
+x= 7  y= 1  S= 2 : pval = 0.01466111 
+x= 7  y= 1  S= 3 : pval = 0.0004540783 
+x= 7  y= 1  S= 4 : pval = 0.006117518 
+x= 7  y= 1  S= 5 : pval = 0.001451448 
+x= 7  y= 1  S= 8 : pval = 9.274986e-09 
+x= 7  y= 2  S= 1 : pval = 2.259953e-09 
+x= 7  y= 2  S= 3 : pval = 9.304776e-11 
+x= 7  y= 2  S= 4 : pval = 3.862963e-07 
+x= 7  y= 2  S= 5 : pval = 1.551944e-07 
+x= 7  y= 2  S= 8 : pval = 3.697796e-09 
+x= 7  y= 8  S= 1 : pval = 3.715771e-08 
+x= 7  y= 8  S= 2 : pval = 0.09610498 
+x= 8  y= 2  S= 4 : pval = 3.805976e-19 
+x= 8  y= 2  S= 5 : pval = 2.661991e-24 
+x= 8  y= 2  S= 6 : pval = 2.990139e-12 
+x= 8  y= 2  S= 7 : pval = 1.046104e-12 
+x= 8  y= 5  S= 2 : pval = 5.457935e-45 
+x= 8  y= 5  S= 4 : pval = 1.318149e-21 
+x= 8  y= 5  S= 6 : pval = 3.816207e-28 
+x= 8  y= 5  S= 7 : pval = 5.156096e-35 
+x= 8  y= 6  S= 2 : pval = 1.188267e-12 
+x= 8  y= 6  S= 4 : pval = 5.658781e-14 
+x= 8  y= 6  S= 5 : pval = 7.39661e-08 
+x= 8  y= 6  S= 7 : pval = 2.267068e-14 
+Order=2; remaining edges:20
+x= 2  y= 4  S= 7 8 : pval = 4.046265e-27 
+x= 2  y= 7  S= 4 8 : pval = 3.410291e-05 
+x= 2  y= 8  S= 4 7 : pval = 1.003337e-16 
+x= 4  y= 2  S= 5 6 : pval = 2.048606e-16 
+x= 4  y= 5  S= 2 6 : pval = 1.651886e-42 
+x= 4  y= 6  S= 2 5 : pval = 7.131962e-16 
+x= 6  y= 1  S= 3 4 : pval = 1.749962e-11 
+x= 6  y= 1  S= 3 8 : pval = 1.762639e-12 
+x= 6  y= 1  S= 4 8 : pval = 1.296411e-14 
+x= 6  y= 3  S= 1 4 : pval = 7.819855e-05 
+x= 6  y= 3  S= 1 8 : pval = 0.0002892447 
+x= 6  y= 3  S= 4 8 : pval = 0.001572192 
+x= 6  y= 4  S= 1 3 : pval = 3.568778e-33 
+x= 6  y= 4  S= 1 8 : pval = 1.847882e-29 
+x= 6  y= 4  S= 3 8 : pval = 1.70603e-26 
+x= 6  y= 8  S= 1 3 : pval = 1.929049e-19 
+x= 6  y= 8  S= 1 4 : pval = 2.289728e-16 
+x= 6  y= 8  S= 3 4 : pval = 7.68857e-12 
+x= 8  y= 2  S= 5 6 : pval = 2.924201e-23 
+x= 8  y= 5  S= 2 6 : pval = 6.131275e-39 
+x= 8  y= 6  S= 2 5 : pval = 2.721076e-07 
+Order=3; remaining edges:20
+x= 6  y= 1  S= 3 4 8 : pval = 3.630297e-13 
+x= 6  y= 3  S= 1 4 8 : pval = 0.004964694 
+x= 6  y= 4  S= 1 3 8 : pval = 1.084441e-26 
+x= 6  y= 8  S= 1 3 4 : pval = 1.653747e-13 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+search space expansion 5 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
