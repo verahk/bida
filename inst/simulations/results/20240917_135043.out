@@ -1,0 +1,42 @@
+starting worker for localhost:11784 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+
+Init search
+Init search space:
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 2 
+core space defined, score table are beinscore tables score tables completed, iterative MCMC is running 
+search space expansion 2 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Error in unserialize(node$con) : error reading from connection
+Calls: local ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Execution halted
+are being computed 
+score tables completed, isearch space expansion 2 
+search space expansion 2 
+search spacscore tables com
+Sample DAGs using BiDAG::sampleBN:search space expansion 2 
+search space expansion 3 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+Error in unserialize(node$con) : error reading from connection
+Calls: local ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Execution halted
+mple DAGs using BiDAG::sampleBN:
+maximum parent set size is 3 
+core space defined, score table are being comError in unserialize(node$con) : error reading from connection
+Calls: local ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Execution halted
+> recvDatExecution halted
+rialize
+Execution halted
