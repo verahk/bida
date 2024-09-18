@@ -113,7 +113,7 @@ adjsets_from_dag <- function(adjsets, dag, dmat = NULL, xvars = NULL, yvars = NU
 #' named list of valid adjustment sets. For avoiding repeated identification of
 #' larger sets.
 #' @return (integer vector)
-#' column positions of the variables that consititutes the
+#' - `adjset_from_bdag`: column positions of the variables that consititutes the
 #' adjustment set of class `adjset` w.r.t `x`, `y` in `bdag`.
 #' @details
 #' Identify a single adjustment set given the backdoor graph and joint ancestors.

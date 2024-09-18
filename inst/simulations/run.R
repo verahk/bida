@@ -54,15 +54,16 @@ par <- list(init = c("pcskel"),
             ess = 1,
             edgepf = c(2, 8, 16),
             hardlimit = 4,
-            N = c(300, 1000, 3000, 10000),
+            N = c(300, 1000, 3000),
             n = c(10),
-            k = c(2, 3),
+            k = c(2, 3, 4),
             complexity = c(.25, .75),
-            r = 1:10)
+            r = 1:30)
 
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
 indx <- with(pargrid, local_struct == "none" & (edgepf > 2))
 indx <- indx | with(pargrid, local_struct == "pcart" & (k > 2))
+#indx <- indx | with(pargrid, r %in% c(2, 3), n == 8, k == 2)
 pargrid <- pargrid[!indx, ]
 
 
@@ -269,7 +270,7 @@ if (nClusters == 1) {
   for (i in seq_len(nrow(pargrid))) simulate_and_write_to_file(simId,
                                                           outdir,
                                                           params_to_filename(pargrid[i, ]),
-                                                          run,
+                                                          sim_run,
                                                           par = pargrid[i, ],
                                                           verbose = TRUE)
 } else {

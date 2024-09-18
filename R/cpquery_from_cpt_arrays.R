@@ -148,64 +148,6 @@ sum_product_elim_var <- function(factors, z){
 }
 
 
-factor_product <- function(x, y) {
 
-  if (length(x) == 1) {
-    if (length(y) == 1) {
-        return(x[1]*y[1])
-    } else {
-      return(y*x[1])
-    }
-  } else if (length(y) == 1){
-    return(x*y[1])
-  }
-
-  scope_x <- scope(x)
-  scope_y <- scope(y)
-
-  # find which variables in y that are not in x
-  yinx    <- match(scope_y, scope_x)
-  nomatch <- is.na(yinx)
-
-  if (all(nomatch)) {
-    return(outer(x, y))
-  } else {
-
-    scope <- c(scope_x, scope_y[nomatch])
-    nlev  <- c(dim(x), dim(y)[nomatch])
-    value <- numeric(prod(nlev))
-
-    stride_x <- c(stride(x), rep(0, sum(nomatch)))
-    stride_y <- replace(nlev*0, match(scope_y, scope), stride(y))
-
-    seqn <- seq_along(scope)
-    ass  <- seqn*0
-    j <- 1
-    k <- 1
-
-    for (i in seq_along(value)){
-
-      value[i] = x[j]*y[k];
-
-      for (v in seqn){
-        if (ass[v] == nlev[v]-1){
-          ass[v] = 0;
-          j = j - (nlev[v]-1)*stride_x[v];
-          k = k - (nlev[v]-1)*stride_y[v];
-        } else {
-          ass[v] = ass[v]+1;
-          j = j + stride_x[v];
-          k = k + stride_y[v];
-          break;
-        }
-      }
-    }
-  }
-
-  dim(value) <- nlev
-  dimnames(value) <- setNames(vector("list", length(nlev)), scope)
-
-  return(value)
-}
 
 

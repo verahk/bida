@@ -44,9 +44,9 @@ df_to_tex <- function(df,
       tidyr::pivot_wider(values_from = all_of(values_from),
                          names_from = all_of(names_from))
 
-    order_cols <- c(keys, sapply(colnames, function(x) names(df)[endsWith(names(df), x)]))
+    order_cols <- c(keys, sapply(colnames, function(x) paste0(values_from, "_" , x)))
     df <- df %>%
-      select(all_of(c(gr_vars, keys, order_cols))) %>%
+      select(any_of(c(gr_vars, keys, order_cols))) %>%
       arrange(across(all_of(c(gr_vars, keys))), .by_group = TRUE)
 
 
