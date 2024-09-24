@@ -60,8 +60,10 @@ the element (\code{x}, \code{y}, \code{adjset}) is \code{y}.
 }
 
 (integer vector)
-column positions of the variables that consititutes the
+\itemize{
+\item \code{adjset_from_bdag}: column positions of the variables that consititutes the
 adjustment set of class \code{adjset} w.r.t \code{x}, \code{y} in \code{bdag}.
+}
 }
 \description{
 Identify adjustment sets in a dag

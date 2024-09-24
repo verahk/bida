@@ -30,7 +30,7 @@
 
 library(doSNOW)
 
-outdir <- "./inst/simulations/results/"  # directory for storing res
+outdir <- "./inst/simulations/MCMCchains/"  # directory for storing res
 if (!dir.exists(outdir)) dir.create(outdir)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
@@ -49,15 +49,15 @@ if (length(args) == 0) {
 
 # additional params
 par <- list(init = c("pcskel"),
-            local_struct = c("none", "ptree"),
+            local_struct = c("none", "ptree", "pcart"),
             sample = "order",
             ess = 1,
-            edgepf = c(2, 8, 16),
+            edgepf = c(2),
             hardlimit = 4,
             N = c(300, 1000, 3000),
             n = c(10),
-            k = c(2, 3, 4),
-            complexity = c(.25, .75),
+            k = c(2),
+            complexity = c(0, .5, 1),
             r = 1:30)
 
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
@@ -67,27 +67,6 @@ indx <- indx | with(pargrid, local_struct == "pcart" & (k > 2))
 pargrid <- pargrid[!indx, ]
 
 
-
-# define simulation routine -----
-simulate_and_write_to_file <- function(id, outdir, filename, run, ...) {
-  if (is.null(outdir)) return(run(...))
-
-  filepath <- paste0(outdir, filename)
-  if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
-  if (file.exists(filepath)) return(NULL)
-
-  tic <- Sys.time()
-  res <- run(...)
-  attr(res, "simid") <- id
-
-  cat("\nSave results to: ", filepath)
-  saveRDS(res, filepath)
-  cat("\nRuntime\n")
-  print(Sys.time()-tic)
-
-  return(NULL)
-}
-
 params_to_filename <- function(par) {
   tmp <- sprintf("n%s_k%s_csi%s_%s_%s_%s_ess%s_epf%s_N%s_r%02.0f.rds",
                  par$n, par$k, par$complexity*100, par$init, par$local_struct, par$sample, par$ess, par$edgepf, par$N, par$r)
@@ -96,58 +75,6 @@ params_to_filename <- function(par) {
 }
 
 
-sim_rand_partitions <- function(dag, nlev, splitprob, depth_ratio) {
-  n <- ncol(dag)
-  partitions <- vector("list", n)
-  for (i in seq_len(n)) {
-    pa <- which(dag[, i] == 1)
-    if (length(pa) > 1) {
-      partitions[[i]] <- sim_rand_partition(nlev[pa], splitprob, maxdepth = ceiling(depth_ratio*length(pa)))
-    }
-  }
-  return(partitions)
-}
-
-sim_rand_partition <- function(nlev, splitprob, nextsplitprob = function(x) x, maxdepth = length(nlev)) {
-  n <- length(nlev)
-
-
-  # define routine for growing a tree
-  grow_tree <- function(splitprob, vars, subset) {
-    if (length(vars) <= (n-maxdepth) || runif(1) > splitprob) {
-      return(list(subset = subset))
-    }
-
-    # sample a split variable
-    pos <- sample.int(length(vars), 1)
-    x <- vars[pos]
-
-    # split the current subset by values of x
-    xval <- (subset%/%stride[x])%%nlev[x]
-    new_subsets <- unname(split(subset, xval))
-
-    # grow a new tree for each value of the split variable
-    list(var = x,
-         branches = lapply(new_subsets,
-                           function(y) grow_tree(nextsplitprob(splitprob), vars[-pos], y)))
-  }
-
-
-  # define routine for extracting subsets in each leaf
-  unlist_tree <- function(tree) {
-    if (is.null(tree$subset)) {
-      unlist(lapply(tree$branches, unlist_tree), recursive = FALSE)
-    } else {
-      unname(tree["subset"])
-    }
-  }
-
-  stride <- c(1, cumprod(nlev[-length(nlev)]))
-  vars   <- seq_along(nlev)
-  subset <- seq_len(prod(nlev))-1
-  tree   <- grow_tree(splitprob, vars, subset)
-  unlist_tree(tree)
-}
 
 sim_run <- function(par, verbose = FALSE) {
 
@@ -160,10 +87,8 @@ sim_run <- function(par, verbose = FALSE) {
 
   # draw bn and compute ground truth
   set.seed(r)
-  dag <- bida:::randDAG(n, d = 4)
-  partitions <- sim_rand_partitions(dag, nlev, 1, par$complexity)
-  bn <- bida:::rand_bn(dag, "cat", alpha = 1, nlev = nlev, partitions = partitions)
-  dmat <- bida:::descendants(dag)
+  bn <- sim_rand_bn(n, nlev, par$complexity)
+  dmat <- bida:::descendants(bn)
   pdo <- bida:::interv_probs_from_bn(bn, "bn")  # ground truth
 
   # draw data
@@ -274,23 +199,7 @@ if (nClusters == 1) {
                                                           par = pargrid[i, ],
                                                           verbose = TRUE)
 } else {
-  cl <- makeCluster(nClusters, type = "SOCK", outfile = paste0(outdir, simId, ".out"))
-  clusterExport(cl, export)
-  registerDoSNOW(cl)
 
-  keepLooking <- TRUE
-  row <- 0
-  while (keepLooking) {
-    row <- row+1
-    keepLooking <- file.exists(paste0(outdir, params_to_filename(pargrid[row, ])))
-  }
-  foreach (i = seq(row, nrow(pargrid))) %dopar% simulate_and_write_to_file(simId,
-                                                                    outdir,
-                                                                    params_to_filename(pargrid[i, ]),
-                                                                    sim_run,
-                                                                    par = pargrid[i, ],
-                                                                    verbose = TRUE)
-  stopCluster(cl)
 }
 
 

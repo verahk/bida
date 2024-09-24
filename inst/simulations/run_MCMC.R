@@ -28,7 +28,7 @@
 rm(list = ls())
 doTest <- TRUE
 
-devtools::install_github("verahk/bida", ref = "sim_slearn_with_lstruct")
+devtools::install_github("verahk/bida", ref = "sim_slearn_with_lstruct", upgrade = "never")
 
 library(doSNOW)
 sapply(list.files("./inst/simulations/R", ".R", full.names = T),
