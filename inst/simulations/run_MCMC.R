@@ -28,7 +28,8 @@
 rm(list = ls())
 doTest <- TRUE
 
-#devtools::install()
+devtools::install_github("verahk/bida", ref = "sim_slearn_with_lstruct")
+
 library(doSNOW)
 sapply(list.files("./inst/simulations/R", ".R", full.names = T),
        source, echo = T)
@@ -102,7 +103,7 @@ sim_run <- function(par, verbose = FALSE) {
 
 # test ----
 if (doTest) {
-  i <- 1
+  i <- 3
   filename <- params_to_filename(pargrid[i, ])
   sim_and_write_to_file(outdir,
                        params_to_filename(pargrid[i, ]),
@@ -110,7 +111,7 @@ if (doTest) {
                        par = pargrid[i, ],
                        verbose = TRUE)
 
-  sim_and_write_to_file(outdir,
+   sim_and_write_to_file(outdir,
                         params_to_filename(pargrid[i, ]),
                         sim_run,
                         par = pargrid[i, ],
