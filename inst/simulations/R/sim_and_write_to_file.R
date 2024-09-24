@@ -19,7 +19,7 @@
 sim_and_write_to_file <- function(dir_out, filename, run, ...) {
   if (is.null(dir_out)) return(run(...))
 
-  filepath <-
+  filepath <- paste0(dir_out, filename)
   if (!dir.exists(dir_out)) dir.create(dir_out, recursive = TRUE)
   if (file.exists(paste0(dir_out, filename))) return(NULL)
 
