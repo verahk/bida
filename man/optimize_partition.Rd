@@ -137,17 +137,26 @@ counts <- cbind(c(1, 1, 1, 1, 10, 20, 20, 2), c(1, 1, 1, 1, 10, 2, 2, 10))
 
 ## stop splitting when additional split do not improve score (default)
 fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = TRUE)
-cbind(counts, get_parts(fit$partition))
+cbind(counts, part = get_parts(fit$partition))
 sum(fit$scores)
 
 ##  grow full tree
 fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = -Inf, verbose = TRUE)
-cbind(counts, get_parts(fit$partition))
+cbind(counts, part = get_parts(fit$partition))
 sum(fit$scores)
 
 ## grow full tree, then prune
 fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = -Inf, TRUE, verbose = TRUE)
-cbind(counts, get_parts(fit$partition))
+cbind(counts, part = get_parts(fit$partition))
+sum(fit$scores)
+
+# sparse counts - split on var 2
+levels <- list(0:2, 0:2)
+counts <- cbind(c(rep(1, 3), rep(0, 6)),
+                c(rep(0, 6), rep(1, 3)),
+                rep(0, 9))
+fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = TRUE)
+cbind(counts, part = get_parts(fit$partition))
 sum(fit$scores)
 
 

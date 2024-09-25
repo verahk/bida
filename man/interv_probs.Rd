@@ -43,7 +43,7 @@ These functions computes interventional CPTs for every cause-effect pair.
 \item If \code{method == "exact"} the exact intervention probabilities is computed.
 The \code{interv_probs_from_bn} function then first extract the cpt_arrays from
 the bn-network.
-\item If \code{method == "bn"}, the parameters are estimated using \link[bnlearn:cpquery]{bnlearn::cpdist}.
+\item If \code{method == "bn"}, the parameters are estimated using \link[bnlearn:cpdist]{bnlearn::cpdist}.
 The \code{interv_probs_from_cpt_arrays} then first construct a \code{bn.fit.dnet} object.
 \code{interv_probs} loops over every node, identifies the true descendants of
 the node and compute the intervention distributions. For non-descendants,

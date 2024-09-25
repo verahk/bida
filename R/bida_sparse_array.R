@@ -170,6 +170,49 @@ aperm.bida_sparse_array <- function(x, perm) {
 }
 
 
+#' @rdname bida_sparse_array
+#' @export
+asplit.bida_sparse_array <- function(x,
+                                     MARGIN,
+                                     stride = get_stride(x),
+                                     index = get_index(x, MARGIN, stride)) {
+
+  if (is.character(MARGIN)) {
+    MARGIN <- match(MARGIN, names(x$dimnames), 0L)
+    if (any(MARGIN == 0)) stop("MARGIN does not match any names of x$dimnames")
+  }
+
+  dims <- dim(x)
+  keep <- seq_along(dims)[-MARGIN] # dimension to keep
+  coord <- get_coordinates(x)      # coordinates
+
+  # compute indicies to split by
+  if (length(MARGIN) > 1) {
+    stride <- c(1, cumprod(dims[MARGIN[-length(MARGIN)]]))
+    split_by <- coord[, MARGIN]%*%stride
+  } else {
+    split_by <- coord[, MARGIN]
+  }
+
+  # compute index of new array without dimension MARGIN
+  stride <- c(1, cumprod(dims[keep[-length(keep)]]))
+  new_index <- coord[, keep]%*%stride
+  new_dims   <- dims[-MARGIN]
+  new_dimnames <- dimnames(x)[-MARGIN]
+
+  split <- function(y) {
+    indx = split_by == y
+    new_bida_sparse_array(
+      x$value[indx],
+      new_index[indx],
+      new_dims,
+      new_dimnames,
+      x$default
+    )
+  }
+  lapply(seq_len(prod(dims[MARGIN])), split)
+}
+
 ## Arithmetics ----
 #' @rdname bida_sparse_array
 #' @export
@@ -288,8 +331,8 @@ colSums.bida_sparse_array <- function(x, na.rm = FALSE, dims = 1L){
 }
 
 
-get_stride <- function(x, MARGIN = seq_along(x$dim)) {
-  c(1, cumprod(x$dim[MARGIN[-length(MARGIN)]]))
+get_stride <- function(x) {
+  c(1, cumprod(x$dim[-length(x$dim)]))
 }
 
 get_coordinates <- function(x, MARGIN = seq_along(x$dim), stride = get_stride(x)) {
@@ -297,9 +340,9 @@ get_coordinates <- function(x, MARGIN = seq_along(x$dim), stride = get_stride(x)
          function(i) x$index%/%stride[i]%%x$dim[i],
          numeric(length(x$index)))
 }
-get_index <- function(x, MARGIN) {
-  coord <- get_coordinates(x, MARGIN, get_stride(x))
-  coord%*%get_stride(x, MARGIN)
+get_index <- function(x, MARGIN, stride = get_stride(x)) {
+  coord <- get_coordinates(x, MARGIN, stride)
+  c(coord%*%c(1, cumprod(dim(x)[MARGIN[-length(MARGIN)]])))
 }
 
 

@@ -11,6 +11,7 @@
 \alias{as.array.bida_sparse_array}
 \alias{rep.bida_sparse_array}
 \alias{aperm.bida_sparse_array}
+\alias{asplit.bida_sparse_array}
 \alias{sum.bida_sparse_array}
 \alias{+.bida_sparse_array}
 \alias{*.bida_sparse_array}
@@ -40,6 +41,8 @@ bida_sparse_array(value, index, dim, dimnames = NULL, default = 0)
 \method{rep}{bida_sparse_array}(x, times = 1, each = 1)
 
 \method{aperm}{bida_sparse_array}(x, perm)
+
+asplit.bida_sparse_array(x, MARGIN, f = NULL)
 
 \method{sum}{bida_sparse_array}(x, ...)
 

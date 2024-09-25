@@ -17,17 +17,26 @@
 #'
 #' ## stop splitting when additional split do not improve score (default)
 #' fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = TRUE)
-#' cbind(counts, get_parts(fit$partition))
+#' cbind(counts, part = get_parts(fit$partition))
 #' sum(fit$scores)
 #'
 #' ##  grow full tree
 #' fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = -Inf, verbose = TRUE)
-#' cbind(counts, get_parts(fit$partition))
+#' cbind(counts, part = get_parts(fit$partition))
 #' sum(fit$scores)
 #'
 #' ## grow full tree, then prune
 #' fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = -Inf, TRUE, verbose = TRUE)
-#' cbind(counts, get_parts(fit$partition))
+#' cbind(counts, part = get_parts(fit$partition))
+#' sum(fit$scores)
+#'
+#' # sparse counts - split on var 2
+#' levels <- list(0:2, 0:2)
+#' counts <- cbind(c(rep(1, 3), rep(0, 6)),
+#'                 c(rep(0, 6), rep(1, 3)),
+#'                 rep(0, 9))
+#' fit <- optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = TRUE)
+#' cbind(counts, part = get_parts(fit$partition))
 #' sum(fit$scores)
 #'
 #'
@@ -62,7 +71,7 @@ prune_tree <- function(tree, verbose = FALSE) {
 
 #  indx <- vapply(tree$branches, function(x) is.null(x$branches), logical(1))
   score_subtree <- sum(unlist(list_leaves(tree, "score")))
-  if (tree$score > score_subtree) {
+  if (tree$score >= score_subtree) {
     if (verbose) cat("\nCollapse split on variable:", tree$var,
                       "Score-diff:", tree$score-score_subtree)
     list(score = tree$score,
@@ -80,6 +89,63 @@ list_leaves <- function(tree, name) {
   }
 }
 
+
+
+
+grow_tree_sparse <- function(counts, vars, score, ess, r, q) {
+
+  find_best_split_sparse <- function(counts) {
+
+    best_split <- list(score = score)
+    best_score <- score+min_score_improv
+    size <- prod(counts$dim)                # size of current part
+    stride <- get_stride(x)                 #
+
+    for (i in seq_along(counts$dim)) {
+      group  <- get_coordinates(x, i, stride)
+      ugroup <- x$dimnames[i]
+
+      # compute aggregate count
+      tmp <- rowsum_fast(counts$value, group, ugroup)
+      leaf_scores <- famscore_bdeu_byrow(tmp, ess, r, q, s = size/x$dim[1])
+      score <- sum(leaf_scores)
+      if (score > best_score) {
+        best_score <- score
+        best_split$var    <- names(x$dimnames[i])
+        best_split$values <- x$dimnames[[i]]
+        best_split$leaf_scores <- leaf_scores
+      }
+    }
+
+    return(best_split)
+  }
+
+  keep_splitting <- FALSE
+  if (length(counts$index) > 0) {
+    best_split <- find_best_split_sparse(counts, score)
+    keep_splitting <- length(best_split) > 1
+  }
+  if (keep_splitting) {
+    if (verbose) {
+      cat("\nScore-diff:", sum(best_split$leaf_scores)-score,
+          "Splitvariable:", best_split$var,
+          "Splitvalue:", best_split$vals,
+          "Leaf-scores:", best_split$leaf_scores)
+    }
+
+    best_split$branches <- mapply(grow_tree_sparse,
+                                  counts = asplit.bida_sparse_array(x, MARGIN),
+                                  score  = best_split$leaf_scores,
+                                  ess = ess,
+                                  r = r,
+                                  q = q,
+                                  min_score_improv = min_score_improv,
+                                  SIMPLIFY = FALSE)
+  } else {
+    # return leaf node
+
+  }
+}
 
 grow_tree <- function(counts, conf, score, ess, r, q, min_score_improv, stride, verbose){
 
@@ -119,6 +185,7 @@ grow_tree <- function(counts, conf, score, ess, r, q, min_score_improv, stride, 
 }
 
 find_best_split <- function(counts, conf, score, ess, r, q, min_score_improv) {
+  # keep score of current part, before branching, for evaluating splits when tree is pruned
   best_split <- list(score = score)
   best_score <- score+min_score_improv
   for (i in 1:ncol(conf)) {
@@ -137,3 +204,5 @@ find_best_split <- function(counts, conf, score, ess, r, q, min_score_improv) {
   }
   return(best_split)
 }
+
+
