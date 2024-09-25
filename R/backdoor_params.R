@@ -62,7 +62,7 @@ backdoor_params <- function(type, data, x, y, z, hyperpar, lookup) {
           } else {
             # permute dimension of bdeu object
             # the intervention variable x is assumed to be second dim
-            return(aperm.bida_bdeu(bdeu, c(1, 1+seq_along(parentnodes)[parentnodes$ix])))
+            return(aperm.bida_bdeu(bdeu, c(1, 1+seq_along(parentnodes$x)[parentnodes$ix])))
           }
         }
       }
