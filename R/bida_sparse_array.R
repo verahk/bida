@@ -172,10 +172,7 @@ aperm.bida_sparse_array <- function(x, perm) {
 
 #' @rdname bida_sparse_array
 #' @export
-asplit.bida_sparse_array <- function(x,
-                                     MARGIN,
-                                     stride = get_stride(x),
-                                     index = get_index(x, MARGIN, stride)) {
+asplit.bida_sparse_array <- function(x, MARGIN) {
 
   if (is.character(MARGIN)) {
     MARGIN <- match(MARGIN, names(x$dimnames), 0L)
@@ -196,8 +193,8 @@ asplit.bida_sparse_array <- function(x,
 
   # compute index of new array without dimension MARGIN
   stride <- c(1, cumprod(dims[keep[-length(keep)]]))
-  new_index <- coord[, keep]%*%stride
-  new_dims   <- dims[-MARGIN]
+  new_index <- c(coord[, keep, drop = FALSE]%*%stride)
+  new_dims  <- dims[-MARGIN]
   new_dimnames <- dimnames(x)[-MARGIN]
 
   split <- function(y) {
