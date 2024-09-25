@@ -11,6 +11,7 @@
 #' ess <- 1
 #' optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = TRUE)
 #'
+#'
 #' # illustrate grow-full-and-then-prune procedure
 #' levels <- list(0:1, 0:1, 0:1)
 #' counts <- cbind(c(1, 1, 1, 1, 10, 20, 20, 2), c(1, 1, 1, 1, 10, 2, 2, 10))
@@ -89,63 +90,6 @@ list_leaves <- function(tree, name) {
   }
 }
 
-
-
-
-grow_tree_sparse <- function(counts, vars, score, ess, r, q) {
-
-  find_best_split_sparse <- function(counts) {
-
-    best_split <- list(score = score)
-    best_score <- score+min_score_improv
-    size <- prod(counts$dim)                # size of current part
-    stride <- get_stride(x)                 #
-
-    for (i in seq_along(counts$dim)) {
-      group  <- get_coordinates(x, i, stride)
-      ugroup <- x$dimnames[i]
-
-      # compute aggregate count
-      tmp <- rowsum_fast(counts$value, group, ugroup)
-      leaf_scores <- famscore_bdeu_byrow(tmp, ess, r, q, s = size/x$dim[1])
-      score <- sum(leaf_scores)
-      if (score > best_score) {
-        best_score <- score
-        best_split$var    <- names(x$dimnames[i])
-        best_split$values <- x$dimnames[[i]]
-        best_split$leaf_scores <- leaf_scores
-      }
-    }
-
-    return(best_split)
-  }
-
-  keep_splitting <- FALSE
-  if (length(counts$index) > 0) {
-    best_split <- find_best_split_sparse(counts, score)
-    keep_splitting <- length(best_split) > 1
-  }
-  if (keep_splitting) {
-    if (verbose) {
-      cat("\nScore-diff:", sum(best_split$leaf_scores)-score,
-          "Splitvariable:", best_split$var,
-          "Splitvalue:", best_split$vals,
-          "Leaf-scores:", best_split$leaf_scores)
-    }
-
-    best_split$branches <- mapply(grow_tree_sparse,
-                                  counts = asplit.bida_sparse_array(x, MARGIN),
-                                  score  = best_split$leaf_scores,
-                                  ess = ess,
-                                  r = r,
-                                  q = q,
-                                  min_score_improv = min_score_improv,
-                                  SIMPLIFY = FALSE)
-  } else {
-    # return leaf node
-
-  }
-}
 
 grow_tree <- function(counts, conf, score, ess, r, q, min_score_improv, stride, verbose){
 
