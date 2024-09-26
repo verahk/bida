@@ -38,7 +38,7 @@ outdir <- "./inst/simulations/results/"  # directory for storing res
 if (!dir.exists(outdir)) dir.create(outdir)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
-nClusters <- 4
+nClusters <- 0
 doTest <- FALSE
 
 sim_run <- function(indir, f, verbose = FALSE) {
@@ -113,7 +113,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
                                   sets = ps$sets[[x]],
                                   support = ps$support[[x]],
                                   hyperpar = c(list(nlev = nlev), par),
-                                  lookup = NULL),
+                                  lookup = lookup),
         full = bida::bida_pair("cat", data, x, y,
                                sets = ps$sets[[x]],
                                support = ps$support[[x]],
@@ -123,7 +123,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
                         sets = matrix(pa, nrow = 1),
                         support = 1,
                         hyperpar = c(list(nlev = nlev), par),
-                        lookup = NULL)
+                        lookup = lookup)
       )
 
       pdo_hat     <- lapply(pairs, bida::posterior_mean)
