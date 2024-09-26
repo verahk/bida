@@ -39,7 +39,7 @@ if (!dir.exists(outdir)) dir.create(outdir)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
 nClusters <- 4
-doTest <- TRUE
+doTest <- FALSE
 
 sim_run <- function(indir, f, verbose = FALSE) {
   out <- list()
@@ -65,8 +65,13 @@ sim_run <- function(indir, f, verbose = FALSE) {
   bn <- tmp$bn
   dag <- tmp$dag
   indx <- sapply(tmp$partitions, is.null)
-  size <- c(parents = mean(colSums(dag)),
-            params  = sum(indx)/n + 1/n*sum(lengths(tmp$partitions[!indx])/k**colSums(dag[, !indx, drop = FALSE])))
+  if (par$complexity < 1) {
+    size <- c(parents = mean(colSums(dag)),
+              params  = sum(indx)/n + 1/n*sum(lengths(tmp$partitions[!indx])/k**colSums(dag[, !indx, drop = FALSE])))
+  } else {
+    size <- c(parents = mean(colSums(dag)), params = 1)
+  }
+
   dmat <- bida:::descendants(dag)
   pdo <- bida:::interv_probs_from_bn(bn, "bn")  # ground truth
   truetau <- matrix(vapply(pdo, bida:::JSD, numeric(1)), n, n)
@@ -108,7 +113,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
                                   sets = ps$sets[[x]],
                                   support = ps$support[[x]],
                                   hyperpar = c(list(nlev = nlev), par),
-                                  lookup = lookup),
+                                  lookup = NULL),
         full = bida::bida_pair("cat", data, x, y,
                                sets = ps$sets[[x]],
                                support = ps$support[[x]],
@@ -118,10 +123,16 @@ sim_run <- function(indir, f, verbose = FALSE) {
                         sets = matrix(pa, nrow = 1),
                         support = 1,
                         hyperpar = c(list(nlev = nlev), par),
-                        lookup = lookup)
+                        lookup = NULL)
       )
 
       pdo_hat     <- lapply(pairs, bida::posterior_mean)
+      tmp <- bida::bida_pair(type, data, x, y,
+                             sets = matrix(pa, nrow = 1),
+                             support = 1,
+                             hyperpar = c(list(nlev = nlev), par),
+                             lookup = NULL)
+      stopifnot(all(pdo_hat$known == bida::posterior_mean(tmp)))
       mse[[x, y]]  <- vapply(pdo_hat, function(p) mean( (p-pdo[[x, y]])**2 ), numeric(1))
       tau[[x, y]]  <- vapply(pdo_hat, bida:::JSD, numeric(1))
 
@@ -198,9 +209,8 @@ if (nClusters == 0) {
 
   # run
   filenames <- list.files(indir, ".rds")
-  indx <-  !grepl("pcart", filenames) # & grepl("k2", filenames)
-  exists <- filenames[indx] %in%  list.files(outdir, ".rds")
-  filenames <- filenames[indx][!exists]
+  indx <-  !grepl("pcart", filenames)  & grepl("k2", filenames)
+  filenames <- filenames[indx]
   foreach (f = filenames) %dopar% sim_and_write_to_file(dir_out = outdir,
                                                         filename = f,
                                                         run = sim_run,

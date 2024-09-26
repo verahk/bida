@@ -52,7 +52,7 @@ par <- list(init = c("pcskel"),
             hardlimit = 4,
             N = c(300, 1000, 3000),
             n = c(10),
-            k = c(2, 4, 8),
+            k = c(4),
             complexity = c(0, .5, 1),
             r = 1:30)
 
