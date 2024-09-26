@@ -62,7 +62,6 @@ sim_run <- function(indir, f, verbose = FALSE) {
   set.seed(r)
   tmp <- sim_rand_bn(n, nlev, par$complexity)
 
-  tmp <- sim_rand_bn(n, nlev, .5)
   bn <- tmp$bn
   dag <- tmp$dag
   indx <- sapply(tmp$partitions, is.null)
@@ -169,7 +168,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
 if (doTest) {
   # test
   filenames <- list.files(indir, ".rds")
-  filename <- filenames[500]
+  f <- filename <- filenames[1]
   sim_and_write_to_file(dir_out = outdir,
                         filename = filename,
                         run = sim_run,

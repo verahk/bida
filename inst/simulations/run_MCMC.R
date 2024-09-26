@@ -28,7 +28,7 @@
 rm(list = ls())
 doTest <- FALSE
 
-#devtools::install_github("verahk/bida", ref = "sim_slearn_with_lstruct2", upgrade = "never")
+#devtools::install_github("verahk/bida", ref = "sim_slearn_with_lstruct", upgrade = "never")
 
 library(doSNOW)
 sapply(list.files("./inst/simulations/R", ".R", full.names = T),
@@ -45,14 +45,14 @@ nClusters <- 4
 
 # params ----
 par <- list(init = c("pcskel"),
-            local_struct = c("none", "ptree"),
+            local_struct = c("ptree", "none"),
             sample = "order",
             ess = 1,
-            edgepf = c(2, 24),
+            edgepf = c(2),
             hardlimit = 4,
             N = c(300, 1000, 3000),
             n = c(10),
-            k = c(2),
+            k = c(2, 4, 8),
             complexity = c(0, .5, 1),
             r = 1:30)
 
@@ -97,21 +97,23 @@ sim_run <- function(par, verbose = FALSE) {
   # run MCMC ----
   MCMCchain <- bida:::sample_dags(scorepar, par$init, par$sample, hardlimit = par$hardlimit, verbose = verbose)
 
-  list(scorepar = scorepar,
+  list(par = par,
+       lookup = scorepar$lookup,
        MCMCchain = MCMCchain)
 }
 
 # test ----
 if (doTest) {
-  i <- 3
+  i <- 10
   filename <- params_to_filename(pargrid[i, ])
+  file.remove(paste0(outdir, filename))
   sim_and_write_to_file(outdir,
-                       params_to_filename(pargrid[i, ]),
-                       sim_run,
-                       par = pargrid[i, ],
-                       verbose = TRUE)
+                        params_to_filename(pargrid[i, ]),
+                        sim_run,
+                        par = pargrid[i, ],
+                        verbose = TRUE)
 
-   sim_and_write_to_file(outdir,
+  sim_and_write_to_file(outdir,
                         params_to_filename(pargrid[i, ]),
                         sim_run,
                         par = pargrid[i, ],
@@ -140,7 +142,7 @@ while (keepLooking) {
 # run
 foreach (i = seq(row, nrow(pargrid))) %dopar% sim_and_write_to_file(outdir,
                                                                     params_to_filename(pargrid[i, ]),
-                                                                         sim_run,
-                                                                         par = pargrid[i, ],
-                                                                         verbose = TRUE)
+                                                                    sim_run,
+                                                                    par = pargrid[i, ],
+                                                                    verbose = TRUE)
 stopCluster(cl)
