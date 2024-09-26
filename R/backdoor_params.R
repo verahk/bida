@@ -45,7 +45,7 @@
 #' table(get_parts(bdeu_tree$partition), get_parts(bdeu_lookup$partition))
 #'
 backdoor_params <- function(type, data, x, y, z, hyperpar, lookup) {
-  if (type %in% c("cat", "ldag", "tree")) {
+  if (type %in% c("cat", "ldag", "tree", "ptree", "pcart")) {
     if (length(z) > 0 && any(y == z)) {
       bida_bdeu(data, y, integer(0), hyperpar$ess, hyperpar$nlev)
     } else if (length(z) == 0 || type == "cat") {
@@ -62,17 +62,14 @@ backdoor_params <- function(type, data, x, y, z, hyperpar, lookup) {
           } else {
             # permute dimension of bdeu object
             # the intervention variable x is assumed to be second dim
-            return(aperm.bida_bdeu(bdeu, c(1, 1+seq_along(parentnodes)[parentnodes$ix])))
+            return(aperm.bida_bdeu(bdeu, c(1, 1+seq_along(parentnodes$x)[parentnodes$ix])))
           }
         }
       }
 
-      bdeu <- bida_bdeu(data, y, c(x, z), hyperpar$ess, hyperpar$nlev, NULL)
-      opt  <- optimize_bdeu(bdeu,
-                            method = type,
-                            levels = hyperpar$levels[c(x, z)],
-                            regular = hyperpar$regular)
-      bdeu$partition <- opt$partition
+
+      opt <- optimize_partition_from_data(data, y, c(x, z), hyperpar$ess, hyperpar$nlev, type)
+      bdeu <- bida_bdeu(data, y, c(x, z), hyperpar$ess, hyperpar$nlev, partition = opt$partition)
       return(bdeu)
     }
   } else {

@@ -104,6 +104,7 @@ aperm.bida_bdeu <- function(obj, perm) {
   # adjust counts and partition
   dims <- obj$counts$dim
   obj$counts$dim <- dims[perm]
+  obj$counts$dimnames <- obj$counts$dimnames[perm]
   indx_y  <- obj$counts$index%%dims[1]
   indx_pa <- obj$counts$index%/%dims[1]
   obj$counts$index <- indx_y + dims[1]*(match(indx_pa, new_indx_pa)-1)

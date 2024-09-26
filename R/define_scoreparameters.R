@@ -50,7 +50,7 @@
 define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
 
   if (scoretype == "bdecat") {
-    if (is.null(par$local_struct)) {
+    if (is.null(par$local_struct) || par$local_struct == "none") {
       # use BiDAG-package score function
 
       # generate data.frame, removing unobserved levels in data, as required by BiDAG
@@ -91,13 +91,12 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
 
       # define function for computing scores
       usrDAGcorescore <- function(j, parentnodes, n, scorepar) {
-
+        parentnodes <- sort(parentnodes)   # for parID
         npar <- length(parentnodes)
         pG   <- -npar*log(scorepar$edgepf) # penality term for edges
 
         if (is.environment(scorepar$lookup)) {
           # look for score in lookup-table
-          parentnodes <- sort(parentnodes)   # for parID
           parID <- paste(c(j, parentnodes), collapse = ".")
           scores <- scorepar$lookup[[scorepar$local_struct]]
           if (length(scores) > 0 && parID %in% names(scores)) {
