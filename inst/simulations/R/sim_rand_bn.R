@@ -37,7 +37,9 @@ sim_rand_bn <- function(n, nlev, depth_ratio, d = min(n-1, 4)) {
   }
 
   # draw a bn given dag and partitions / a set of CPTs consistent with dag and partitions
-  bida:::rand_bn(dag, "cat", alpha = 1, nlev = nlev, partitions = partitions)
+  bn <- bida:::rand_bn(dag, "cat", alpha = 1, nlev = nlev, partitions = partitions)
+
+  list(dag = dag, partitions = partitions, bn = bn)
 }
 
 sim_rand_partitions <- function(dag, nlev, depth_ratio) {
@@ -48,7 +50,7 @@ sim_rand_partitions <- function(dag, nlev, depth_ratio) {
     if (length(pa) > 1) {
       # draw a tree of given depth - use make_regular argument to add splits until all vars are present
       depth <- max(1, ceiling(depth_ratio*length(pa)))
-      partitions[[i]] <- sim_rand_partition(nlev[pa], splitprob = 1, mindepth = depth, maxdepth = 1, make_regular = T)
+      partitions[[i]] <- sim_rand_partition(nlev[pa], splitprob = 1, mindepth = depth, maxdepth = depth, make_regular = T)
     }
   }
   return(partitions)
@@ -101,18 +103,18 @@ sim_rand_partition <- function(nlev, splitprob, nextsplitprob = function(x) x, m
   P <- unlist_tree(tree)
 
   if (make_regular) {
-   vars_in <- unique(get_splitvars(tree))
-   for (x in setdiff(vars, vars_in)) {
+    vars_in <- unique(get_splitvars(tree))
+    for (x in setdiff(vars, vars_in)) {
 
-     # sample leaf / region to split
-     l <- sample(seq_along(P), 1)
+      # sample leaf / region to split
+      l <- sample(seq_along(P), 1)
 
-     # make a binary split of split l
-     subset <- P[[l]]
-     xval <- (subset%/%stride[x])%%nlev[x]
-     new_subsets <- unname(split(subset, xval))
-     P <- c(P[-l], new_subsets)
-   }
+      # make a binary split of split l
+      subset <- P[[l]]
+      xval <- (subset%/%stride[x])%%nlev[x]
+      new_subsets <- unname(split(subset, xval))
+      P <- c(P[-l], new_subsets)
+    }
   }
   return(P)
 }

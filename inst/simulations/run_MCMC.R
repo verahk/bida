@@ -81,7 +81,7 @@ sim_run <- function(par, verbose = FALSE) {
 
   # draw bn and compute ground truth
   set.seed(r)
-  bn <- sim_rand_bn(n, nlev, par$complexity)
+  bn <- sim_rand_bn(n, nlev, par$complexity)$bn
 
   # draw data
   set.seed(N+r)
