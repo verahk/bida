@@ -1,0 +1,82 @@
+starting worker for localhost:11842 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Loading required package: Loading Start computing estimates Start computing estimates for  n10_k4_csi50_pcskel_none_order_ess1_epf2_N1000_r04.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute esti Compute estimates for caus Compute esti Compute estimates for caus Compute esti Compute estimates for cause
+Save result
+Save results to:  ./inst/simulations/results/n10_k4_csi50_pcskel_none_order_ess1_epf2_N3000_r03.rds
+Runtime
+Time difStart computiStart computiStart computing estimates for  n10_k4_csi50_pcskel_none_order_ess1_epf2_N300_r04.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for causeStart computing estimates for  n10_k4_csi50_pcskel_ptree_order_ess1_epf2_N3000_r02.rds 
+ Compute estimates for cause node x 1 
+Type: EXEC 
+Start computing estimates for  n10_k4_csi50_pcskel_ptree_order_ess1_epf2_N300_r02.rds 
+ Compute estimates for cause node x 1 
+Type: EXEC 
+Start computing estimates for  n10_k4_csi50_pcskel_ptree_order_ess1_epf2_N300_r04.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+Type: EXEC 
+Start computing estimates for  n10_k8_csi0_pcskel_none_order_ess1_epf2_N300_r02.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k8_csi0_pcskel_none_order_ess1_epf2_N300_r02.rds
+Runtime
+Time differenc Compute estimates for cause nodeStart computing estimates for  n10_k8_csi0_pcskel_ptree_order_ess1_epf24_N3000_r01.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+Error in serialize(data, node$con) : error writing to connection
+Calls: local ... doTryCatch -> sendData -> sendData.SOCKnode -> serialize
+Execution halted
+ estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k8_csi0_pcskel_ptree_order_ess1_epf24_N300 Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k8_csi0_pcskel_ptree_order_ess1_epf2_N300_r01.rds
+Runtime
+Time difference of 4.663119 mins
+Error in serialize(data, node$con) : error writing to connection
+Calls: local ... doTryCatch -> sendData -> sendData.SOCKnode -> serialize
+Execution halted

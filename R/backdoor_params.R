@@ -53,16 +53,16 @@ backdoor_params <- function(type, data, x, y, z, hyperpar, lookup) {
     } else {
 
       if (!is.null(lookup[[type]])) {
-        parentnodes <- sort.int(c(x, z), index.return = T)
-        parID <- paste(c(y, parentnodes$x), collapse = ".")
+        parentnodes <- sort(c(x, z))
+        parID <- paste(c(y, parentnodes), collapse = ".")
         if (parID %in% names(lookup[[type]])) {
           bdeu <- lookup[[type]][[parID]]
-          if (parentnodes$x[1] == x) {
+          if (parentnodes[1] == x) {
             return(bdeu)
           } else {
             # permute dimension of bdeu object
             # the intervention variable x is assumed to be second dim
-            return(aperm.bida_bdeu(bdeu, c(1, 1+seq_along(parentnodes$x)[parentnodes$ix])))
+            return(aperm.bida_bdeu(bdeu, c(1, 1+match(c(x, z), parentnodes))))
           }
         }
       }
