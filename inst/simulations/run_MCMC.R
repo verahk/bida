@@ -48,13 +48,13 @@ par <- list(init = c("pcskel"),
             local_struct = c("ptree", "none"),
             sample = "order",
             ess = 1,
-            edgepf = c(2),
+            edgepf = c(2, 24),
             hardlimit = 4,
             N = c(300, 1000, 3000),
             n = c(10),
             k = c(4),
             complexity = c(0, .5, 1),
-            r = 1:30)
+            r = 1:10)
 
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
 indx <- with(pargrid, local_struct == "none" & (edgepf > 2))
