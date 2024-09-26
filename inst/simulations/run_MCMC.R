@@ -26,9 +26,9 @@
 
 # load libraries ----
 rm(list = ls())
-doTest <- TRUE
+doTest <- FALSE
 
-devtools::install_github("verahk/bida", ref = "sim_slearn_with_lstruct", upgrade = "never")
+#devtools::install_github("verahk/bida", ref = "sim_slearn_with_lstruct2", upgrade = "never")
 
 library(doSNOW)
 sapply(list.files("./inst/simulations/R", ".R", full.names = T),
@@ -45,10 +45,10 @@ nClusters <- 4
 
 # params ----
 par <- list(init = c("pcskel"),
-            local_struct = c("none", "ptree", "pcart"),
+            local_struct = c("none", "ptree"),
             sample = "order",
             ess = 1,
-            edgepf = c(2),
+            edgepf = c(2, 24),
             hardlimit = 4,
             N = c(300, 1000, 3000),
             n = c(10),
