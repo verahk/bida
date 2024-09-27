@@ -3,7 +3,7 @@
 library(dplyr)
 library(ggplot2)
 
-dir_in <- "./inst/simulations/results/"
+dir_in <- NULL # "./inst/simulations/results/"
 dir_out <- "./inst/simulations/plots/"
 dir.create(dir_out)
 files <- list.files("./inst/simulations/R", full.names = T)
@@ -13,6 +13,16 @@ sapply(files, source, echo = T)
 res_from_file_to_df <- function(files, name) {
   imp <- lapply(files,
                 function(f) do.call(c, readRDS(f)[c("par", name)]))
+  rename_local_struct <- function(x) {
+    names <- names(x)
+    pos <- match("par.regular", names, 0L)
+    if (pos > 0 && x[pos] == 1) {
+      x <- x[-pos]
+      x["par.local_struct"] = paste0(x["par.local_struct"], "reg")
+    }
+    return(x)
+  }
+  imp <- lapply(imp, rename_local_struct)
   dfs <- lapply(imp, data.frame)
   df  <- do.call(rbind, dfs)
   names(df) <- gsub(paste0(name, "\\."), "", names(df))
@@ -30,11 +40,16 @@ res_from_file_to_df <- function(files, name) {
     df <- df %>%
       tidyr::pivot_longer(any_of(c("known", "unknown", "full", "arp"))) %>%
       mutate(slearn = ifelse(name == "known", "true parents", "unknown parents"),
-             name   = ifelse(name == "full", "full CPT", "reduced CPT"))
+             name   = case_when(name == "full" ~ "full CPT",
+                                name == "arp" ~ "ARP",
+                                .default = "reduced CPT"))
+
+
   }
 
   df$N <- with(df, factor(N, sort(unique(N))))
   df$lstruct.epf <- with(df, interaction(local_struct, edgepf))
+
   return(df)
 }
 
@@ -60,12 +75,17 @@ for (k in c(2, 4, 8)) {
   for (name in names(ylabs)) {
     plot <- res_from_file_to_df(files, name) %>%
             plot_boxplot(x, y, facets, color = color, ylab = ylabs[[name]])
-    filename <- paste0(dir_out, "box_plot_k", k, "_", name, ".png")
-    ggsave(filename, plot, height = 7, width = 4)
+    if (length(dir_out) > 0 ) {
+      filename <- paste0(dir_out, "box_plot_k", k, "_", name, ".png")
+      ggsave(filename, plot, height = 7, width = 6)
+    } else {
+      print(plot)
+    }
+
   }
 
   gr_vars <- c("init", "local_struct", "sample", "ess", "edgepf", "hardlimit",
-                  "N", "n", "k", "csi", "lstruct.epf")
+                "n", "k", "csi", "lstruct.epf", "slearn", "name", "N")
 
   df <- res_from_file_to_df(files, "size") %>%
     select(-r, -N, -lstruct.epf) %>%
@@ -87,7 +107,7 @@ for (k in c(2, 4, 8)) {
   # print to tex
   df <- agg %>%
     tidyr::pivot_wider(names_from = "variable") %>%
-    group_by(n, k, csi)
+    group_by(n, k, csi, slearn, name)
 
   df %>%
     df_to_tex(values_from = unique(agg$variable),
