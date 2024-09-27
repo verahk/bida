@@ -92,10 +92,13 @@ sim_run <- function(indir, f, verbose = FALSE) {
   ## compute support over parent sets
   ps <- bida::parent_support_from_dags(dags)
 
-  get_size <- function(x) {
+  get_size_bdeu <- function(x) {
     dims <- x$counts$dim
     c(parents = length(dims)-1,
       parts = ifelse(is.null(x$partition), prod(dims[-1]), length(x$partition)))
+  }
+  get_size <- function(pair) {
+    colSums(do.call(rbind, lapply(pair$params, get_size_bdeu))*pair$support)
   }
 
   ## compute mse of point-estimates (mean) of intervention distribution
@@ -127,20 +130,19 @@ sim_run <- function(indir, f, verbose = FALSE) {
       )
 
       pdo_hat     <- lapply(pairs, bida::posterior_mean)
-      tmp <- bida::bida_pair(type, data, x, y,
+    if (FALSE) {
+       tmp <- bida::bida_pair(type, data, x, y,
                              sets = matrix(pa, nrow = 1),
                              support = 1,
                              hyperpar = c(list(nlev = nlev), par),
                              lookup = NULL)
       stopifnot(all(pdo_hat$known == bida::posterior_mean(tmp)))
+    }
       mse[[x, y]]  <- vapply(pdo_hat, function(p) mean( (p-pdo[[x, y]])**2 ), numeric(1))
       tau[[x, y]]  <- vapply(pdo_hat, bida:::JSD, numeric(1))
 
       # number of conditioning variables - x + parents
-      tmp <- lapply(pairs,
-                    function(pair) do.call(rbind, lapply(pair$params, get_size)))
-      tmp <- vapply(tmp, colMeans, numeric(2))
-
+      tmp <- vapply(pairs, get_size, numeric(2))
       parents[[x, y]] <- tmp[1, ]
       parts[[x, y]]   <- tmp[2, ]
     }
@@ -179,7 +181,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
 if (doTest) {
   # test
   filenames <- list.files(indir, ".rds")
-  f <- filename <- filenames[1]
+  f <- filename <- filenames[2]
   sim_and_write_to_file(dir_out = outdir,
                         filename = filename,
                         run = sim_run,
@@ -209,7 +211,7 @@ if (nClusters == 0) {
 
   # run
   filenames <- list.files(indir, ".rds")
-  indx <-  !grepl("pcart", filenames)  & grepl("k2", filenames)
+  indx <-  !grepl("pcart", filenames)  #& grepl("k2", filenames)
   filenames <- filenames[indx]
   foreach (f = filenames) %dopar% sim_and_write_to_file(dir_out = outdir,
                                                         filename = f,

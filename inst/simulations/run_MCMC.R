@@ -52,9 +52,9 @@ par <- list(init = c("pcskel"),
             hardlimit = 4,
             N = c(300, 1000, 3000),
             n = c(10),
-            k = c(4),
+            k = c(2, 4, 8),
             complexity = c(0, .5, 1),
-            r = 1:10)
+            r = 1:15)
 
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
 indx <- with(pargrid, local_struct == "none" & (edgepf > 2))
@@ -146,3 +146,10 @@ foreach (i = seq(row, nrow(pargrid))) %dopar% sim_and_write_to_file(outdir,
                                                                     par = pargrid[i, ],
                                                                     verbose = TRUE)
 stopCluster(cl)
+
+
+for (i in seq(row, nrow(pargrid))) sim_and_write_to_file(outdir,
+                                                        params_to_filename(pargrid[i, ]),
+                                                        sim_run,
+                                                        par = pargrid[i, ],
+                                                        verbose = TRUE)

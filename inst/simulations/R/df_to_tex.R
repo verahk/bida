@@ -13,6 +13,7 @@ df_to_tex <- function(df,
 
   keys  <- names(df)[!names(df) %in% c(values_from, names_from)]
   gr_vars <- group_vars(df)
+  df <- arrange(df, across(c(any_of(c(gr_vars, keys)), everything()))) # arrange
 
   if (length(gr_vars) > 0 && group_keys_in_rows) {
     keys <- keys[!keys %in% gr_vars]
@@ -25,7 +26,7 @@ df_to_tex <- function(df,
     df <- tidyr::pivot_wider(df, values_from = values_from, names_from = names_from)
   } else {
 
-    colnames <- levels(interaction(df[names_from]))
+    colnames <- levels(interaction(df[names_from], drop = TRUE))
     pos <- list(0)
 
     tmp <- sapply(colnames,
@@ -94,7 +95,9 @@ df_to_tex <- function(df,
     add_to_row$command <- c(add_to_row$command, command)
   }
 
-  xtab <- xtable::xtable(df, align = align, caption = caption, label = label, digits = digits)
+  xtab <- df %>%
+   xtable::xtable(align = align, caption = caption, label = label, digits = digits)
+
   if (file.exists(file)) file.remove(file)
   hline_after <- c(-1,
                    switch(group_keys_in_rows+1, 0, integer(0)),
