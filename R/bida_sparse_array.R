@@ -56,12 +56,7 @@
 #' @rdname bida_sparse_array
 #' @export
 bida_sparse_array <- function(value, index, dim, dimnames = NULL, default = 0) {
-  if (is.unsorted(index)) {
-    tmp <- sort.int(index, index.return = TRUE)
-    value <- value[tmp$ix]
-    index <- tmp$x
-  }
-  stopifnot(prod(dim) > max(index))
+  stopifnot(length(index) == length(value))
   stopifnot(all(lengths(dimnames) == dim))
   new_bida_sparse_array(value, index, dim, dimnames, default)
 }
@@ -89,8 +84,8 @@ new_bida_sparse_array <- function(value, index, dim, dimnames = NULL, default = 
 as.bida_sparse_array.array <- function(arr, default = 0) {
   # convert standard array to bida_sparse_array
   stopifnot(!is.null(dim(arr)))
-  index <- which(!array == default)
-  new_bida_sparse_array(arr[index], index-1, dim(arr), dimnames(arr))
+  index <- which(!arr == default)
+  new_bida_sparse_array(c(arr[index]), index-1, dim(arr), dimnames(arr))
 }
 #' @rdname bida_sparse_array
 #' @export
@@ -153,19 +148,20 @@ rep.bida_sparse_array <- function(x, times = 1, each = 1) {
 #' @rdname bida_sparse_array
 #' @export
 aperm.bida_sparse_array <- function(x, perm) {
-  indx <- x$index
-  dims <- x$dim
+
+  dims <- dim(x)
   n <- length(dims)
 
-  stride <- c(1, cumprod(dims[-n]))
-  conf <- mapply(function(s, k) (indx%/%s)%%k, stride, dims)
+  stopifnot(length(perm) == n)
+  if (n == 1) return(x)
 
-  new_dims <- dims[perm]
-  new_indx <- c(conf[, perm, drop = F]%*%c(1, cumprod(new_dims[-n])))
+  # map to new index
+  coord <- get_coordinates(x)
+  stride <- c(1, cumprod(dims[perm[-n]]))
+  x$index <- coord[, perm]%*%stride
 
-  x$dim    <- new_dims
-  x$index  <- new_indx
-
+  dim(x) <- dims[perm]
+  dimnames(x) <- dimnames(x)[perm]
   return(x)
 }
 
@@ -197,6 +193,7 @@ asplit.bida_sparse_array <- function(x, MARGIN) {
   new_dims  <- dims[-MARGIN]
   new_dimnames <- dimnames(x)[-MARGIN]
 
+  mapply(function(indx) new_bida_sparse_array)
   split <- function(y) {
     indx = split_by == y
     new_bida_sparse_array(
@@ -342,35 +339,6 @@ get_index <- function(x, MARGIN, stride = get_stride(x)) {
   c(coord%*%c(1, cumprod(dim(x)[MARGIN[-length(MARGIN)]])))
 }
 
-
-marginalize <- function(x, MARGIN) {
-
-  new_dim <- x$dim[MARGIN]
-  new_dimnames <- x$dimnames[MARGIN]
-
-  # compute non-missing indicies of MARGIN
-  index <- get_index(x, MARGIN)
-  new_index <- c(unique(index))
-
-  if (x$default == 0) {
-    new_value <- rowsum_fast(x$value, index, new_index)
-    new_default <- 0
-  } else {
-    # count missing elements for each observed level of MARGIN
-    # - add to grouped sums below
-    k     <- prod(x$dim)/prod(new_dim)
-    nmiss <- k - tabulate(match(index, new_index))
-
-    # compute sums over MARGIN
-    new_value <- rowsum_fast(x$value, index, new_index) + nmiss*x$default
-
-    # compute new default value
-    new_default <- k*x$default
-  }
-
-  # return sparse array
-  new_bida_sparse_array(new_value, new_index, new_dim, new_dimnames, new_default)
-}
 
 
 
