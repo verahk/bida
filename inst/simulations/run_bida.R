@@ -38,7 +38,7 @@ outdir <- "./inst/simulations/results/"  # directory for storing res
 if (!dir.exists(outdir)) dir.create(outdir)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
-nClusters <- 0
+nClusters <- 6
 doTest <- FALSE
 
 sim_run <- function(indir, f, verbose = FALSE) {
@@ -166,6 +166,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
   }
   out$rank <- c(arp = compute_avgppv(arp[!dindx], dmat[!dindx]),
                 apply(do.call(rbind, tau[!dindx]), 2, compute_avgppv, y = dmat[!dindx]))
+
   rates <- rowsum(edgep[!dindx], dag[!dindx])/tabulate(dag[!dindx]+1, 2)
   out$edge <- c(n = sum(edgep[!dindx]),
                 fpr = rates[1],
