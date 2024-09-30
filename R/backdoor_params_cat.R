@@ -37,7 +37,7 @@
 #'  from the exact posterior, by sampling the relevant observational distributions
 #'  from their respective dirichlet posteriors.
 #'
-#'
+#' @noRd
 #' @export
 backdoor_params_cat <- function(data, x, y, z, nlev, min_sparse = 2**10) {
 

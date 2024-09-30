@@ -129,4 +129,7 @@ posterior_mean(bdeu)
 posterior_mean(bdeu_part, reduced = T)  # means of reduced CPT
 posterior_mean(bdeu_part, reduced = F)  # means of full CPT
 
+# with local tree-structure defined as string
+opt <- optimize_partition_from_data(data, j, parentnodes, ess = 1, nlev = nlev, method = "tree")
+bdeu$partition <- opt
 }

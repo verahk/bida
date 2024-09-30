@@ -24,3 +24,4 @@ all(expand.grid(x) == bida:::expand_grid_fast(x))
 microbenchmark::microbenchmark(as.matrix(expand.grid(x)), bida:::expand_grid_fast(x))
 
 }
+\keyword{internal}

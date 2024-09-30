@@ -4,9 +4,11 @@ test_that("multiplication works", {
   n <- 3
   dag <- matrix(0, n, n)
   dag[-n, n] <- 1
+  nlev = rep(2, n)
+  ess <- 1
 
   set.seed(1)
-  bn <- rand_bn(dag, "cat", nlev = rep(2, n), alpha = 1)
+  bn <- rand_bn(dag, "cat", nlev = nlev, alpha = 1)
   data <- sample_data_from_bn(bn, 10000)
   scorepar <- define_scoreparameters(data, "bdecat", par = list(nlev = nlev, ess = ess))
 

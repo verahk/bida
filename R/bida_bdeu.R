@@ -65,15 +65,21 @@
 #' posterior_mean(bdeu_part, reduced = T)  # means of reduced CPT
 #' posterior_mean(bdeu_part, reduced = F)  # means of full CPT
 #'
+#' # with local tree-structure defined as string
+#' opt <- optimize_partition_from_data(data, j, parentnodes, ess = 1, nlev = nlev, method = "tree")
+#' bdeu$partition <- opt
 bida_bdeu <- function(data, j, parentnodes, ess, nlev, partition = NULL) {
+  if (is.null(colnames(data))) colnames(data) <- paste0("X", seq_len(ncol(data)))
   subset <- c(j, parentnodes)
   counts <- counts_from_data_matrix(data[, subset, drop = FALSE], nlev[subset], sparse = T)
-  new_bida_bdeu(counts, ess, partition)
+  new_bida_bdeu(colnames(data)[1], colnames(data)[parentnodes], counts, ess, partition)
 }
 
 #' @noRd
-new_bida_bdeu <- function(counts, ess, partition) {
-  structure(list(counts = counts,
+new_bida_bdeu <- function(node, parents, counts, ess, partition, scope = NULL) {
+  structure(list(node = node,
+                 parents = parents,
+                 counts = counts,
                  partition = partition,
                  ess = ess),
             class = "bida_bdeu")
@@ -118,19 +124,28 @@ aperm.bida_bdeu <- function(obj, perm) {
 #' @param reduced (bolean) if TRUE (default), the reduced CPT is returned.
 #' @export
 posterior_mean.bida_bdeu <- function(obj, reduced = TRUE) {
-  alpha <- p <- update_bdeu(obj)
-  if (length(dim(alpha)) < 2) {
-    return(alpha/sum(alpha))
+  dims <- dim(obj$counts)
+  if (length(dims) == 1) {
+    p <- (obj$counts + obj$ess/dims)/sum(obj$counts + ess)
   } else {
-    p <- alpha/rep(colSums(alpha), each = dim(alpha)[1])
-  }
+    r <- dims[1]
+    q <- prod(dims[-1])
+    if (is.null(obj$partition)) {
+      p <- (obj$counts+obj$ess/(r*q))/rep(colSums(obj$counts)+obj$ess/q, each = r)
+    } else {
+      alpha <- update_bdeu(obj)
 
-  if (reduced || is.null(obj$partition)) {
-    return(p)
-  } else {
-    parts <- attr(alpha, "parts")
-    array(p[ , parts], get_dim(obj))
+      p <- alpha/rep(colSums(alpha), each = dims[1])
+
+      if (reduced) {
+        return(p)
+      } else {
+        parts <- attr(alpha, "parts")
+        return(array(p[ , parts], dim(obj$counts)))
+      }
+    }
   }
+  return(as.array(p))
 }
 
 #' @rdname bida_bdeu
@@ -156,7 +171,7 @@ posterior_sample.bida_bdeu <- function(obj, n, reduced = TRUE) {
     } else {
       # replicate and return as array
       parts <- attr(alpha, "parts")
-      array(p[ , parts, ], c(get_dim(obj), n))
+      array(p[ , parts, ], c(dim(obj), n))
     }
   }
 }
@@ -166,7 +181,7 @@ posterior_sample.bida_bdeu <- function(obj, n, reduced = TRUE) {
 #'  with marginal probabilities for each intervention level.
 #' @export
 backdoor_mean.bida_bdeu <- function(obj, nlevx) {
-  dims <- get_dim(obj)
+  dims <- dim(obj$counts)
   ndims <- length(dims)
   if (ndims == 1) {
     # no adjustment
@@ -196,7 +211,7 @@ backdoor_mean.bida_bdeu <- function(obj, nlevx) {
 #' @rdname bida_bdeu
 #' @export
 backdoor_sample.bida_bdeu <- function(obj, n, nlevx, digits = 16) {
-  dims = get_dim(obj)
+  dims = dim(obj$counts)
   ndims = length(dims)
   if (ndims == 1) {
     tmp <- round(posterior_sample(obj, n), digits)
@@ -260,7 +275,6 @@ optimize_bdeu <- function(obj, method, levels = NULL, ...) {
 #'    parent space.
 update_bdeu <- function(obj, parent_config = NULL) {
   if (is.null(parent_config)) {
-
     counts <- as.array(obj$counts)
     ess <- obj$ess
     partition <- obj$partition
@@ -269,7 +283,7 @@ update_bdeu <- function(obj, parent_config = NULL) {
       ess/length(counts) + counts
     } else {
 
-      dims <- get_dim(obj)
+      dims <- dim(obj$counts)
       r <- dims[1]         # cardinality of outcome variable
       q <- prod(dims[-1])  # cardinality of parent variables
 
@@ -277,8 +291,16 @@ update_bdeu <- function(obj, parent_config = NULL) {
       counts <- matrix(as.array(obj$counts), q, r, byrow = T)
 
       # compute posterior hyperparameters
-      parts <- get_parts(partition)
-      alpha <- ess/(r*q)*lengths(partition) + rowsum_fast(counts, parts, seq_along(partition))
+      if (inherits(obj$partition, "partition")) {
+        partsize <- obj$partition$size
+        tmp <- expand_grid_fast(lapply(dims[-1]-1, seq.int, from = 0))
+        colnames(tmp) <- obj$parents
+        parts <- predict(obj$partition, tmp)
+      } else {
+        partsize <- lengths(partition)
+        parts <- get_parts(partition)
+      }
+      alpha <- ess/(r*q)*partsize + rowsum_fast(counts, parts, seq_along(partsize))
       attr(alpha, "parts") <- parts
       t(alpha)
     }
@@ -293,7 +315,7 @@ update_bdeu <- function(obj, parent_config = NULL) {
 #' @export
 score_bdeu <- function(obj) {
 
-  dims <- get_dim(obj)
+  dims <- dim(obj$counts)
   ess <- obj$ess
   r <- dims[1]
   q <- prod(dims[-1])

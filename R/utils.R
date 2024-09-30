@@ -61,6 +61,7 @@ match_vec <- function(vec, lookup, lens = lengths(lookup), nomatch = NA) {
 #' @return a `k-by-k` matrix with all combinations of the vectors in [x].
 #'   In contrast \link{base}[expand.grid] returns a data.frame.
 #'
+#' @keywords internal
 #' @examples
 #' x = list(0:1, 0:1, 0:1)
 #' all(expand.grid(x) == bida:::expand_grid_fast(x))
@@ -82,8 +83,8 @@ expand_grid_fast <- function(x = NULL, k = NULL){
   } else {
     cump  <- cumprod(k)
     each  <- c(1, cump[-n])
-    indx  <- seq.int(n, 1)
-    times <- c(cumprod(k[indx[-n]])[indx[-1]], 1)
+    times <- cump[n]/(k*each)
+
 
     vapply(seq_along(x),
            function(i) rep(x[[i]], each = each[i], times = times[i]),

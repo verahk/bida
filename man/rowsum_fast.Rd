@@ -4,13 +4,16 @@
 \alias{rowsum_fast}
 \alias{rowsum_fast.default}
 \alias{rowsum_fast.matrix}
+\alias{rowsum_fast.bida_sparse_array}
 \title{Compute sums over grouping variable}
 \usage{
 rowsum_fast(x, group, ugroup, na.rm = FALSE)
 
-\method{rowsum_fast}{default}(x, group, ugroup, na.rm = FALSE)
+\method{rowsum_fast}{default}(x, group, ugroup = unique(group), na.rm = FALSE)
 
-\method{rowsum_fast}{matrix}(x, group, ugroup, na.rm = FALSE)
+\method{rowsum_fast}{matrix}(x, group, ugroup = unique(group), na.rm = FALSE)
+
+\method{rowsum_fast}{bida_sparse_array}(x, group, ugroup, na.rm = TRUE)
 }
 \arguments{
 \item{x}{(numeric) vector or matrix}

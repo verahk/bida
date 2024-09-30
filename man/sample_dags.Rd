@@ -48,11 +48,13 @@ Ignored if not \code{algo=="pc"} or \code{algo == "pcskel"}.}
 }
 \description{
 This function is a wrapper around \link[BiDAG:sampleBN]{BiDAG::sampleBN}, and can be used to sample
-DAGs with locastructure using the different MCMC schemes implemented in \link[BiDAG:sampleBN]{BiDAG::sampleBN}.
+DAGs with local structure using the different MCMC schemes implemented in \link[BiDAG:sampleBN]{BiDAG::sampleBN}.
 The wrapper function allows for different structure learning algorithms to initiate
-a search space for the MCMC chain, and forces the maximaparent set size
+a search space for the MCMC chain, and forces the maximal parent set size
 (\code{hardlimit}) to be  respected by re-running the chosen structure learning procedure
-with stricter add-edge-policies untithe criteria is met.
+with stricter add-edge-policies until the criteria is met. If the criteria is
+not satisfied either under the strictest add-edge-policy, then edges are removed
+at random until the criteria is met.
 }
 \details{
 The \code{init_search_space} function is a wrapper around structural learning routines

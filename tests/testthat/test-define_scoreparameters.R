@@ -20,7 +20,6 @@ test_that("define_scoreparameters", {
   pG  <- -length(parentnodes)*log(par$edgepf)
   lookup <- rlang::new_environment()
 
-  # BiDAG-bdecat-score. Note: ignore missing levels
   scorepar <- define_scoreparameters(data, "bdecat", par)
   score <- unname(BiDAG:::DAGcorescore(j, parentnodes, n, scorepar))-pG
   expect_equal(score,

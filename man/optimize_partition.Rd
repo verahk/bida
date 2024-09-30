@@ -133,10 +133,12 @@ cbind(expand.grid(levels),
 
 
 
+
 levels <- list(0:1, 0:1)
 counts <- cbind(10, c(10, 100, 1000, 1000))
 ess <- 1
 optimize_partition_tree(counts, levels, ess, min_score_improv = 0, verbose = TRUE)
+
 
 # illustrate grow-full-and-then-prune procedure
 levels <- list(0:1, 0:1, 0:1)

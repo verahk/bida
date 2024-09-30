@@ -1,0 +1,694 @@
+starting worker for localhost:11538 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Loading required package: Matrix
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N1000_r17.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N1000_r17.rds
+Runtime
+Time difference of 3.147993 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N1000_r20.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+Start computing estimates for  n10_k2_cs Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N1000_r20.rds
+Runtime
+Time difference of 0.873313 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N1000_r24.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N1000_r24.rds
+Runtime
+Time difference of 0.7219 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N1000_r29.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N1000_r29.rds
+Runtime
+Time difference of 0.6987739 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N3000_r16.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N3000_r16.rds
+Runtime
+Time difference of 0.7238681 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N3000_r20.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N3000_r20.rds
+Runtime
+Time difference of 0.892328 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N3000_r24.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N3000_r24.rds
+Runtime
+Time difference of 0.633404 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N3000_r28.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N3000_r28.rds
+Runtime
+Time difference of 0.9662182 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N300_r15.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N300_r15.rds
+Runtime
+Time difference of 0.8391061 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N300_r20.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N300_r20.rds
+Runtime
+Time difference of 0.82496 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N300_r24.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N300_r24.rds
+Runtime
+Time difference of 0.5720761 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_none_order_ess1_epf2_N300_r27.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_none_order_ess1_epf2_N300_r27.rds
+Runtime
+Time difference of 0.547076 secs
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_pcart_order_ess1_epf2_N1000_r01.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_pcart_order_ess1_epf2_N1000_r01.rds
+Runtime
+Time difference of 1.991267 mins
+Type: EXEC 
+Start computing estimates for  n10_k2_csi100_pcskel_pcart_order_ess1_epf2_N1000_r06.rds 
+ Compute estimates for cause node x 1 
+ Compute estimates for cause node x 2 
+ Compute estimates for cause node x 3 
+ Compute estimates for cause node x 4 
+ Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_pcart_order_ess1_epf2_N1000_r06.rds
+Runtime
+Time difference of 2.785582 mins
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EX
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_pcart_order_ess1_epf2_N1000_r03.rds
+Runtime
+Time difference of 4.865718 mins
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXE Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_pcart_order_ess1_epf2_N1000_r07.rds
+Runtime
+Time difference of 2.500545 mins
+: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: E Compute estimates for cause node x 5 
+ Compute estimates for cause node x 6 
+ Compute estimates for cause node x 7 
+ Compute estimates for cause node x 8 
+ Compute estimates for cause node x 9 
+ Compute estimates for cause node x 10 
+
+Save results to:  ./inst/simulations/results/n10_k2_csi100_pcskel_pcart_order_ess1_epf2_N1000_r08.rds
+Runtime
+Time difference of 2.075382 mins
+EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
