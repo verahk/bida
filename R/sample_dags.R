@@ -2,12 +2,13 @@
 #' Sample DAGs with local structure
 #'
 #' This function is a wrapper around [BiDAG::sampleBN], and can be used to sample
-#' DAGs with locastructure using the different MCMC schemes implemented in [BiDAG::sampleBN].
+#' DAGs with local structure using the different MCMC schemes implemented in [BiDAG::sampleBN].
 #' The wrapper function allows for different structure learning algorithms to initiate
-#' a search space for the MCMC chain, and forces the maximaparent set size
+#' a search space for the MCMC chain, and forces the maximal parent set size
 #' (`hardlimit`) to be  respected by re-running the chosen structure learning procedure
-#' with stricter add-edge-policies untithe criteria is met.
-#'
+#' with stricter add-edge-policies until the criteria is met. If the criteria is
+#' not satisfied either under the strictest add-edge-policy, then edges are removed
+#' at random until the criteria is met.
 #'
 #' @param scorepar (object of class [BiDAG::scoreparameters])
 #'  See \link{define_scorepar}.
