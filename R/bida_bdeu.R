@@ -66,14 +66,17 @@
 #' posterior_mean(bdeu_part, reduced = F)  # means of full CPT
 #'
 bida_bdeu <- function(data, j, parentnodes, ess, nlev, partition = NULL) {
+  if (is.null(colnames(data))) colnames(data) <- paste0("X", seq_along(ncol(data)))
   subset <- c(j, parentnodes)
   counts <- counts_from_data_matrix(data[, subset, drop = FALSE], nlev[subset], sparse = T)
-  new_bida_bdeu(counts, ess, partition)
+  new_bida_bdeu(colnames(data)[1], colnames(data)[parentnodes], counts, ess, partition)
 }
 
 #' @noRd
-new_bida_bdeu <- function(counts, ess, partition) {
-  structure(list(counts = counts,
+new_bida_bdeu <- function(node, parents, counts, ess, partition, scope = NULL) {
+  structure(list(node = node,
+                 parents = parents,
+                 counts = counts,
                  partition = partition,
                  ess = ess),
             class = "bida_bdeu")
@@ -126,6 +129,11 @@ posterior_mean.bida_bdeu <- function(obj, reduced = TRUE) {
     if (is.null(obj$partition)) {
       p <- (obj$counts+obj$ess/(r*q))/rep(colSums(obj$counts)+obj$ess/q, each = r)
     } else {
+      if (inherits(obj$partition, "partition")) {
+        newdata <- get_coordinates(obj$counts, seq_along(dims)[-1])
+        colnames(newdata) <- names(obj$counts$dimnames[-1])
+        parts <- predict(obj$partition, newdata)
+      } else
       if (inherits(obj$counts, "bida_sparse_array")) {
         parts <- get_parts(obj$partition, get_coordinates(obj$counts))
 
