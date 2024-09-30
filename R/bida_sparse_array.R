@@ -134,6 +134,7 @@ as.array.bida_sparse_array <- function(x) {
 #' @export
 rep.bida_sparse_array <- function(x, times = 1, each = 1) {
   if (times == 1 && each == 1) return(x)
+
   len <- prod(x$dim)
   rep_index   <- rep(x$index, each = each, times = times)
   each_index  <- rep(seq_len(each)-1, times = length(x$index)*times)
@@ -255,26 +256,34 @@ aritmethics_bida_sparse_array <- function(fun, x, y) {
 
   f <- match.fun(fun)
   if (is.numeric(y) && length(y) == 1) {
-    stopifnot(length(y) == 1)
-    x$value <- f(x$value, y)
-    x$default <-  f(x$default, y)
+    x$value   <- f(x$value, y)
+    x$default <- f(x$default, y)
     return(x)
   } else if (inherits(y, "bida_sparse_array")) {
 
     stopifnot((prod(x$dim) == prod(y$dim)))
 
-    index_yinx  <- match(y$index, x$index, 0L)
-    index_xiny  <- match(x$index, y$index, 0L)
+    yinx  <- match(y$index, x$index, 0L)
+    if (all(yinx == 0)) {
+      value <- c(f(x$value, y$default), f(x$default, y$value))
+      index <- c(x$index, y$index)
+      default <- f(x$default, y$default)
+    } else {
+      x$index[yinx]
+      x$index[-yinx]
+      y$index[yinx == 0]
+      y$index[yinx > 0]
 
-    value  <- c(f(x$value[index_xiny == 0], y$default),
-                f(x$default, y$value[index_yinx == 0]),
-                f(x$value[index_yinx], y$value[index_xiny]))
-    default <- f(x$default, y$default)
-    index  <- c(x$index[index_xiny == 0],
-                y$index[index_yinx == 0],
-                x$index[index_yinx])
-    tmp <- sort.int(index, index.return = TRUE)
-    new_bida_sparse_array(value[tmp$ix], tmp$x, x$dim, x$dimnames, default)
+      value  <- c(f(x$value[-yinx], y$default),
+                  f(x$default, y$value[yinx == 0]),
+                  f(x$value[yinx], y$value[match(x$index[yinx], y$index, 0L)]))
+      index  <- c(x$index[-yinx],
+                  y$index[yinx == 0],
+                  x$index[yinx])
+      default <- f(x$default, y$default)
+    }
+
+    new_bida_sparse_array(value, index, x$dim, x$dimnames, default)
 
   } else {
     stop("y must be a numeric constant or a bida_sparse_array")

@@ -7,14 +7,32 @@ test_that("posterior_mean.bida_bdeu", {
   ess <- 1
 
   # expected outcome
-  nyxz <- counts_from_data_matrix(data, nlev, FALSE) + ess/prod(nlev)
-  exp  <- nyxz/rep(colSums(nyxz), each = dim(nyxz)[1])
+  nyxz <- counts_from_data_matrix(data, nlev, FALSE)
+  ayxz <- nyxz + ess/prod(nlev)
+  exp  <- ayxz/rep(colSums(ayxz), each = dim(nyxz)[1])
 
   bdeu <- bida_bdeu(data, y, c(x, z), 1, nlev)
-  obj  <- posterior_mean(bdeu, nlev[x])
-  expect_equal(obj, exp, tolerance = 10e-10)
+  expect_equal(as.array(bdeu$counts), nyxz)
+  expect_equal(as.array(colSums(bdeu$counts)), colSums(nyxz))
+  expect_equal(posterior_mean(bdeu), exp, tolerance = 10e-10)
 })
 
+test_that("posterior_mean.bida_bdeu with partition", {
+  data <- cbind(
+    y = c(rep(0, 9), rep(1, 2*9)),
+    x = rep(0:2, each = 9),
+    z = rep(0:2, 9))
+  nlev <- rep(3, 3)
+  names(nlev) <- colnames(data)
+  ess <- 1
+  opt <- optimize_partition_from_data(data, 1, 2:3, nlev, ess = 1, "ptree")
+
+  bdeu <- bida_bdeu(data, 1, 2:3, ess, nlev, partition = opt)
+  bdeu2 <- bida_bdeu(data, 1, 2, nlev, ess = 1) # should give same res partition is a binary split
+  expect_equal(posterior_mean(bdeu), posterior_mean(bdeu2), ignore_attr = TRUE)
+  expect_equal(posterior_mean(bdeu, reduced = FALSE), array(rep(posterior_mean(bdeu2), nlev[3]), nlev))
+  expect_equal(backdoor_mean(bdeu), backdoor_mean(bdeu2), ignore_attr = TRUE)
+})
 
 test_that("backdoor_mean.bida_bdeu", {
 
