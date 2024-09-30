@@ -91,6 +91,7 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
 
       # define function for computing scores
       usrDAGcorescore <- function(j, parentnodes, n, scorepar) {
+
         parentnodes <- sort(parentnodes)   # for parID
         npar <- length(parentnodes)
         pG   <- -npar*log(scorepar$edgepf) # penality term for edges
@@ -104,25 +105,29 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
           }
         }
 
+        ess <- scorepar$ess
+        nlev <- scorepar$nlev
+        local_struct <- scorepar$local_struct
+
         # construct bida_bdeu-object - for computing score and optimize partition
-        bdeu <- bida_bdeu(scorepar$data, j, parentnodes, scorepar$ess, scorepar$nlev)
+        bdeu <- bida_bdeu(scorepar$data, j, parentnodes, ess, nlev)
 
         # optimize partition of parent space and return score
         if (npar < 2) {
           # no partitioning possible, return score
           # construct bdeu-object with frequency counts
           return(score_bdeu(bdeu)+pG)
-        } else if (scorepar$local_struct == "pcart") {
-          opt <- optimize_partition_from_df_pcart(scorepar$data.frame, scorepar$ess)
+        } else if (local_struct == "pcart") {
+          opt <- optimize_partition_from_df_pcart(scorepar$data.frame[, c(j, parentnodes)], ess)
         } else {
-          opt <- optimize_partition_from_data(scorepar$data, j, parentnodes, ess, nlev, scorepar$local_struct)
+          opt <- optimize_partition_from_data(scorepar$data, j, parentnodes, ess, nlev, local_struct)
         }
 
         score <- opt$score
 
         if (!is.null(scorepar$lookup)) {
           # store score and bdeu-params in lookup
-          bdeu$partition  <- opt$partition
+          bdeu$partition  <- opt
           bdeu$score <- score
           scorepar$lookup[[scorepar$local_struct]][[parID]] <- bdeu
         }

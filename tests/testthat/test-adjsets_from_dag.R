@@ -67,7 +67,7 @@ test_that("function replace large sets with smaller", {
                X   = c(0 ,0, 0, 0, 1),
                Y   = c(0, 0, 0, 0, 0))
   colnames(dag) <- rownames(dag)
-  Rgraphviz::plot(as(dag, "graphNEL"))
+  #Rgraphviz::plot(as(dag, "graphNEL"))
 
   x <- 4
   y <- 5
