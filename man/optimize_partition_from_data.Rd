@@ -2,7 +2,7 @@
 % Please edit documentation in R/optimize_partition_from_data.R
 \name{optimize_partition_from_data}
 \alias{optimize_partition_from_data}
-\title{Title}
+\title{Optimize the local structure of a conditional probability table (CPT)}
 \usage{
 optimize_partition_from_data(
   data,
@@ -11,51 +11,102 @@ optimize_partition_from_data(
   ess,
   nlev,
   method,
-  verbose = FALSE,
-  ...
+  verbose = FALSE
 )
 }
 \arguments{
-\item{ess}{}
+\item{data}{(numeric matrix) matrix with integers representing zero-based categorical variables.}
+
+\item{j}{(integer) column position of response variable.}
+
+\item{parentnodes}{(integer vector) column positions of parent nodes.}
+
+\item{ess}{(numeric) equivalent sample size for the BDeu-score.}
+
+\item{nlev}{(integer vector) cardinality of every variable in \code{data}}
+
+\item{method}{(character) name of the algorithm used to learn a partition}
+
+\item{verbose}{(bolean)}
+}
+\value{
+an object of class \code{partition} with subclass \code{tree} or \code{pcart}.
+That is an list with elements:
+\itemize{
+\item \code{tree}: the fitted tree, stored as a string
+\item \code{score}: the score of the tree, equal to the sum of the leaf-scores.
+\item \code{size}: an integer vector with the size of each leaf
+}
 }
 \description{
-Title
+Given data on a response variable and its parents, all assumed categorical,
+learn a partitioning over the space of the parent variables (the rows of the CPT).
+}
+\details{
+The \code{method} argument must match one of the following algorithms:
+\itemize{
+\item \code{tree}: fit a decision tree using a greedy algorithm, where each
+split adds a new branch for each level of the split variable and splits are
+added until no new splits improves the score.
+\item \code{ptree}: fit a decision tree as above, but grow a tree of full depth
+(by searcing for the split that gives the least worsening of the score) and
+then prune the tree by removing all subtrees that do not improve the score.
+\item \code{treereg} or \code{ptreereg}: as the above, yet the \code{reg} suffix will force all
+parents to be present in the tree and the partition to be regular. If there
+are parents that are not split variables in the tree, splits on each of
+those parents are added to \emph{every} leaf node.
+\item \code{pcart}: fit the optimial binary decision tree in terms of the BDeu-score,
+using the algorithm implemented in \code{\link[rpcart:::opt.pcart.cat.bdeu]{rpcart::::opt.pcart.cat.bdeu()}}.
+}
 }
 \examples{
 
-# binary split data
+# Example 1: binary split data with missing levels
 data <- cbind(z = rep(0:2, 9),
               x = rep(0:2, each = 9),
               y = c(rep(0, 9), rep(1, 2*9)))
 nlev <- rep(3, 3)
+names(nlev) <- colnames(data)
 
-# optimize local structure
-res <- optimize_partition_from_data_pcart(data, 3, 1:2, 1, nlev, verbose = TRUE)
-parts <- get_parts(res$partition)
-stopifnot(all(match(parts, unique(parts)) == c(rep(1, 3), rep(2, 6))))
+j <- 3
+parentnodes <- 1:2
+ess <- 1
+newdata <- expand.grid(lapply(nlev[parentnodes]-1, seq.int, from = 0))
 
-# score do not match when there are unobserved levels of outcome variable
-res[-1]
+# tree: greedy decision tree
+fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "tree", verbose = TRUE)
+print(fit)
+predict(fit, newdata)
 
-res <- optimize_partition_from_data_pcart(data, 3, 1:2, 1, nlev = NULL, recompute_score = TRUE, verbose = TRUE)
-res[-1]
-stopifnot(abs(res$score-res$pcart$score) < 10**-10)
+# treereg: regular greedy decision tree
+fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "treereg")
+print(fit)
+predict(fit, newdata)
 
+# pcart: score-maximizing binary decision tree
+fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "pcart")
+print(fit)
+predict(fit, newdata)
 
-#' # binary split data with missing values of outcome y
-data <- cbind(z = rep(0:2, 9),
-              x = rep(0:2, each = 9),
-              y = c(rep(0, 9), rep(1, 2*9)))
-nlev <- rep(3, 3)
+# Example 2: no best split
+p <- c(.9, .1, .1, .9)
+z <- runif(100) > .5
+x <- runif(100) > .5
+y <- runif(100) > p[z + 2*x+1]
+table(z+2*x, y)  # frequency table
 
-optimize_partition_from_data_tree_sparse(
-  data,
-  j = 3,
-  parentnodes = 1:2,
-  ess = 1,
-  nlev = rep(3, 3),
-  min_score_improv = -Inf,
-  prune = T,
-  verbose = TRUE
-)
+data <- cbind(z = z, x = x, y = y)*1
+nlev <- c(2, 2, 2)
+
+# tree: greedy decision tree
+fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "tree", verbose = TRUE)
+print(fit)
+
+# ptree: pruned greedy decision tree
+fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "ptree", verbose = TRUE)
+print(fit)
+
+# methods
+methods(class = "tree")
+methods(class = "pcart")
 }

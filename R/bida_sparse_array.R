@@ -58,7 +58,7 @@
 bida_sparse_array <- function(value, index, dim, dimnames = NULL, default = 0) {
   stopifnot(length(index) == length(value))
   stopifnot(all(index%%1 == 0) && min(index) >= 0 && max(index) < prod(dim))
-  stopifnot(is.null(dimnames) || all(lengths(dimnames) == dim))
+  stopifnot(is.null(dimnames) || all(lengths(dimnames) == 0) || all(lengths(dimnames) == dim))
   new_bida_sparse_array(value, index, dim, dimnames, default)
 }
 
@@ -117,7 +117,7 @@ dimnames.bida_sparse_array <- function(x) {
 #' @rdname bida_sparse_array
 #' @export
 `dimnames<-.bida_sparse_array` <- function(x, value) {
-  stopifnot(all(lengths(value) == dim(x)))
+  stopifnot(all(lengths(value) == dim(x)) || all(lengths(value) == 0))
   x$dimnames <- value
   x
 }

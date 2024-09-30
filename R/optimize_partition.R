@@ -82,7 +82,7 @@
 #'       get_parts(part$partition))
 #'
 #'
-optimize_partition <- function(counts, levels, ess, method, regular = T, verbose = FALSE){
+optimize_partition_from_counts <- function(counts, levels, ess, method, regular = T, verbose = FALSE){
   method <- match.arg(method, c("tree", "ptree", "ldag", "part"))
   if (is.null(regular)) regular <- TRUE
 
