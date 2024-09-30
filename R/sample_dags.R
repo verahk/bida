@@ -59,7 +59,7 @@ sample_dags <- function(scorepar, algo_init = "pcskel", algo_sample = "order", h
 
   # run MCMC
   if (verbose) cat("\nSample DAGs using BiDAG::sampleBN:\n")
-  smpl <- BiDAG::sampleBN(scorepar, algo = algo_sample, scoretable = BiDAG::getSpace(iterfit), verbose = verbose)
+  smpl <- BiDAG::sampleBN(scorepar, algo = algo_sample, hardlimit = hardlimit, scoretable = BiDAG::getSpace(iterfit), verbose = verbose)
   tic  <- c(tic, sample = Sys.time())
 
   # add time-tracking as an attribute
@@ -101,11 +101,19 @@ init_search_space <- function(scorepar, algo, hardlimit, maxp = hardlimit, alpha
 
   if (! any(colSums(startspace) > hardlimit)) {
     return(startspace)
-  } else if (switch(substr(algo, 1, 2), "hc" = maxp > 1, "pc" = alpha > 10**-16)) {
+  } else if (switch(substr(algo, 1, 2), "hc" = maxp > 1, "pc" = alpha > 10**-10)) {
     init_search_space(scorepar, algo, hardlimit, maxp = maxp-1, alpha = alpha/2, verbose)
   } else {
-    cat("\nCould not find startspace satisfying `hardlimit`. Returns skeleton of fully connected graph.\n")
+    cat("\nCould not find startspace satisfying `hardlimit`. Edges are randomly removed from the startspace. \n")
     cat(sprintf("algo: %s. hardlimit: %s. maxp: %s. alpha: %s. \n", algo, hardlimit, maxp, alpha))
-    return(1-diag(ncol(startspace)))
+
+    npar <- colSums(startspace)
+    nremove <- npar-hardlimit
+    for (i in which(nremove > 0)) {
+      remove <- sample(which(startspace[, i] == 1), nremove[i])
+      startspace[remove, i] <- 0
+    }
+
+    return(startspace)
   }
 }
