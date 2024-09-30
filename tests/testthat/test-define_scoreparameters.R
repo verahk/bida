@@ -27,13 +27,12 @@ test_that("define_scoreparameters", {
 
 
   # Local-structure
-  for (method in c("pcart", "tree", "ptree", "ldag")) {
+  for (method in c("pcart", "tree", "ptree", "treereg")) { # ldag"
     par$local_struct = method
     scorepar <- define_scoreparameters(data, "bdecat", par, lookup)
     score <- unname(BiDAG:::usrDAGcorescore(j, parentnodes, n, scorepar))-pG
-    tmp <- optimize_partition_from_data(data, 3, 1:2, 1, nlev, par$local_struct, verbose = FALSE)
-    expected <-  sum(tmp$scores)
-    expect_equal(score, expected)
+    opt <- optimize_partition_from_data(data, j, parentnodes, 1, nlev, par$local_struct, verbose = FALSE)
+    expect_equal(score, opt$score)
 
     # check that bdeu-object is stored in lookup-table
     expect_equal(class(lookup[[par$local_struct]][["3.1.2"]]), "bida_bdeu")

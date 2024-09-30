@@ -13,6 +13,13 @@ compute_prec_recall(x, y, method)
 
 \item{method}{which method to use}
 }
+\value{
+a list with the following elements:
+\itemize{
+\item \code{df}: a data frame with FPR, TPR and PPV at each evaluated value of \code{x}
+\item \code{avgppv}: the average precision
+}
+}
 \description{
 Compute precision recall
 }

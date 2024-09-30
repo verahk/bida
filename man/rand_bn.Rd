@@ -2,15 +2,19 @@
 % Please edit documentation in R/rand_bn.R
 \name{rand_bn}
 \alias{rand_bn}
-\title{Title}
+\title{Draw a random Bayesian network}
 \usage{
 rand_bn(dag, type = "cat", ...)
 }
 \arguments{
+\item{dag}{(integer matrix) adjacency matrix.}
+
+\item{type}{(character) type of distribution.}
+
 \item{...}{}
 }
 \description{
-Title
+Given a DAG, draw a distribution over the DAG and store the BN as a \code{bnlearn::bn.fit} object.
 }
 \examples{
 

@@ -129,13 +129,13 @@ adjset_from_bdag <- function(adjset, bdag, dmat, x, y, anc, sets = NULL) {
     z <- switch(adjset,
               "o" = {
               z0 <- seq_along(anc)[anc][dmat[x, anc] == 0]
-              find_nearest_adjset(bdag, dmat, y-1, anc, z0-1) +1
+              adjset::find_nearest_adjset(bdag, dmat, y-1, anc, z0-1) +1
             }, "o_min" = {
               z0 <- adjset_from_bdag("o",  bdag, dmat, x, y, anc, sets)
-              find_nearest_adjset(bdag, dmat, x-1, anc, z0-1) +1
+              adjset::find_nearest_adjset(bdag, dmat, x-1, anc, z0-1) +1
             }, "pa_min" = {
               z0 <- seq_along(anc)[bdag[, x] == 1]
-              find_nearest_adjset(bdag, dmat, y-1, anc, z0-1) +1
+              adjset::find_nearest_adjset(bdag, dmat, y-1, anc, z0-1) +1
             }, "anc" = seq_along(anc)[anc][dmat[x, anc] == 0],
               seq_along(anc)[bdag[, x] == 1]) # nomatch: return parent set
 

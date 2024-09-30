@@ -7,6 +7,8 @@
 backdoor_params(type, data, x, y, z, hyperpar, lookup)
 }
 \arguments{
+\item{type}{(character)}
+
 \item{data}{a N-by-n data matrix}
 
 \item{x}{(integer)
@@ -20,6 +22,8 @@ If \code{any(y == z)}, the marginal distribution of \code{y} is returned.
 If \code{length(z) = 0}, the conditional distribution of \code{y} given \code{x}.}
 
 \item{hyperpar}{list of parameters, depending on the prior distribution. See details.}
+
+\item{lookup}{(environment)}
 }
 \value{
 \itemize{

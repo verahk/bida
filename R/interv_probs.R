@@ -157,7 +157,7 @@ interv_probs_x_exact <- function(cpts, x, y, dmat) {
         do_cpts[[x]] <- replace(zeros, kk, 1)
 
         # compute marginal probs
-        tmp <- sum_product_ve(do_cpts[anc], varnames[elim])
+        tmp <- SumProductVE::sum_product_ve(do_cpts[anc], varnames[elim])
         tmp <- aperm(tmp, varnames[c(yy, x)])
         probs[[kk]] <- tmp[, kk]
       }
@@ -217,7 +217,7 @@ interv_prob_from_cpts_mc <- function(cpts, x, y, oc, top_ordering = NULL, sample
 
 # compute marginal probabilities
 marginal_probs_exact <- function(cpts, dmat, nodes = seq_along(cpts)) {
-  lapply(nodes, function(j) cpquery_from_cpt_arrays(cpts, j, NULL, dmat[, j] == 1))
+  lapply(nodes, function(j) SumProductVE::cpquery(cpts, j, NULL, dmat[, j] == 1))
 }
 marginal_probs_bn  <- function(bn, nodes = seq_along(bn)) {
   data  <- bnlearn::cpdist(bn, names(bn)[nodes], evidence = TRUE)

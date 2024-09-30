@@ -6,7 +6,10 @@
 #' @param y outcome
 #' @param method which method to use
 #'
-#' @return
+#' @return a list with the following elements:
+#' - `df`: a data frame with FPR, TPR and PPV at each evaluated value of `x`
+#' - `avgppv`: the average precision
+#'
 #' @keywords internal
 #' @examples
 #'

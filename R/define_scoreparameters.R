@@ -118,7 +118,7 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
           opt <- optimize_partition_from_data(scorepar$data, j, parentnodes, ess, nlev, scorepar$local_struct)
         }
 
-        score <- opt(score)
+        score <- opt$score
 
         if (!is.null(scorepar$lookup)) {
           # store score and bdeu-params in lookup

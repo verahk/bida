@@ -1,8 +1,11 @@
 
-#' Title
+#' Draw a random Bayesian network
 #'
-#' @param dag
-#' @param type
+#' Given a DAG, draw a distribution over the DAG and store the BN as a `bnlearn::bn.fit` object.
+#'
+#' @keywords internal
+#' @param dag (integer matrix) adjacency matrix.
+#' @param type (character) type of distribution.
 #' @param ...
 #'
 #' @return

@@ -1,13 +1,11 @@
 
 
-#' Title
+#' Compute marginal sums
 #'
-#' @param x
-#' @param MARGIN
+#' @param x an object of class `base::array` or `bida_sparse_array`
+#' @param MARGIN (integer vector)
 #'
-#' @return
-#' @export
-#'
+#' @return an array with marginal sums
 #' @examples
 #'
 #' arr <- array(1:27, c(3, 3, 3), list(x = 0:2, y = 0:2, z = 0:2))

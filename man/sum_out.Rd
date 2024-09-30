@@ -2,15 +2,20 @@
 % Please edit documentation in R/sum_out.R
 \name{sum_out}
 \alias{sum_out}
-\title{Title}
+\title{Compute marginal sums}
 \usage{
 sum_out(x, MARGIN)
 }
 \arguments{
-\item{MARGIN}{}
+\item{x}{an object of class \code{base::array} or \code{bida_sparse_array}}
+
+\item{MARGIN}{(integer vector)}
+}
+\value{
+an array with marginal sums
 }
 \description{
-Title
+Compute marginal sums
 }
 \examples{
 

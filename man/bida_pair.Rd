@@ -2,17 +2,22 @@
 % Please edit documentation in R/bida_pair.R, R/bida_pair_cat.R
 \name{bida_pair}
 \alias{bida_pair}
+\alias{posterior_sample.bida_pair_bdeu}
 \alias{posterior_mean.bida_pair_cat}
 \alias{posterior_sample.bida_pair_cat}
 \title{Class: \code{bida_pair}}
 \usage{
 bida_pair(type, data, x, y, sets, support, hyperpar, lookup = NULL)
 
+\method{posterior_sample}{bida_pair_bdeu}(x, n, contrasts = NULL)
+
 \method{posterior_mean}{bida_pair_cat}(x, n = 10^3, ace_funs = NULL)
 
 \method{posterior_sample}{bida_pair_cat}(x, n = 10^3, ace_funs = NULL)
 }
 \arguments{
+\item{type}{(character)}
+
 \item{data}{a N-by-n data matrix}
 
 \item{x}{(integer)
@@ -30,6 +35,10 @@ a vector with support for each adjustment set. Should be of length \code{nrow(se
 and the entries should sum to 1 (not checked).}
 
 \item{hyperpar}{list of parameters, depending on the prior distribution. See details.}
+
+\item{lookup}{(environment)}
+
+\item{nlev}{(integer vector)}
 }
 \value{
 An object of class \link{bida_pair} is a list that contains:

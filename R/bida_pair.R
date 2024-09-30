@@ -6,7 +6,7 @@
 #' parameters defining intervention distribution p(y|do(x)).
 #'
 #' @name bida_pair
-#' @param type
+#' @param type (character)
 #' @param data a N-by-n data matrix
 #' @param x (integer)
 #' column position of cause variable
@@ -19,8 +19,8 @@
 #' a vector with support for each adjustment set. Should be of length `nrow(sets)`
 #' and the entries should sum to 1 (not checked).
 #' @param hyperpar list of parameters, depending on the prior distribution. See details.
-#' @param lookup
-#' @param nlev
+#' @param lookup (environment)
+#' @param nlev (integer vector)
 #' @param
 #' @details
 #' The `hyperpar` argument is a list that contains parameters of the distribution
@@ -98,19 +98,6 @@ bida_pair <- function(type, data, x, y, sets, support, hyperpar, lookup = NULL) 
   }
 }
 
-#' Title
-#'
-#' @param x
-#' @param y
-#' @param params
-#' @param support
-#' @param zerosupp
-#' @param dim
-#'
-#' @return
-#' @export
-#'
-#' @examples
 new_bida_pair_bdeu <- function(x, y, params, support, zerosupp, dim){
   structure(list(x = x,
                  y = y,
@@ -132,9 +119,9 @@ posterior_sample.bida_pair <- function(x, n, contrasts = NULL) {
 }
 
 
-# Methods for bida_pair_bdeu ----
+# Methods  ----
 
-#' @rdname bida_pair_bdeu
+#' @rdname bida_pair
 #' @export
 posterior_sample.bida_pair_bdeu <- function(x, n, contrasts = NULL) {
 
