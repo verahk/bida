@@ -26,3 +26,16 @@ colSums.array <- function(x, na.rm = FALSE, dims = 1){
 as.bida_sparse_array <- function(x, default = 0,...){
   UseMethod("as.bida_sparse_array")
 }
+
+
+#' @export
+score <- function(x){
+  UseMethod("score")
+}
+
+#' @export
+asplit <- function(x, MARGIN, ...) {
+  UseMethod("asplit")
+}
+#' @export
+asplit.default <- function(x, MARGIN, ...) base:::asplit(x, MARGIN)

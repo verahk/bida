@@ -57,11 +57,12 @@
 #' @export
 bida_sparse_array <- function(value, index, dim, dimnames = NULL, default = 0) {
   stopifnot(length(index) == length(value))
-  stopifnot(all(lengths(dimnames) == dim))
+  stopifnot(all(index%%1 == 0) && min(index) >= 0 && max(index) < prod(dim))
+  stopifnot(is.null(dimnames) || all(lengths(dimnames) == dim))
   new_bida_sparse_array(value, index, dim, dimnames, default)
 }
 
-new_bida_sparse_array <- function(value, index, dim, dimnames = NULL, default = 0) {
+new_bida_sparse_array <- function(value, index, dim = NULL, dimnames = NULL, default = 0) {
   structure(list(value = value,
                  index = index,
                  dim = dim,
@@ -168,6 +169,14 @@ aperm.bida_sparse_array <- function(x, perm) {
 
 #' @rdname bida_sparse_array
 #' @export
+#' @example
+#' x <- structure(list(value = c(10, 100, 10, 100, 10, 1000, 10, 1000),
+#'                    index = 0:7,
+#'                    dim = c(y = 2L, x = 2L, z = 2L),
+#'                    dimnames = list(y = 0:1, x = 0:1, z = 0:1),
+#'                    default = 0),
+#'                 class = "bida_sparse_array")
+#' asplit.bida_sparse_array(x, "x")
 asplit.bida_sparse_array <- function(x, MARGIN) {
 
   if (is.character(MARGIN)) {
@@ -193,7 +202,6 @@ asplit.bida_sparse_array <- function(x, MARGIN) {
   new_dims  <- dims[-MARGIN]
   new_dimnames <- dimnames(x)[-MARGIN]
 
-  mapply(function(indx) new_bida_sparse_array)
   split <- function(y) {
     indx = split_by == y
     new_bida_sparse_array(
@@ -204,7 +212,7 @@ asplit.bida_sparse_array <- function(x, MARGIN) {
       x$default
     )
   }
-  lapply(seq_len(prod(dims[MARGIN])), split)
+  lapply(seq_len(prod(dims[MARGIN]))-1, split)
 }
 
 ## Arithmetics ----

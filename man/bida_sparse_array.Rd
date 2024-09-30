@@ -42,7 +42,7 @@ bida_sparse_array(value, index, dim, dimnames = NULL, default = 0)
 
 \method{aperm}{bida_sparse_array}(x, perm)
 
-asplit.bida_sparse_array(x, MARGIN, f = NULL)
+\method{asplit}{bida_sparse_array}(x, MARGIN)
 
 \method{sum}{bida_sparse_array}(x, ...)
 

@@ -117,11 +117,23 @@ aperm.bida_bdeu <- function(obj, perm) {
 #' @param reduced (bolean) if TRUE (default), the reduced CPT is returned.
 #' @export
 posterior_mean.bida_bdeu <- function(obj, reduced = TRUE) {
-  alpha <- p <- update_bdeu(obj)
-  if (length(dim(alpha)) < 2) {
-    return(alpha/sum(alpha))
+  dims <- dim(obj$counts)
+  if (length(dims) == 1) {
+    p <- (obj$counts + obj$ess/dims)/sum(obj$counts + ess)
   } else {
-    p <- alpha/rep(colSums(alpha), each = dim(alpha)[1])
+    r <- dims[1]
+    q <- prod(dims[-1])
+    if (is.null(obj$partition)) {
+      p <- (obj$counts+obj$ess/(r*q))/rep(colSums(obj$counts)+obj$ess/q, each = r)
+    } else {
+      if (inherits(obj$counts, "bida_sparse_array")) {
+        parts <- get_parts(obj$partition, get_coordinates(obj$counts))
+
+      } else {
+        tab <- matrix(obj$counts, ncol = r, byrow = TRUE)
+        rowsum(obj$counts, get_parts(obj$partition, type = obj$local_structure))
+      }
+    }
   }
 
   if (reduced || is.null(obj$partition)) {

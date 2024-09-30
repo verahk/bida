@@ -3,7 +3,7 @@
 \name{interv_probs_x_bn}
 \alias{interv_probs_x_bn}
 \title{Compute approximate intervention probabilities under interventions on \code{x},
-using \link[bnlearn:mutilated]{bnlearn::mutilated} and \link[bnlearn:cpdist]{bnlearn::cpdist}.}
+using \link[bnlearn:cpquery]{bnlearn::mutilated} and \link[bnlearn:cpquery]{bnlearn::cpdist}.}
 \usage{
 interv_probs_x_bn(bn, x, y, dmat)
 }
@@ -15,5 +15,5 @@ a list of \code{length(y)} with interventional cpts
 }
 \description{
 Compute approximate intervention probabilities under interventions on \code{x},
-using \link[bnlearn:mutilated]{bnlearn::mutilated} and \link[bnlearn:cpdist]{bnlearn::cpdist}.
+using \link[bnlearn:cpquery]{bnlearn::mutilated} and \link[bnlearn:cpquery]{bnlearn::cpdist}.
 }

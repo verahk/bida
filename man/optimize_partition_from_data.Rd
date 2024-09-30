@@ -40,4 +40,22 @@ res[-1]
 res <- optimize_partition_from_data_pcart(data, 3, 1:2, 1, nlev = NULL, recompute_score = TRUE, verbose = TRUE)
 res[-1]
 stopifnot(abs(res$score-res$pcart$score) < 10**-10)
+
+
+#' # binary split data with missing values of outcome y
+data <- cbind(z = rep(0:2, 9),
+              x = rep(0:2, each = 9),
+              y = c(rep(0, 9), rep(1, 2*9)))
+nlev <- rep(3, 3)
+
+optimize_partition_from_data_tree_sparse(
+  data,
+  j = 3,
+  parentnodes = 1:2,
+  ess = 1,
+  nlev = rep(3, 3),
+  min_score_improv = -Inf,
+  prune = T,
+  verbose = TRUE
+)
 }

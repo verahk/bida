@@ -30,6 +30,24 @@
 #' res <- optimize_partition_from_data_pcart(data, 3, 1:2, 1, nlev = NULL, recompute_score = TRUE, verbose = TRUE)
 #' res[-1]
 #' stopifnot(abs(res$score-res$pcart$score) < 10**-10)
+#'
+#'
+#' #' # binary split data with missing values of outcome y
+#' data <- cbind(z = rep(0:2, 9),
+#'               x = rep(0:2, each = 9),
+#'               y = c(rep(0, 9), rep(1, 2*9)))
+#' nlev <- rep(3, 3)
+#'
+#' optimize_partition_from_data_tree_sparse(
+#'   data,
+#'   j = 3,
+#'   parentnodes = 1:2,
+#'   ess = 1,
+#'   nlev = rep(3, 3),
+#'   min_score_improv = -Inf,
+#'   prune = T,
+#'   verbose = TRUE
+#' )
 optimize_partition_from_data <- function(data, j, parentnodes, ess, nlev, method, verbose = FALSE, ...) {
   if (method == "pcart") {
     optimize_partition_from_data_pcart(data, j, parentnodes, ess, nlev, verbose = verbose, ...)
@@ -76,6 +94,9 @@ optimize_partition_from_data <- function(data, j, parentnodes, ess, nlev, method
 #'
 #' res <- optimize_partition_from_data_pcart(data, 3, 1:2, 1, nlev = NULL, recompute_score = TRUE, verbose = TRUE)
 #' res[-1]
+#'
+#' levels <- list(x = 0:2, y = 0:2, z = 0:2)
+#' data <- sapply(levels, sample, size = 10, replace = T)
 #' stopifnot(abs(res$score-res$pcart$score) < 10**-10)
 optimize_partition_from_data_pcart <- function(data, j, parentnodes, ess, nlev = NULL, recompute_score = !is.null(nlev), verbose = FALSE) {
 
@@ -91,9 +112,13 @@ optimize_partition_from_data_pcart <- function(data, j, parentnodes, ess, nlev =
   if (verbose) cat("\nOptimize local structure using rpcart::opt.pcart.cat.bdeu\n")
   result <- rpcart:::opt.pcart.cat.bdeu(df, predictors, response, ess, use_structure_score = FALSE)
   if (verbose) cat(result$tree)
+  structure(result, class = "pcart")
 
+}
+
+extract_partitioning <- function(fit, nlev, parentnodes) {
   # extract partitioning
-  tree <- strsplit(result$tree, "\n")[[1]]
+
   nlev <- nlev[parentnodes]
   stride <- c(1, cumprod(nlev[-length(nlev)]))
   names(nlev) <- names(stride) <- predictors
@@ -132,8 +157,38 @@ optimize_partition_from_data_pcart <- function(data, j, parentnodes, ess, nlev =
   list(partition = partition,
        score = score,
        pcart = result)
+
+}
+print.pcart(fit) {
+  cat(fit$tree, "\n")
+  cat("score: ", fit$score, "\n")
 }
 
+predict.pcart <- function(fit, newdata) {
+
+  tree <- strsplit(fit$tree, "\n")[[1]]
+  index <- grep("--", tree)
+  for (part in seq_along(index)) tree[index[part]] <- gsub("--", paste0("-- ", part), tree[index[part]])
+
+
+  tmp <- function(tree, newdata) {
+    while (startsWith(tree[1], "-+")) {
+      root <- tree[1]
+      split <- strsplit(substring(root, 4), ": | \\| ")[[1]]
+      var <- split[1]
+      val <- split[2]
+      index <- grepl("^ `", tree[-1]) == !(newdata[var] == val)
+      tree <- substring(tree[-1], 3)[index]
+    }
+    as.numeric(substr(tree, 4, 4))
+  }
+
+  if (dim(newdata) == 0) [
+    tmp(tree, newdata)
+  ] else {
+    apply(newdata, 1, function(x) tmp(tree, newdata = x))
+  }
+}
 
 if (FALSE) {
   rules_from_tree <- function(tree, rule = "") {
@@ -145,15 +200,18 @@ if (FALSE) {
                           function(x) strsplit(x, " +")[[1]])
       add_rules <- lapply(splitvals,
                           function(x) paste0(paste0(split[1], "==", x), collapse = "|"))
-      new_rules <- lapply(add_rules,
-                          function(x) paste0(rule, x, collapse = "&"))
 
-      subtrees <- split(substring(tree[-1], 3), grepl("^ \\|", tree[-1]))
+      if (nchar(rule) == 0) {
+        new_rules <- add_rules
+      } else {
+        new_rules <- lapply(add_rules, function(x) sprintf("%s & %s", rule, x))
+      }
 
+      subtrees <- split(substring(tree[-1], 3), grepl("^ `", tree[-1]))
       c(rules_from_tree(subtrees[[1]], new_rules[[1]]),
         rules_from_tree(subtrees[[2]], new_rules[[2]]))
     } else {
-      list(rule)
+       list(rule)
     }
   }
 
@@ -164,3 +222,21 @@ if (FALSE) {
 
 }
 
+
+optimize_partition_from_data_tree_sparse <- function(data, j, parentnodes, ess, nlev, min_score_improv = 0, prune = F, verbose = FALSE){
+  if (is.null(colnames(data))) {
+    colnames(data) <- paste0("X", seq_len(ncol(data)))
+  }
+
+  r <- nlev[j]
+  q <- prod(nlev[parentnodes])
+
+  vars   <- colnames(data)[c(j, parentnodes)]
+  counts <- counts_from_data_matrix(data[, vars], nlev, TRUE)
+  counts$dimnames <- setNames(lapply(counts$dim-1, seq.int, from = 0), vars)
+
+  tmp   <- tabulate(data[, j]+1, r)
+  score <- famscore_bdeu_1row(matrix(tmp, 1, r), ess, r, q)
+
+  optimize_partition_tree_sparse(counts, ess, min_score_improv, prune, verbose)
+}

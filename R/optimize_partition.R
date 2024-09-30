@@ -108,3 +108,4 @@ optimize_partition <- function(counts, levels, ess, method, regular = T, verbose
   return(res)
 }
 
+

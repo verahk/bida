@@ -1,7 +1,7 @@
 test_that("multiplication works", {
 
   x <- bida_sparse_array(1:9, 0:8, 9, default = 0)
-  expect_equal(as.array(x), array(0:8, 9))
+  expect_equal(as.array(x), array(1:9, 9))
 
   # change dims ----
   dims   <- c(3, 3, 3)
