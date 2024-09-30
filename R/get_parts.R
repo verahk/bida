@@ -5,9 +5,7 @@
 #' @param P a list that defines a partition of an vector on the form `0:(q-1)`,
 #'  e.q. the vector that enumerates the `q` joint outcomes of
 #' @param lens (integer vector) number of outcomes in each part of `P`
-#'
-#' @return
-#' @export
+#' @return an vector of length `unlist(P)` that assigns each outcome two a part in the partition.
 #'
 #' @examples
 #'

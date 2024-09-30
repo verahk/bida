@@ -13,6 +13,9 @@ rand_bn(dag, type = "cat", ...)
 
 \item{...}{}
 }
+\value{
+a \code{bnlearn::bn.fit} object
+}
 \description{
 Given a DAG, draw a distribution over the DAG and store the BN as a \code{bnlearn::bn.fit} object.
 }

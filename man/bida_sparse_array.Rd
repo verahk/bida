@@ -111,5 +111,12 @@ for (i in seq_len(nrow(obj_size))) {
 matplot(2**seq_len(nrow(obj_size)), obj_size, type = "l")
 plot(2**seq_len(nrow(obj_size)), obj_size[, 1]/obj_size[, 2], type = "l")
 
+x <- structure(list(value = c(10, 100, 10, 100, 10, 1000, 10, 1000),
+                   index = 0:7,
+                   dim = c(y = 2L, x = 2L, z = 2L),
+                   dimnames = list(y = 0:1, x = 0:1, z = 0:1),
+                   default = 0),
+                class = "bida_sparse_array")
+asplit.bida_sparse_array(x, "x")
 }
 \keyword{internal}

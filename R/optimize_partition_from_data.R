@@ -25,7 +25,7 @@
 #'   are parents that are not split variables in the tree, splits on each of
 #'   those parents are added to *every* leaf node.
 #' - `pcart`: fit the optimial binary decision tree in terms of the BDeu-score,
-#'   using the algorithm implemented in [rpcart:::opt.pcart.cat.bdeu()].
+#'   using the algorithm implemented in `rpcart::opt.pcart.cat.bdeu`.
 #'
 #' @return an object of class `partition` with subclass `tree` or `pcart`.
 #' That is an list with elements:
@@ -379,13 +379,10 @@ predict.tree <- function(fit, newdata, name = "part") {
 #' on wheter or not missing levels are included or not.
 #'
 #' @keywords internal
-#' @optimize_partition_from_data
 #' @param df (data frame) an data frame with factors.
 #'  The first column includes the repsonse variable, the remaining predictor variables.
-#' @seealso [optimize_partition_from_data(), rpcart:::opt.pcart.cat.bdeu()]
+#' @seealso [optimize_partition_from_data()]
 #' @return an object of class `partition` with sub-class `pcart`
-#' @examples
-
 optimize_partition_from_df_pcart <- function(df, ess, verbose = FALSE, use_structure_score = FALSE) {
 
   predictors <- names(df)[-1]

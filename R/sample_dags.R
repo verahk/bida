@@ -20,17 +20,17 @@
 #' @param hardlimit (integer)
 #'  Maximanumber of parents allowed. See [BiDAG::learnBN].
 #' @param verbose (logical)
-#' @return
+#' @return a
 #' @export
 #' @details
 #' The `init_search_space` function is a wrapper around structural learning routines
 #' ([bnlearn::hc] and [pcalg::pc]), intended to learn a start-space for the
-#' [Bidag::iterativeMCMC] procedure.
+#' [BiDAG::iterativeMCMC] procedure.
 #' It forces the maximal number of parents (`hardlimit`) to be respected,
 #' by re-running the structure learning procedure with stricter add-edge-policies
 #' (`maxp` and `alpha`, respectively) until a structure that satifies the `hardlimit`
 #' criteria is inferred.
-#' Simply running `Bidag::iterativeMCMC` will run an error message if no skeleton
+#' Simply running [BiDAG::iterativeMCMC()] will run an error message if no skeleton
 #' that satisfies the `hardlimit` constraint can be found.
 #'
 #' @examples

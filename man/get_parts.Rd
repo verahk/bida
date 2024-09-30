@@ -12,6 +12,9 @@ e.q. the vector that enumerates the \code{q} joint outcomes of}
 
 \item{lens}{(integer vector) number of outcomes in each part of \code{P}}
 }
+\value{
+an vector of length \code{unlist(P)} that assigns each outcome two a part in the partition.
+}
 \description{
 Unlist a partition
 }

@@ -21,7 +21,6 @@
 #' @param hyperpar list of parameters, depending on the prior distribution. See details.
 #' @param lookup (environment)
 #' @param nlev (integer vector)
-#' @param
 #' @details
 #' The `hyperpar` argument is a list that contains parameters of the distribution
 #' or other variables required to update the parameters.

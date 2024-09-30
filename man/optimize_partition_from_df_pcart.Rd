@@ -33,6 +33,6 @@ with levels corresponding to those observed. Note that the score will depend
 on wheter or not missing levels are included or not.
 }
 \seealso{
-\code{\link[optimize_partition_from_data(), rpcart:::opt.pcart.cat.bdeu]{optimize_partition_from_data(), rpcart::::opt.pcart.cat.bdeu()}}
+\code{\link[=optimize_partition_from_data]{optimize_partition_from_data()}}
 }
 \keyword{internal}

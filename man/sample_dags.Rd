@@ -46,6 +46,9 @@ Ignored if not \code{algo=="hc"} or \code{algo == "hcskel"}.}
 Significance levefor the conditionaindependencies test in \link[pcalg:pc]{pcalg::pc}.
 Ignored if not \code{algo=="pc"} or \code{algo == "pcskel"}.}
 }
+\value{
+a
+}
 \description{
 This function is a wrapper around \link[BiDAG:sampleBN]{BiDAG::sampleBN}, and can be used to sample
 DAGs with local structure using the different MCMC schemes implemented in \link[BiDAG:sampleBN]{BiDAG::sampleBN}.
@@ -59,12 +62,12 @@ at random until the criteria is met.
 \details{
 The \code{init_search_space} function is a wrapper around structural learning routines
 (\link[bnlearn:hc]{bnlearn::hc} and \link[pcalg:pc]{pcalg::pc}), intended to learn a start-space for the
-\link[Bidag:iterativeMCMC]{Bidag::iterativeMCMC} procedure.
+\link[BiDAG:iterativeMCMC]{BiDAG::iterativeMCMC} procedure.
 It forces the maximal number of parents (\code{hardlimit}) to be respected,
 by re-running the structure learning procedure with stricter add-edge-policies
 (\code{maxp} and \code{alpha}, respectively) until a structure that satifies the \code{hardlimit}
 criteria is inferred.
-Simply running \code{Bidag::iterativeMCMC} will run an error message if no skeleton
+Simply running \code{\link[BiDAG:iterativeMCMC]{BiDAG::iterativeMCMC()}} will run an error message if no skeleton
 that satisfies the \code{hardlimit} constraint can be found.
 }
 \examples{

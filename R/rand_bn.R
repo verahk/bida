@@ -8,7 +8,7 @@
 #' @param type (character) type of distribution.
 #' @param ...
 #'
-#' @return
+#' @return a `bnlearn::bn.fit` object
 #' @keywords internal
 #'
 #' @examples

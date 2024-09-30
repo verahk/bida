@@ -170,7 +170,7 @@ aperm.bida_sparse_array <- function(x, perm) {
 
 #' @rdname bida_sparse_array
 #' @export
-#' @example
+#' @examples
 #' x <- structure(list(value = c(10, 100, 10, 100, 10, 1000, 10, 1000),
 #'                    index = 0:7,
 #'                    dim = c(y = 2L, x = 2L, z = 2L),

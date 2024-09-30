@@ -56,7 +56,7 @@ parents to be present in the tree and the partition to be regular. If there
 are parents that are not split variables in the tree, splits on each of
 those parents are added to \emph{every} leaf node.
 \item \code{pcart}: fit the optimial binary decision tree in terms of the BDeu-score,
-using the algorithm implemented in \code{\link[rpcart:::opt.pcart.cat.bdeu]{rpcart::::opt.pcart.cat.bdeu()}}.
+using the algorithm implemented in \code{rpcart::opt.pcart.cat.bdeu}.
 }
 }
 \examples{
