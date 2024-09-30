@@ -59,7 +59,7 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
                                          data = data,
                                          bdecatpar = list(chi = par$ess, edgepf = par$edgepf))
 
-    } else if (par$local_struct %in% c("tree", "ldag", "ptree", "pcart")) {
+    } else {
 
       # init BiDAG::scoreparameters-object
       scorepar <- BiDAG::scoreparameters("usr", data = data, usrpar = list(pctesttype = scoretype))
@@ -113,17 +113,12 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
           # construct bdeu-object with frequency counts
           return(score_bdeu(bdeu)+pG)
         } else if (scorepar$local_struct == "pcart") {
-          opt <- optimize_partition_from_df_pcart(scorepar$data.frame, j, parentnodes, scorepar$ess, scorepar$nlev)
+          opt <- optimize_partition_from_df_pcart(scorepar$data.frame, scorepar$ess)
         } else {
-          # optimize partitioning of parent space
-          opt <- optimize_bdeu(bdeu,
-                               method = scorepar$local_struct,
-                               levels = scorepar$levels[parentnodes],
-                               regular = scorepar$regular)
+          opt <- optimize_partition_from_data(scorepar$data, j, parentnodes, ess, nlev, scorepar$local_struct)
         }
 
-        stopifnot("scores" %in% names(opt))
-        score <- sum(opt$scores)
+        score <- opt(score)
 
         if (!is.null(scorepar$lookup)) {
           # store score and bdeu-params in lookup
@@ -138,8 +133,6 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
       # assign function to name-space of BiDAG package
       assignInNamespace("usrDAGcorescore", usrDAGcorescore, ns = "BiDAG")
 
-    } else {
-      stop(cat("Invalid argument for `par$local_struct`: ", par$local_struct))
     }
   } else {
     stop(cat("Invalid argument for `scoretype`:", scoretype))
