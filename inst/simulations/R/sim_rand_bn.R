@@ -50,7 +50,7 @@ sim_rand_partitions <- function(dag, nlev, depth_ratio) {
     if (length(pa) > 1) {
       # draw a tree of given depth - use make_regular argument to add splits until all vars are present
       depth <- max(1, ceiling(depth_ratio*length(pa)))
-      partitions[[i]] <- sim_rand_partition(nlev[pa], splitprob = 1, mindepth = depth, maxdepth = depth, make_regular = T)
+      partitions[[i]] <- sim_rand_partition(nlev = nlev[pa], splitprob = 1, mindepth = depth, maxdepth = depth, make_regular = T)
     }
   }
   return(partitions)
@@ -62,6 +62,7 @@ sim_rand_partition <- function(nlev, splitprob, nextsplitprob = function(x) x, m
 
   # define routine for growing a tree
   grow_tree <- function(splitprob, vars, subset) {
+
     if ( (n-length(vars) >= mindepth && n-length(vars) >= maxdepth) || runif(1) > splitprob) {
       return(list(subset = subset))
     }
@@ -104,17 +105,15 @@ sim_rand_partition <- function(nlev, splitprob, nextsplitprob = function(x) x, m
 
   if (make_regular) {
     vars_in <- unique(get_splitvars(tree))
+    vars_out <- setdiff(vars, vars_in)
+
     for (x in setdiff(vars, vars_in)) {
-
-      # sample leaf / region to split
-      l <- sample(seq_along(P), 1)
-
-      # make a binary split of split l
-      subset <- P[[l]]
-      xval <- (subset%/%stride[x])%%nlev[x]
-      new_subsets <- unname(split(subset, xval))
-      P <- c(P[-l], new_subsets)
+      subset <- P[[1]]
+      xval <- (subset%/%stride[[x]])%%nlev[[x]]
+      P <- c(P[-1], unname(split(subset, xval)))
     }
   }
+
+  stopifnot(length(unlist(P)) == prod(nlev))
   return(P)
 }

@@ -3,7 +3,7 @@
 library(dplyr)
 library(ggplot2)
 
-dir_in <- NULL # "./inst/simulations/results/"
+dir_in <- "./inst/simulations/results/"
 dir_out <- "./inst/simulations/plots/"
 dir.create(dir_out)
 files <- list.files("./inst/simulations/R", full.names = T)
@@ -48,14 +48,12 @@ res_from_file_to_df <- function(files, name) {
   }
 
   df$N <- with(df, factor(N, sort(unique(N))))
+  df$edgepf <- ifelse(df$edgepf == 2, "2", "logN")
   df$lstruct.epf <- with(df, interaction(local_struct, edgepf))
 
   return(df)
 }
 
-
-
-stop()
 
 for (k in c(2, 4, 8)) {
   files <- list.files(dir_in, ".rds", full.names = T)
@@ -68,7 +66,8 @@ for (k in c(2, 4, 8)) {
 
   ylabs <- list("mse_pdo" = "intervention probs, MSE",
                 "mse_tau" = "causal effects, MSE",
-                "rank" = "average precsision",
+                "rank" = "positive effects, average precsision",
+                "ranktop" = "top effects, average prcecision",
                 "parents" = "size of conditioning set, avg.",
                 "parts" = "size of CPT, avg.")
 
@@ -119,7 +118,7 @@ for (k in c(2, 4, 8)) {
 
 
 
-
+stop()
 # tabs ----
 title <- "Precision-recall of ancestor relation probabilities and edgeprobabilities. Closer to 1 is better. Averaged over all simulation runs."
 file <- paste0(dir_out, "edgep_arp.tex")
