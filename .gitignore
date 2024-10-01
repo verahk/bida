@@ -2,3 +2,7 @@
 inst/doc
 inst/simulations/**/results/
 inst/simulations/**/MCMCchains/
+# Ignore everything in the simulations/sim_* directories
+simulations/sim_*/
+# But do not ignore *.R files
+!simulations/sim_*/**/*.R

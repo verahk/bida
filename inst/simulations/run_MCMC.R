@@ -35,8 +35,9 @@ sapply(list.files("./inst/simulations/R", ".R", full.names = T),
        source, echo = T)
 
 # paths ----
-outdir <- "./inst/simulations/MCMCchains/"  # directory for storing res
-if (!dir.exists(outdir)) dir.create(outdir)
+branch <- system("git branch --show-current", intern = TRUE)
+outdir <- paste0("./inst/simulations/", branch, "/MCMCchains/")  # directory for storing res
+if (!dir.exists(outdir)) dir.create(outdir, recursive = T)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
 

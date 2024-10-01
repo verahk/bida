@@ -33,9 +33,10 @@ library(doSNOW)
 sapply(list.files("./inst/simulations/R", ".R", full.names = T),
        source, echo = T)
 
-indir  <- "./inst/simulations/MCMCchains/"
-outdir <- "./inst/simulations/results/"  # directory for storing res
-if (!dir.exists(outdir)) dir.create(outdir)
+branch <- system("git branch --show-current", intern = TRUE)
+indir <- paste0("./inst/simulations/", branch, "/MCMCchains/")  # directory for storing res
+outdir <- paste0("./inst/simulations/", branch, "/results/")  # directory for storing res
+if (!dir.exists(outdir)) dir.create(outdir, recursive = "TRUE")
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
 nClusters <- 6
