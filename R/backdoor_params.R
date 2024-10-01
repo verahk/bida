@@ -68,8 +68,8 @@ backdoor_params <- function(type, data, x, y, z, hyperpar, lookup) {
       }
 
 
-      opt <- optimize_partition_from_data(data, y, c(x, z), hyperpar$ess, hyperpar$nlev, method = type, regular = hyperpar$regular)
-      bdeu <- bida_bdeu(data, y, c(x, z), hyperpar$ess, hyperpar$nlev, partition = opt$partition)
+      opt <- optimize_partition_from_data(data, y, c(x, z), hyperpar$ess, hyperpar$nlev, type)
+      bdeu <- bida_bdeu(data, y, c(x, z), hyperpar$ess, hyperpar$nlev, partition = opt)
       return(bdeu)
     }
   } else {
