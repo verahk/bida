@@ -35,6 +35,10 @@ sapply(list.files("./inst/simulations/R", ".R", full.names = T),
 # paths ----
 branch <- system("git branch --show-current", intern = TRUE)
 outdir <- paste0("./inst/simulations/MCMCchains/", branch, "/")
+<<<<<<< HEAD
+=======
+
+>>>>>>> 008c041 (run_bida on bnlearn network + added branch name to path where results are stored)
 if (!dir.exists(outdir)) dir.create(outdir)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
