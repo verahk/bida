@@ -1,0 +1,1405 @@
+starting worker for localhost:11911 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+Type: EXEC 
+
+Init search space:Order=0; remaining edges:2256
+x= 1  y= 2  S=  : pval = 1 
+x= 1  y= 3  S=  : pval = 0.8206734 
+x= 1  y= 4  S=  : pval = 1 
+x= 1  y= 5  S=  : pval = 1 
+x= 1  y= 6  S=  : pval = 1 
+x= 1  y= 7  S=  : pval = 1 
+x= 1  y= 8  S=  : pval = 1 
+x= 1  y= 9  S=  : pval = 0.8025046 
+x= 1  y= 10  S=  : pval = 1 
+x= 1  y= 11  S=  : pval = 1 
+x= 1  y= 12  S=  : pval = 1 
+x= 1  y= 13  S=  : pval = 1 
+x= 1  y= 14  S=  : pval = 1 
+x= 1  y= 15  S=  : pval = 1 
+x= 1  y= 16  S=  : pval = 1 
+x= 1  y= 17  S=  : pval = 1 
+x= 1  y= 18  S=  : pval = 1 
+x= 1  y= 19  S=  : pval = 1 
+x= 1  y= 20  S=  : pval = 1 
+x= 1  y= 21  S=  : pval = 1 
+x= 1  y= 22  S=  : pval = 0.7849867 
+x= 1  y= 23  S=  : pval = 1 
+x= 1  y= 24  S=  : pval = 1 
+x= 1  y= 25  S=  : pval = 1 
+x= 1  y= 26  S=  : pval = 1 
+x= 1  y= 27  S=  : pval = 1 
+x= 1  y= 28  S=  : pval = 1 
+x= 1  y= 29  S=  : pval = 1 
+x= 1  y= 30  S=  : pval = 1 
+x= 1  y= 31  S=  : pval = 1 
+x= 1  y= 32  S=  : pval = 1 
+x= 1  y= 33  S=  : pval = 1 
+x= 1  y= 34  S=  : pval = 1 
+x= 1  y= 35  S=  : pval = 1 
+x= 1  y= 36  S=  : pval = 1 
+x= 1  y= 37  S=  : pval = 1 
+x= 1  y= 38  S=  : pval = 1 
+x= 1  y= 39  S=  : pval = 1 
+x= 1  y= 40  S=  : pval = 1 
+x= 1  y= 41  S=  : pval = 1 
+x= 1  y= 42  S=  : pval = 1 
+x= 1  y= 43  S=  : pval = 0.8025046 
+x= 1  y= 44  S=  : pval = 1 
+x= 1  y= 45  S=  : pval = 0.7401189 
+x= 1  y= 46  S=  : pval = 0.08264391 
+x= 1  y= 47  S=  : pval = 1 
+x= 1  y= 48  S=  : pval = 1 
+x= 2  y= 3  S=  : pval = 0.4610682 
+x= 2  y= 4  S=  : pval = 0.05356479 
+x= 2  y= 5  S=  : pval = 1 
+x= 2  y= 6  S=  : pval = 0.2776918 
+x= 2  y= 7  S=  : pval = 0.8005469 
+x= 2  y= 8  S=  : pval = 1 
+x= 2  y= 9  S=  : pval = 0.5511295 
+x= 2  y= 10  S=  : pval = 0.2087122 
+x= 2  y= 11  S=  : pval = 0.575616 
+x= 2  y= 12  S=  : pval = 0.7963527 
+x= 2  y= 13  S=  : pval = 0.01763664 
+x= 2  y= 14  S=  : pval = 0.728999 
+x= 2  y= 15  S=  : pval = 0.6026414 
+x= 2  y= 16  S=  : pval = 0.9311634 
+x= 2  y= 17  S=  : pval = 0.8476966 
+x= 2  y= 18  S=  : pval = 0.9243778 
+x= 2  y= 19  S=  : pval = 0.5495564 
+x= 2  y= 20  S=  : pval = 1 
+x= 2  y= 21  S=  : pval = 0.5205158 
+x= 2  y= 22  S=  : pval = 0.5172992 
+x= 2  y= 23  S=  : pval = 0.4915426 
+x= 2  y= 24  S=  : pval = 0.6769904 
+x= 2  y= 25  S=  : pval = 1 
+x= 2  y= 26  S=  : pval = 1 
+x= 2  y= 27  S=  : pval = 1 
+x= 2  y= 28  S=  : pval = 0.04638705 
+x= 2  y= 29  S=  : pval = 1 
+x= 2  y= 30  S=  : pval = 0.8025674 
+x= 2  y= 31  S=  : pval = 0.444098 
+x= 2  y= 32  S=  : pval = 1 
+x= 2  y= 33  S=  : pval = 0.1313083 
+x= 2  y= 34  S=  : pval = 1 
+x= 2  y= 35  S=  : pval = 0.4945418 
+x= 2  y= 36  S=  : pval = 0.09342259 
+x= 2  y= 37  S=  : pval = 0.7176349 
+x= 2  y= 38  S=  : pval = 1 
+x= 2  y= 39  S=  : pval = 0.4621956 
+x= 2  y= 40  S=  : pval = 0.02533818 
+x= 2  y= 41  S=  : pval = 0.8578722 
+x= 2  y= 42  S=  : pval = 1 
+x= 2  y= 43  S=  : pval = 0.5511295 
+x= 2  y= 44  S=  : pval = 0.867297 
+x= 2  y= 45  S=  : pval = 0.2413393 
+x= 2  y= 46  S=  : pval = 0.09475261 
+x= 2  y= 47  S=  : pval = 0.07313674 
+x= 2  y= 48  S=  : pval = 0.2533527 
+x= 3  y= 4  S=  : pval = 6.44914e-08 
+x= 3  y= 5  S=  : pval = 0.2291909 
+x= 3  y= 6  S=  : pval = 0.4216088 
+|i= 100 |iMax= 2256 
+x= 3  y= 7  S=  : pval = 0.1334495 
+x= 3  y= 8  S=  : pval = 0.2603035 
+x= 3  y= 9  S=  : pval = 0.3121856 
+x= 3  y= 10  S=  : pval = 0.9395836 
+x= 3  y= 11  S=  : pval = 0.01387873 
+x= 3  y= 12  S=  : pval = 0.4745039 
+x= 3  y= 13  S=  : pval = 0.8948064 
+x= 3  y= 14  S=  : pval = 0.3478646 
+x= 3  y= 15  S=  : pval = 0.4397299 
+x= 3  y= 16  S=  : pval = 0.8824949 
+x= 3  y= 17  S=  : pval = 0.3044726 
+x= 3  y= 18  S=  : pval = 0.5105609 
+x= 3  y= 19  S=  : pval = 0.3359325 
+x= 3  y= 20  S=  : pval = 1 
+x= 3  y= 21  S=  : pval = 0.1501858 
+x= 3  y= 22  S=  : pval = 0.4712246 
+x= 3  y= 23  S=  : pval = 0.6525582 
+x= 3  y= 24  S=  : pval = 0.3481104 
+x= 3  y= 25  S=  : pval = 0.8549489 
+x= 3  y= 26  S=  : pval = 0.8404294 
+x= 3  y= 27  S=  : pval = 0.3515025 
+x= 3  y= 28  S=  : pval = 0.5763276 
+x= 3  y= 29  S=  : pval = 0.9558843 
+x= 3  y= 30  S=  : pval = 0.05021909 
+x= 3  y= 31  S=  : pval = 0.5199155 
+x= 3  y= 32  S=  : pval = 0.660099 
+x= 3  y= 33  S=  : pval = 0.4785209 
+x= 3  y= 34  S=  : pval = 0.01837081 
+x= 3  y= 35  S=  : pval = 0.2112028 
+x= 3  y= 36  S=  : pval = 0.3050622 
+x= 3  y= 37  S=  : pval = 0.4838801 
+x= 3  y= 38  S=  : pval = 0.0003524694 
+x= 3  y= 39  S=  : pval = 0.4226263 
+x= 3  y= 40  S=  : pval = 0.5629738 
+x= 3  y= 41  S=  : pval = 0.6771005 
+x= 3  y= 42  S=  : pval = 0.6093967 
+x= 3  y= 43  S=  : pval = 0.3288802 
+x= 3  y= 44  S=  : pval = 0.03435336 
+x= 3  y= 45  S=  : pval = 0.1074931 
+x= 3  y= 46  S=  : pval = 0.9016706 
+x= 3  y= 47  S=  : pval = 0.8437017 
+x= 3  y= 48  S=  : pval = 0.6022028 
+x= 4  y= 3  S=  : pval = 6.44914e-08 
+x= 4  y= 5  S=  : pval = 1 
+x= 4  y= 6  S=  : pval = 0.5212624 
+x= 4  y= 7  S=  : pval = 2.17034e-05 
+x= 4  y= 8  S=  : pval = 1 
+x= 4  y= 9  S=  : pval = 0.7949146 
+x= 4  y= 10  S=  : pval = 7.514606e-07 
+x= 4  y= 11  S=  : pval = 1.025597e-28 
+x= 4  y= 12  S=  : pval = 9.406962e-12 
+x= 4  y= 13  S=  : pval = 0.009210669 
+x= 4  y= 14  S=  : pval = 6.878651e-12 
+x= 4  y= 15  S=  : pval = 5.415765e-11 
+x= 4  y= 16  S=  : pval = 3.966005e-18 
+x= 4  y= 17  S=  : pval = 0.04663078 
+x= 4  y= 18  S=  : pval = 9.468254e-35 
+x= 4  y= 19  S=  : pval = 3.408672e-05 
+x= 4  y= 20  S=  : pval = 1 
+x= 4  y= 21  S=  : pval = 0.6194021 
+x= 4  y= 22  S=  : pval = 0.8834077 
+x= 4  y= 23  S=  : pval = 0.7885478 
+x= 4  y= 24  S=  : pval = 6.554391e-06 
+x= 4  y= 25  S=  : pval = 1 
+x= 4  y= 26  S=  : pval = 1 
+x= 4  y= 27  S=  : pval = 1 
+x= 4  y= 28  S=  : pval = 0.7224582 
+x= 4  y= 29  S=  : pval = 1 
+x= 4  y= 30  S=  : pval = 0.04738578 
+x= 4  y= 31  S=  : pval = 0.7258683 
+x= 4  y= 32  S=  : pval = 1 
+x= 4  y= 33  S=  : pval = 0.3803032 
+x= 4  y= 34  S=  : pval = 1 
+x= 4  y= 35  S=  : pval = 0.03184881 
+x= 4  y= 36  S=  : pval = 0.01105111 
+x= 4  y= 37  S=  : pval = 0.5063754 
+x= 4  y= 38  S=  : pval = 1 
+x= 4  y= 39  S=  : pval = 0.7964288 
+x= 4  y= 40  S=  : pval = 0.456927 
+x= 4  y= 41  S=  : pval = 0.00829289 
+x= 4  y= 42  S=  : pval = 1 
+x= 4  y= 43  S=  : pval = 0.6306109 
+x= 4  y= 44  S=  : pval = 0.7935916 
+x= 4  y= 45  S=  : pval = 0.4083754 
+x= 4  y= 46  S=  : pval = 0.466294 
+x= 4  y= 47  S=  : pval = 0.8278979 
+x= 4  y= 48  S=  : pval = 0.7278455 
+x= 5  y= 6  S=  : pval = 1 
+x= 5  y= 7  S=  : pval = 1 
+x= 5  y= 8  S=  : pval = 1 
+x= 5  y= 9  S=  : pval = 0.8960008 
+x= 5  y= 10  S=  : pval = 1 
+x= 5  y= 11  S=  : pval = 1 
+x= 5  y= 12  S=  : pval = 1 
+|i= 200 |iMax= 2256 
+x= 5  y= 13  S=  : pval = 1 
+x= 5  y= 14  S=  : pval = 1 
+x= 5  y= 15  S=  : pval = 1 
+x= 5  y= 16  S=  : pval = 1 
+x= 5  y= 17  S=  : pval = 1 
+x= 5  y= 18  S=  : pval = 1 
+x= 5  y= 19  S=  : pval = 1 
+x= 5  y= 20  S=  : pval = 1 
+x= 5  y= 21  S=  : pval = 1 
+x= 5  y= 22  S=  : pval = 0.3435883 
+x= 5  y= 23  S=  : pval = 1 
+x= 5  y= 24  S=  : pval = 1 
+x= 5  y= 25  S=  : pval = 1 
+x= 5  y= 26  S=  : pval = 1 
+x= 5  y= 27  S=  : pval = 1 
+x= 5  y= 28  S=  : pval = 1 
+x= 5  y= 29  S=  : pval = 1 
+x= 5  y= 30  S=  : pval = 1 
+x= 5  y= 31  S=  : pval = 1 
+x= 5  y= 32  S=  : pval = 1 
+x= 5  y= 33  S=  : pval = 1 
+x= 5  y= 34  S=  : pval = 1 
+x= 5  y= 35  S=  : pval = 1 
+x= 5  y= 36  S=  : pval = 1 
+x= 5  y= 37  S=  : pval = 1 
+x= 5  y= 38  S=  : pval = 1 
+x= 5  y= 39  S=  : pval = 1 
+x= 5  y= 40  S=  : pval = 1 
+x= 5  y= 41  S=  : pval = 1 
+x= 5  y= 42  S=  : pval = 1 
+x= 5  y= 43  S=  : pval = 0.9141581 
+x= 5  y= 44  S=  : pval = 1 
+x= 5  y= 45  S=  : pval = 0.1496077 
+x= 5  y= 46  S=  : pval = 0.3792215 
+x= 5  y= 47  S=  : pval = 1 
+x= 5  y= 48  S=  : pval = 1 
+x= 6  y= 7  S=  : pval = 8.894162e-23 
+x= 6  y= 8  S=  : pval = 1 
+x= 6  y= 9  S=  : pval = 0.5408757 
+x= 6  y= 10  S=  : pval = 0.04417293 
+x= 6  y= 11  S=  : pval = 0.4779348 
+x= 6  y= 12  S=  : pval = 0.002742649 
+x= 6  y= 13  S=  : pval = 0.03037382 
+x= 6  y= 14  S=  : pval = 6.025271e-07 
+x= 6  y= 15  S=  : pval = 2.20321e-08 
+x= 6  y= 16  S=  : pval = 5.517524e-10 
+x= 6  y= 17  S=  : pval = 0.1144263 
+x= 6  y= 18  S=  : pval = 0.1197955 
+x= 6  y= 19  S=  : pval = 0.5472228 
+x= 6  y= 20  S=  : pval = 1 
+x= 6  y= 21  S=  : pval = 0.5996839 
+x= 6  y= 22  S=  : pval = 0.262624 
+x= 6  y= 23  S=  : pval = 0.242323 
+x= 6  y= 24  S=  : pval = 0.005194838 
+x= 6  y= 25  S=  : pval = 1 
+x= 6  y= 26  S=  : pval = 1 
+x= 6  y= 27  S=  : pval = 1 
+x= 6  y= 28  S=  : pval = 0.1538166 
+x= 6  y= 29  S=  : pval = 1 
+x= 6  y= 30  S=  : pval = 0.4880936 
+x= 6  y= 31  S=  : pval = 0.3743772 
+x= 6  y= 32  S=  : pval = 1 
+x= 6  y= 33  S=  : pval = 0.09398502 
+x= 6  y= 34  S=  : pval = 1 
+x= 6  y= 35  S=  : pval = 0.494956 
+x= 6  y= 36  S=  : pval = 0.4681858 
+x= 6  y= 37  S=  : pval = 0.827536 
+x= 6  y= 38  S=  : pval = 1 
+x= 6  y= 39  S=  : pval = 0.5807578 
+x= 6  y= 40  S=  : pval = 0.6406843 
+x= 6  y= 41  S=  : pval = 0.7011558 
+x= 6  y= 42  S=  : pval = 1 
+x= 6  y= 43  S=  : pval = 0.4920268 
+x= 6  y= 44  S=  : pval = 0.1396841 
+x= 6  y= 45  S=  : pval = 0.1281458 
+x= 6  y= 46  S=  : pval = 0.301787 
+x= 6  y= 47  S=  : pval = 0.511185 
+x= 6  y= 48  S=  : pval = 0.9628813 
+x= 7  y= 4  S=  : pval = 2.17034e-05 
+x= 7  y= 6  S=  : pval = 8.894162e-23 
+x= 7  y= 8  S=  : pval = 1 
+x= 7  y= 9  S=  : pval = 0.6272574 
+x= 7  y= 10  S=  : pval = 1 
+x= 7  y= 11  S=  : pval = 1 
+x= 7  y= 12  S=  : pval = 1 
+x= 7  y= 13  S=  : pval = 0.269169 
+x= 7  y= 14  S=  : pval = 1 
+x= 7  y= 15  S=  : pval = 1 
+x= 7  y= 16  S=  : pval = 1 
+x= 7  y= 17  S=  : pval = 0.1229649 
+x= 7  y= 18  S=  : pval = 1 
+|i= 300 |iMax= 2256 
+x= 7  y= 19  S=  : pval = 1 
+x= 7  y= 20  S=  : pval = 1 
+x= 7  y= 21  S=  : pval = 1 
+x= 7  y= 22  S=  : pval = 0.2030819 
+x= 7  y= 23  S=  : pval = 1 
+x= 7  y= 24  S=  : pval = 1 
+x= 7  y= 25  S=  : pval = 1 
+x= 7  y= 26  S=  : pval = 1 
+x= 7  y= 27  S=  : pval = 1 
+x= 7  y= 28  S=  : pval = 1 
+x= 7  y= 29  S=  : pval = 1 
+x= 7  y= 30  S=  : pval = 1 
+x= 7  y= 31  S=  : pval = 1 
+x= 7  y= 32  S=  : pval = 1 
+x= 7  y= 33  S=  : pval = 1 
+x= 7  y= 34  S=  : pval = 1 
+x= 7  y= 35  S=  : pval = 1 
+x= 7  y= 36  S=  : pval = 1 
+x= 7  y= 37  S=  : pval = 1 
+x= 7  y= 38  S=  : pval = 1 
+x= 7  y= 39  S=  : pval = 1 
+x= 7  y= 40  S=  : pval = 0.7322875 
+x= 7  y= 41  S=  : pval = 1 
+x= 7  y= 42  S=  : pval = 1 
+x= 7  y= 43  S=  : pval = 0.8753926 
+x= 7  y= 44  S=  : pval = 1 
+x= 7  y= 45  S=  : pval = 0.4386321 
+x= 7  y= 46  S=  : pval = 0.1197165 
+x= 7  y= 47  S=  : pval = 1 
+x= 7  y= 48  S=  : pval = 1 
+x= 8  y= 9  S=  : pval = 0.7886397 
+x= 8  y= 10  S=  : pval = 1 
+x= 8  y= 11  S=  : pval = 1 
+x= 8  y= 12  S=  : pval = 1 
+x= 8  y= 13  S=  : pval = 1 
+x= 8  y= 14  S=  : pval = 1 
+x= 8  y= 15  S=  : pval = 1 
+x= 8  y= 16  S=  : pval = 1 
+x= 8  y= 17  S=  : pval = 1 
+x= 8  y= 18  S=  : pval = 1 
+x= 8  y= 19  S=  : pval = 1 
+x= 8  y= 20  S=  : pval = 1 
+x= 8  y= 21  S=  : pval = 1 
+x= 8  y= 22  S=  : pval = 0.987419 
+x= 8  y= 23  S=  : pval = 1 
+x= 8  y= 24  S=  : pval = 1 
+x= 8  y= 25  S=  : pval = 1 
+x= 8  y= 26  S=  : pval = 1 
+x= 8  y= 27  S=  : pval = 1 
+x= 8  y= 28  S=  : pval = 1 
+x= 8  y= 29  S=  : pval = 1 
+x= 8  y= 30  S=  : pval = 1 
+x= 8  y= 31  S=  : pval = 1 
+x= 8  y= 32  S=  : pval = 1 
+x= 8  y= 33  S=  : pval = 1 
+x= 8  y= 34  S=  : pval = 1 
+x= 8  y= 35  S=  : pval = 1 
+x= 8  y= 36  S=  : pval = 1 
+x= 8  y= 37  S=  : pval = 1 
+x= 8  y= 38  S=  : pval = 1 
+x= 8  y= 39  S=  : pval = 1 
+x= 8  y= 40  S=  : pval = 1 
+x= 8  y= 41  S=  : pval = 1 
+x= 8  y= 42  S=  : pval = 1 
+x= 8  y= 43  S=  : pval = 0.8377284 
+x= 8  y= 44  S=  : pval = 1 
+x= 8  y= 45  S=  : pval = 0.06219911 
+x= 8  y= 46  S=  : pval = 0.8549129 
+x= 8  y= 47  S=  : pval = 1 
+x= 8  y= 48  S=  : pval = 1 
+x= 9  y= 10  S=  : pval = 0.0198713 
+x= 9  y= 11  S=  : pval = 0.7455546 
+x= 9  y= 12  S=  : pval = 0.4012383 
+x= 9  y= 13  S=  : pval = 0.0310312 
+x= 9  y= 14  S=  : pval = 0.7958954 
+x= 9  y= 15  S=  : pval = 0.7195105 
+x= 9  y= 16  S=  : pval = 0.6260173 
+x= 9  y= 17  S=  : pval = 0.5304114 
+x= 9  y= 18  S=  : pval = 0.8290008 
+x= 9  y= 19  S=  : pval = 0.7789102 
+x= 9  y= 20  S=  : pval = 1 
+x= 9  y= 21  S=  : pval = 0.1555133 
+x= 9  y= 22  S=  : pval = 0.3088467 
+x= 9  y= 23  S=  : pval = 0.3847978 
+x= 9  y= 24  S=  : pval = 0.9881444 
+|i= 400 |iMax= 2256 
+x= 9  y= 25  S=  : pval = 0.9494835 
+x= 9  y= 26  S=  : pval = 0.8263597 
+x= 9  y= 27  S=  : pval = 0.8524309 
+x= 9  y= 28  S=  : pval = 0.6087608 
+x= 9  y= 29  S=  : pval = 0.8211965 
+x= 9  y= 30  S=  : pval = 0.7616905 
+x= 9  y= 31  S=  : pval = 0.5728515 
+x= 9  y= 32  S=  : pval = 0.9259574 
+x= 9  y= 33  S=  : pval = 0.6556279 
+x= 9  y= 34  S=  : pval = 0.9748477 
+x= 9  y= 35  S=  : pval = 0.7958954 
+x= 9  y= 36  S=  : pval = 0.8256085 
+x= 9  y= 37  S=  : pval = 0.5895943 
+x= 9  y= 38  S=  : pval = 0.7812308 
+x= 9  y= 39  S=  : pval = 0.6830518 
+x= 9  y= 40  S=  : pval = 0.7835083 
+x= 9  y= 41  S=  : pval = 0.910995 
+x= 9  y= 42  S=  : pval = 0.9374206 
+x= 9  y= 43  S=  : pval = 0.9348168 
+x= 9  y= 44  S=  : pval = 0.8186216 
+x= 9  y= 45  S=  : pval = 0.8893795 
+x= 9  y= 46  S=  : pval = 0.3222024 
+x= 9  y= 47  S=  : pval = 0.4707229 
+x= 9  y= 48  S=  : pval = 0.7609042 
+x= 10  y= 4  S=  : pval = 7.514606e-07 
+x= 10  y= 6  S=  : pval = 0.04417293 
+x= 10  y= 9  S=  : pval = 0.0198713 
+x= 10  y= 11  S=  : pval = 0.2057169 
+x= 10  y= 12  S=  : pval = 0.03122496 
+x= 10  y= 13  S=  : pval = 6.273203e-45 
+x= 10  y= 14  S=  : pval = 1 
+x= 10  y= 15  S=  : pval = 0.2288919 
+x= 10  y= 16  S=  : pval = 4.568678e-07 
+x= 10  y= 17  S=  : pval = 0.1948685 
+x= 10  y= 18  S=  : pval = 3.526636e-10 
+x= 10  y= 19  S=  : pval = 0.08040321 
+x= 10  y= 20  S=  : pval = 1 
+x= 10  y= 21  S=  : pval = 1 
+x= 10  y= 22  S=  : pval = 0.5886354 
+x= 10  y= 23  S=  : pval = 0.551665 
+x= 10  y= 24  S=  : pval = 1 
+x= 10  y= 25  S=  : pval = 1 
+x= 10  y= 26  S=  : pval = 1 
+x= 10  y= 27  S=  : pval = 1 
+x= 10  y= 28  S=  : pval = 0.2590129 
+x= 10  y= 29  S=  : pval = 1 
+x= 10  y= 30  S=  : pval = 1 
+x= 10  y= 31  S=  : pval = 0.7753817 
+x= 10  y= 32  S=  : pval = 1 
+x= 10  y= 33  S=  : pval = 0.06725099 
+x= 10  y= 34  S=  : pval = 1 
+x= 10  y= 35  S=  : pval = 1 
+x= 10  y= 36  S=  : pval = 0.2543597 
+x= 10  y= 37  S=  : pval = 0.5494605 
+x= 10  y= 38  S=  : pval = 1 
+x= 10  y= 39  S=  : pval = 0.2619839 
+x= 10  y= 40  S=  : pval = 0.4778553 
+x= 10  y= 41  S=  : pval = 1 
+x= 10  y= 42  S=  : pval = 1 
+x= 10  y= 43  S=  : pval = 0.9131122 
+x= 10  y= 44  S=  : pval = 0.5691573 
+x= 10  y= 45  S=  : pval = 0.5758423 
+x= 10  y= 46  S=  : pval = 0.1731024 
+x= 10  y= 47  S=  : pval = 0.4772594 
+x= 10  y= 48  S=  : pval = 0.524668 
+x= 11  y= 3  S=  : pval = 0.01387873 
+x= 11  y= 4  S=  : pval = 1.025597e-28 
+x= 11  y= 12  S=  : pval = 5.741621e-50 
+x= 11  y= 13  S=  : pval = 0.302681 
+x= 11  y= 14  S=  : pval = 1 
+x= 11  y= 15  S=  : pval = 3.984463e-18 
+x= 11  y= 16  S=  : pval = 1.669004e-23 
+x= 11  y= 17  S=  : pval = 0.6656432 
+x= 11  y= 18  S=  : pval = 3.416828e-07 
+x= 11  y= 19  S=  : pval = 0.03385991 
+x= 11  y= 20  S=  : pval = 1 
+x= 11  y= 21  S=  : pval = 1 
+x= 11  y= 22  S=  : pval = 0.5943326 
+x= 11  y= 23  S=  : pval = 0.5164207 
+x= 11  y= 24  S=  : pval = 1 
+x= 11  y= 25  S=  : pval = 1 
+x= 11  y= 26  S=  : pval = 1 
+x= 11  y= 27  S=  : pval = 1 
+x= 11  y= 28  S=  : pval = 0.02621722 
+x= 11  y= 29  S=  : pval = 1 
+x= 11  y= 30  S=  : pval = 1 
+|i= 500 |iMax= 2256 
+x= 11  y= 31  S=  : pval = 0.4533763 
+x= 11  y= 32  S=  : pval = 1 
+x= 11  y= 33  S=  : pval = 0.7922251 
+x= 11  y= 34  S=  : pval = 1 
+x= 11  y= 35  S=  : pval = 1 
+x= 11  y= 36  S=  : pval = 0.08897211 
+x= 11  y= 37  S=  : pval = 0.656097 
+x= 11  y= 38  S=  : pval = 1 
+x= 11  y= 39  S=  : pval = 0.7116492 
+x= 11  y= 40  S=  : pval = 0.6261568 
+x= 11  y= 41  S=  : pval = 1 
+x= 11  y= 42  S=  : pval = 1 
+x= 11  y= 43  S=  : pval = 0.6537371 
+x= 11  y= 44  S=  : pval = 0.1888597 
+x= 11  y= 45  S=  : pval = 0.5098829 
+x= 11  y= 46  S=  : pval = 0.2636202 
+x= 11  y= 47  S=  : pval = 0.7178123 
+x= 11  y= 48  S=  : pval = 0.8321954 
+x= 12  y= 4  S=  : pval = 9.406962e-12 
+x= 12  y= 6  S=  : pval = 0.002742649 
+x= 12  y= 10  S=  : pval = 0.03122496 
+x= 12  y= 11  S=  : pval = 5.741621e-50 
+x= 12  y= 13  S=  : pval = 0.1003232 
+x= 12  y= 14  S=  : pval = 1 
+x= 12  y= 15  S=  : pval = 1 
+x= 12  y= 16  S=  : pval = 3.606754e-12 
+x= 12  y= 17  S=  : pval = 0.9637569 
+x= 12  y= 18  S=  : pval = 1 
+x= 12  y= 19  S=  : pval = 0.3689633 
+x= 12  y= 20  S=  : pval = 1 
+x= 12  y= 21  S=  : pval = 1 
+x= 12  y= 22  S=  : pval = 0.3434932 
+x= 12  y= 23  S=  : pval = 1 
+x= 12  y= 24  S=  : pval = 1 
+x= 12  y= 25  S=  : pval = 1 
+x= 12  y= 26  S=  : pval = 1 
+x= 12  y= 27  S=  : pval = 1 
+x= 12  y= 28  S=  : pval = 1 
+x= 12  y= 29  S=  : pval = 1 
+x= 12  y= 30  S=  : pval = 1 
+x= 12  y= 31  S=  : pval = 1 
+x= 12  y= 32  S=  : pval = 1 
+x= 12  y= 33  S=  : pval = 1 
+x= 12  y= 34  S=  : pval = 1 
+x= 12  y= 35  S=  : pval = 1 
+x= 12  y= 36  S=  : pval = 1 
+x= 12  y= 37  S=  : pval = 0.4949505 
+x= 12  y= 38  S=  : pval = 1 
+x= 12  y= 39  S=  : pval = 1 
+x= 12  y= 40  S=  : pval = 0.06945815 
+x= 12  y= 41  S=  : pval = 1 
+x= 12  y= 42  S=  : pval = 1 
+x= 12  y= 43  S=  : pval = 0.880187 
+x= 12  y= 44  S=  : pval = 1 
+x= 12  y= 45  S=  : pval = 0.4377744 
+x= 12  y= 46  S=  : pval = 0.09311725 
+x= 12  y= 47  S=  : pval = 0.03504826 
+x= 12  y= 48  S=  : pval = 0.537577 
+x= 13  y= 2  S=  : pval = 0.01763664 
+x= 13  y= 4  S=  : pval = 0.009210669 
+x= 13  y= 6  S=  : pval = 0.03037382 
+x= 13  y= 9  S=  : pval = 0.0310312 
+x= 13  y= 10  S=  : pval = 6.273203e-45 
+x= 13  y= 14  S=  : pval = 0.0143204 
+x= 13  y= 15  S=  : pval = 0.2538599 
+x= 13  y= 16  S=  : pval = 0.002574783 
+x= 13  y= 17  S=  : pval = 0.4064601 
+x= 13  y= 18  S=  : pval = 1.325478e-05 
+x= 13  y= 19  S=  : pval = 0.2670063 
+x= 13  y= 20  S=  : pval = 1 
+x= 13  y= 21  S=  : pval = 0.7095591 
+x= 13  y= 22  S=  : pval = 0.1590784 
+x= 13  y= 23  S=  : pval = 0.1317247 
+x= 13  y= 24  S=  : pval = 0.6197896 
+x= 13  y= 25  S=  : pval = 1 
+x= 13  y= 26  S=  : pval = 1 
+x= 13  y= 27  S=  : pval = 1 
+x= 13  y= 28  S=  : pval = 0.5646512 
+x= 13  y= 29  S=  : pval = 1 
+x= 13  y= 30  S=  : pval = 0.6854135 
+x= 13  y= 31  S=  : pval = 0.8494235 
+x= 13  y= 32  S=  : pval = 1 
+x= 13  y= 33  S=  : pval = 0.1185273 
+x= 13  y= 34  S=  : pval = 1 
+x= 13  y= 35  S=  : pval = 0.4413438 
+x= 13  y= 36  S=  : pval = 0.3065366 
+|i= 600 |iMax= 2256 
+x= 13  y= 37  S=  : pval = 0.9336973 
+x= 13  y= 38  S=  : pval = 1 
+x= 13  y= 39  S=  : pval = 0.9340611 
+x= 13  y= 40  S=  : pval = 0.3164067 
+x= 13  y= 41  S=  : pval = 0.8288465 
+x= 13  y= 42  S=  : pval = 1 
+x= 13  y= 43  S=  : pval = 0.7625145 
+x= 13  y= 44  S=  : pval = 0.3631138 
+x= 13  y= 45  S=  : pval = 0.1680073 
+x= 13  y= 46  S=  : pval = 0.4218248 
+x= 13  y= 47  S=  : pval = 0.1682532 
+x= 13  y= 48  S=  : pval = 0.6113643 
+x= 14  y= 4  S=  : pval = 6.878651e-12 
+x= 14  y= 6  S=  : pval = 6.025271e-07 
+x= 14  y= 13  S=  : pval = 0.0143204 
+x= 14  y= 15  S=  : pval = 1 
+x= 14  y= 16  S=  : pval = 1 
+x= 14  y= 17  S=  : pval = 0.4015296 
+x= 14  y= 18  S=  : pval = 1 
+x= 14  y= 19  S=  : pval = 1 
+x= 14  y= 20  S=  : pval = 1 
+x= 14  y= 21  S=  : pval = 1 
+x= 14  y= 22  S=  : pval = 0.8764608 
+x= 14  y= 23  S=  : pval = 1 
+x= 14  y= 24  S=  : pval = 1 
+x= 14  y= 25  S=  : pval = 1 
+x= 14  y= 26  S=  : pval = 1 
+x= 14  y= 27  S=  : pval = 1 
+x= 14  y= 28  S=  : pval = 1 
+x= 14  y= 29  S=  : pval = 1 
+x= 14  y= 30  S=  : pval = 1 
+x= 14  y= 31  S=  : pval = 1 
+x= 14  y= 32  S=  : pval = 1 
+x= 14  y= 33  S=  : pval = 1 
+x= 14  y= 34  S=  : pval = 1 
+x= 14  y= 35  S=  : pval = 1 
+x= 14  y= 36  S=  : pval = 1 
+x= 14  y= 37  S=  : pval = 1 
+x= 14  y= 38  S=  : pval = 1 
+x= 14  y= 39  S=  : pval = 1 
+x= 14  y= 40  S=  : pval = 0.5841495 
+x= 14  y= 41  S=  : pval = 1 
+x= 14  y= 42  S=  : pval = 1 
+x= 14  y= 43  S=  : pval = 0.6272574 
+x= 14  y= 44  S=  : pval = 1 
+x= 14  y= 45  S=  : pval = 0.416772 
+x= 14  y= 46  S=  : pval = 0.714462 
+x= 14  y= 47  S=  : pval = 1 
+x= 14  y= 48  S=  : pval = 1 
+x= 15  y= 4  S=  : pval = 5.415765e-11 
+x= 15  y= 6  S=  : pval = 2.20321e-08 
+x= 15  y= 11  S=  : pval = 3.984463e-18 
+x= 15  y= 16  S=  : pval = 5.336161e-71 
+x= 15  y= 17  S=  : pval = 0.1483327 
+x= 15  y= 18  S=  : pval = 1 
+x= 15  y= 19  S=  : pval = 0.1250866 
+x= 15  y= 20  S=  : pval = 1 
+x= 15  y= 21  S=  : pval = 1 
+x= 15  y= 22  S=  : pval = 0.8857076 
+x= 15  y= 23  S=  : pval = 1 
+x= 15  y= 24  S=  : pval = 1 
+x= 15  y= 25  S=  : pval = 1 
+x= 15  y= 26  S=  : pval = 1 
+x= 15  y= 27  S=  : pval = 1 
+x= 15  y= 28  S=  : pval = 1 
+x= 15  y= 29  S=  : pval = 1 
+x= 15  y= 30  S=  : pval = 1 
+x= 15  y= 31  S=  : pval = 1 
+x= 15  y= 32  S=  : pval = 1 
+x= 15  y= 33  S=  : pval = 1 
+x= 15  y= 34  S=  : pval = 1 
+x= 15  y= 35  S=  : pval = 1 
+x= 15  y= 36  S=  : pval = 1 
+x= 15  y= 37  S=  : pval = 0.4207357 
+x= 15  y= 38  S=  : pval = 1 
+x= 15  y= 39  S=  : pval = 1 
+x= 15  y= 40  S=  : pval = 0.685293 
+x= 15  y= 41  S=  : pval = 1 
+x= 15  y= 42  S=  : pval = 1 
+|i= 700 |iMax= 2256 
+x= 15  y= 43  S=  : pval = 0.6252338 
+x= 15  y= 44  S=  : pval = 1 
+x= 15  y= 45  S=  : pval = 0.3591228 
+x= 15  y= 46  S=  : pval = 0.8613788 
+x= 15  y= 47  S=  : pval = 0.6164936 
+x= 15  y= 48  S=  : pval = 0.3049111 
+x= 16  y= 4  S=  : pval = 3.966005e-18 
+x= 16  y= 6  S=  : pval = 5.517524e-10 
+x= 16  y= 10  S=  : pval = 4.568678e-07 
+x= 16  y= 11  S=  : pval = 1.669004e-23 
+x= 16  y= 12  S=  : pval = 3.606754e-12 
+x= 16  y= 13  S=  : pval = 0.002574783 
+x= 16  y= 15  S=  : pval = 5.336161e-71 
+x= 16  y= 17  S=  : pval = 0.2212461 
+x= 16  y= 18  S=  : pval = 9.317912e-12 
+x= 16  y= 19  S=  : pval = 0.01873266 
+x= 16  y= 20  S=  : pval = 1 
+x= 16  y= 21  S=  : pval = 1 
+x= 16  y= 22  S=  : pval = 0.9988484 
+x= 16  y= 23  S=  : pval = 0.8059765 
+x= 16  y= 24  S=  : pval = 1 
+x= 16  y= 25  S=  : pval = 1 
+x= 16  y= 26  S=  : pval = 1 
+x= 16  y= 27  S=  : pval = 1 
+x= 16  y= 28  S=  : pval = 0.4109569 
+x= 16  y= 29  S=  : pval = 1 
+x= 16  y= 30  S=  : pval = 1 
+x= 16  y= 31  S=  : pval = 0.07825951 
+x= 16  y= 32  S=  : pval = 1 
+x= 16  y= 33  S=  : pval = 0.9541052 
+x= 16  y= 34  S=  : pval = 1 
+x= 16  y= 35  S=  : pval = 1 
+x= 16  y= 36  S=  : pval = 0.000225446 
+x= 16  y= 37  S=  : pval = 0.08618327 
+x= 16  y= 38  S=  : pval = 1 
+x= 16  y= 39  S=  : pval = 0.6596639 
+x= 16  y= 40  S=  : pval = 0.1650604 
+x= 16  y= 41  S=  : pval = 1 
+x= 16  y= 42  S=  : pval = 1 
+x= 16  y= 43  S=  : pval = 0.5831532 
+x= 16  y= 44  S=  : pval = 0.08134707 
+x= 16  y= 45  S=  : pval = 0.4327089 
+x= 16  y= 46  S=  : pval = 0.1384356 
+x= 16  y= 47  S=  : pval = 0.3235585 
+x= 16  y= 48  S=  : pval = 0.8814959 
+x= 17  y= 4  S=  : pval = 0.04663078 
+x= 17  y= 18  S=  : pval = 0.279768 
+x= 17  y= 19  S=  : pval = 2.442939e-23 
+x= 17  y= 20  S=  : pval = 1 
+x= 17  y= 21  S=  : pval = 0.3108587 
+x= 17  y= 22  S=  : pval = 0.922083 
+x= 17  y= 23  S=  : pval = 0.00593499 
+x= 17  y= 24  S=  : pval = 0.9210273 
+x= 17  y= 25  S=  : pval = 1 
+x= 17  y= 26  S=  : pval = 1 
+x= 17  y= 27  S=  : pval = 1 
+x= 17  y= 28  S=  : pval = 0.08595507 
+x= 17  y= 29  S=  : pval = 1 
+x= 17  y= 30  S=  : pval = 1.156898e-23 
+x= 17  y= 31  S=  : pval = 0.0007129515 
+x= 17  y= 32  S=  : pval = 1 
+x= 17  y= 33  S=  : pval = 0.933895 
+x= 17  y= 34  S=  : pval = 1 
+x= 17  y= 35  S=  : pval = 0.004325398 
+x= 17  y= 36  S=  : pval = 0.01981167 
+x= 17  y= 37  S=  : pval = 0.7476393 
+x= 17  y= 38  S=  : pval = 1 
+x= 17  y= 39  S=  : pval = 0.5960025 
+x= 17  y= 40  S=  : pval = 0.005183657 
+x= 17  y= 41  S=  : pval = 9.633529e-06 
+x= 17  y= 42  S=  : pval = 1 
+x= 17  y= 43  S=  : pval = 0.5356703 
+x= 17  y= 44  S=  : pval = 0.5056086 
+x= 17  y= 45  S=  : pval = 0.05208086 
+x= 17  y= 46  S=  : pval = 0.01286714 
+x= 17  y= 47  S=  : pval = 0.00729437 
+x= 17  y= 48  S=  : pval = 0.8191944 
+|i= 800 |iMax= 2256 
+x= 18  y= 4  S=  : pval = 9.468254e-35 
+x= 18  y= 10  S=  : pval = 3.526636e-10 
+x= 18  y= 11  S=  : pval = 3.416828e-07 
+x= 18  y= 13  S=  : pval = 1.325478e-05 
+x= 18  y= 16  S=  : pval = 9.317912e-12 
+x= 18  y= 19  S=  : pval = 2.238988e-11 
+x= 18  y= 20  S=  : pval = 1 
+x= 18  y= 21  S=  : pval = 1 
+x= 18  y= 22  S=  : pval = 0.400875 
+x= 18  y= 23  S=  : pval = 1 
+x= 18  y= 24  S=  : pval = 1 
+x= 18  y= 25  S=  : pval = 1 
+x= 18  y= 26  S=  : pval = 1 
+x= 18  y= 27  S=  : pval = 1 
+x= 18  y= 28  S=  : pval = 1 
+x= 18  y= 29  S=  : pval = 1 
+x= 18  y= 30  S=  : pval = 1 
+x= 18  y= 31  S=  : pval = 1 
+x= 18  y= 32  S=  : pval = 1 
+x= 18  y= 33  S=  : pval = 1 
+x= 18  y= 34  S=  : pval = 1 
+x= 18  y= 35  S=  : pval = 1 
+x= 18  y= 36  S=  : pval = 1 
+x= 18  y= 37  S=  : pval = 0.09969648 
+x= 18  y= 38  S=  : pval = 1 
+x= 18  y= 39  S=  : pval = 1 
+x= 18  y= 40  S=  : pval = 0.00384375 
+x= 18  y= 41  S=  : pval = 1 
+x= 18  y= 42  S=  : pval = 1 
+x= 18  y= 43  S=  : pval = 0.5631834 
+x= 18  y= 44  S=  : pval = 1 
+x= 18  y= 45  S=  : pval = 0.2022671 
+x= 18  y= 46  S=  : pval = 0.06135862 
+x= 18  y= 47  S=  : pval = 0.4084416 
+x= 18  y= 48  S=  : pval = 0.4680102 
+x= 19  y= 4  S=  : pval = 3.408672e-05 
+x= 19  y= 11  S=  : pval = 0.03385991 
+x= 19  y= 16  S=  : pval = 0.01873266 
+x= 19  y= 17  S=  : pval = 2.442939e-23 
+x= 19  y= 18  S=  : pval = 2.238988e-11 
+x= 19  y= 20  S=  : pval = 1 
+x= 19  y= 21  S=  : pval = 1 
+x= 19  y= 22  S=  : pval = 0.7145875 
+x= 19  y= 23  S=  : pval = 0.08859184 
+x= 19  y= 24  S=  : pval = 1 
+x= 19  y= 25  S=  : pval = 1 
+x= 19  y= 26  S=  : pval = 1 
+x= 19  y= 27  S=  : pval = 1 
+x= 19  y= 28  S=  : pval = 0.6250474 
+x= 19  y= 29  S=  : pval = 1 
+x= 19  y= 30  S=  : pval = 1 
+x= 19  y= 31  S=  : pval = 0.04922325 
+x= 19  y= 32  S=  : pval = 1 
+x= 19  y= 33  S=  : pval = 0.304359 
+x= 19  y= 34  S=  : pval = 1 
+x= 19  y= 35  S=  : pval = 1 
+x= 19  y= 36  S=  : pval = 2.427641e-25 
+x= 19  y= 37  S=  : pval = 0.5999142 
+x= 19  y= 38  S=  : pval = 1 
+x= 19  y= 39  S=  : pval = 0.8051701 
+x= 19  y= 40  S=  : pval = 1.292261e-11 
+x= 19  y= 41  S=  : pval = 1 
+x= 19  y= 42  S=  : pval = 1 
+x= 19  y= 43  S=  : pval = 0.243744 
+x= 19  y= 44  S=  : pval = 5.637142e-05 
+x= 19  y= 45  S=  : pval = 1.308566e-12 
+x= 19  y= 46  S=  : pval = 7.2981e-09 
+x= 19  y= 47  S=  : pval = 8.272745e-08 
+x= 19  y= 48  S=  : pval = 0.4442021 
+|i= 900 |iMax= 2256 
+x= 20  y= 21  S=  : pval = 1 
+x= 20  y= 22  S=  : pval = 1 
+x= 20  y= 23  S=  : pval = 1 
+x= 20  y= 24  S=  : pval = 1 
+x= 20  y= 25  S=  : pval = 1 
+x= 20  y= 26  S=  : pval = 1 
+x= 20  y= 27  S=  : pval = 1 
+x= 20  y= 28  S=  : pval = 1 
+x= 20  y= 29  S=  : pval = 1 
+x= 20  y= 30  S=  : pval = 1 
+x= 20  y= 31  S=  : pval = 1 
+x= 20  y= 32  S=  : pval = 1 
+x= 20  y= 33  S=  : pval = 1 
+x= 20  y= 34  S=  : pval = 1 
+x= 20  y= 35  S=  : pval = 1 
+x= 20  y= 36  S=  : pval = 1 
+x= 20  y= 37  S=  : pval = 1 
+x= 20  y= 38  S=  : pval = 1 
+x= 20  y= 39  S=  : pval = 1 
+x= 20  y= 40  S=  : pval = 1 
+x= 20  y= 41  S=  : pval = 1 
+x= 20  y= 42  S=  : pval = 1 
+x= 20  y= 43  S=  : pval = 1 
+x= 20  y= 44  S=  : pval = 1 
+x= 20  y= 45  S=  : pval = 1 
+x= 20  y= 46  S=  : pval = 1 
+x= 20  y= 47  S=  : pval = 1 
+x= 20  y= 48  S=  : pval = 1 
+x= 21  y= 22  S=  : pval = 0.5127241 
+x= 21  y= 23  S=  : pval = 1 
+x= 21  y= 24  S=  : pval = 1 
+x= 21  y= 25  S=  : pval = 1 
+x= 21  y= 26  S=  : pval = 1 
+x= 21  y= 27  S=  : pval = 1 
+x= 21  y= 28  S=  : pval = 1 
+x= 21  y= 29  S=  : pval = 1 
+x= 21  y= 30  S=  : pval = 1 
+x= 21  y= 31  S=  : pval = 1 
+x= 21  y= 32  S=  : pval = 1 
+x= 21  y= 33  S=  : pval = 1 
+x= 21  y= 34  S=  : pval = 1 
+x= 21  y= 35  S=  : pval = 1 
+x= 21  y= 36  S=  : pval = 1 
+x= 21  y= 37  S=  : pval = 1 
+x= 21  y= 38  S=  : pval = 1 
+x= 21  y= 39  S=  : pval = 1 
+x= 21  y= 40  S=  : pval = 0.4326543 
+x= 21  y= 41  S=  : pval = 1 
+x= 21  y= 42  S=  : pval = 1 
+x= 21  y= 43  S=  : pval = 0.970637 
+x= 21  y= 44  S=  : pval = 1 
+x= 21  y= 45  S=  : pval = 0.8778942 
+x= 21  y= 46  S=  : pval = 0.3330746 
+x= 21  y= 47  S=  : pval = 1 
+x= 21  y= 48  S=  : pval = 1 
+|i= 1000 |iMax= 2256 
+x= 22  y= 23  S=  : pval = 0.6878016 
+x= 22  y= 24  S=  : pval = 0.2413805 
+x= 22  y= 25  S=  : pval = 0.0003580515 
+x= 22  y= 26  S=  : pval = 0.9301674 
+x= 22  y= 27  S=  : pval = 0.04668067 
+x= 22  y= 28  S=  : pval = 0.8966765 
+x= 22  y= 29  S=  : pval = 0.6092424 
+x= 22  y= 30  S=  : pval = 0.8009479 
+x= 22  y= 31  S=  : pval = 0.1242061 
+x= 22  y= 32  S=  : pval = 0.7713314 
+x= 22  y= 33  S=  : pval = 0.6294013 
+x= 22  y= 34  S=  : pval = 0.1515352 
+x= 22  y= 35  S=  : pval = 0.002388631 
+x= 22  y= 36  S=  : pval = 0.03523268 
+x= 22  y= 37  S=  : pval = 0.4851932 
+x= 22  y= 38  S=  : pval = 0.3606363 
+x= 22  y= 39  S=  : pval = 0.5930777 
+x= 22  y= 40  S=  : pval = 0.5793018 
+x= 22  y= 41  S=  : pval = 0.5043878 
+x= 22  y= 42  S=  : pval = 0.0004814873 
+x= 22  y= 43  S=  : pval = 0.3622693 
+x= 22  y= 44  S=  : pval = 0.9087991 
+x= 22  y= 45  S=  : pval = 0.07914413 
+x= 22  y= 46  S=  : pval = 0.01883532 
+x= 22  y= 47  S=  : pval = 0.1580981 
+x= 22  y= 48  S=  : pval = 0.01453957 
+x= 23  y= 17  S=  : pval = 0.00593499 
+x= 23  y= 24  S=  : pval = 1 
+x= 23  y= 25  S=  : pval = 1 
+x= 23  y= 26  S=  : pval = 1 
+x= 23  y= 27  S=  : pval = 1 
+x= 23  y= 28  S=  : pval = 1 
+x= 23  y= 29  S=  : pval = 1 
+x= 23  y= 30  S=  : pval = 1 
+x= 23  y= 31  S=  : pval = 1 
+x= 23  y= 32  S=  : pval = 1 
+x= 23  y= 33  S=  : pval = 1 
+x= 23  y= 34  S=  : pval = 1 
+x= 23  y= 35  S=  : pval = 1 
+x= 23  y= 36  S=  : pval = 1 
+x= 23  y= 37  S=  : pval = 0.3873896 
+x= 23  y= 38  S=  : pval = 1 
+x= 23  y= 39  S=  : pval = 1 
+x= 23  y= 40  S=  : pval = 0.9749762 
+x= 23  y= 41  S=  : pval = 1 
+x= 23  y= 42  S=  : pval = 1 
+x= 23  y= 43  S=  : pval = 0.9604488 
+x= 23  y= 44  S=  : pval = 1 
+x= 23  y= 45  S=  : pval = 0.5222262 
+x= 23  y= 46  S=  : pval = 0.7266755 
+x= 23  y= 47  S=  : pval = 0.3424554 
+x= 23  y= 48  S=  : pval = 0.145727 
+x= 24  y= 4  S=  : pval = 6.554391e-06 
+x= 24  y= 6  S=  : pval = 0.005194838 
+|i= 1100 |iMax= 2256 
+x= 24  y= 25  S=  : pval = 1 
+x= 24  y= 26  S=  : pval = 1 
+x= 24  y= 27  S=  : pval = 1 
+x= 24  y= 28  S=  : pval = 1 
+x= 24  y= 29  S=  : pval = 1 
+x= 24  y= 30  S=  : pval = 1 
+x= 24  y= 31  S=  : pval = 1 
+x= 24  y= 32  S=  : pval = 1 
+x= 24  y= 33  S=  : pval = 1 
+x= 24  y= 34  S=  : pval = 1 
+x= 24  y= 35  S=  : pval = 1 
+x= 24  y= 36  S=  : pval = 1 
+x= 24  y= 37  S=  : pval = 1 
+x= 24  y= 38  S=  : pval = 1 
+x= 24  y= 39  S=  : pval = 1 
+x= 24  y= 40  S=  : pval = 0.5226643 
+x= 24  y= 41  S=  : pval = 1 
+x= 24  y= 42  S=  : pval = 1 
+x= 24  y= 43  S=  : pval = 0.6383289 
+x= 24  y= 44  S=  : pval = 1 
+x= 24  y= 45  S=  : pval = 0.05733788 
+x= 24  y= 46  S=  : pval = 0.4599161 
+x= 24  y= 47  S=  : pval = 1 
+x= 24  y= 48  S=  : pval = 1 
+x= 25  y= 22  S=  : pval = 0.0003580515 
+x= 25  y= 26  S=  : pval = 1 
+x= 25  y= 27  S=  : pval = 1 
+x= 25  y= 28  S=  : pval = 1 
+x= 25  y= 29  S=  : pval = 1 
+x= 25  y= 30  S=  : pval = 1 
+x= 25  y= 31  S=  : pval = 1 
+x= 25  y= 32  S=  : pval = 1 
+x= 25  y= 33  S=  : pval = 1 
+x= 25  y= 34  S=  : pval = 1 
+x= 25  y= 35  S=  : pval = 1 
+x= 25  y= 36  S=  : pval = 1 
+x= 25  y= 37  S=  : pval = 1 
+x= 25  y= 38  S=  : pval = 1 
+x= 25  y= 39  S=  : pval = 1 
+x= 25  y= 40  S=  : pval = 1 
+x= 25  y= 41  S=  : pval = 1 
+x= 25  y= 42  S=  : pval = 1 
+x= 25  y= 43  S=  : pval = 0.9558813 
+x= 25  y= 44  S=  : pval = 1 
+x= 25  y= 45  S=  : pval = 0.4254792 
+x= 25  y= 46  S=  : pval = 0.404877 
+x= 25  y= 47  S=  : pval = 1 
+x= 25  y= 48  S=  : pval = 1 
+|i= 1200 |iMax= 2256 
+x= 26  y= 27  S=  : pval = 1 
+x= 26  y= 28  S=  : pval = 1 
+x= 26  y= 29  S=  : pval = 1 
+x= 26  y= 30  S=  : pval = 1 
+x= 26  y= 31  S=  : pval = 1 
+x= 26  y= 32  S=  : pval = 1 
+x= 26  y= 33  S=  : pval = 1 
+x= 26  y= 34  S=  : pval = 1 
+x= 26  y= 35  S=  : pval = 1 
+x= 26  y= 36  S=  : pval = 1 
+x= 26  y= 37  S=  : pval = 1 
+x= 26  y= 38  S=  : pval = 1 
+x= 26  y= 39  S=  : pval = 1 
+x= 26  y= 40  S=  : pval = 1 
+x= 26  y= 41  S=  : pval = 1 
+x= 26  y= 42  S=  : pval = 1 
+x= 26  y= 43  S=  : pval = 0.8471783 
+x= 26  y= 44  S=  : pval = 1 
+x= 26  y= 45  S=  : pval = 0.1013813 
+x= 26  y= 46  S=  : pval = 0.1456604 
+x= 26  y= 47  S=  : pval = 1 
+x= 26  y= 48  S=  : pval = 1 
+x= 27  y= 22  S=  : pval = 0.04668067 
+x= 27  y= 28  S=  : pval = 1 
+x= 27  y= 29  S=  : pval = 1 
+x= 27  y= 30  S=  : pval = 1 
+x= 27  y= 31  S=  : pval = 1 
+x= 27  y= 32  S=  : pval = 1 
+x= 27  y= 33  S=  : pval = 1 
+x= 27  y= 34  S=  : pval = 1 
+x= 27  y= 35  S=  : pval = 1 
+x= 27  y= 36  S=  : pval = 1 
+x= 27  y= 37  S=  : pval = 1 
+x= 27  y= 38  S=  : pval = 1 
+x= 27  y= 39  S=  : pval = 1 
+x= 27  y= 40  S=  : pval = 1 
+x= 27  y= 41  S=  : pval = 1 
+x= 27  y= 42  S=  : pval = 1 
+x= 27  y= 43  S=  : pval = 0.8152246 
+x= 27  y= 44  S=  : pval = 1 
+x= 27  y= 45  S=  : pval = 0.7862563 
+x= 27  y= 46  S=  : pval = 0.1292809 
+x= 27  y= 47  S=  : pval = 1 
+x= 27  y= 48  S=  : pval = 1 
+x= 28  y= 2  S=  : pval = 0.04638705 
+x= 28  y= 11  S=  : pval = 0.02621722 
+x= 28  y= 29  S=  : pval = 1 
+x= 28  y= 30  S=  : pval = 1 
+x= 28  y= 31  S=  : pval = 1 
+|i= 1300 |iMax= 2256 
+x= 28  y= 32  S=  : pval = 1 
+x= 28  y= 33  S=  : pval = 1 
+x= 28  y= 34  S=  : pval = 1 
+x= 28  y= 35  S=  : pval = 1 
+x= 28  y= 36  S=  : pval = 1 
+x= 28  y= 37  S=  : pval = 0.8359975 
+x= 28  y= 38  S=  : pval = 1 
+x= 28  y= 39  S=  : pval = 1 
+x= 28  y= 40  S=  : pval = 0.4812006 
+x= 28  y= 41  S=  : pval = 1 
+x= 28  y= 42  S=  : pval = 1 
+x= 28  y= 43  S=  : pval = 0.8509988 
+x= 28  y= 44  S=  : pval = 1 
+x= 28  y= 45  S=  : pval = 0.1288551 
+x= 28  y= 46  S=  : pval = 0.722454 
+x= 28  y= 47  S=  : pval = 0.6341089 
+x= 28  y= 48  S=  : pval = 0.5772912 
+x= 29  y= 30  S=  : pval = 1 
+x= 29  y= 31  S=  : pval = 1 
+x= 29  y= 32  S=  : pval = 1 
+x= 29  y= 33  S=  : pval = 1 
+x= 29  y= 34  S=  : pval = 1 
+x= 29  y= 35  S=  : pval = 1 
+x= 29  y= 36  S=  : pval = 1 
+x= 29  y= 37  S=  : pval = 1 
+x= 29  y= 38  S=  : pval = 1 
+x= 29  y= 39  S=  : pval = 1 
+x= 29  y= 40  S=  : pval = 1 
+x= 29  y= 41  S=  : pval = 1 
+x= 29  y= 42  S=  : pval = 1 
+x= 29  y= 43  S=  : pval = 0.7957243 
+x= 29  y= 44  S=  : pval = 1 
+x= 29  y= 45  S=  : pval = 0.9226519 
+x= 29  y= 46  S=  : pval = 0.3500848 
+x= 29  y= 47  S=  : pval = 1 
+x= 29  y= 48  S=  : pval = 1 
+x= 30  y= 4  S=  : pval = 0.04738578 
+x= 30  y= 17  S=  : pval = 1.156898e-23 
+x= 30  y= 31  S=  : pval = 1 
+x= 30  y= 32  S=  : pval = 1 
+x= 30  y= 33  S=  : pval = 1 
+x= 30  y= 34  S=  : pval = 1 
+x= 30  y= 35  S=  : pval = 1 
+x= 30  y= 36  S=  : pval = 1 
+x= 30  y= 37  S=  : pval = 1 
+|i= 1400 |iMax= 2256 
+x= 30  y= 38  S=  : pval = 1 
+x= 30  y= 39  S=  : pval = 1 
+x= 30  y= 40  S=  : pval = 0.5144566 
+x= 30  y= 41  S=  : pval = 1 
+x= 30  y= 42  S=  : pval = 1 
+x= 30  y= 43  S=  : pval = 0.7616905 
+x= 30  y= 44  S=  : pval = 1 
+x= 30  y= 45  S=  : pval = 0.9843465 
+x= 30  y= 46  S=  : pval = 0.2667982 
+x= 30  y= 47  S=  : pval = 1 
+x= 30  y= 48  S=  : pval = 1 
+x= 31  y= 17  S=  : pval = 0.0007129515 
+x= 31  y= 19  S=  : pval = 0.04922325 
+x= 31  y= 32  S=  : pval = 1 
+x= 31  y= 33  S=  : pval = 1 
+x= 31  y= 34  S=  : pval = 1 
+x= 31  y= 35  S=  : pval = 1 
+x= 31  y= 36  S=  : pval = 1 
+x= 31  y= 37  S=  : pval = 0.8725971 
+x= 31  y= 38  S=  : pval = 1 
+x= 31  y= 39  S=  : pval = 1 
+x= 31  y= 40  S=  : pval = 0.7011838 
+x= 31  y= 41  S=  : pval = 1 
+x= 31  y= 42  S=  : pval = 1 
+x= 31  y= 43  S=  : pval = 0.4858648 
+x= 31  y= 44  S=  : pval = 1 
+x= 31  y= 45  S=  : pval = 0.6549741 
+x= 31  y= 46  S=  : pval = 0.571776 
+x= 31  y= 47  S=  : pval = 0.3637542 
+x= 31  y= 48  S=  : pval = 0.6052151 
+x= 32  y= 33  S=  : pval = 1 
+x= 32  y= 34  S=  : pval = 1 
+x= 32  y= 35  S=  : pval = 1 
+x= 32  y= 36  S=  : pval = 1 
+x= 32  y= 37  S=  : pval = 1 
+x= 32  y= 38  S=  : pval = 1 
+x= 32  y= 39  S=  : pval = 1 
+x= 32  y= 40  S=  : pval = 1 
+x= 32  y= 41  S=  : pval = 1 
+x= 32  y= 42  S=  : pval = 1 
+x= 32  y= 43  S=  : pval = 0.9259574 
+|i= 1500 |iMax= 2256 
+x= 32  y= 44  S=  : pval = 1 
+x= 32  y= 45  S=  : pval = 0.9153582 
+x= 32  y= 46  S=  : pval = 0.3661143 
+x= 32  y= 47  S=  : pval = 1 
+x= 32  y= 48  S=  : pval = 1 
+x= 33  y= 34  S=  : pval = 1 
+x= 33  y= 35  S=  : pval = 1 
+x= 33  y= 36  S=  : pval = 1 
+x= 33  y= 37  S=  : pval = 0.2104437 
+x= 33  y= 38  S=  : pval = 1 
+x= 33  y= 39  S=  : pval = 1 
+x= 33  y= 40  S=  : pval = 0.04884253 
+x= 33  y= 41  S=  : pval = 1 
+x= 33  y= 42  S=  : pval = 1 
+x= 33  y= 43  S=  : pval = 0.7019259 
+x= 33  y= 44  S=  : pval = 1 
+x= 33  y= 45  S=  : pval = 0.2213848 
+x= 33  y= 46  S=  : pval = 0.06106124 
+x= 33  y= 47  S=  : pval = 0.5308759 
+x= 33  y= 48  S=  : pval = 0.1415007 
+x= 34  y= 3  S=  : pval = 0.01837081 
+x= 34  y= 35  S=  : pval = 1 
+x= 34  y= 36  S=  : pval = 1 
+x= 34  y= 37  S=  : pval = 1 
+x= 34  y= 38  S=  : pval = 1 
+x= 34  y= 39  S=  : pval = 1 
+x= 34  y= 40  S=  : pval = 1 
+x= 34  y= 41  S=  : pval = 1 
+x= 34  y= 42  S=  : pval = 1 
+x= 34  y= 43  S=  : pval = 0.8944586 
+x= 34  y= 44  S=  : pval = 1 
+x= 34  y= 45  S=  : pval = 0.3501435 
+x= 34  y= 46  S=  : pval = 0.02254965 
+x= 34  y= 47  S=  : pval = 1 
+x= 34  y= 48  S=  : pval = 1 
+|i= 1600 |iMax= 2256 
+x= 35  y= 4  S=  : pval = 0.03184881 
+x= 35  y= 17  S=  : pval = 0.004325398 
+x= 35  y= 22  S=  : pval = 0.002388631 
+x= 35  y= 36  S=  : pval = 1 
+x= 35  y= 37  S=  : pval = 1 
+x= 35  y= 38  S=  : pval = 1 
+x= 35  y= 39  S=  : pval = 1 
+x= 35  y= 40  S=  : pval = 2.257365e-05 
+x= 35  y= 41  S=  : pval = 1 
+x= 35  y= 42  S=  : pval = 1 
+x= 35  y= 43  S=  : pval = 0.832986 
+x= 35  y= 44  S=  : pval = 1 
+x= 35  y= 45  S=  : pval = 2.684342e-05 
+x= 35  y= 46  S=  : pval = 1.336732e-05 
+x= 35  y= 47  S=  : pval = 1 
+x= 35  y= 48  S=  : pval = 1 
+x= 36  y= 4  S=  : pval = 0.01105111 
+x= 36  y= 16  S=  : pval = 0.000225446 
+x= 36  y= 17  S=  : pval = 0.01981167 
+x= 36  y= 19  S=  : pval = 2.427641e-25 
+x= 36  y= 22  S=  : pval = 0.03523268 
+x= 36  y= 37  S=  : pval = 0.9497089 
+x= 36  y= 38  S=  : pval = 1 
+x= 36  y= 39  S=  : pval = 1 
+x= 36  y= 40  S=  : pval = 5.716716e-20 
+x= 36  y= 41  S=  : pval = 1 
+x= 36  y= 42  S=  : pval = 1 
+x= 36  y= 43  S=  : pval = 0.238287 
+x= 36  y= 44  S=  : pval = 1 
+x= 36  y= 45  S=  : pval = 3.406718e-15 
+x= 36  y= 46  S=  : pval = 5.205886e-21 
+x= 36  y= 47  S=  : pval = 2.623358e-17 
+x= 36  y= 48  S=  : pval = 0.7963751 
+|i= 1700 |iMax= 2256 
+x= 37  y= 38  S=  : pval = 1 
+x= 37  y= 39  S=  : pval = 0.3408246 
+x= 37  y= 40  S=  : pval = 0.0004435431 
+x= 37  y= 41  S=  : pval = 1 
+x= 37  y= 42  S=  : pval = 1 
+x= 37  y= 43  S=  : pval = 0.6984683 
+x= 37  y= 44  S=  : pval = 0.1674542 
+x= 37  y= 45  S=  : pval = 0.006823263 
+x= 37  y= 46  S=  : pval = 0.240899 
+x= 37  y= 47  S=  : pval = 0.5071866 
+x= 37  y= 48  S=  : pval = 4.237392e-60 
+x= 38  y= 3  S=  : pval = 0.0003524694 
+x= 38  y= 39  S=  : pval = 1 
+x= 38  y= 40  S=  : pval = 1 
+x= 38  y= 41  S=  : pval = 1 
+x= 38  y= 42  S=  : pval = 1 
+x= 38  y= 43  S=  : pval = 0.956753 
+x= 38  y= 44  S=  : pval = 1 
+x= 38  y= 45  S=  : pval = 1.001623e-19 
+x= 38  y= 46  S=  : pval = 1.77137e-24 
+x= 38  y= 47  S=  : pval = 1 
+x= 38  y= 48  S=  : pval = 1 
+|i= 1800 |iMax= 2256 
+x= 39  y= 40  S=  : pval = 0.5896044 
+x= 39  y= 41  S=  : pval = 1 
+x= 39  y= 42  S=  : pval = 1 
+x= 39  y= 43  S=  : pval = 0.6830518 
+x= 39  y= 44  S=  : pval = 1 
+x= 39  y= 45  S=  : pval = 0.007710957 
+x= 39  y= 46  S=  : pval = 0.007223821 
+x= 39  y= 47  S=  : pval = 7.268685e-10 
+x= 39  y= 48  S=  : pval = 0.9020728 
+x= 40  y= 2  S=  : pval = 0.02533818 
+x= 40  y= 17  S=  : pval = 0.005183657 
+x= 40  y= 18  S=  : pval = 0.00384375 
+x= 40  y= 19  S=  : pval = 1.292261e-11 
+x= 40  y= 33  S=  : pval = 0.04884253 
+x= 40  y= 35  S=  : pval = 2.257365e-05 
+x= 40  y= 36  S=  : pval = 5.716716e-20 
+x= 40  y= 37  S=  : pval = 0.0004435431 
+x= 40  y= 41  S=  : pval = 0.005495182 
+x= 40  y= 42  S=  : pval = 1 
+x= 40  y= 43  S=  : pval = 0.575885 
+x= 40  y= 44  S=  : pval = 7.390451e-06 
+x= 40  y= 45  S=  : pval = 1.69935e-54 
+x= 40  y= 46  S=  : pval = 6.958832e-73 
+x= 40  y= 47  S=  : pval = 3.992057e-76 
+x= 40  y= 48  S=  : pval = 0.006507388 
+x= 41  y= 4  S=  : pval = 0.00829289 
+x= 41  y= 17  S=  : pval = 9.633529e-06 
+|i= 1900 |iMax= 2256 
+x= 41  y= 40  S=  : pval = 0.005495182 
+x= 41  y= 42  S=  : pval = 1 
+x= 41  y= 43  S=  : pval = 0.6959698 
+x= 41  y= 44  S=  : pval = 1 
+x= 41  y= 45  S=  : pval = 0.1332881 
+x= 41  y= 46  S=  : pval = 0.01868479 
+x= 41  y= 47  S=  : pval = 1 
+x= 41  y= 48  S=  : pval = 1 
+x= 42  y= 22  S=  : pval = 0.0004814873 
+x= 42  y= 43  S=  : pval = 0.9374206 
+x= 42  y= 44  S=  : pval = 1 
+x= 42  y= 45  S=  : pval = 0.4980749 
+x= 42  y= 46  S=  : pval = 0.1576127 
+x= 42  y= 47  S=  : pval = 1 
+x= 42  y= 48  S=  : pval = 1 
+|i= 2000 |iMax= 2256 
+x= 43  y= 44  S=  : pval = 0.6957844 
+x= 43  y= 45  S=  : pval = 0.2175383 
+x= 43  y= 46  S=  : pval = 0.5158591 
+x= 43  y= 47  S=  : pval = 0.9046642 
+x= 43  y= 48  S=  : pval = 0.6142817 
+x= 44  y= 3  S=  : pval = 0.03435336 
+x= 44  y= 19  S=  : pval = 5.637142e-05 
+x= 44  y= 40  S=  : pval = 7.390451e-06 
+x= 44  y= 45  S=  : pval = 5.695791e-05 
+x= 44  y= 46  S=  : pval = 4.998646e-06 
+x= 44  y= 47  S=  : pval = 0.01253471 
+x= 44  y= 48  S=  : pval = 0.2281365 
+x= 45  y= 19  S=  : pval = 1.308566e-12 
+|i= 2100 |iMax= 2256 
+x= 45  y= 35  S=  : pval = 2.684342e-05 
+x= 45  y= 36  S=  : pval = 3.406718e-15 
+x= 45  y= 37  S=  : pval = 0.006823263 
+x= 45  y= 38  S=  : pval = 1.001623e-19 
+x= 45  y= 39  S=  : pval = 0.007710957 
+x= 45  y= 40  S=  : pval = 1.69935e-54 
+x= 45  y= 44  S=  : pval = 5.695791e-05 
+x= 45  y= 46  S=  : pval = 4.261041e-25 
+x= 45  y= 47  S=  : pval = 5.336845e-26 
+x= 45  y= 48  S=  : pval = 0.00284896 
+x= 46  y= 17  S=  : pval = 0.01286714 
+x= 46  y= 19  S=  : pval = 7.2981e-09 
+x= 46  y= 22  S=  : pval = 0.01883532 
+x= 46  y= 34  S=  : pval = 0.02254965 
+x= 46  y= 35  S=  : pval = 1.336732e-05 
+x= 46  y= 36  S=  : pval = 5.205886e-21 
+x= 46  y= 38  S=  : pval = 1.77137e-24 
+x= 46  y= 39  S=  : pval = 0.007223821 
+x= 46  y= 40  S=  : pval = 6.958832e-73 
+x= 46  y= search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+search space expansion 5 
+search space expansion 6 
+search space expansion 7 
+search space expansion 8 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/MCMCchains/barley_pcskel_ptree_order_ess1_epf2_N300_r01.rdsError in serialize(data, node$con) : error writing to connection
+Calls: local ... doTryCatch -> sendData -> sendData.SOCKnode -> serialize
+In addition: There were 50 or more warnings (use warnings() to see the first 50)
+Execution halted
+ first 50)
+Execution halted
+=  : pval = 0.006507388 
+x= 48  y= 45  S=  : pval = 0.00284896 
+Order=1; remaining edges:220
+x= 2  y= 13  S= 28 : pval = 1 
+x= 2  y= 28  S= 13 : pval = 1 
+x= 2  y= 40  S= 13 : pval = 1 
+x= 3  y= 4  S= 11 : pval = 1 
+x= 3  y= 11  S= 4 : pval = 1 
+x= 3  y= 34  S= 4 : pval = 1 
+x= 3  y= 38  S= 4 : pval = 1 
+x= 3  y= 44  S= 4 : pval = 1 
+x= 4  y= 7  S= 3 : pval = 1 
+x= 4  y= 10  S= 3 : pval = 1 
+x= 4  y= 11  S= 3 : pval = 1 
+x= 4  y= 12  S= 3 : pval = 1 
+x= 4  y= 13  S= 3 : pval = 1 
+x= 4  y= 14  S= 3 : pval = 1 
+x= 4  y= 15  S= 3 : pval = 1 
+x= 4  y= 16  S= 3 : pval = 1 
+x= 4  y= 17  S= 3 : pval = 1 
+x= 4  y= 18  S= 3 : pval = 1 
+x= 4  y= 19  S= 3 : pval = 1 
+x= 4  y= 24  S= 3 : pval = 1 
+x= 4  y= 30  S= 3 : pval = 1 
+x= 4  y= 35  S= 3 : pval = 1 
+x= 4  y= 36  S= 3 : pval = 1 
+x= 4  y= 41  S= 3 : pval = 1 
+x= 6  y= 7  S= 10 : pval = 1 
+x= 6  y= 10  S= 7 : pval = 1 
+x= 6  y= 12  S= 7 : pval = 1 
+x= 6  y= 13  S= 7 : pval = 1 
+x= 6  y= 14  S= 7 : pval = 1 
+x= 6  y= 15  S= 7 : pval = 1 
+x= 6  y= 16  S= 7 : pval = 1 
+x= 6  y= 24  S= 7 : pval = 1 
+x= 9  y= 10  S= 13 : pval = 1 
+x= 9  y= 13  S= 10 : pval = 1 
+x= 10  y= 12  S= 4 : pval = 1 
+x= 10  y= 13  S= 4 : pval = 1 
+x= 10  y= 16  S= 4 : pval = 1 
+x= 10  y= 18  S= 4 : pval = 1 
+x= 11  y= 12  S= 3 : pval = 1 
+x= 11  y= 15  S= 3 : pval = 1 
+x= 11  y= 16  S= 3 : pval = 1 
+x= 11  y= 18  S= 3 : pval = 1 
+x= 11  y= 19  S= 3 : pval = 1 
+x= 11  y= 28  S= 3 : pval = 1 
+x= 12  y= 16  S= 4 : pval = 1 
+x= 12  y= 47  S= 4 : pval = 1 
+x= 13  y= 14  S= 2 : pval = 1 
+x= 13  y= 16  S= 2 : pval = 1 
+x= 13  y= 18  S= 2 : pval = 1 
+x= 15  y= 16  S= 4 : pval = 1 
+x= 16  y= 18  S= 4 : pval = 1 
+x= 16  y= 19  S= 4 : pval = 1 
+x= 16  y= 36  S= 4 : pval = 1 
+x= 17  y= 19  S= 4 : pval = 1 
+x= 17  y= 23  S= 4 : pval = 1 
+x= 17  y= 30  S= 4 : pval = 1 
+x= 17  y= 31  S= 4 : pval = 1 
+x= 17  y= 35  S= 4 : pval = 1 
+x= 17  y= 36  S= 4 : pval = 1 
+x= 17  y= 40  S= 4 : pval = 1 
+x= 17  y= 41  S= 4 : pval = 1 
+x= 17  y= 46  S= 4 : pval = 1 
+x= 17  y= 47  S= 4 : pval = 1 
+|i= 100 |iMax= 220 
+x= 18  y= 19  S= 4 : pval = 1 
+x= 18  y= 40  S= 4 : pval = 1 
+x= 19  y= 31  S= 4 : pval = 1 
+x= 19  y= 36  S= 4 : pval = 1 
+x= 19  y= 40  S= 4 : pval = 1 
+x= 19  y= 44  S= 4 : pval = 1 
+x= 19  y= 45  S= 4 : pval = 1 
+x= 19  y= 46  S= 4 : pval = 1 
+x= 19  y= 47  S= 4 : pval = 1 
+x= 22  y= 25  S= 27 : pval = 1 
+x= 22  y= 27  S= 25 : pval = 1 
+x= 22  y= 35  S= 25 : pval = 1 
+x= 22  y= 36  S= 25 : pval = 1 
+x= 22  y= 42  S= 25 : pval = 1 
+x= 22  y= 46  S= 25 : pval = 1 
+x= 22  y= 48  S= 25 : pval = 1 
+x= 34  y= 46  S= 3 : pval = 1 
+x= 35  y= 40  S= 4 : pval = 1 
+x= 35  y= 45  S= 4 : pval = 1 
+x= 35  y= 46  S= 4 : pval = 1 
+x= 36  y= 40  S= 4 : pval = 1 
+x= 36  y= 45  S= 4 : pval = 1 
+x= 36  y= 46  S= 4 : pval = 1 
+x= 36  y= 47  S= 4 : pval = 1 
+x= 37  y= 40  S= 45 : pval = 1 
+x= 37  y= 45  S= 40 : pval = 1 
+x= 37  y= 48  S= 40 : pval = 1 
+x= 38  y= 45  S= 3 : pval = 1 
+x= 38  y= 46  S= 3 : pval = 1 
+x= 39  y= 45  S= 46 : pval = 1 
+x= 39  y= 46  S= 45 : pval = 1 
+x= 39  y= 47  S= 45 : pval = 1 
+x= 40  y= 33  S= 2 : pval = 1 
+x= 40  y= 41  S= 2 : pval = 1 
+x= 40  y= 44  S= 2 : pval = 1 
+x= 40  y= 45  S= 2 : pval = 1 
+x= 40  y= 46  S= 2 : pval = 1 
+x= 40  y= 47  S= 2 : pval = 1 
+x= 40  y= 48  S= 2 : pval = 1 
+x= 41  y= 46  S= 4 : pval = 1 
+x= 44  y= 45  S= 3 : pval = 1 
+x= 44  y= 46  S= 3 : pval = 1 
+x= 44  y= 47  S= 3 : pval = 1 
+x= 45  y= 46  S= 19 : pval = 1 
+x= 45  y= 47  S= 19 : pval = 1 
+x= 45  y= 48  S= 19 : pval = 1 
+|i= 200 |iMax= 220 
+x= 46  y= 47  S= 17 : pval = 1 
+
+Expand search space using BiDAG::iterativeMCMC:maximum parent set size is 0 
+core space defined, score table are being computed 
+score tables completed, iterative MCMC is running 
+search space expansion 2 
+search space expansion 3 
+search space expansion 4 
+
+Sample DAGs using BiDAG::sampleBN:
+maximum parent set size is 4 
+core space defined, score table are being computed 
+score tables computed, orderMCMC is running 
+
+Save results to:  ./inst/simulations/MCMCchains/barley_pcskel_none_order_ess1_epf2_N300_r01.rds
+Runtime
+Time difference of 1.588552 mins
+Error in unserialize(node$con) : error reading from connection
+Calls: local ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+In addition: There were 50 or more warnings (use warnings() to see the first 50)
+Execution halted
+d

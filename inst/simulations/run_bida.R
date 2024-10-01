@@ -34,13 +34,13 @@ sapply(list.files("./inst/simulations/R", ".R", full.names = T),
        source, echo = T)
 
 branch <- system("git branch --show-current", intern = TRUE)
-indir <- paste0("./inst/simulations/MCMCchains/", branch, "/")
-outdir <- paste0("./inst/simulations/results/", branch, "/")
+indir <- paste0("./inst/simulations/", branch, "/MCMCchains/")
+outdir <- paste0("./inst/simulations/" , branch, "/results/")
 if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
-nClusters <- 4
-doTest <- TRUE
+nClusters <- 0
+doTest <- FALSE
 
 sim_run <- function(indir, f, verbose = FALSE) {
   out <- list()
@@ -145,20 +145,10 @@ sim_run <- function(indir, f, verbose = FALSE) {
   }
   out$rank <- c(arp = compute_avgppv(arp[!dindx], dmat[!dindx]),
                 apply(do.call(rbind, tau[!dindx]), 2, compute_avgppv, y = dmat[!dindx]))
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 008c041 (run_bida on bnlearn network + added branch name to path where results are stored)
 
-  topmat <- tautrue > quantile(tautrue[!dindx & tautrue > 0], .8)
+  topmat <- truetau > quantile(truetau[!dindx & truetau > 0], .8)
   out$ranktop <- c(arp = compute_avgppv(arp[!dindx], topmat[!dindx]),
                 apply(do.call(rbind, tau[!dindx]), 2, compute_avgppv, y = topmat[!dindx]))
-
-<<<<<<< HEAD
-=======
->>>>>>> 3b94f7e (upd simfiles)
-=======
->>>>>>> 008c041 (run_bida on bnlearn network + added branch name to path where results are stored)
   rates <- rowsum(edgep[!dindx], dag[!dindx])/tabulate(dag[!dindx]+1, 2)
   out$edge <- c(n = sum(edgep[!dindx]),
                 fpr = rates[1],
@@ -166,7 +156,6 @@ sim_run <- function(indir, f, verbose = FALSE) {
                 avgppv = compute_avgppv(edgep[!dindx], dag[!dindx]))
 
   out$par <- par
-  out$size <- size # description of true dag
   out
 }
 
@@ -174,7 +163,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
 if (doTest) {
   # test
   filenames <- list.files(indir, ".rds")
-  filename <- filenames[500]
+  filename <- filenames[1]
   sim_and_write_to_file(dir_out = outdir,
                         filename = filename,
                         run = sim_run,
@@ -183,13 +172,17 @@ if (doTest) {
 
   res <- readRDS(paste0(outdir, filename))
   str(res, max.level = 2)
-  file.remove(paste0(outdir, filename))
   stop()
+  file.remove(paste0(outdir, filename))
+
 }
 
+filenames <- list.files(indir, ".rds")
+filenames <- filenames[!grepl("barley", filenames)]
 
+# run ----
 if (nClusters == 0) {
-  filenames <- list.files(indir, ".rds")
+
   for (f in filenames) {
     sim_and_write_to_file(dir_out = outdir, filename = f, run = sim_run, indir = indir, f = f)
   }
@@ -203,10 +196,6 @@ if (nClusters == 0) {
   registerDoSNOW(cl)
 
   # run
-  filenames <- list.files(indir, ".rds")
-  indx <-  !grepl("pcart", filenames) # & grepl("k2", filenames)
-  exists <- filenames[indx] %in%  list.files(outdir, ".rds")
-  filenames <- filenames[indx][!exists]
   foreach (f = filenames) %dopar% sim_and_write_to_file(dir_out = outdir,
                                                         filename = f,
                                                         run = sim_run,
