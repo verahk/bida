@@ -145,11 +145,14 @@ sim_run <- function(indir, f, verbose = FALSE) {
   }
   out$rank <- c(arp = compute_avgppv(arp[!dindx], dmat[!dindx]),
                 apply(do.call(rbind, tau[!dindx]), 2, compute_avgppv, y = dmat[!dindx]))
+<<<<<<< HEAD
 
   topmat <- tautrue > quantile(tautrue[!dindx & tautrue > 0], .8)
   out$ranktop <- c(arp = compute_avgppv(arp[!dindx], topmat[!dindx]),
                 apply(do.call(rbind, tau[!dindx]), 2, compute_avgppv, y = topmat[!dindx]))
 
+=======
+>>>>>>> 3b94f7e (upd simfiles)
   rates <- rowsum(edgep[!dindx], dag[!dindx])/tabulate(dag[!dindx]+1, 2)
   out$edge <- c(n = sum(edgep[!dindx]),
                 fpr = rates[1],
