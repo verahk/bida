@@ -15,6 +15,14 @@ test_that("posterior_mean.bida_bdeu", {
   expect_equal(as.array(bdeu$counts), nyxz)
   expect_equal(as.array(colSums(bdeu$counts)), colSums(nyxz))
   expect_equal(posterior_mean(bdeu), exp, tolerance = 10e-10)
+
+  # no parents
+  ny <- rowSums(nyxz)
+  ay <- ny + ess/nlev[1]
+  py <- ay/sum(ay)
+  bdeu <- bida_bdeu(data, y, integer(0), 1, nlev)
+  expect_equal(as.array(bdeu$counts), ny, ignore_attr = TRUE)
+  expect_equal(posterior_mean(bdeu), py, tolerance = 10e-10, ignore_attr = TRUE)
 })
 
 test_that("posterior_mean.bida_bdeu with partition", {

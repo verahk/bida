@@ -125,13 +125,15 @@ aperm.bida_bdeu <- function(obj, perm) {
 #' @export
 posterior_mean.bida_bdeu <- function(obj, reduced = TRUE) {
   dims <- dim(obj$counts)
+  r <- dims[1]
   if (length(dims) == 1) {
-    p <- (obj$counts + obj$ess/dims)/sum(obj$counts + ess)
+    ny <- as.array(obj$counts)
+    return((ny + obj$ess/r)/(sum(ny) + obj$ess))
   } else {
-    r <- dims[1]
     q <- prod(dims[-1])
     if (is.null(obj$partition)) {
       p <- (obj$counts+obj$ess/(r*q))/rep(colSums(obj$counts)+obj$ess/q, each = r)
+      return(as.array(p))
     } else {
       alpha <- update_bdeu(obj)
 
@@ -145,7 +147,6 @@ posterior_mean.bida_bdeu <- function(obj, reduced = TRUE) {
       }
     }
   }
-  return(as.array(p))
 }
 
 #' @rdname bida_bdeu
