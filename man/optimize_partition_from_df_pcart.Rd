@@ -2,8 +2,7 @@
 % Please edit documentation in R/optimize_partition_from_data.R
 \name{optimize_partition_from_df_pcart}
 \alias{optimize_partition_from_df_pcart}
-\alias{print.pcart}
-\alias{predict.pcart}
+\alias{get_rules.pcart}
 \title{Greedy optimization of local structure using \code{rpcart}}
 \usage{
 optimize_partition_from_df_pcart(
@@ -13,9 +12,7 @@ optimize_partition_from_df_pcart(
   use_structure_score = FALSE
 )
 
-\method{print}{pcart}(fit)
-
-\method{predict}{pcart}(fit, newdata)
+\method{get_rules}{pcart}(obj)
 }
 \arguments{
 \item{df}{(data frame) an data frame with factors.

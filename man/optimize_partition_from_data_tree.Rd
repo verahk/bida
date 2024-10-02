@@ -2,7 +2,7 @@
 % Please edit documentation in R/optimize_partition_from_data.R
 \name{optimize_partition_from_data_tree}
 \alias{optimize_partition_from_data_tree}
-\alias{predict.tree}
+\alias{get_rules.tree}
 \title{Greedy optimization of local structure: decision trees}
 \usage{
 optimize_partition_from_data_tree(
@@ -15,7 +15,7 @@ optimize_partition_from_data_tree(
   verbose = FALSE
 )
 
-\method{predict}{tree}(fit, newdata, name = "part")
+\method{get_rules}{tree}(obj)
 }
 \arguments{
 \item{data}{(numeric matrix) a matrix with integers representing zero-based

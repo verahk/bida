@@ -12,6 +12,8 @@
 #' @param nlev (integer vector) cardinality of every variable in `data`
 #' @param method (character) name of the algorithm used to learn a partition
 #' @param verbose (bolean)
+#' @param obj an object of class `partition`
+#' @param newdata a matrix or data.frame with values of the `parentnodes`
 #' @details
 #' The `method` argument must match one of the following algorithms:
 #' - `tree`: fit a decision tree using a greedy algorithm, where each
@@ -27,11 +29,12 @@
 #' - `pcart`: fit the optimial binary decision tree in terms of the BDeu-score,
 #'   using the algorithm implemented in `rpcart::opt.pcart.cat.bdeu`.
 #'
+#' @section Methods for the class `partition`:
+#' - [get_rules()]: returns a list with [base::expression()] that defines each
+#'   part of the partition.
+#' - [predict.partition()]: assigns each row in `newdata` to a part in the partition.
+#'
 #' @return an object of class `partition` with subclass `tree` or `pcart`.
-#' That is an list with elements:
-#'  - `tree`: the fitted tree, stored as a string
-#'  - `score`: the score of the tree, equal to the sum of the leaf-scores.
-#'  - `size`: an integer vector with the size of each leaf
 #' @export
 #'
 #' @examples
@@ -75,13 +78,17 @@
 #'
 #' # tree: greedy decision tree
 #' fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "tree", verbose = TRUE)
-#' print(fit)
+#' get_rules(fit)
 #'
 #' # ptree: pruned greedy decision tree
 #' fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "ptree", verbose = TRUE)
 #' print(fit)
 #'
+#' # list rules
+#' get_rules(fit)
+#'
 #' # methods
+#' methods(class = "partition")
 #' methods(class = "tree")
 #' methods(class = "pcart")
 optimize_partition_from_data <- function(data, j, parentnodes, ess, nlev, method, verbose = FALSE) {
@@ -111,7 +118,46 @@ optimize_partition_from_data <- function(data, j, parentnodes, ess, nlev, method
   }
 }
 
+#' @rdname optimize_partition_from_data
+#' @export
+get_rules <- function(obj, ...) {
+  UseMethod("get_rules")
+}
+
+#' @rdname optimize_partition_from_data
+#' @export
+predict.partition <- function(obj, newdata, rule = TRUE) {
+  if (is.null(dim(newdata))) newdata <- rbind(newdata)
+  newdata <- as.data.frame(newdata)
+
+
+  rules <- get_rules(obj)
+  if (length(rules) == 1) return(rep(1L, nrow(newdata)))
+
+  parts   <- vector("integer", nrow(newdata))
+  parts0  <- seq_len(nrow(newdata))
+  part <- 0
+  while (length(parts0) > 0 && part < length(rules)) {
+    part <- part+1
+    indx <- with(newdata[parts0, ], eval(rules[[part]]))
+    parts[parts0[indx]] <- part
+    parts0 <- parts0[!indx]
+  }
+  return(parts)
+}
+
+#' @rdname optimize_partition_from_data
+#' @export
+print.partition <- function(obj) {
+  cat("Partition of subclass", class(obj)[-1], "\n")
+  cat(obj, "\n")
+  cat("score: ", attr(obj, "score"), "\n")
+  cat("size of parts: ", attr(obj, "sizes"), "\n")
+}
+
+
 # decision trees ----
+
 #' Greedy optimization of local structure: decision trees
 #'
 #' This function learn a partition of the parent space, using a greedy recursive
@@ -139,10 +185,8 @@ optimize_partition_from_data <- function(data, j, parentnodes, ess, nlev, method
 #' @seealso [optimize_partition_from_data()]
 #' @return an object of class `partition` with sub-class `tree`
 optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune = FALSE, regular = FALSE, verbose = FALSE) {
-
-
   r <- nlev[[1]]
-  q <- prod(nlev)/r
+  q <- prod(nlev[-1])
 
   grow_tree <- function(data, score, size, force_split = FALSE) {
     # function for growing a tree recursively
@@ -158,13 +202,12 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
       }
 
       v <- best_split$var
+      col <- match(v, colnames(data))
+      dv  <- data[, col]
       k <- nlev[[v]]
-      best_split$values   <- seq.int(0, k-1)
       best_split$branches <- vector("list", k)
-      for (b in seq_along(best_split$branches)) {
-        indx <- data[, v] == best_split$values[[b]]
-        tmp  <- data[indx, -match(v, colnames(data)), drop = FALSE]
-        best_split$branches[[b]] <- grow_tree(data = tmp,
+      for (b in seq_len(k)) {
+        best_split$branches[[b]] <- grow_tree(data = data[dv == b-1, -col, drop = FALSE],
                                               score  = best_split$leaf_scores[[b]],
                                               size   = size/k,
                                               force_split = force_split)
@@ -175,12 +218,14 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
 
   find_best_split <- function(data, score, size, force_split) {
     best_split <- list(score = score, size = size)
-    if (ncol(data) > 1 && (score != 0 || force_split)) {
+    if (ncol(data) > 1 && (nrow(data) > 1 || force_split)) {
       best_score <- score + min_improv      # minimum value for score of new split
-      for (v in colnames(data)[-1]) {
 
+      bins <- data[, 1] + r*data[, -1, drop = FALSE] +1   # enumerate joint outcome (y, x) for each x
+      nbins <- r*nlev[colnames(bins)]       # cardinality of each (y, x)
+      for (v in colnames(bins)) {
         # sum observations for each level of y and variable i
-        tab <- matrix(tabulate(data[, 1] + r*data[, v]+1, r*nlev[v]), ncol = r, byrow = TRUE)
+        tab <- matrix(tabulate(bins[, v], nbins[v]), ncol = r, byrow = TRUE)
 
         # compute score of each leaf and compare against current best
         leaf_scores <- famscore_bdeu_byrow(tab, ess, r, q, s = size/nlev[[v]])
@@ -245,10 +290,11 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
         tree <- grow_tree(data[, c(1, pos)], tree$score, tree$size, force_split = TRUE)
       } else {
         v <- tree$var
+        col <- match(v, colnames(data))
+        dv <- data[, col]
         for (b in seq_along(tree$branches)) {
-          indx <- data[, v] == tree$values[[b]]
-          tmp  <- data[indx, -match(v, colnames(data)), drop = FALSE]
-          tree$branches[[b]] <- add_split(tree = tree$branches[[b]], data = tmp)
+          tree$branches[[b]] <- add_split(tree = tree$branches[[b]],
+                                          data = data[dv == b-1, -col, drop = FALSE])
         }
       }
       return(tree)
@@ -262,107 +308,65 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
     }
   }
 
-  # enumerate leaves ----
-  part <- 0
-  enumerate_leaves <- function(tree) {
-    if (is.null(tree$branches)) {
-      part <<- part + 1
-      tree$part <- part
-    } else {
-      tree$branches <- lapply(tree$branches, enumerate_leaves)
-    }
-    return(tree)
-  }
-  tree <- enumerate_leaves(tree)
-
-
   # output ----
   to_string <- function(tree, prefix = "") {
     if (is.null(tree$branches)) {
-      sprintf("%s-- part: %s score: %1.2f size: %s\n", prefix, tree$part, tree$score, tree$size)
+      sprintf("%s-- score: %1.2f size: %s\n", prefix, tree$score, tree$size)
     } else {
-      split <- sprintf("%s-+ %s: %s\n", prefix, tree$var, paste0(tree$make, collapse = " | "))
+      split <- sprintf("%s-+ %s:\n", prefix, tree$var)
       c(split, unlist(lapply(tree$branches, to_string, prefix = paste0(prefix, " | "))))
     }
   }
 
-  structure(list(tree = paste0(to_string(tree), collapse = ""),
-                 score = sum(unlist(get_from_leaves(tree, "score"))),
-                 sizes = unname(unlist(get_from_leaves(tree, "size")))),
+  obj <- paste0(to_string(tree), collapse = "")
+  structure(obj,
+            score = sum(unlist(get_from_leaves(tree, "score"))),
+            sizes = unname(unlist(get_from_leaves(tree, "size"))),
             class = c("partition", "tree"))
 
 }
 
 
-#' @rdname optimize_partition_tree
+#' @rdname optimize_partition_from_data_tree
 #' @export
-print.tree <- function(fit) {
-  cat(fit$tree)
-  cat("score:", fit$score, "\n")
-}
-
-
-#' @rdname optimize_partition_tree
-#' @export
-summary.tree <- function(fit, names = c("part", "score", "size"), prettify = TRUE) {
+get_rules.tree <- function(obj) {
   rules_from_tree <- function(tree, rule = "") {
+    # recurxive function that returns the rules defining each leaf of the tree
     if (grepl("^\\-\\+", tree[1])) {
       root <- tree[1]
-      split <- strsplit(substring(root, 4), ": | \\| ")[[1]]
-      var <- split[1]
-      values <- split[-1]
-      new_rules <- lapply(values, function(x) paste0(rule, " & ", var, "==", x))
+      var <- substring(root, 4, nchar(root)-1)
 
-      tmp <- gsub("^ \\| ", "", tree[-1])
-      pos <- grep("^-+|^--", tmp)
+      # collect subtrees
+      tmp <- gsub("^ \\| ", "", tree[-1])         # remove pre-fix
+      pos <- grep("^-+|^--", tmp)                 # positions of next nodes or leaves
       subtrees <- split(tmp, rep.int(seq_along(pos), diff(c(pos, length(tmp)+1))))
+
+      # update rules
+      new_rules <- lapply(seq_along(pos)-1,
+                          function(x) paste0(rule, " & ", var, "==", x))
+
+      # add rules of each subtree
       unlist(lapply(seq_along(subtrees),
                     function(b) rules_from_tree(subtrees[[b]], new_rules[[b]])),
              recursive = FALSE)
 
     } else {
-      return(list(parse(text = gsub("^ & ", "", rule))))
+      list(parse(text = gsub("^ & ", "", rule)))
     }
   }
+  rules_from_tree(strsplit(obj, "\n")[[1]])
+}
 
-  tree <- strsplit(fit$tree, "\n")[[1]]
+#' @rdname optimize_partition_tree
+#' @export
+summary.tree <- function(obj) {
+  tree <- strsplit(obj, "\n")[[1]]
   leaves <- tree[grepl("--", tree)]
-  tmp <- list(part  = gsub(".*part: ([0-9]+).*", "\\1", leaves),
+  tmp <- list(part = seq_along(leaves),
               score = gsub(".*score: (-?[0-9]+\\.[0-9]+).*", "\\1", leaves),
               size  = gsub(".*size: ([0-9]+).*", "\\1", leaves))
   tmp <- lapply(tmp, as.numeric)
   do.call("cbind", tmp)
-}
-
-
-
-#' @rdname optimize_partition_from_data_tree
-#' @export
-predict.tree <- function(fit, newdata, name = "part") {
-
-  if (is.null(dim(newdata))) newdata <- rbind(newdata)
-  parts <- vector("integer", nrow(newdata))
-
-  for (i in 1:nrow(newdata)) {
-    tree <- strsplit(fit$tree, "\n")[[1]]
-    while (startsWith(tree[1], "-+")) {
-      root <- tree[1]
-      split <- strsplit(substring(root, 4), ": | \\| ")[[1]]
-      var <- split[1]
-      if (is.na(match(var, colnames(newdata)))) {
-        stop("Split variable ", var, " is not in colnames(newdata) \n")
-      }
-      val <- newdata[i, var]
-
-      tmp <- gsub("^ \\| ", "", tree[-1])
-      next_node <- c(grep("^-+|^--", tmp), length(tmp)+1)
-      start <- next_node[val+1]
-      stop  <- next_node[val+2]
-      tree <- tmp[seq.int(start, stop-1)]
-    }
-    parts[i] <- as.integer(substr(tree, 10, 10))
-  }
-  return(parts)
 }
 
 
@@ -408,49 +412,15 @@ optimize_partition_from_df_pcart <- function(df, ess, verbose = FALSE, use_struc
     } else return(size)
   }
 
-  fit$sizes <- compute_part_sizes(tree)
-  structure(fit, class = c("partition", "pcart"))
+  structure(fit$tree,
+            score = fit$score,
+            sizes = compute_part_sizes(tree),
+            class = c("partition", "pcart"))
 }
 
 #' @rdname optimize_partition_from_df_pcart
 #' @export
-print.pcart <- function(fit) {
-  cat(fit$tree, "\n")
-  cat("score: ", fit$score, "\n")
-}
-
-#' @rdname optimize_partition_from_df_pcart
-#' @export
-predict.pcart <- function(fit, newdata) {
-
-  tree <- strsplit(fit$tree, "\n")[[1]]
-  index <- grep("--", tree)
-  for (part in seq_along(index)) tree[index[part]] <- gsub("--", paste0("-- part: ", part), tree[index[part]])
-
-  if (is.null(dim(newdata))) newdata <- rbind(newdata)
-  parts <- vector("numeric", nrow(newdata))
-
-  tree_ <- tree  # keep copy for resetting for-loop
-  for (i in 1:nrow(newdata)) {
-    tree <- tree_
-    while (startsWith(tree[1], "-+")) {
-      root <- tree[1]
-      split <- strsplit(substring(root, 4), ": | \\| ")[[1]]
-      var <- split[1]
-      if (is.na(match(var, colnames(newdata)))) {
-        stop("Split variable ", var, " is not in colnames(newdata) \n")
-      }
-      val <- split[2]
-      index <- grepl("^ `", tree[-1]) == !(newdata[i, var] == val)
-      tree <- substring(tree[-1], 3)[index]
-    }
-    parts[i] <- as.integer(substr(tree, 10, 10))
-  }
-  return(parts)
-}
-
-
-if (FALSE) {
+get_rules.pcart <- function(obj) {
   rules_from_tree <- function(tree, rule = "") {
     if (startsWith(tree[1], "-+")) {
       root <- tree[1]
@@ -458,70 +428,17 @@ if (FALSE) {
 
       splitvals <- lapply(split[-1],
                           function(x) strsplit(x, " +")[[1]])
-      add_rules <- lapply(splitvals,
-                          function(x) paste0(paste0(split[1], "==", x), collapse = "|"))
-
-      if (nchar(rule) == 0) {
-        new_rules <- add_rules
-      } else {
-        new_rules <- lapply(add_rules, function(x) sprintf("%s & %s", rule, x))
-      }
+      new_rules <- vapply(splitvals,
+                          function(x) paste0(paste0(split[1], "==", x), collapse = "|"),
+                          character(1))
+      upd_rules <- paste(rule, new_rules, sep = " & ")
 
       subtrees <- split(substring(tree[-1], 3), grepl("^ `", tree[-1]))
       c(rules_from_tree(subtrees[[1]], new_rules[[1]]),
         rules_from_tree(subtrees[[2]], new_rules[[2]]))
     } else {
-       list(rule)
+      list(parse(text = gsub("^ & ", "", rule)))
     }
   }
-
-  rules_chr  <- rules_from_tree(tree, "")
-  rules_expr <- lapply(rules_chr, function(x) parse(text = x))
-  with(tail(df), eval(rules_expr[[1]]))
-  lapply(rules_expr, function(xx) which(with(df, eval(xx))))
-
-  extract_partitioning <- function(fit, nlev, parentnodes) {
-    # extract partitioning
-
-    nlev <- nlev[parentnodes]
-    stride <- c(1, cumprod(nlev[-length(nlev)]))
-    names(nlev) <- names(stride) <- predictors
-    unlist_tree <- function(tree, nlev, stride, parts) {
-      # recursive function for extracting a partition from a rpcart-tree
-      if (startsWith(tree[1], "-+")) {
-        root <- tree[1]
-        split <- strsplit(substring(root, 4), ": | \\| ")[[1]]
-        splitvar <- split[1]
-        splitval <- as.numeric(strsplit(split[2], " +")[[1]])
-
-        vals <- (parts%/%stride[splitvar])%%nlev[splitvar]
-        subparts <- split(parts, vals %in% splitval)
-        subtrees <- split(substring(tree[-1], 3), grepl("^ \\|", tree[-1]))
-        if (length(subparts) != length(subtrees)) {
-          stop()
-        }
-        c(unlist_tree(subtrees[[1]], nlev, stride, subparts[[1]]),
-          unlist_tree(subtrees[[2]], nlev, stride, subparts[[2]]))
-      } else {
-        return(list(parts))
-      }
-    }
-    partition <- unlist_tree(tree, nlev, stride, seq_len(prod(nlev))-1)
-
-    # compute score
-    if (recompute_score) {
-      n_parts <- length(partition)
-      data_parts <- get_parts(partition)[data[, parentnodes]%*%stride+1]
-      counts <- matrix(tabulate(data_parts + n_parts*data[, j], n_parts*r), n_parts, r)
-      score  <- sum(famscore_bdeu_byrow(counts, ess, r, q, lengths(partition)))
-    } else {
-      score <- result$score
-    }
-
-    list(partition = partition,
-         score = score,
-         pcart = result)
-
-  }
+  rules_from_tree(strsplit(obj, "\n")[[1]])
 }
-

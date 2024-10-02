@@ -2,6 +2,9 @@
 % Please edit documentation in R/optimize_partition_from_data.R
 \name{optimize_partition_from_data}
 \alias{optimize_partition_from_data}
+\alias{get_rules}
+\alias{predict.partition}
+\alias{print.partition}
 \title{Optimize the local structure of a conditional probability table (CPT)}
 \usage{
 optimize_partition_from_data(
@@ -13,6 +16,12 @@ optimize_partition_from_data(
   method,
   verbose = FALSE
 )
+
+get_rules(obj, ...)
+
+\method{predict}{partition}(obj, newdata, rule = TRUE)
+
+\method{print}{partition}(obj)
 }
 \arguments{
 \item{data}{(numeric matrix) matrix with integers representing zero-based categorical variables.}
@@ -28,15 +37,13 @@ optimize_partition_from_data(
 \item{method}{(character) name of the algorithm used to learn a partition}
 
 \item{verbose}{(bolean)}
+
+\item{obj}{an object of class \code{partition}}
+
+\item{newdata}{a matrix or data.frame with values of the \code{parentnodes}}
 }
 \value{
 an object of class \code{partition} with subclass \code{tree} or \code{pcart}.
-That is an list with elements:
-\itemize{
-\item \code{tree}: the fitted tree, stored as a string
-\item \code{score}: the score of the tree, equal to the sum of the leaf-scores.
-\item \code{size}: an integer vector with the size of each leaf
-}
 }
 \description{
 Given data on a response variable and its parents, all assumed categorical,
@@ -59,6 +66,15 @@ those parents are added to \emph{every} leaf node.
 using the algorithm implemented in \code{rpcart::opt.pcart.cat.bdeu}.
 }
 }
+\section{Methods for the class \code{partition}}{
+
+\itemize{
+\item \code{\link[=get_rules]{get_rules()}}: returns a list with \code{\link[base:expression]{base::expression()}} that defines each
+part of the partition.
+\item \code{\link[=predict.partition]{predict.partition()}}: assigns each row in \code{newdata} to a part in the partition.
+}
+}
+
 \examples{
 
 # Example 1: binary split data with missing levels
@@ -76,6 +92,7 @@ newdata <- expand.grid(lapply(nlev[parentnodes]-1, seq.int, from = 0))
 # tree: greedy decision tree
 fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "tree", verbose = TRUE)
 print(fit)
+get_rules(fit)
 predict(fit, newdata)
 
 # treereg: regular greedy decision tree
@@ -107,6 +124,7 @@ fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "ptree", ve
 print(fit)
 
 # methods
+methods(class = "partition")
 methods(class = "tree")
 methods(class = "pcart")
 }
