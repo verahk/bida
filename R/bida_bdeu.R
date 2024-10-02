@@ -85,6 +85,10 @@ new_bida_bdeu <- function(node, parents, counts, ess, partition, scope = NULL) {
             class = "bida_bdeu")
 }
 
+#' @noRd
+#' @export
+dim.bida_bdeu <- function(x) dim(x$counts)
+
 #' S3-methods ----
 #' @rdname bida_bdeu
 #' @export
@@ -293,7 +297,7 @@ update_bdeu <- function(obj, parent_config = NULL) {
 
       # compute posterior hyperparameters
       if (inherits(obj$partition, "partition")) {
-        partsize <- obj$partition$size
+        partsize <- attr(obj$partition, "sizes")
         tmp <- expand_grid_fast(lapply(dims[-1]-1, seq.int, from = 0))
         colnames(tmp) <- obj$parents
         parts <- predict(obj$partition, tmp)

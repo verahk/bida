@@ -92,7 +92,6 @@ newdata <- expand.grid(lapply(nlev[parentnodes]-1, seq.int, from = 0))
 # tree: greedy decision tree
 fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "tree", verbose = TRUE)
 print(fit)
-get_rules(fit)
 predict(fit, newdata)
 
 # treereg: regular greedy decision tree
@@ -117,11 +116,14 @@ nlev <- c(2, 2, 2)
 
 # tree: greedy decision tree
 fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "tree", verbose = TRUE)
-print(fit)
+get_rules(fit)
 
 # ptree: pruned greedy decision tree
 fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "ptree", verbose = TRUE)
 print(fit)
+
+# list rules
+get_rules(fit)
 
 # methods
 methods(class = "partition")
