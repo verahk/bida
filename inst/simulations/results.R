@@ -3,82 +3,125 @@
 library(dplyr)
 library(ggplot2)
 
-dir_in <- "./inst/simulations/results/"
-dir_out <- "./inst/simulations/plots/"
+branch  <- system("git branch --show-current", intern = TRUE)
+dir_in  <- paste0("./inst/simulations/", branch, "/results/")
+dir_out <- paste0("./inst/simulations/", branch, "/output/")
 dir.create(dir_out)
 files <- list.files("./inst/simulations/R", full.names = T)
 sapply(files, source, echo = T)
 
 
-# list files with results ----
-files <- list.files(dir_in, ".rds", full.names = T)
-
 res_from_file_to_df <- function(files, name) {
   imp <- lapply(files,
                 function(f) do.call(c, readRDS(f)[c("par", name)]))
+  rename_local_struct <- function(x) {
+    names <- names(x)
+    pos <- match("par.regular", names, 0L)
+    if (pos > 0 && x[pos] == 1) {
+      x <- x[-pos]
+      x["par.local_struct"] = paste0(x["par.local_struct"], "reg")
+    }
+    return(x)
+  }
+  imp <- lapply(imp, rename_local_struct)
   dfs <- lapply(imp, data.frame)
   df  <- do.call(rbind, dfs)
-  names(df) <- gsub(paste0(name, "."), "", names(df))
-  names(df) <- gsub(paste0("par", "."), "", names(df))
+  names(df) <- gsub(paste0(name, "\\."), "", names(df))
+  names(df) <- gsub(paste0("par", "\\."), "", names(df))
   names(df)[names(df) == "complexity"] <- "csi"
 
-  for (v in c("n", "k", "csi")) {
-    lev <- sort(unique(df[[v]]))
-    lab <- paste0(v, "=", lev)
-    df[[v]] <- factor(df[[v]], lev, lab)
-  }
 
   if (all(c("known", "unknown", "full") %in% names(df))) {
     df <- df %>%
       tidyr::pivot_longer(any_of(c("known", "unknown", "full", "arp"))) %>%
       mutate(slearn = ifelse(name == "known", "true parents", "unknown parents"),
-             name   = ifelse(name == "full", "full CPT", "reduced CPT"),
-             value  = sqrt(value))
+             name   = case_when(name == "full" ~ "full CPT",
+                                name == "arp" ~ "ARP",
+                                .default = "reduced CPT"))
+
+
   }
 
   df$N <- with(df, factor(N, sort(unique(N))))
+  df$edgepf <- ifelse(df$edgepf == 2, "2", "logN")
   df$lstruct.epf <- with(df, interaction(local_struct, edgepf))
+
   return(df)
 }
 
+path_report <- paste0(dir_out, "report.md")
+write(Sys.time(), file = path_report)
+for (bnname in c("asia", "child", "insurance")) {
+  files <- list.files(dir_in, ".rds", full.names = T)
+  files <- files[grepl(bnname, files)]
 
-
-sim_results <- function(df, name, varsdoSave = FALSE) {
-  keys <- c("init", "local_struct", "sample", "ess", "edgepf", "hardlimit",
-            "N", "n", "k", "csi", "r", "lstruct.epf")
-  vars <- names(df)[!names(df) %in% keys]
-  # boxplots
   x <- "N"
-  color <- "lstruct.epf"
-  facets <- "n+k~csi"
-  caption <- cat("The box-plots show the distribution over", paste0(range(df$r), collapse = "-"), "simulation runs.")
-  plots <- list()
-  for (y in vars) {
-    plots[[y]] <- plot_boxplot(df, "N", y, facets, color = color, caption = caption)
+  y <- "value"
+  facets <- "bnname~slearn+name"
+  color  <- "lstruct.epf"
+
+  ylabs <- list("mse_pdo" = "intervention probs, MSE",
+                "mse_tau" = "causal effects, MSE",
+                "rank" = "positive causal effects, average precsision",
+                "ranktop" = "top-causal effects, average precision",
+                "parents" = "size of conditioning set, avg.",
+                "parts" = "size of CPT, avg.")
+
+  for (name in names(ylabs)) {
+    plot <- res_from_file_to_df(files, name) %>%
+      filter(!name == "full CPT") %>%
+      plot_boxplot(x, y, facets, color = color, ylab = ylabs[[name]])
+    if (length(dir_out) > 0 ) {
+      filename <- paste0("box_plot_", bnname, "_", name, ".png")
+      ggsave(paste0(dir_out, filename), plot, height = 7, width = 6)
+
+      new_line <- sprintf("![%s](%s)", filename, filename)
+      write(new_line, file = path_report, append = TRUE)
+    } else {
+      print(plot)
+    }
   }
-  if (doSave) {
-    lapply(names(plots), function(v) ggsave(paste0(dir_out, name, "_", v, ".png"), plots[[v]], height = 5, width = 4))
-  } else {
-    plots
+
+
+  if (FALSE) {
+    gr_vars <- c("init", "local_struct", "sample", "ess", "edgepf", "hardlimit",
+                 "n", "k", "csi", "lstruct.epf", "slearn", "name", "N")
+
+    df <- res_from_file_to_df(files, "size") %>%
+      select(-r, -N, -lstruct.epf) %>%
+      group_by(across(any_of(gr_vars))) %>%
+      slice(1)
+
+    # tab: average set of conditioning set
+    title <- "Local distribution P(Y|X, Z). Size of conditioning set and number of rows. Averaged over all DAGs and nodes."
+    file <- paste0(dir_out, "tab_cpt_size_k", k, "_", name, ".tex")
+    dfs <- list(vars = res_from_file_to_df(files, "parents"),
+                parts = res_from_file_to_df(files, "parts"))
+    # aggregate
+    agg <- dplyr::bind_rows(dfs, .id = "variable") %>%
+      select(-ess, -init, -sample, -local_struct, -edgepf) %>%
+      group_by(across(any_of(c(gr_vars, "variable")))) %>%
+      summarize(value = mean(value), .groups = "keep") %>%
+      arrange()
+
+    # print to tex
+    df <- agg %>%
+      tidyr::pivot_wider(names_from = "variable") %>%
+      group_by(n, k, csi, slearn, name)
+
+    df %>%
+      df_to_tex(values_from = unique(agg$variable),
+                names_from = "lstruct.epf",
+                caption = title,
+                file = file)
   }
 }
 
+
+rmarkdown::render(path_report, output_format = "html_document")
+browseURL(gsub("md$", "html", path_report))
+
 stop()
-res_from_file_to_df(files, "mse_pdo") %>%
-  plot_boxplot("N", "value", "n+k+csi~slearn+name", color = "lstruct.epf", ylab = "RMSE, IPTs")
-res_from_file_to_df(files, "rank") %>%
-  plot_boxplot("N", "value", "n+k+csi~slearn+name", color = "lstruct.epf", ylab = "average precision")
-res_from_file_to_df(files, "mse_tau") %>%
-  plot_boxplot("N", "value", "n+k+csi~slearn+name", color = "lstruct.epf", ylab = "RMSE, causal effects")
-res_from_file_to_df(files, "parents") %>%
-  plot_boxplot("N", "value", "n+k+csi~slearn+name", color = "lstruct.epf", ylab = "size of conditioning set |X, Z|")
-res_from_file_to_df(files, "parts") %>%
-  plot_boxplot("N", "value", "n+k+csi~slearn+name", color = "lstruct.epf", ylab = "size of IPT (number of rows)")
-
-df <- res_from_file_to_df(files, "mse_pdo")
-
-
-
 # tabs ----
 title <- "Precision-recall of ancestor relation probabilities and edgeprobabilities. Closer to 1 is better. Averaged over all simulation runs."
 file <- paste0(dir_out, "edgep_arp.tex")

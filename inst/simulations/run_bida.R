@@ -39,7 +39,7 @@ outdir <- paste0("./inst/simulations/" , branch, "/results/")
 if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
-nClusters <- 0
+nClusters <- 4
 doTest <- FALSE
 
 sim_run <- function(indir, f, verbose = FALSE) {
@@ -55,7 +55,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
   N <- par$N
   r <- par$r
 
-  bn <- readRDS(paste0("data/", par$bnname, ".rds"))
+  bn <- readRDS(paste0("inst/data/", par$bnname, ".rds"))
   nlev <- vapply(bn, function(x) dim(x$prob)[1], integer(1))
   n    <- length(bn)
   dag <- bnlearn::amat(bn)
@@ -177,10 +177,24 @@ if (doTest) {
 
 }
 
-filenames <- list.files(indir, ".rds")
-filenames <- filenames[!grepl("barley", filenames)]
+# profile ----
+if (FALSE) {
+  f <- "sachs_pcskel_ptree_order_ess1_epf2_N300_r16.rds"
+  profvis::profvis(sim_run(indir = indir, f))
+
+  # check how many (x, z) sets are in lookup
+  ps <- bida:::parent_support_from_dags(dags)
+
+}
 
 # run ----
+filenames <- list.files(indir, ".rds")
+filenames <- filenames[!grepl("barley", filenames)]
+filenames <- filenames[!grepl("alarm", filenames)]
+filenames <- filenames[!grepl("insurance", filenames)]
+filenames <- sample(filenames)
+
+
 if (nClusters == 0) {
 
   for (f in filenames) {
@@ -203,4 +217,6 @@ if (nClusters == 0) {
                                                         f = f)
   stopCluster(cl)
 }
+
+
 
