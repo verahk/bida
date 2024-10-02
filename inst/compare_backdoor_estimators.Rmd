@@ -1,0 +1,179 @@
+---
+title: "Compare backdoor estimates"
+author: "Vera Kvisgaard"
+date: "2024-10-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r cars}
+n <- 4
+dag <- matrix(0, n, n)
+colnames(dag) <- rownames(dag) <- c("Z1", "Z2", "X", "Y")
+dag[1:2, "X"] <- 1  # Z1 and Z2 are parents of X
+dag1 <- dag2 <- dag3 <- dag4 <- dag
+
+dag1["X", "Y"] <- 1   # X is caue of Y
+dag1[1:2, "Y"] <- 1   # Z1 and Z2 are confounders
+dag2["X", "Y"] <- 1   # X is caue of Y
+dag2[1, "Y"]   <- 1   # Z1 is confounder
+dag3["X", "Y"] <- 1   # X is cause of Y, no confounding
+dag4[1:2, "Y"] <- 1   # X is not cause of Y, but Z1 and Z2 are
+
+```
+
+
+```{r}
+rand_cpt <- function(npar, nlev = 2, alpha = 1) {
+  
+  q <- nlev**npar
+  coords <- expand_grid_fast(k = rep(nlev, npar))
+  i <- sample.int(npar, 1)
+  P    <- split(seq_len(q), coords[, i])
+  for (ii in seq_len(npar)[-i]) {
+    subset <- P[[1]]
+    P <- c(P[-1], split(subset, coords[subset, ii]))
+  }
+  
+  
+  p <- rDirichlet(length(P), rep(alpha, nlev))
+  parts <- rep.int(1:length(P), lengths(P))[order(unlist(P))]
+  p[parts, ]
+}
+
+
+rand_bn <- function(dag, nlev, alpha) {
+  varnames <- colnames(dag)
+  dist <- setNames(vector("list", length(varnames)), varnames)
+  npar <- colSums(dag)
+  indx <- npar == 0
+  dist[indx] <-  replicate(sum(indx), rDirichlet(1, rep(alpha, nlev)), simplify = FALSE)
+  indx <- npar == 1
+  dist[indx] <-  replicate(sum(indx), t(rDirichlet(nlev, rep(alpha, nlev))), simplify = FALSE)
+  indx <- npar > 1
+  dist[indx] <- lapply(npar[indx], 
+                       function(x) array(t(rand_cpt(x, nlev, alpha)), 
+                                           rep(nlev, x+1)))
+
+  g <- bnlearn::empty.graph(varnames)
+  bnlearn::amat(g) <- dag
+  bnlearn::custom.fit(g, dist)
+}
+
+
+# example 
+rand_bn(dag, nlev = 2, alpha = 1)
+```
+
+```{r}
+sim_compute_estimates <- function(data, y, x, z, ess, nlev) {
+  est <- list()
+   
+  # compute counts over y, x, and z
+  bdeu <- bida_bdeu(data, y, c(x, z), ess, nlev)
+  
+  #posterior_mean(bdeu)
+  # estimate backdoor mean using full CPT
+  est$full <- backdoor_mean(bdeu)
+    
+  # estimate backdoor mean using partition over x|z
+  opt <- optimize_partition_from_data(data, x, z, ess, nlev, "ptree")
+  est$z <- backdoor_mean_over_partition(bdeu, opt, nlevx = nlev)
+  
+  # estimate backdoor mean using partition over x|z
+  opt <- optimize_partition_from_data(data, x, z, ess, nlev, "pcart")
+  est$z_pcart <- backdoor_mean_over_partition(bdeu, opt, nlevx = nlev)
+  
+  # estimate backdoor mean using reduced CPT
+  opt <- optimize_partition_from_data(data, y, c(x, z), ess, nlev, "ptree")
+  bdeu$partition <- opt
+  est$xz <- backdoor_mean(bdeu, nlevx = nlev)
+  
+  opt <- optimize_partition_from_data(data, y, c(x, z), ess, nlev, "pcart")
+  bdeu$partition <- opt
+  est$xz_pcart <- backdoor_mean_over_partition(bdeu, opt, nlevx = nlev)
+  
+  return(est)
+}
+sim_eval_estimates <- function(est, pdo) {
+  # compare estimates with ground truth
+  diff <- matrix(unlist(est), nrow = length(pdo), dimnames = list(NULL, names(est)))-c(pdo)
+  colSums(diff**2)/length(pdo)
+}
+
+sim_run <- function(dag, nlev,  samplesizes = c(30, 100, 300, 1000, 3000)) {
+  bn <- rand_bn(dag, nlev, alpha = 1)
+  n  <- ncol(dag)
+  
+  # ground truth 
+  y <- 4
+  x <- 3
+  z <- which(dag[, x] == 1)
+  dmat <- descendants(bn)
+  pdo <- interv_probs_x_bn(bn, x, y, dmat)[[1]]
+  
+  res <- list()
+  for (N in samplesizes) {
+    data <- sample_data_from_bn(bn, N)
+    est  <- sim_compute_estimates(data, y, x, z, ess = 1, nlev = rep(nlev, n))
+    res[[paste(N)]] <- sim_eval_estimates(est, pdo)
+  }
+  
+  do.call(rbind, res)
+  
+}
+
+``` 
+
+
+
+
+
+```{r}
+nlev <- 3
+dags <- list(dag1, dag2, dag3, dag4)
+res <- lapply(dags,
+              function(dag) replicate(30, sim_run(dag, nlev)))
+
+df <- reshape2::melt(res)
+names(df) <- c("N", "partition", "r", "value", "dag")
+
+library(ggplot2)
+ggplot(df, aes(as.factor(N), sqrt(value), fill = partition)) +
+  facet_grid(.~dag)+
+  geom_boxplot()
+```
+
+```{r}
+data <- structure(c(0, 2, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 
+1, 2, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 
+1, 2, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 
+0, 0, 1, 1, 0, 2, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 
+1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 2, 
+1, 2, 1, 1, 1, 0, 0, 1, 2, 1, 2, 2, 1, 1, 1, 2, 1, 2, 2, 2, 2, 
+2, 2, 0, 1, 2, 1, 2, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 2, 2, 1, 
+1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 0, 0, 2, 0, 1, 2, 1, 1, 1, 0, 
+1, 1, 1, 1, 2, 2, 2, 2, 2, 0, 1, 1, 1, 1, 2, 2, 1, 1, 2, 0, 1, 
+1, 1, 1, 1, 0, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 2, 0, 1, 1, 
+0, 1, 1, 1, 0, 0, 2, 2, 1, 1, 0, 1, 1, 2, 1, 0, 0, 0, 0, 1, 0, 
+1, 0, 0, 2, 1, 1, 1, 1, 1, 0, 1, 0, 2, 2, 0, 0, 1, 1, 1, 2, 1, 
+0, 1, 1, 1, 2, 1, 1, 1, 2, 0, 1, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 
+1, 0, 2, 2, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 2, 1, 1, 1, 2, 1, 0, 
+0, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 0, 1, 0, 1, 2, 1, 0, 1, 2, 1, 
+2, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+2, 2, 0, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 
+1, 2, 2, 1, 2, 1, 1, 1, 2, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 
+1, 1, 0, 0, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 2, 1, 2, 1, 1, 
+1, 1, 1, 2, 1), dim = c(100L, 4L), dimnames = list(NULL, c("Z1", 
+"Z2", "X", "Y")))
+
+optimize_partition_from_data(data, 3, 1:2, 1, rep(3, 4), "ptree")
+optimize_partition_from_data(data, 3, 1:2, 1, rep(3, 4), "ptree", verbose = TRUE)
+
+```
+

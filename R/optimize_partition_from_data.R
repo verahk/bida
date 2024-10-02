@@ -87,6 +87,27 @@
 #' # list rules
 #' get_rules(fit)
 #'
+#' #' # Example 3:
+#' p <- c(.9, .9, .9, .1, .1, .7)
+#' z <- sample(0:1, 1000, replace = T)
+#' x <- sample(0:2, 1000, replace = T)
+#' joint <- z + 2*x
+#' y <- runif(length(z)) > p[joint+1]
+#' table(joint, y)  # frequency table
+#'
+#' data <- cbind(z = z, x = x, y = y)*1
+#' nlev <- c(2, 3, 2)
+#' j <- 3
+#' parentnodes <- 1:2
+#'
+#' newdata <- expand.grid(list(z = 0:1, x = 0:2))
+#' fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "ptree", verbose = TRUE)
+#' fit
+#' cbind(newdata, predict(fit, newdata))
+#' fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "pcart", verbose = TRUE)
+#' print(fit)
+#' cbind(newdata, predict(fit, newdata))
+#'
 #' # methods
 #' methods(class = "partition")
 #' methods(class = "tree")
@@ -422,7 +443,7 @@ optimize_partition_from_df_pcart <- function(df, ess, verbose = FALSE, use_struc
 #' @export
 get_rules.pcart <- function(obj) {
   rules_from_tree <- function(tree, rule = "") {
-    if (startsWith(tree[1], "-+")) {
+    if (grepl("^\\-\\+", tree[1])) {
       root <- tree[1]
       split <- strsplit(substring(root, 4), ": | \\| ")[[1]]
 
@@ -433,12 +454,64 @@ get_rules.pcart <- function(obj) {
                           character(1))
       upd_rules <- paste(rule, new_rules, sep = " & ")
 
-      subtrees <- split(substring(tree[-1], 3), grepl("^ `", tree[-1]))
-      c(rules_from_tree(subtrees[[1]], new_rules[[1]]),
-        rules_from_tree(subtrees[[2]], new_rules[[2]]))
+      subtrees <- split(substring(tree[-1], 3), grepl("^ \\|", tree[-1]))
+      c(rules_from_tree(subtrees[[2]], upd_rules[[1]]),
+        rules_from_tree(subtrees[[1]], upd_rules[[2]]))
     } else {
       list(parse(text = gsub("^ & ", "", rule)))
     }
   }
-  rules_from_tree(strsplit(obj, "\n")[[1]])
+  tree <- strsplit(obj, "\n")[[1]]
+  rules_from_tree(tree)
+}
+
+
+if (FALSE) {
+  # profile ----
+  ## compare tree-optimizer from data and from counts
+
+  data <- structure(c(0, 2, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0,
+                      1, 2, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0,
+                      1, 2, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0,
+                      0, 0, 1, 1, 0, 2, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1,
+                      1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 2,
+                      1, 2, 1, 1, 1, 0, 0, 1, 2, 1, 2, 2, 1, 1, 1, 2, 1, 2, 2, 2, 2,
+                      2, 2, 0, 1, 2, 1, 2, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 2, 2, 1,
+                      1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 0, 0, 2, 0, 1, 2, 1, 1, 1, 0,
+                      1, 1, 1, 1, 2, 2, 2, 2, 2, 0, 1, 1, 1, 1, 2, 2, 1, 1, 2, 0, 1,
+                      1, 1, 1, 1, 0, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 2, 0, 1, 1,
+                      0, 1, 1, 1, 0, 0, 2, 2, 1, 1, 0, 1, 1, 2, 1, 0, 0, 0, 0, 1, 0,
+                      1, 0, 0, 2, 1, 1, 1, 1, 1, 0, 1, 0, 2, 2, 0, 0, 1, 1, 1, 2, 1,
+                      0, 1, 1, 1, 2, 1, 1, 1, 2, 0, 1, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2,
+                      1, 0, 2, 2, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 2, 1, 1, 1, 2, 1, 0,
+                      0, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 0, 1, 0, 1, 2, 1, 0, 1, 2, 1,
+                      2, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                      2, 2, 0, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1,
+                      1, 2, 2, 1, 2, 1, 1, 1, 2, 0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2,
+                      1, 1, 0, 0, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 2, 1, 2, 1, 1,
+                      1, 1, 1, 2, 1), dim = c(100L, 4L), dimnames = list(NULL, c("Z1",
+                                                                                 "Z2", "X", "Y")))
+
+  f <- function(data, j, parentnodes, ess, nlev, method, verbose) {
+    counts <- counts_from_data_matrix(data[, c(j, parentnodes)], nlev[c(j, parentnodes)])
+    tab <- matrix(counts, ncol = nlev[j], byrow =T)
+    levels <- lapply(nlev[parentnodes]-1, seq.int, from = 0)
+    names(levels) <- colnames(data)[-j]
+    optimize_partition_tree(tab, levels, ess, -Inf, TRUE, verbose)
+  }
+
+  j <- 4
+  parentnodes <- 1:3
+  nlev <- rep(3, 4)
+  setNames(nlev) <- colnames(data)
+
+  org <- data
+  data <- rbind(data, data, data)
+  microbenchmark::microbenchmark(
+    optimize_partition_from_data(data, j, parentnodes, ess, nlev, "ptree", FALSE),
+    f(data, j, parentnodes, ess, nlev, "ptree", FALSE)
+  )
+
+  profvis::profvis(
+    replicate(30, optimize_partition_from_data(data, j, parentnodes, ess, nlev, "ptree", FALSE)))
 }
