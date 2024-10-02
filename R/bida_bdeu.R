@@ -305,7 +305,7 @@ update_bdeu <- function(obj, parent_config = NULL) {
         partsize <- lengths(partition)
         parts <- get_parts(partition)
       }
-      alpha <- ess/(r*q)*partsize + rowsum_fast(counts, parts, seq_along(partsize))
+      alpha <- ess/(r*q)*partsize + rowsum_fast(counts, as.integer(parts), seq_along(partsize))
       attr(alpha, "parts") <- parts
       t(alpha)
     }

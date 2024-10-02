@@ -61,7 +61,7 @@ test_that("pruning procedure and summary procedure works", {
 
   # tree: greedy decision tree
   fit <- optimize_partition_from_data(data, 1, 2:3, ess, nlev, "tree", verbose = FALSE)
-  expect_true(all(predict(fit, newdata)) == 1)
+  expect_equal(predict(fit, newdata), rep(1, 4))
   summ <- summary(fit)
   expect_equal(summ[, "part"], 1, ignore_attr = T)
   expect_equal(summ[, "score"],
