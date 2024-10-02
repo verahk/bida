@@ -72,7 +72,8 @@ bida_bdeu <- function(data, j, parentnodes, ess, nlev, partition = NULL) {
   if (is.null(colnames(data))) colnames(data) <- paste0("X", seq_len(ncol(data)))
   subset <- c(j, parentnodes)
   counts <- counts_from_data_matrix(data[, subset, drop = FALSE], nlev[subset], sparse = T)
-  new_bida_bdeu(colnames(data)[1], colnames(data)[parentnodes], counts, ess, partition)
+  tmp <- colnames(data)
+  new_bida_bdeu(tmp[j], tmp[parentnodes], counts, ess, partition)
 }
 
 #' @noRd

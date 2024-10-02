@@ -395,22 +395,22 @@ optimize_partition_from_df_pcart <- function(df, ess, verbose = FALSE, use_struc
   fit <- rpcart:::opt.pcart.cat.bdeu(df, predictors, response, ess, use_structure_score = use_structure_score)
 
   # compute size of each part
-  tree <- strsplit(fit$tree, "\n")[[1]]
   nlev <- vapply(df[-1], nlevels, integer(1))
+  tree <- strsplit(fit$tree, "\n")[[1]]
   compute_part_sizes <- function(tree, size = prod(nlev)) {
     if (startsWith(tree[1], "-+")) {
       root <- tree[1]
       split <- strsplit(substring(root, 4), ": | \\| ")[[1]]
       var <- split[1]
-      k <- nlev[[var]]
-
-      valFALSE <- strsplit(split[3], " ")[[1]]
-      tmp <- substring(tree[-1], 3)
+      kTRUE  <- length(strsplit(split[2], " ")[[1]])
+      kFALSE <- length(strsplit(split[3], " ")[[1]])
+      k <- kTRUE + kFALSE
       subtrees <- split(substring(tree[-1], 3), grepl("^ \\|", tree[-1]))
-      c(compute_part_sizes(subtrees[[2]], size/k),
-        compute_part_sizes(subtrees[[1]], size/k*length(valFALSE)))
+      c(compute_part_sizes(subtrees[[2]], size/k*kTRUE),
+        compute_part_sizes(subtrees[[1]], size/k*kFALSE))
     } else return(size)
   }
+  compute_part_sizes(tree, prod(nlev))
 
   structure(fit$tree,
             score = fit$score,
