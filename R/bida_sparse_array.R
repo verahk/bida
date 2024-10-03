@@ -347,9 +347,11 @@ get_stride <- function(x) {
 }
 
 get_coordinates <- function(x, MARGIN = seq_along(x$dim), stride = get_stride(x)) {
-  vapply(MARGIN,
+  tmp <- vapply(MARGIN,
          function(i) x$index%/%stride[i]%%x$dim[i],
          numeric(length(x$index)))
+  dim(tmp) <- c(length(x$index), length(MARGIN))
+  return(tmp)
 }
 get_index <- function(x, MARGIN, stride = get_stride(x)) {
   coord <- get_coordinates(x, MARGIN, stride)

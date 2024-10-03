@@ -52,3 +52,15 @@ test_that("multiplication works", {
   expect_equal(as.array(xx), array(replace(rep(0, 9), xx$index+1, xx$value), dim(xx)))
   expect_equal(as.array(yy), rep(colSums(as.array(xx)), each = dim(xx)[1]), ignore_attr = TRUE)
 })
+
+test_that("aperm works", {
+  # index of length 1
+  x <- structure(list(value = 10L, index = 14, dim = c(2, 3, 4), dimnames = NULL,
+                 default = 0), class = "bida_sparse_array")
+  expect_equal(as.array(aperm(x, c(1, 3, 2))), aperm(as.array(x), c(1, 3, 2)))
+
+  x <- structure(list(value = 1:10, index = sample.int(prod(dim(x)), 10), dim = c(2, 3, 4), dimnames = NULL,
+                      default = 0), class = "bida_sparse_array")
+  expect_equal(as.array(aperm(x, c(1, 3, 2))), aperm(as.array(x), c(1, 3, 2)))
+
+})

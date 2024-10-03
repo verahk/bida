@@ -73,15 +73,10 @@ test_that("aperm.bida_bdeu works", {
   data <- cbind(rep(0, 10), rep(1, 10), rep(2, 10))
   nlev <- c(2, 3, 4)
   col <- seq_len(prod(nlev[-1]))-1
-  parts <- rep(seq_len(nlev[3]), each = nlev[2])  # split on parent number 2
-  partition <- split(col, parts)
 
-  bdeu <- bida_bdeu(data, 1, 2:3, 1, nlev, partition)
-  bdeu_perm <- aperm(bdeu, c(1, 3, 2))
-  partition_perm <- split(col%%nlev[2]*nlev[3]+col%/%nlev[2]%%nlev[3], parts)
-
-  expect_equal(as.array(bdeu_perm$counts), aperm(as.array(bdeu$counts), c(1, 3, 2)))
-  expect_equal(bdeu_perm$partition, partition_perm)
+  bdeu <- exp <- bida_bdeu(data, 1, 2:3, 1, nlev)
+  exp$counts <- aperm(exp$counts, c(1, 3:2))
+  expect_equal(aperm(bdeu, c(1, 3:2)), exp)
 })
 
 
