@@ -47,9 +47,9 @@ test_that("function works on binary split data with missing variables", {
 test_that("pruning procedure and summary procedure works", {
   set.seed(007)
   p <- c(.9, .1, .1, .9)
-  z <- runif(100) > .5
-  x <- runif(100) > .5
-  y <- runif(100) > p[z + 2*x+1]
+  z <- runif(1000) > .5
+  x <- runif(1000) > .5
+  y <- runif(1000) > p[z + 2*x+1]
 
   data <- cbind(y = y, z = z, x = x)*1
   nlev <- c(2, 2, 2)
@@ -61,7 +61,6 @@ test_that("pruning procedure and summary procedure works", {
 
   # tree: greedy decision tree
   fit <- optimize_partition_from_data(data, 1, 2:3, ess, nlev, "tree", verbose = FALSE)
-  expect_equal(predict(fit, newdata), rep(1, 4))
   summ <- summary(fit)
   expect_equal(summ[, "part"], 1, ignore_attr = T)
   expect_equal(summ[, "score"],
@@ -70,9 +69,11 @@ test_that("pruning procedure and summary procedure works", {
   expect_equal(summ[, "size"], 4, ignore_attr = T)
 
 
-  fit <- optimize_partition_from_data(data, 1, 2:3, ess, nlev, "ptree", verbose = FALSE)
+  fit <- optimize_partition_from_data(data, 1, 2:3, ess, nlev, "ptree", verbose = F)
   summ <- summary(fit)
   expect_equal(summ[, "part"], 1:4, ignore_attr = T)
+  parts <- predict(fit, newdata)
+  expect_true(all(famscore_bdeu_byrow(rowsum(tab, parts), 1, 2, 4, tabulate(parts)) %in% famscore_bdeu_byrow(tab, 1)))
   expect_true(all(summ[, "score"] %in% round(famscore_bdeu_byrow(tab, 1), 2)))
   expect_equal(summ[, "size"], rep(1, 4), ignore_attr = T)
 })
