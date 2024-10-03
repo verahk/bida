@@ -154,19 +154,12 @@ get_rules <- function(obj, ...) {
 predict.partition <- function(obj, newdata, rule = TRUE) {
   if (is.null(dim(newdata))) newdata <- rbind(newdata)
   newdata <- as.data.frame(newdata)
-
-
   rules <- get_rules(obj)
   if (length(rules) == 1) return(rep(1L, nrow(newdata)))
-
   parts   <- vector("integer", nrow(newdata))
-  parts0  <- seq_len(nrow(newdata))
-  part <- 0
-  while (length(parts0) > 0 && part < length(rules)) {
-    part <- part+1
-    indx <- with(newdata[parts0, ], eval(rules[[part]]))
-    parts[parts0[indx]] <- part
-    parts0 <- parts0[!indx]
+  for (part in seq_along(rules)) {
+    indx <- with(newdata, eval(rules[[part]]))
+    parts[indx] <- part
   }
   return(parts)
 }
@@ -268,7 +261,7 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
 
   get_from_leaves <- function(tree, name) {
     # collect object `name` from each leaf in `tree`
-    if (is.null(tree$branches)) unname(tree[name])
+    if (is.null(tree$branches)) tree[[name]]
     else unlist(lapply(tree$branches, get_from_leaves, name = name), recursive = F)
   }
 

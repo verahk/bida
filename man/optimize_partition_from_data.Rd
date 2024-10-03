@@ -125,6 +125,31 @@ print(fit)
 # list rules
 get_rules(fit)
 
+#' # Example 3:
+p <- c(.9, .9, .9, .1, .1, .7)
+z <- sample(0:2, 1000, replace = T)
+x <- sample(0:1, 1000, replace = T)
+joint <- z + 2*x
+y <- runif(length(z)) > p[joint+1]
+table(joint, y)  # frequency table
+
+data <- cbind(z = z, x = x, y = y)*1
+nlev <- c(3, 2, 2)
+j <- 3
+parentnodes <- 1:2
+
+newdata <- expand.grid(list(z = 0:2, x = 0:1))
+fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "tree", verbose = TRUE)
+fit
+cbind(newdata, predict(fit, newdata))
+fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "ptree", verbose = TRUE)
+fit
+cbind(newdata, predict(fit, newdata))
+
+fit <- optimize_partition_from_data(data, j, parentnodes, ess, nlev, "pcart", verbose = TRUE)
+print(fit)
+cbind(newdata, predict(fit, newdata))
+
 # methods
 methods(class = "partition")
 methods(class = "tree")
