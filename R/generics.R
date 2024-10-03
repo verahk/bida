@@ -9,7 +9,7 @@ rowSums <- function(x, na.rm = FALSE, dims = 1, ...) {
   UseMethod("rowSums")
 }
 #' @export
-rowSums.array <- function(x, na.rm = FALSE, dims = 1, ...){
+rowSums.default <- function(x, na.rm = FALSE, dims = 1, ...){
   base:::rowSums(x, na.rm = na.rm, dims = dims, ...)
 }
 #' @export
@@ -17,7 +17,7 @@ colSums <- function(x, na.rm = FALSE, dims = 1, ...) {
   UseMethod("colSums")
 }
 #' @export
-colSums.array <- function(x, na.rm = FALSE, dims = 1){
+colSums.default <- function(x, na.rm = FALSE, dims = 1){
   base:::colSums(x, na.rm = na.rm, dims = dims)
 }
 

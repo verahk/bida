@@ -347,15 +347,47 @@ get_stride <- function(x) {
 }
 
 get_coordinates <- function(x, MARGIN = seq_along(x$dim), stride = get_stride(x)) {
-  vapply(MARGIN,
-         function(i) x$index%/%stride[i]%%x$dim[i],
-         numeric(length(x$index)))
+  if (is.null(MARGIN)) {
+    arrayInd(x$index+1, dim(x))-1
+  } else {
+    if (length(MARGIN) == 1) {
+      matrix(as.integer(x$index%/%stride[MARGIN]%%x$dim[MARGIN]), ncol = 1)
+    } else {
+      matrix(vapply(MARGIN,
+              function(i) as.integer(x$index%/%stride[i]%%x$dim[i]),
+              integer(length(x$index))), ncol = length(MARGIN))
+    }
+  }
 }
+
+
 get_index <- function(x, MARGIN, stride = get_stride(x)) {
   coord <- get_coordinates(x, MARGIN, stride)
   c(coord%*%c(1, cumprod(dim(x)[MARGIN[-length(MARGIN)]])))
 }
 
-
+function (ind, .dim, .dimnames = NULL, useNames = FALSE)
+{
+  m <- length(ind)
+  rank <- length(.dim)
+  wh1 <- ind - 1L
+  ind <- 1L + wh1%%.dim[1L]
+  dnms <- if (useNames) {
+    list(.dimnames[[1L]][ind], if (any(nzchar(nd <- names(.dimnames)))) nd else if (rank ==
+                                                                                    2L) c("row", "col") else paste0("dim",
+                                                                                                                    seq_len(rank)))
+  }
+  ind <- matrix(ind, nrow = m, ncol = rank, dimnames = dnms)
+  if (rank >= 2L) {
+    denom <- 1L
+    for (i in 2L:rank) {
+      denom <- denom * .dim[i - 1L]
+      nextd1 <- wh1%/%denom
+      ind[, i] <- 1L + nextd1%%.dim[i]
+    }
+  }
+  storage.mode(ind) <- "integer"
+  ind
+}
 
 

@@ -16,8 +16,8 @@ test_that("function works on binary split data with missing variables", {
   sizes <- tabulate(parts)
   scores <- famscore_bdeu_byrow(rowsum(tab, parts), ess, nlev[1], prod(nlev[-1]), sizes)
   expect_equal(predict(fit, newdata), parts)
-  expect_equal(fit$score, sum(scores))
-  expect_equal(fit$sizes, sizes)
+  expect_equal(attr(fit, "score"), sum(scores))
+  expect_equal(attr(fit, "sizes"), sizes)
   expect_true(all(table(predict(fit, newdata) %in% c(0, 3))))
   expect_equal(fit, optimize_partition_from_data(data, 1, 2:3, 1, nlev, "tree"))
 
@@ -27,8 +27,8 @@ test_that("function works on binary split data with missing variables", {
   sizes <- tabulate(parts)
   scores <- famscore_bdeu_byrow(rowsum(tab, parts), ess, nlev[1], prod(nlev[-1]), sizes)
   expect_true(all(table(predict(fit, newdata), parts) %in% c(0, 1)))
-  expect_equal(fit$score, sum(scores))
-  expect_equal(fit$sizes, sizes)
+  expect_equal(attr(fit, "score"), sum(scores))
+  expect_equal(attr(fit, "sizes"), sizes)
   expect_equal(fit, optimize_partition_from_data(data, 1, 2:3, 1, nlev, "treereg"))
 
   # pcart
@@ -39,8 +39,8 @@ test_that("function works on binary split data with missing variables", {
   sizes <- tabulate(parts)
   scores <- famscore_bdeu_byrow(rowsum(tab, parts), ess, nlev[1], prod(nlev[-1]), sizes)
   expect_equal(predict(fit, newdata), parts)
-  expect_equal(fit$score, sum(scores))
-  expect_equal(fit$sizes, sizes)
+  expect_equal(attr(fit, "score"), sum(scores))
+  expect_equal(attr(fit, "sizes"), sizes)
   expect_equal(fit, optimize_partition_from_data(data, 1, 2:3, 1, nlev, "pcart"))
 })
 
@@ -61,6 +61,7 @@ test_that("pruning procedure and summary procedure works", {
 
   # tree: greedy decision tree
   fit <- optimize_partition_from_data(data, 1, 2:3, ess, nlev, "tree", verbose = FALSE)
+  expect_equal(predict(fit, newdata), rep(1, 4))
   summ <- summary(fit)
   expect_equal(summ[, "part"], 1, ignore_attr = T)
   expect_equal(summ[, "score"],

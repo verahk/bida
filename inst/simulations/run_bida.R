@@ -99,18 +99,15 @@ sim_run <- function(indir, f, verbose = FALSE) {
         unknown = bida::bida_pair(type, data, x, y,
                                   sets = ps$sets[[x]],
                                   support = ps$support[[x]],
-                                  hyperpar = c(list(nlev = nlev), par),
-                                  lookup = lookup),
+                                  hyperpar = c(list(nlev = nlev), par)),
         full = bida::bida_pair("cat", data, x, y,
                                sets = ps$sets[[x]],
                                support = ps$support[[x]],
-                               hyperpar = c(list(nlev = nlev), par),
-                               lookup = NULL),
+                               hyperpar = c(list(nlev = nlev), par)),
         known = bida::bida_pair(type, data, x, y,
                         sets = matrix(pa, nrow = 1),
                         support = 1,
-                        hyperpar = c(list(nlev = nlev), par),
-                        lookup = lookup)
+                        hyperpar = c(list(nlev = nlev), par))
       )
 
       pdo_hat     <- lapply(pairs, bida::posterior_mean)
@@ -164,6 +161,7 @@ if (doTest) {
   # test
   filenames <- list.files(indir, ".rds")
   filename <- filenames[1]
+  file.remove(paste0(outdir, filename))
   sim_and_write_to_file(dir_out = outdir,
                         filename = filename,
                         run = sim_run,
@@ -176,22 +174,42 @@ if (doTest) {
   file.remove(paste0(outdir, filename))
 
 }
-
 # profile ----
 if (FALSE) {
-  f <- "sachs_pcskel_ptree_order_ess1_epf2_N300_r16.rds"
+  f <- "insurance_pcskel_ptree_order_ess1_epf2_N300_r16.rds"
   profvis::profvis(sim_run(indir = indir, f))
 
   # check how many (x, z) sets are in lookup
+  imp <- readRDS(paste0(indir, f))
+  lookup <- imp$lookup
+  dags <- lapply(imp$MCMCchain$traceadd$incidence, as.matrix)
   ps <- bida:::parent_support_from_dags(dags)
+  res <- matrix(0, length(ps$sets), 5)
+  colnames(res) <- c("nsets", "maxPar", "meanPar", "maxInLookup", "meanInLookup")
+  for (x in seq_along(ps$sets)) {
+    nInLookup <- nPar <- vector("numeric", length(ps$sets[[x]]))
+    for (r in seq_along(ps$support[[x]])) {
+      z <- ps$sets[[x]][r, ]
+      z <- z[!is.na(z)]
+      #stopifnot(length(z) < imp$par$hardlimit)
+      nPar[r] <-   length(z)
+      if (length(z) < 2) next
 
+      parentnodes <- sort(c(x, z))
+      parID <- paste(seq_along(ps$sets)[-x], paste0(parentnodes, collapse = "."), sep= ".")
+      nInLookup <- sum(match(parID, names(lookup[["ptree"]]), 0L) > 0)
+    }
+    res[x, 1] <- length(ps$sets[[x]])
+    res[x, 2] <- max(nPar)
+    res[x, 3] <- mean(nPar)
+    res[x, 4] <- max(nInLookup)
+    res[x, 4] <- mean(nInLookup)
+  }
 }
 
 # run ----
 filenames <- list.files(indir, ".rds")
 filenames <- filenames[!grepl("barley", filenames)]
-filenames <- filenames[!grepl("alarm", filenames)]
-filenames <- filenames[!grepl("insurance", filenames)]
 filenames <- sample(filenames)
 
 
