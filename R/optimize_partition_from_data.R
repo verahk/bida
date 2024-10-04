@@ -145,22 +145,44 @@ optimize_partition_from_data <- function(data, j, parentnodes, ess, nlev, method
 
 #' @rdname optimize_partition_from_data
 #' @export
-get_rules <- function(obj, ...) {
-  UseMethod("get_rules")
+get_predictors <- function(obj, ...) {
+  UseMethod("get_predictors")
+}
+#' @noRd
+#' @export
+get_predictors.partition <- function(obj) {
+  if (inherits(obj, "tree") || inherits(obj, "pcart")) {
+    unique(stringr::str_extract_all(fit, "(?<=-\\+ )[^:]*")[[1]])
+  } else {
+    NextMethod()
+  }
 }
 
 #' @rdname optimize_partition_from_data
 #' @export
-predict.partition <- function(obj, newdata, rule = TRUE) {
-  if (is.null(dim(newdata))) newdata <- rbind(newdata)
-  newdata <- as.data.frame(newdata)
-  rules <- get_rules(obj)
-  if (length(rules) == 1) return(rep(1L, nrow(newdata)))
-  parts   <- vector("integer", nrow(newdata))
-  for (part in seq_along(rules)) {
-    indx <- with(newdata, eval(rules[[part]]))
-    parts[indx] <- part
-  }
+get_rules <- function(obj, ...) {
+  UseMethod("get_rules")
+}
+
+
+#' @rdname optimize_partition_from_data
+#' @export
+predict.partition <- function(obj, newdata) {
+  if (inherits(obj, "tree") || inherits(obj, "partition")) {
+    if (is.null(dim(newdata))) newdata <- rbind(newdata)
+    rules <- get_rules(obj)
+    if (length(rules) == 1) {
+      parts <- rep(1L, nrow(newdata))
+    } else {
+      newdata <- as.data.frame(newdata)
+      parts   <- vector("integer", nrow(newdata))
+      for (part in seq_along(rules)) {
+        indx <- with(newdata, eval(rules[[part]]))
+        parts[indx] <- part
+      }
+    }
+  } else stop("only applicable to objects of class `tree` or `pcart`")
+
   return(parts)
 }
 
@@ -206,106 +228,124 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
   r <- nlev[[1]]
   q <- prod(nlev[-1])
 
-  grow_tree <- function(bins, score, size, force_split = FALSE) {
+  grow_tree <- function(leaf, bins, force_split = FALSE) {
     # function for growing a tree recursively
-    best_split <- find_best_split(bins, score, size, force_split)
-    if (!is.null(best_split$var)) {
-      # if best_split is a split, and not a leaf
 
-      if (verbose) {
-        cat("Score-diff:", sum(best_split$leaf_scores)-score,
-            "Splitvariable:", best_split$var,
-            "Leaf-scores:", best_split$leaf_scores,
-            "\n")
-      }
-
-      v <- best_split$var
-      col <- match(v, colnames(bins))
-      dv  <- (bins[, col]-1)%/%nlev[[1]]  # value of split variable in current data /bins
-      k <- nlev[[v]]
-      best_split$branches <- vector("list", k)
-      for (b in seq_len(k)) {
-        best_split$branches[[b]] <- grow_tree(bins = bins[dv == b-1, -col, drop = FALSE],
-                                              score  = best_split$leaf_scores[[b]],
-                                              size   = size/k,
-                                              force_split = force_split)
-      }
-    }
-    return(best_split)
-  }
-
-  find_best_split <- function(bins, score, size, force_split) {
-    best_split <- list(score = score, size = size)
     dims <- dim(bins)
-    if (dims[1] > 0 && (dims[2] > 0 | force_split)) {
-      best_score <- score + min_improv      # minimum value for score of new split
+    find_split <- dims[1] > 0 && (dims[2] > 0 | force_split)
+    if (find_split) {
+      # find best split, if possible
+      best_split <- leaf
+      best_score <- leaf$score + min_improv
       for (v in colnames(bins)) {
         # sum observations for each level of y and variable i
         tab <- matrix(tabulate(bins[, v], nbins[v]), ncol = r, byrow = TRUE)
 
         # compute score of each leaf and compare against current best
-        leaf_scores <- famscore_bdeu_byrow(tab, ess, r, q, s = size/nlev[[v]])
+        leaf_scores <- famscore_bdeu_byrow(tab, ess, r, q, s = leaf$size/nlev[[v]])
         score <- sum(leaf_scores)
         if (score > best_score) {
           best_score <- score
-          best_split$var    <- v
+          best_split$var  <- v
           best_split$leaf_scores <- leaf_scores
+          best_split$tab <- tab
         }
       }
     }
-    return(best_split)
+
+    if (!find_split || is.null(best_split$var)) {
+      return(leaf)
+    } else {
+      # if a split was found, keep growing the tree
+
+      if (verbose) {
+        sprintf("Score-diff: %1.2f Splitvariable: %s Leaf-scores: %s\n",
+                sum(best_split$leaf_scores)-score,
+                best_split$var,
+                paste(round(best_split$leaf_scores, 2), collapse = " "))
+      }
+
+      v <- best_split$var
+      col <- match(v, colnames(bins)) # position of col - drop in next iter
+      dv  <- (bins[, col]-1)%/%r      # value of v, to split data
+      k <- nlev[[v]]                  # cardinality of k - add a branch for each level
+      best_split$branches <- vector("list", k)
+      for (b in seq_len(k)) {
+        new_leaf <- list(score = best_split$leaf_scores[[b]],
+                         size  = best_split$size/k,
+                         counts = best_split$tab[b, ])
+        best_split$branches[[b]] <- grow_tree(new_leaf,
+                                              bins = bins[dv == b-1, -col, drop = FALSE],
+                                              force_split = force_split)
+      }
+      return(best_split[keepinsplit])
+    }
   }
 
-
-  get_from_leaves <- function(tree, name) {
-    # collect object `name` from each leaf in `tree`
-    if (is.null(tree$branches)) tree[[name]]
-    else unlist(lapply(tree$branches, get_from_leaves, name = name), recursive = F)
+  get_leaf_scores <- function(tree) {
+    if (is.null(tree$branches)) tree$score
+    else lapply(tree$branches, get_leaf_scores)
   }
-
+  get_leaf_sizes <- function(tree) {
+    if (is.null(tree$branches)) tree$size
+    else lapply(tree$branches, get_leaf_sizes)
+  }
+  get_leaf_counts <- function(tree) {
+    if (is.null(tree$branches)) tree$counts
+    else unlist(lapply(tree$branches, get_leaf_counts), recursive = FALSE)
+  }
+  get_splitvars <- function(tree) {
+    if (!is.null(tree$var)) c(tree$var, unlist(lapply(tree$branches, get_splitvars)))
+    else (character(0))
+  }
 
   # fit ----
-  score <- famscore_bdeu_1row(tabulate(data[, 1]+1, r), ess, r)
-  bins <- data[, 1] + r*data[, -1, drop = FALSE] +1   # enumerate joint outcome (y, x) for each x
-  nbins <- r*nlev[-1]                     # cardinality of each (y, x)
-  tree  <- grow_tree(bins, score, size = q)
+  # init root node as leaf
+  counts <- tabulate(data[, 1]+1, r)
+  leaf <- list(counts = counts, score = famscore_bdeu_1row(counts, ess, r), size = q)
+
+  # enumerate joint outcome (y, x) for each x for faster tabulation
+  bins <- data[, 1] + r*data[, -1, drop = FALSE] +1
+  nbins <- r*nlev[-1]
+
+  # grow tree
+  keepinsplit  <- c("var", "score", "size", "counts", "branches")
+  tree  <- grow_tree(leaf, bins)
 
   # prune ----
   if (prune) {
     prune_tree <- function(tree) {
       # recursive function for pruning trees
       if (is.null(tree$branches)) return(tree)
-      for (b in seq_along(tree$branches)) {
-        tree$branches[b] <- list(prune_tree(tree$branches[[b]]))
-      }
+      tree$branches <- lapply(tree$branches, prune_tree)
 
       # compare score of pruned tree to root
-      score <- sum(unlist(get_from_leaves(tree, "score")))
+      score <- sum(unlist(get_leaf_scores(tree)))
       if (score > tree$score) {
         tree
       } else {
-        if (verbose) cat(sprintf("Collapse split on variable %s. Score-diff: %s \n",
-                                 tree$var, tree$score-score))
-        list(score = tree$score,
-             size  = tree$size)  # return root as a leaf
+        if (verbose) cat("Collapse split on variable %s.", tree$var,
+                          "Score-diff:", round(tree$score-score, 2))
+        tree[keepinleaf] # return root as a leaf
       }
     }
 
     # prune tree
+    keepinleaf <- c("score", "size", "counts")
     tree <- prune_tree(tree)
   }
 
 
   # make regular ----
   if (regular) {
-    get_splitvars <- function(tree) {
-      if (!is.null(tree$var)) c(tree$var, unlist(lapply(tree$branches, get_splitvars)))
-      else (character(0))
-    }
     add_split <- function(tree, bins) {
       if (is.null(tree$var)) {
         pos  <- match(new_splitvars, colnames(bins))
-        tree <- grow_tree(bins[, pos, drop = FALSE], tree$score, tree$size, force_split = TRUE)
+        tree <- grow_tree(bins[, pos, drop = FALSE],
+                          tree$score,
+                          tree$size,
+                          tree$counts,
+                          force_split = TRUE)
       } else {
         v <- tree$var
         col <- match(v, colnames(bins))
@@ -329,7 +369,8 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
   # output ----
   to_string <- function(tree, prefix = "") {
     if (is.null(tree$branches)) {
-      sprintf("%s-- score: %1.2f size: %s\n", prefix, tree$score, tree$size)
+      sprintf("%s-- score: %1.2f size: %s counts: %s\n",
+              prefix, tree$score, tree$size, paste(tree$counts, collapse = " "))
     } else {
       split <- sprintf("%s-+ %s:\n", prefix, tree$var)
       c(split, unlist(lapply(tree$branches, to_string, prefix = paste0(prefix, " | "))))
@@ -338,8 +379,8 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
 
   obj <- paste0(to_string(tree), collapse = "")
   structure(obj,
-            score = sum(unlist(get_from_leaves(tree, "score"))),
-            sizes = unname(unlist(get_from_leaves(tree, "size"))),
+            score = sum(unlist(get_leaf_scores(tree))),
+            sizes = unname(unlist(get_leaf_sizes(tree))),
             class = c("partition", "tree"))
 
 }
