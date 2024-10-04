@@ -1,5 +1,16 @@
 
+library(extrafont)
+loadfonts()
+font_import(pattern = "lmroman*")
+# link www.fontsquirrel.com/fonts/latin-modern-roman
 
+# execute once to add fonts:
+# font_import(pattern = "lmroman*")
+
+# example
+df <- data.frame(x = 1:10, y = 1:10)
+ggplot(df, aes(x, y)) +
+  theme(text = element_text(size=10, family="LM Roman 10"))
 
 plot_init <- function(df, x, y,
                       color = "",
@@ -29,7 +40,8 @@ plot_init <- function(df, x, y,
 plot_prettify <- function() {
   list(theme_minimal(),
        theme(legend.position = "bottom",
-             plot.caption = element_text(hjust = 0)))
+             plot.caption = element_text(hjust = 0)),
+             text = element_text(size=10, family="LM Roman 10"))
 }
 
 plot_add_facet_grid <- function(string, ...) {

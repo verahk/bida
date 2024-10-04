@@ -51,14 +51,14 @@ res_from_file_to_df <- function(files, name) {
 
 path_report <- paste0(dir_out, "report.md")
 write(Sys.time(), file = path_report)
-for (bnname in c("asia", "child", "insurance")) {
+for (bnname in c("asia", "child", "insurance", "alarm")) {
   files <- list.files(dir_in, ".rds", full.names = T)
   files <- files[grepl(bnname, files)]
 
   x <- "N"
   y <- "value"
   facets <- "bnname~slearn+name"
-  color  <- "lstruct.epf"
+  fill <- "lstruct.epf"
 
   ylabs <- list("mse_pdo" = "intervention probs, MSE",
                 "mse_tau" = "causal effects, MSE",
@@ -70,7 +70,7 @@ for (bnname in c("asia", "child", "insurance")) {
   for (name in names(ylabs)) {
     plot <- res_from_file_to_df(files, name) %>%
       filter(!name == "full CPT") %>%
-      plot_boxplot(x, y, facets, color = color, ylab = ylabs[[name]])
+      plot_boxplot(x, y, facets, fill = fill, ylab = ylabs[[name]])
     if (length(dir_out) > 0 ) {
       filename <- paste0("box_plot_", bnname, "_", name, ".png")
       ggsave(paste0(dir_out, filename), plot, height = 7, width = 6)
