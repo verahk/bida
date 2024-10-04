@@ -9,7 +9,7 @@ descendants <- function(x) {
 
 #' @rdname descendants
 #' @export
-descendants.default <- function(x) {
+descendants.matrix <- function(x) {
   x <- as.matrix(x)
   n <- ncol(x)
   I <- diag(n)
@@ -32,9 +32,8 @@ descendants.default <- function(x) {
 
 #' @rdname descendants
 #' @export
-descendants.graphNEL <- function(x) {
-  x <- as(x, "matrix")
-  NextMethod()
+descendants.default <- function(x) {
+  descendants.matrix(as.matrix(x))
 }
 
 #' @rdname descendants
