@@ -2,16 +2,16 @@
 % Please edit documentation in R/descendants.R
 \name{descendants}
 \alias{descendants}
+\alias{descendants.matrix}
 \alias{descendants.default}
-\alias{descendants.graphNEL}
 \alias{descendants.bn.fit}
 \title{Find ancestors relations corresponding to a network}
 \usage{
 descendants(x)
 
-\method{descendants}{default}(x)
+\method{descendants}{matrix}(x)
 
-\method{descendants}{graphNEL}(x)
+\method{descendants}{default}(x)
 
 \method{descendants}{bn.fit}(x)
 }
