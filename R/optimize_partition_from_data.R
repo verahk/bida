@@ -31,7 +31,9 @@
 #'
 #' @section Methods for the class `partition`:
 #' - [get_rules()]: returns a list with [base::expression()] that defines each
-#'   part of the partition.
+#'   part of the partition in terms of logical rules, e.g. `x == 1 & y == 2`.
+#' - [get_predictors()]: returns the subset of `parentnodes` that is relevant
+#'   for the partition.
 #' - [predict.partition()]: assigns each row in `newdata` to a part in the partition.
 #'
 #' @return an object of class `partition` with subclass `tree` or `pcart`.
