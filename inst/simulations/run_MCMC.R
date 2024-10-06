@@ -26,7 +26,7 @@
 
 # load libraries ----
 rm(list = ls())
-doTest <- FALSE
+doTest <- TRUE
 
 library(doSNOW)
 sapply(list.files("./inst/simulations/R", ".R", full.names = T),

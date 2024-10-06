@@ -115,7 +115,7 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
           # store partition in lookup-table
           if (!is.null(scorepar$lookup)) {
             parentnodes <- sort(parentnodes)
-            parID <- paste0(j, paste0(parentnodes, collapse = "."), collapse = ".")
+            parID <- sprintf("%s.%s", j, paste0(parentnodes, collapse = "."))
             scorepar$lookup[[scorepar$local_struct]][[parID]] <- opt
           }
         }

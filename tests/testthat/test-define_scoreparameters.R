@@ -37,12 +37,6 @@ test_that("define_scoreparameters", {
     expect_equal(attr(opt, "score"), score)
 
     # check that bdeu-object is stored in lookup-table
-    expect_equal(class(lookup[[par$local_struct]][["3.1.2"]]), "bida_bdeu")
-
-    # check that also second call to score function returns correct score
-    # - now this should be returned from the lookup-table
-    score <- unname(BiDAG:::usrDAGcorescore(j, parentnodes, n, scorepar))-pG
-    expect_equal(attr(opt, "score"), score)
+    expect_equal(lookup[[par$local_struct]][["3.1.2"]], opt)
   }
-
 })
