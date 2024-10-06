@@ -92,47 +92,34 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
       # define function for computing scores
       usrDAGcorescore <- function(j, parentnodes, n, scorepar) {
 
-        parentnodes <- sort(parentnodes)   # for parID
-        npar <- length(parentnodes)
-        pG   <- -npar*log(scorepar$edgepf) # penality term for edges
-
-        if (is.environment(scorepar$lookup)) {
-          # look for score in lookup-table
-          parID <- paste(c(j, parentnodes), collapse = ".")
-          scores <- scorepar$lookup[[scorepar$local_struct]]
-          if (length(scores) > 0 && parID %in% names(scores)) {
-            return(scores[[parID]]$score+pG)
-          }
-        }
-
         ess <- scorepar$ess
         nlev <- scorepar$nlev
         local_struct <- scorepar$local_struct
 
-        # construct bida_bdeu-object - for computing score and optimize partition
-        bdeu <- bida_bdeu(scorepar$data, j, parentnodes, ess, nlev)
+        npar <- length(parentnodes)
+        pG   <- npar*log(scorepar$edgepf) # penality term for edges
 
         # optimize partition of parent space and return score
         if (npar < 2) {
-          # no partitioning possible, return score
-          # construct bdeu-object with frequency counts
-          return(score_bdeu(bdeu)+pG)
-        } else if (local_struct == "pcart") {
-          opt <- optimize_partition_from_df_pcart(scorepar$data.frame[, c(j, parentnodes)], ess)
+          # no partitioning possible, compute score
+          freq <- data[, c(parentnodes, j), drop = FALSE]%*%c(1, cumprod(nlev[parentnodes]))
+          famscore <- famscore_bdeu(matrix(freq, ncol = nlev[j]), ess)
         } else {
-          opt <- optimize_partition_from_data(scorepar$data, j, parentnodes, ess, nlev, local_struct)
+          if (local_struct == "pcart") {
+            opt <- optimize_partition_from_df_pcart(scorepar$data.frame[, c(j, parentnodes)], ess)
+          } else {
+            opt <- optimize_partition_from_data(scorepar$data, j, parentnodes, ess, nlev, local_struct)
+          }
+
+          famscore  <- attr(opt, "score")
+          # store partition in lookup-table
+          if (!is.null(scorepar$lookup)) {
+            parentnodes <- sort(parentnodes)
+            parID <- paste0(j, paste0(parentnodes, collapse = "."), collapse = ".")
+            scorepar$lookup[[scorepar$local_struct]][[parID]] <- opt
+          }
         }
-
-        score <- attr(opt, "score")
-
-        if (!is.null(scorepar$lookup)) {
-          # store score and bdeu-params in lookup
-          bdeu$partition  <- opt
-          bdeu$score <- score
-          scorepar$lookup[[scorepar$local_struct]][[parID]] <- bdeu
-        }
-
-        return(score+pG)
+        return(famscore-pG)
       }
 
       # assign function to name-space of BiDAG package

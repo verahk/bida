@@ -2,6 +2,7 @@
 % Please edit documentation in R/optimize_partition_from_data.R
 \name{optimize_partition_from_data}
 \alias{optimize_partition_from_data}
+\alias{get_predictors}
 \alias{get_rules}
 \alias{predict.partition}
 \alias{print.partition}
@@ -17,9 +18,11 @@ optimize_partition_from_data(
   verbose = FALSE
 )
 
+get_predictors(obj, ...)
+
 get_rules(obj, ...)
 
-\method{predict}{partition}(obj, newdata, rule = TRUE)
+\method{predict}{partition}(obj, newdata)
 
 \method{print}{partition}(obj)
 }
@@ -70,7 +73,9 @@ using the algorithm implemented in \code{rpcart::opt.pcart.cat.bdeu}.
 
 \itemize{
 \item \code{\link[=get_rules]{get_rules()}}: returns a list with \code{\link[base:expression]{base::expression()}} that defines each
-part of the partition.
+part of the partition in terms of logical rules, e.g. \code{x == 1 & y == 2}.
+\item \code{\link[=get_predictors]{get_predictors()}}: returns the subset of \code{parentnodes} that is relevant
+for the partition.
 \item \code{\link[=predict.partition]{predict.partition()}}: assigns each row in \code{newdata} to a part in the partition.
 }
 }
