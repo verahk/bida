@@ -234,7 +234,7 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
     # function for growing a tree recursively
 
     dims <- dim(bins)
-    find_split <- dims[1] > 0 && (dims[2] > 0 | force_split)
+    find_split <- dims[2] > 0 && (dims[1] > 1 | force_split)
     if (find_split) {
       # find best split, if possible
       best_split <- leaf
@@ -255,7 +255,7 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
       }
     }
 
-    if (!find_split || is.null(best_split$var)) {
+    if (!find_split || is_leaf(best_split)) {
       return(leaf)
     } else {
       # if a split was found, keep growing the tree
@@ -276,30 +276,27 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
         new_leaf <- list(score = best_split$leaf_scores[[b]],
                          size  = best_split$size/k,
                          counts = best_split$tab[b, ])
-        best_split$branches[[b]] <- grow_tree(new_leaf,
-                                              bins = bins[dv == b-1, -col, drop = FALSE],
-                                              force_split = force_split)
+        new_bins <- bins[dv == b-1, -col, drop = FALSE]
+        best_split$branches[[b]] <- grow_tree(new_leaf, new_bins, force_split)
       }
       return(best_split[keepinsplit])
     }
   }
 
+  is_leaf <- function(tree) length(tree) == 3
   get_leaf_scores <- function(tree) {
-    if (is.null(tree$branches)) tree$score
+    if (is_leaf(tree)) tree$score
     else lapply(tree$branches, get_leaf_scores)
   }
   get_leaf_sizes <- function(tree) {
-    if (is.null(tree$branches)) tree$size
+    if (is_leaf(tree)) tree$size
     else lapply(tree$branches, get_leaf_sizes)
   }
-  get_leaf_counts <- function(tree) {
-    if (is.null(tree$branches)) tree$counts
-    else unlist(lapply(tree$branches, get_leaf_counts), recursive = FALSE)
-  }
-  get_splitvars <- function(tree) {
-    if (!is.null(tree$var)) c(tree$var, unlist(lapply(tree$branches, get_splitvars)))
-    else (character(0))
-  }
+  # get_leaf_counts <- function(tree) {
+  #   if (is_leaf(tree)) tree$counts
+  #   else unlist(lapply(tree$branches, get_leaf_counts), recursive = FALSE)
+  # }
+
 
   # fit ----
   # init root node as leaf
@@ -318,7 +315,7 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
   if (prune) {
     prune_tree <- function(tree) {
       # recursive function for pruning trees
-      if (is.null(tree$branches)) return(tree)
+      if (is_leaf(tree)) return(tree)
       tree$branches <- lapply(tree$branches, prune_tree)
 
       # compare score of pruned tree to root
@@ -326,8 +323,9 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
       if (score > tree$score) {
         tree
       } else {
-        if (verbose) cat("Collapse split on variable %s.", tree$var,
-                          "Score-diff:", round(tree$score-score, 2))
+        if (verbose) cat("Collapse split on variable:", tree$var,
+                          "Score-diff:", round(tree$score-score, 2),
+                         "\n")
         tree[keepinleaf] # return root as a leaf
       }
     }
@@ -340,6 +338,11 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
 
   # make regular ----
   if (regular) {
+    get_splitvars <- function(tree) {
+      if (!is_leaf(tree)) c(tree$var, unlist(lapply(tree$branches, get_splitvars)))
+      else (character(0))
+    }
+
     add_split <- function(tree, bins) {
       if (is.null(tree$var)) {
         pos  <- match(new_splitvars, colnames(bins))
@@ -371,8 +374,8 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
   # output ----
   to_string <- function(tree, prefix = "") {
     if (is.null(tree$branches)) {
-      sprintf("%s-- score: %1.2f size: %s counts: %s\n",
-              prefix, tree$score, tree$size, paste(tree$counts, collapse = " "))
+      sprintf("%s-- score: %1.2f size: %s\n", # counts: %s\n",
+              prefix, tree$score, tree$size) # paste(tree$counts, collapse = " "))
     } else {
       split <- sprintf("%s-+ %s:\n", prefix, tree$var)
       c(split, unlist(lapply(tree$branches, to_string, prefix = paste0(prefix, " | "))))
