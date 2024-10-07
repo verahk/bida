@@ -23,30 +23,32 @@
 #'
 #' lookup <- rlang:::new_environment() # environment for storing scores and CPTs
 #' bn  <- readRDS("./data/asia.rds")
+#' nlev <- sapply(bn, function(x) dim(x$prob)[1])
 #' data <- sample_data_from_bn(bn, 10)
 #'
-#' par <- list(nlev = apply(data, 2, max)+1, ess = 1, edgepf = 2, regular = T)
+#' par <- list(nlev = nlev, ess = 1, edgepf = 2, regular = T)
 #'
-#' j <- 1
-#' parentnodes <- 2
+#' j <- 8
+#' parentnodes <- 5:6
 #'
 #' # no partitioning - use BiDAG-score
-#' scorepar_bdecat <- define_scoreparameters(data, "bdecat", par, lookup = lookup)
-#' score <- BiDAG:::DAGcorescore(j, parentnodes, ncol(data), scorepar_bdecat)
+#' scorepar <- define_scoreparameters(data, "bdecat", par, lookup = lookup)
+#' score <- BiDAG:::DAGcorescore(j, parentnodes, ncol(data), scorepar)
 #' score
 #'
 #' # user-specified function is assigned to BiDAG-namespace
-#' scorepar_tree <- define_scoreparameters(data, "tree", par, lookup = lookup)
+#' par$local_struct = "tree"
+#' scorepar <- define_scoreparameters(data, "bdecat", par, lookup = lookup)
 #' BiDAG:::usrDAGcorescore
-
-#' # with less than 2 parents, the partition space is not partitioned
-#' stopifnot(score == BiDAG:::DAGcorescore(j, parentnodes, ncol(data), scorepar_tree))
+#'
+#' # computes score with a call to BiDAG:::usrDAGcorescore
+#' score <- BiDAG:::DAGcorescore(j, parentnodes, ncol(data), scorepar)
+#' score
 #'
 #' # user-specified functions writes to lookup table
-#' ls.str(lookup)    # empty
-#' BiDAG:::usrDAGcorescore(1, 2:3, ncol(data), scorepar_tree)
 #' ls.str(lookup)    # updated
-#' lookup$tree[["1.2.3"]]
+#' lookup$tree[["8.5.6"]]
+#'
 define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
 
   if (scoretype == "bdecat") {
@@ -62,14 +64,20 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
     } else {
 
       # init BiDAG::scoreparameters-object
-      scorepar <- BiDAG::scoreparameters("usr", data = data, usrpar = list(pctesttype = scoretype))
+      scorepar <- BiDAG::scoreparameters("usr",
+                                         data = data,
+                                         usrpar = list(chi = par$ess,
+                                                       edgepf = par$edgepf,
+                                                       pctesttype = scoretype))
 
-      # add parameters for user-defined score and local-structure optimiziation
-      scorepar <- c(scorepar, par)
-
-      # add cardinality of variables
-      scorepar$levels <- lapply(par$nlev-1, seq.int, from = 0)
-      scorepar$Cvec   <- par$nlev # CVec is used in PC-routine of BiDAG-functions (?)
+      # additional params
+      if (is.null(par$nlev)) {
+        scorepar$Cvec <- apply(data, 2, max) +1
+      } else {
+        scorepar$Cvec   <- par$nlev # CVec is used in PC-routine of BiDAG-functions (?)
+      }
+      scorepar$levels <- lapply(scorepar$Cvec-1, seq.int, from = 0)
+      scorepar$local_struct <- par$local_struct
 
       if (par$local_struct == "pcart") {
         #  add data.frame version of data with factor variables, INCLUDING unobserved levels
@@ -92,47 +100,41 @@ define_scoreparameters <- function(data, scoretype, par = NULL, lookup = NULL) {
       # define function for computing scores
       usrDAGcorescore <- function(j, parentnodes, n, scorepar) {
 
-        parentnodes <- sort(parentnodes)   # for parID
-        npar <- length(parentnodes)
-        pG   <- -npar*log(scorepar$edgepf) # penality term for edges
-
-        if (is.environment(scorepar$lookup)) {
-          # look for score in lookup-table
-          parID <- paste(c(j, parentnodes), collapse = ".")
-          scores <- scorepar$lookup[[scorepar$local_struct]]
-          if (length(scores) > 0 && parID %in% names(scores)) {
-            return(scores[[parID]]$score+pG)
-          }
-        }
-
-        ess <- scorepar$ess
-        nlev <- scorepar$nlev
+        ess <- scorepar$chi
+        nlev <- scorepar$Cvec
         local_struct <- scorepar$local_struct
 
-        # construct bida_bdeu-object - for computing score and optimize partition
-        bdeu <- bida_bdeu(scorepar$data, j, parentnodes, ess, nlev)
+        npar <- length(parentnodes)
+        pG   <- -npar*log(scorepar$pf) # penality term for edges
 
         # optimize partition of parent space and return score
-        if (npar < 2) {
-          # no partitioning possible, return score
-          # construct bdeu-object with frequency counts
-          return(score_bdeu(bdeu)+pG)
-        } else if (local_struct == "pcart") {
-          opt <- optimize_partition_from_df_pcart(scorepar$data.frame[, c(j, parentnodes)], ess)
+        if (npar == 0) {
+          r <- nlev[j]
+          q <- 1
+          freqtab <- matrix(tabulate(data[, j]+1, r), q, r)
+          famscore <- famscore_bdeu(freqtab, ess, r, q)
+        } else if (npar == 1) {
+          r <- nlev[j]
+          q <- nlev[parentnodes]
+          joint <- scorepar$data[, c(parentnodes, j), drop = FALSE]%*%c(1, q)
+          freqtab <- matrix(tabulate(joint+1, r*q), q, r)
+          famscore <- famscore_bdeu(freqtab, ess, r, q)
         } else {
-          opt <- optimize_partition_from_data(scorepar$data, j, parentnodes, ess, nlev, local_struct)
+          if (local_struct == "pcart") {
+            opt <- optimize_partition_from_df_pcart(scorepar$data.frame[, c(j, parentnodes)], ess)
+          } else {
+            opt <- optimize_partition_from_data(scorepar$data, j, parentnodes, ess, nlev, local_struct)
+          }
+
+          famscore  <- attr(opt, "score")
+          # store partition in lookup-table
+          if (!is.null(scorepar$lookup)) {
+            parentnodes <- sort(parentnodes)
+            parID <- sprintf("%s.%s", j, paste0(parentnodes, collapse = "."))
+            scorepar$lookup[[scorepar$local_struct]][[parID]] <- opt
+          }
         }
-
-        score <- attr(opt, "score")
-
-        if (!is.null(scorepar$lookup)) {
-          # store score and bdeu-params in lookup
-          bdeu$partition  <- opt
-          bdeu$score <- score
-          scorepar$lookup[[scorepar$local_struct]][[parID]] <- bdeu
-        }
-
-        return(score+pG)
+        return(famscore+pG)
       }
 
       # assign function to name-space of BiDAG package

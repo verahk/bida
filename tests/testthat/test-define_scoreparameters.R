@@ -28,21 +28,26 @@ test_that("define_scoreparameters", {
 
   # Local-structure
   for (method in c("pcart", "tree", "ptree", "treereg")) { # ldag"
-    par$local_struct = method
-    opt <- optimize_partition_from_data(data, j, parentnodes, 1, nlev, par$local_struct, verbose = FALSE)
-
     # define score-parameter and compute score
+    par$local_struct <- method
     scorepar <- define_scoreparameters(data, "bdecat", par, lookup)
     score <- unname(BiDAG:::usrDAGcorescore(j, parentnodes, n, scorepar))-pG
-    expect_equal(attr(opt, "score"), score)
+    opt <- optimize_partition_from_data(data, j, parentnodes, 1, nlev, par$local_struct, verbose = FALSE)
+    expect_equal(score, attr(opt, "score"))
 
     # check that bdeu-object is stored in lookup-table
-    expect_equal(class(lookup[[par$local_struct]][["3.1.2"]]), "bida_bdeu")
+    class <- ifelse(method == "pcart", method, "tree")
+    expect_true(inherits(lookup[[par$local_struct]][["3.1.2"]], class))
 
-    # check that also second call to score function returns correct score
-    # - now this should be returned from the lookup-table
-    score <- unname(BiDAG:::usrDAGcorescore(j, parentnodes, n, scorepar))-pG
-    expect_equal(attr(opt, "score"), score)
+    # check score for parent set of size < 2
+    score <- unname(BiDAG:::DAGcorescore(j, parentnodes[1], n, scorepar))+log(par$edgepf)
+    nodes <- c(parentnodes[1], j)
+    tab <- counts_from_data_matrix(data[, nodes], nlev[nodes])
+    expect_equal(score, famscore_bdeu(tab, 1))
+
+    score <- unname(BiDAG:::DAGcorescore(j, integer(0), n, scorepar))
+    tab <-  matrix(tabulate(data[, j]+1, nlev[j]), ncol = nlev[j])
+    expect_equal(score, famscore_bdeu(tab, 1))
   }
 
 })
