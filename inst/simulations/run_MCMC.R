@@ -50,7 +50,7 @@ par <- list(local_struct = c("ptree", "none"),
             edgepf = c("2", "logN"),
             hardlimit = 4,
             N = c(300, 1000, 3000),
-            bnname = c("asia", "sachs", "child", "insurance", "alarm"),
+            bnname = c("asia"), #"sachs", "child", "insurance", "alarm"
             r = 1:30)
 
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)

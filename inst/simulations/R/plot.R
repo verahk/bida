@@ -13,6 +13,7 @@ if (FALSE) {
   ggplot(df, aes(x, y)) +
     theme(text = element_text(size=10, family="LM Roman 10"))
 
+  plot_init(df, x, y)
 }
 
 plot_init <- function(df, x, y,
@@ -43,8 +44,7 @@ plot_init <- function(df, x, y,
 plot_prettify <- function() {
   list(theme_minimal(),
        theme(legend.position = "bottom",
-             plot.caption = element_text(hjust = 0)),
-             text = element_text(size=10, family="LM Roman 10"))
+             plot.caption = element_text(hjust = 0)))
 }
 
 plot_add_facet_grid <- function(string, ...) {

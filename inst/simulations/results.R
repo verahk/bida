@@ -54,6 +54,7 @@ write(Sys.time(), file = path_report)
 for (bnname in c("asia", "child", "insurance", "alarm")) {
   files <- list.files(dir_in, ".rds", full.names = T)
   files <- files[grepl(bnname, files)]
+  if (length(files) < 10) next
 
   x <- "N"
   y <- "value"

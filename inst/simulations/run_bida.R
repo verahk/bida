@@ -209,7 +209,7 @@ if (FALSE) {
 
 # run ----
 filenames <- list.files(indir, ".rds")
-filenames <- filenames[!grepl("barley", filenames)]
+filenames <- filenames[grepl("asia", filenames)]
 filenames <- sample(filenames)
 
 
