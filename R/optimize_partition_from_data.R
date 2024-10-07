@@ -234,7 +234,7 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
     # function for growing a tree recursively
 
     dims <- dim(bins)
-    find_split <- dims[2] > 0 && (dims[1] > 1 | force_split)
+    find_split <- dims[2] > 0 && (dims[1] > 1 || force_split)
     if (find_split) {
       # find best split, if possible
       best_split <- leaf
@@ -339,34 +339,30 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
   # make regular ----
   if (regular) {
     get_splitvars <- function(tree) {
-      if (!is_leaf(tree)) c(tree$var, unlist(lapply(tree$branches, get_splitvars)))
-      else (character(0))
+        if (is_leaf(tree)) character(0)
+        else c(tree$var, unlist(lapply(tree$branches, get_splitvars)))
     }
+    splitvars <- get_splitvars(tree)
 
-    add_split <- function(tree, bins) {
-      if (is.null(tree$var)) {
-        pos  <- match(new_splitvars, colnames(bins))
-        tree <- grow_tree(bins[, pos, drop = FALSE],
-                          tree$score,
-                          tree$size,
-                          tree$counts,
-                          force_split = TRUE)
-      } else {
-        v <- tree$var
-        col <- match(v, colnames(bins))
-        dv <- bins[, col]%/%nlev[[1]]
-        for (b in seq_along(tree$branches)) {
-          tree$branches[[b]] <- add_split(tree = tree$branches[[b]],
-                                          bins = bins[dv == b-1, -col, drop = FALSE])
+    if (length(splitvars) < length(nlev)-1) {
+      add_split <- function(tree, bins) {
+        if (is_leaf(tree)) {
+          if (verbose) cat("add split on", colnames(bins), "to make tree regular\n")
+          return(grow_tree(tree, bins[, split_on, drop = FALSE], TRUE))
+        } else {
+          v <- tree$var
+          col <- match(v, colnames(bins))
+          dv <- (bins[, col]-1)%/%r
+          for (b in seq_along(tree$branches)) {
+            tree$branches[[b]] <- add_split(tree = tree$branches[[b]],
+                                            bins = bins[dv == b-1, -col, drop = FALSE])
+          }
+          return(tree)
         }
       }
-      return(tree)
-    }
 
-    min_improv <- -Inf
-    new_splitvars <- setdiff(names(nlev)[-1], unique(get_splitvars(tree)))
-    if (length(new_splitvars) > 0) {
-      if (verbose) cat("Add splits for every non-split variable to all leaves\n")
+      min_improv <- -Inf
+      split_on <- setdiff(colnames(bins), splitvars)
       tree <- add_split(tree, bins)
     }
   }
