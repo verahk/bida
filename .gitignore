@@ -1,5 +1,4 @@
 .Rproj.user
 inst/doc
-inst/simulations/sim_*/
-!inst/simulations/sim_*/**/.R
+inst/simulations/sim_*/**/
 

@@ -26,7 +26,7 @@ test_that("function works on binary split data with missing variables", {
   parts <- 1:prod(nlev[-1])
   sizes <- tabulate(parts)
   scores <- famscore_bdeu_byrow(rowsum(tab, parts), ess, nlev[1], prod(nlev[-1]), sizes)
-  expect_true(all(table(predict(fit, newdata), parts) %in% c(0, 1)))
+  expect_equal(length(unique(predict(fit, newdata))), length(unique(parts)))
   expect_equal(attr(fit, "score"), sum(scores))
   expect_equal(attr(fit, "sizes"), sizes)
   expect_equal(fit, optimize_partition_from_data(data, 1, 2:3, 1, nlev, "treereg"))

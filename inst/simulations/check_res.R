@@ -1,5 +1,5 @@
 
-dir_MCMC <- "./inst/simulations/sim_bn2/MCMCchains/"
+dir_MCMC <- "./inst/simulations/sim_bn/MCMCchains/"
 dir_bida <- "./inst/simulations/sim_bn/results/"
 files <- list.files(dir_MCMC, ".rds")
 
