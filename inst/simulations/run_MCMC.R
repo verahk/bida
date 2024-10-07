@@ -26,7 +26,7 @@
 
 # load libraries ----
 rm(list = ls())
-doTest <- TRUE
+doTest <- FALSE
 
 library(doSNOW)
 sapply(list.files("./inst/simulations/R", ".R", full.names = T),
@@ -96,7 +96,7 @@ sim_run <- function(par, verbose = FALSE) {
 
 # test ----
 if (doTest) {
-  i <- 1
+  i <- 2
   filename <- params_to_filename(pargrid[i, ])
   file.remove(paste0(outdir, filename))
   sim_and_write_to_file(outdir,

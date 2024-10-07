@@ -256,7 +256,7 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
       }
     }
 
-    if (!find_split || is.null(best_split$var)) {
+    if (!find_split || length(best_split) == 3) {
       return(leaf)
     } else {
       # if a split was found, keep growing the tree
@@ -286,26 +286,25 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
   }
 
   get_leaf_scores <- function(tree) {
-    if (is.null(tree$branches)) tree$score
+    if (length(tree) == 3) tree$score
     else lapply(tree$branches, get_leaf_scores)
   }
   get_leaf_sizes <- function(tree) {
-    if (is.null(tree$branches)) tree$size
+    if (length(tree) == 3) tree$size
     else lapply(tree$branches, get_leaf_sizes)
   }
-  get_leaf_counts <- function(tree) {
-    if (is.null(tree$branches)) tree$counts
-    else unlist(lapply(tree$branches, get_leaf_counts), recursive = FALSE)
-  }
-  get_splitvars <- function(tree) {
-    if (!is.null(tree$var)) c(tree$var, unlist(lapply(tree$branches, get_splitvars)))
-    else (character(0))
-  }
+  # get_leaf_counts <- function(tree) {
+  #   if (length(tree) == 3) tree$counts
+  #   else unlist(lapply(tree$branches, get_leaf_counts), recursive = FALSE)
+  # }
+
 
   # fit ----
   # init root node as leaf
   counts <- tabulate(data[, 1]+1, r)
-  leaf <- list(counts = counts, score = famscore_bdeu_1row(counts, ess, r), size = q)
+  leaf <- list(counts = counts,
+               score = famscore_bdeu_1row(counts, ess, r),
+               size = q)
 
   # enumerate joint outcome (y, x) for each x for faster tabulation
   bins <- data[, 1] + r*data[, -1, drop = FALSE] +1
@@ -319,7 +318,7 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
   if (prune) {
     prune_tree <- function(tree) {
       # recursive function for pruning trees
-      if (is.null(tree$branches)) return(tree)
+      if (length(tree) == 3) return(tree)
       tree$branches <- lapply(tree$branches, prune_tree)
 
       # compare score of pruned tree to root
@@ -341,8 +340,12 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
 
   # make regular ----
   if (regular) {
+    get_splitvars <- function(tree) {
+      if (!is.null(tree$var)) c(tree$var, unlist(lapply(tree$branches, get_splitvars)))
+      else (character(0))
+    }
     add_split <- function(tree, bins) {
-      if (is.null(tree$var)) {
+      if (length(tree) == 3) {
         pos  <- match(new_splitvars, colnames(bins))
         tree <- grow_tree(tree,
                           bins[, pos, drop = FALSE],

@@ -176,7 +176,7 @@ if (doTest) {
 }
 # profile ----
 if (FALSE) {
-  f <- "sachs_pcskel_ptree_order_ess1_epflogN_N3000_r10.rds"
+  f <- "sachs_pcskel_ptree_order_ess1_epflogN_N3000_r02.rds"
   profvis::profvis(sim_run(indir = indir, f))
 
   # check how many (x, z) sets are in lookup
