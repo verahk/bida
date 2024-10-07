@@ -34,13 +34,13 @@ sapply(list.files("./inst/simulations/R", ".R", full.names = T),
        source, echo = T)
 
 branch <- system("git branch --show-current", intern = TRUE)
-indir <- paste0("./inst/simulations/MCMCchains/", branch, "/")
-outdir <- paste0("./inst/simulations/results/", branch, "/")
+indir <- paste0("./inst/simulations/", branch, "/MCMCchains/")
+outdir <- paste0("./inst/simulations/" , branch, "/results/")
 if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
 nClusters <- 4
-doTest <- TRUE
+doTest <- FALSE
 
 sim_run <- function(indir, f, verbose = FALSE) {
   out <- list()
@@ -55,7 +55,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
   N <- par$N
   r <- par$r
 
-  bn <- readRDS(paste0("data/", par$bnname, ".rds"))
+  bn <- readRDS(paste0("inst/data/", par$bnname, ".rds"))
   nlev <- vapply(bn, function(x) dim(x$prob)[1], integer(1))
   n    <- length(bn)
   dag <- bnlearn::amat(bn)
@@ -99,18 +99,15 @@ sim_run <- function(indir, f, verbose = FALSE) {
         unknown = bida::bida_pair(type, data, x, y,
                                   sets = ps$sets[[x]],
                                   support = ps$support[[x]],
-                                  hyperpar = c(list(nlev = nlev), par),
-                                  lookup = lookup),
+                                  hyperpar = c(list(nlev = nlev), par)),
         full = bida::bida_pair("cat", data, x, y,
                                sets = ps$sets[[x]],
                                support = ps$support[[x]],
-                               hyperpar = c(list(nlev = nlev), par),
-                               lookup = NULL),
+                               hyperpar = c(list(nlev = nlev), par)),
         known = bida::bida_pair(type, data, x, y,
                         sets = matrix(pa, nrow = 1),
                         support = 1,
-                        hyperpar = c(list(nlev = nlev), par),
-                        lookup = lookup)
+                        hyperpar = c(list(nlev = nlev), par))
       )
 
       pdo_hat     <- lapply(pairs, bida::posterior_mean)
@@ -146,10 +143,9 @@ sim_run <- function(indir, f, verbose = FALSE) {
   out$rank <- c(arp = compute_avgppv(arp[!dindx], dmat[!dindx]),
                 apply(do.call(rbind, tau[!dindx]), 2, compute_avgppv, y = dmat[!dindx]))
 
-  topmat <- tautrue > quantile(tautrue[!dindx & tautrue > 0], .8)
+  topmat <- truetau > quantile(truetau[!dindx & truetau > 0], .8)
   out$ranktop <- c(arp = compute_avgppv(arp[!dindx], topmat[!dindx]),
                 apply(do.call(rbind, tau[!dindx]), 2, compute_avgppv, y = topmat[!dindx]))
-
   rates <- rowsum(edgep[!dindx], dag[!dindx])/tabulate(dag[!dindx]+1, 2)
   out$edge <- c(n = sum(edgep[!dindx]),
                 fpr = rates[1],
@@ -157,7 +153,6 @@ sim_run <- function(indir, f, verbose = FALSE) {
                 avgppv = compute_avgppv(edgep[!dindx], dag[!dindx]))
 
   out$par <- par
-  out$size <- size # description of true dag
   out
 }
 
@@ -165,7 +160,8 @@ sim_run <- function(indir, f, verbose = FALSE) {
 if (doTest) {
   # test
   filenames <- list.files(indir, ".rds")
-  filename <- filenames[500]
+  filename <- filenames[1]
+  file.remove(paste0(outdir, filename))
   sim_and_write_to_file(dir_out = outdir,
                         filename = filename,
                         run = sim_run,
@@ -174,13 +170,51 @@ if (doTest) {
 
   res <- readRDS(paste0(outdir, filename))
   str(res, max.level = 2)
-  file.remove(paste0(outdir, filename))
   stop()
+  file.remove(paste0(outdir, filename))
+
 }
+# profile ----
+if (FALSE) {
+  f <- "sachs_pcskel_ptree_order_ess1_epflogN_N3000_r02.rds"
+  profvis::profvis(sim_run(indir = indir, f))
+
+  # check how many (x, z) sets are in lookup
+  imp <- readRDS(paste0(indir, f))
+  lookup <- imp$lookup
+  dags <- lapply(imp$MCMCchain$traceadd$incidence, as.matrix)
+  ps <- bida:::parent_support_from_dags(dags)
+  res <- matrix(0, length(ps$sets), 5)
+  colnames(res) <- c("nsets", "maxPar", "meanPar", "maxInLookup", "meanInLookup")
+  for (x in seq_along(ps$sets)) {
+    nInLookup <- nPar <- vector("numeric", length(ps$sets[[x]]))
+    for (r in seq_along(ps$support[[x]])) {
+      z <- ps$sets[[x]][r, ]
+      z <- z[!is.na(z)]
+      #stopifnot(length(z) < imp$par$hardlimit)
+      nPar[r] <-   length(z)
+      if (length(z) < 2) next
+
+      parentnodes <- sort(c(x, z))
+      parID <- paste(seq_along(ps$sets)[-x], paste0(parentnodes, collapse = "."), sep= ".")
+      nInLookup <- sum(match(parID, names(lookup[["ptree"]]), 0L) > 0)
+    }
+    res[x, 1] <- length(ps$sets[[x]])
+    res[x, 2] <- max(nPar)
+    res[x, 3] <- mean(nPar)
+    res[x, 4] <- max(nInLookup)
+    res[x, 4] <- mean(nInLookup)
+  }
+}
+
+# run ----
+filenames <- list.files(indir, ".rds")
+filenames <- filenames[grepl("asia", filenames)]
+filenames <- sample(filenames)
 
 
 if (nClusters == 0) {
-  filenames <- list.files(indir, ".rds")
+
   for (f in filenames) {
     sim_and_write_to_file(dir_out = outdir, filename = f, run = sim_run, indir = indir, f = f)
   }
@@ -194,10 +228,6 @@ if (nClusters == 0) {
   registerDoSNOW(cl)
 
   # run
-  filenames <- list.files(indir, ".rds")
-  indx <-  !grepl("pcart", filenames) # & grepl("k2", filenames)
-  exists <- filenames[indx] %in%  list.files(outdir, ".rds")
-  filenames <- filenames[indx][!exists]
   foreach (f = filenames) %dopar% sim_and_write_to_file(dir_out = outdir,
                                                         filename = f,
                                                         run = sim_run,
@@ -205,4 +235,6 @@ if (nClusters == 0) {
                                                         f = f)
   stopCluster(cl)
 }
+
+
 

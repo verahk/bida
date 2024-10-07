@@ -34,8 +34,7 @@ sapply(list.files("./inst/simulations/R", ".R", full.names = T),
 
 # paths ----
 branch <- system("git branch --show-current", intern = TRUE)
-outdir <- paste0("./inst/simulations/MCMCchains/", branch, "/")
-
+outdir <- paste0("./inst/simulations/", branch, "/MCMCchains/")
 if (!dir.exists(outdir)) dir.create(outdir)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
@@ -51,7 +50,7 @@ par <- list(local_struct = c("ptree", "none"),
             edgepf = c("2", "logN"),
             hardlimit = 4,
             N = c(300, 1000, 3000),
-            bnname = c("insurance", "alarm",  "asia"),
+            bnname = c("asia"), #"sachs", "child", "insurance", "alarm"
             r = 1:30)
 
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
@@ -73,7 +72,7 @@ sim_run <- function(par, verbose = FALSE) {
 
   # import bn
   set.seed(r)
-  bn <- readRDS(paste0("data/", par$bnname, ".rds"))
+  bn <- readRDS(paste0("inst/data/", par$bnname, ".rds"))
   nlev <- vapply(bn, function(x) dim(x$prob)[1], integer(1))
 
   # draw data
@@ -97,7 +96,7 @@ sim_run <- function(par, verbose = FALSE) {
 
 # test ----
 if (doTest) {
-  i <- 1
+  i <- 2
   filename <- params_to_filename(pargrid[i, ])
   file.remove(paste0(outdir, filename))
   sim_and_write_to_file(outdir,
