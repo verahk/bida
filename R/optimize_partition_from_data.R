@@ -247,7 +247,7 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
         # compute score of each leaf and compare against current best
         leaf_scores <- famscore_bdeu_byrow(tab, ess, r, q, s = leaf$size/nlev[[v]])
         score <- sum(leaf_scores)
-        if (score > best_score) {
+        if (score-best_score > 10**-10) {
           best_score <- score
           best_split$var  <- v
           best_split$leaf_scores <- leaf_scores
@@ -256,7 +256,7 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
       }
     }
 
-    if (!find_split || length(best_split) == 3) {
+    if (!find_split || is_leaf(best_split)) {
       return(leaf)
     } else {
       # if a split was found, keep growing the tree
@@ -285,16 +285,17 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
     }
   }
 
+  is_leaf <- function(tree) length(tree) == 3
   get_leaf_scores <- function(tree) {
-    if (length(tree) == 3) tree$score
+    if (is_leaf(tree)) tree$score
     else lapply(tree$branches, get_leaf_scores)
   }
   get_leaf_sizes <- function(tree) {
-    if (length(tree) == 3) tree$size
+    if (is_leaf(tree)) tree$size
     else lapply(tree$branches, get_leaf_sizes)
   }
   # get_leaf_counts <- function(tree) {
-  #   if (length(tree) == 3) tree$counts
+  #   if (is_leaf(tree)) tree$counts
   #   else unlist(lapply(tree$branches, get_leaf_counts), recursive = FALSE)
   # }
 
@@ -318,15 +319,15 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
   if (prune) {
     prune_tree <- function(tree) {
       # recursive function for pruning trees
-      if (length(tree) == 3) return(tree)
+      if (is_leaf(tree)) return(tree)
       tree$branches <- lapply(tree$branches, prune_tree)
 
       # compare score of pruned tree to root
       score <- sum(unlist(get_leaf_scores(tree)))
-      if (score > tree$score) {
+      if (score-tree$score > 10**-10) {
         tree
       } else {
-        if (verbose) cat("Collapse split on variable %s.", tree$var,
+        if (verbose) cat("Collapse split on variable:", tree$var,
                           "Score-diff:", round(tree$score-score, 2))
         tree[keepinleaf] # return root as a leaf
       }
@@ -341,7 +342,7 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
   # make regular ----
   if (regular) {
     get_splitvars <- function(tree) {
-      if (!is.null(tree$var)) c(tree$var, unlist(lapply(tree$branches, get_splitvars)))
+      if (!is_leaf(tree)) c(tree$var, unlist(lapply(tree$branches, get_splitvars)))
       else (character(0))
     }
     add_split <- function(tree, bins) {
@@ -373,8 +374,8 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
   # output ----
   to_string <- function(tree, prefix = "") {
     if (is.null(tree$branches)) {
-      sprintf("%s-- score: %1.2f size: %s counts: %s\n",
-              prefix, tree$score, tree$size, paste(tree$counts, collapse = " "))
+      sprintf("%s-- score: %1.2f size: %s\n", # counts: %s\n",
+              prefix, tree$score, tree$size) # paste(tree$counts, collapse = " "))
     } else {
       split <- sprintf("%s-+ %s:\n", prefix, tree$var)
       c(split, unlist(lapply(tree$branches, to_string, prefix = paste0(prefix, " | "))))
