@@ -108,4 +108,5 @@ df_to_tex <- function(df,
         hline.after = hline_after,
         include.colnames = is.null(names_from) || length(values_from) == 1,
         table.placement = "ht")
+
 }

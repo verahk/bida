@@ -3,6 +3,9 @@
 library(dplyr)
 library(ggplot2)
 
+do_print_tabs <- TRUE
+
+
 branch  <- system("git branch --show-current", intern = TRUE)
 dir_in  <- paste0("./inst/simulations/", branch, "/results/")
 dir_out <- paste0("./inst/simulations/", branch, "/output/")
@@ -10,6 +13,7 @@ dir.create(dir_out)
 files <- list.files("./inst/simulations/R", full.names = T)
 sapply(files, source, echo = T)
 
+bnnames <-  c("asia", "child", "insurance", "alarm")
 
 res_from_file_to_df <- function(files, name) {
   imp <- lapply(files,
@@ -46,15 +50,63 @@ res_from_file_to_df <- function(files, name) {
   df$edgepf <- ifelse(df$edgepf == 2, "2", "logN")
   df$lstruct.epf <- with(df, interaction(local_struct, edgepf))
 
-  return(df)
+  # check that there are not more than 1 line per group
+  group_vars <- c("lstruct.epf", "N", "bnname", "r")
+  tmp <- group_by(df, across(all_of(group_vars))) %>% count()
+  stopifnot(all(tmp$n) == 1)
+
+  # return grouped df - removing iter r
+  group_by(df, across(all_of(group_vars[-length(group_vars)])))
 }
 
+
+# Summarize ----
 path_report <- paste0(dir_out, "report.md")
 write(Sys.time(), file = path_report)
-for (bnname in c("asia", "child", "insurance", "alarm")) {
+
+
+# Structure learning -----
+if (do_print_tabs) {
+files <- list.files(dir_in, ".rds", full.names = T)
+
+
+values_from <- c("fpr", "tpr", "avgppv")
+names_from  <- "lstruct.epf"
+row_group_by <- c("bnname")
+pretty_names <- c(edgep = "edges", arp = "ancestor relations")
+
+for (name in names(pretty_names)) {
+  pretty_name <- pretty_names[name]
+  df <- res_from_file_to_df(files, name)%>%
+        summarize(across(all_of(values_from), ~ mean(.x)),
+                  nr = n(),
+                  .groups = "keep")
+
+  file  <- paste0(dir_out, "slearn_", name, ".tex")
+  title <- paste0(sprintf("True and false positive rates of %s.", pretty_name),
+                  "Averaged over all DAGs in ", mean(df$nr), " simulation runs.")
+
+  df %>%
+   select(-nr) %>%
+   group_by(across(all_of(row_group_by))) %>%
+   arrange(N, .by_group = T) %>% #-> df
+   df_to_tex(values_from = values_from,
+             names_from = names_from,
+             caption = title,
+             file = file)
+}
+
+# Run times ----
+
+}
+
+
+
+# Causal-effect estimates ----
+for (bnname in bnnames) {
   files <- list.files(dir_in, ".rds", full.names = T)
   files <- files[grepl(bnname, files)]
-  if (length(files) < 10) next
+  if (length(files) < 30) next
 
   x <- "N"
   y <- "value"
