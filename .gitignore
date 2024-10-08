@@ -1,6 +1,4 @@
 .Rproj.user
 inst/doc
-inst/simulations/results/
-inst/simulations/MCMCchains/
-inst/simulations/sim_*/
-!inst/simulations/sim_*/**/.R
+inst/simulations/*/
+!inst/simulations/R/
