@@ -22,7 +22,7 @@
 #' If `is.null(outdir)`, a chain of DAGs (an BiDAG-object which class depend on `sample`).
 #' Otherwise, the results is written to file and the functions returns `NULL`.
 
-sim_run_MCMC <- function(par) {
+sim_run_MCMC <- function(par, verbose = TRUE) {
 
   N <- par$N
   r <- par$r

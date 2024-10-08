@@ -1,6 +1,6 @@
 
 
-sim_load_params <- function(which, what) {
+sim_load_params <- function(which, what, iterStart, iterStop) {
   if (what == "MCMC") {
 
     par <- list(local_struct = c("ptree", "none"),
@@ -10,13 +10,13 @@ sim_load_params <- function(which, what) {
                 edgepf = c("2", "logN"),
                 hardlimit = 4,
                 N = c(300, 1000, 3000),
-                r = 1:30)
+                r = seq.int(iterStart, iterStop))
 
     if (which == "syntethic") {
 
       # add params controlling random-cpt generation
-      par$n <- 10
-      par$k <- c(2, 4, 6)
+      par$n <- c(20)
+      par$k <- c(2, 4)
       par$maxdepth <- c(0, .5, 1)
 
       params_to_filename <<- function(par) {

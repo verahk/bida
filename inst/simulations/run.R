@@ -3,12 +3,20 @@
 rm(list = ls())
 
 # args ----
-args <- commandArgs(trailingOnly = TRUE)
+args <- as.list(commandArgs(trailingOnly = TRUE))
 if (length(args) == 0) {
-  args <- c(what = "MCMC",
-            doTest = 1,
-            nClusters = 4)
+  args <- list(what = "MCMC",
+            test_row = 0,
+            nClusters = 4,
+            iterStart = 1,
+            iterSlutt = 30)
 }
+
+stopifnot(length(args) == 5)
+names(args) <- c("what", "test_row", "nClusters", "iterStart", "iterSlutt")
+args[-1] <- lapply(args[-1], as.numeric)
+print(args)
+vapply(args, class, character(1))
 
 # load libraries ----
 library(doSNOW)
@@ -18,49 +26,51 @@ sapply(list.files("./inst/simulations/R", ".R", full.names = T),
 
 # paths ----
 branch  <- system("git branch --show-current", intern = TRUE)
-subdir  <- switch(args[1], "run_MCMC.R" = "MCMCchains", "results")
+subdir  <- switch(args$what, "MCMC" = "MCMCchains/", "results")
 outdir <- paste0("./inst/simulations/", branch, "/", subdir)
-subdir  <- switch(args[1], "run_MCMC.R" = "MCMCchains")
+subdir  <- switch(args$what, "MCMC" = "MCMCchains/")
 indir <- paste0("./inst/simulations/", branch, "/", subdir)
-
 if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
 
 # get params ----
-pargrid <- sim_load_params("syntethic", args[1])
-sim_run <- switch(args[1] == "MCMC", get("sim_run_MCMC"))
+pargrid <- sim_load_params("syntethic", args$what, args$iterStart, args$iterSlutt)
+sim_run <- switch(args$what == "MCMC", get("sim_run_MCMC"))
+
 
 # run ----
-if (args[[2]] > 0) {
-  par <- pargrid[args[2], ]
+if (args$test_row > 0) {
+  par <- pargrid[args$test_row, ]
   file <- params_to_filename(par)
   path <- paste0(outdir, file)
   sim_run(par, verbose = T)
 
   file.remove(path)
-  sim_and_write_to_file(outdir, file, par, verbose = TRUE)
+  sim_and_write_to_file(outdir, file, sim_run, par, verbose = TRUE)
   res <- readRDS(path)
   ls.str(res)
-} else if (nClusters == 0) {
+} else if (args$nClusters == 0) {
   for (r in seq_len(nrow(pargrid))) {
+    cat(params_to_filename(pargrid[r, ]), "\n")
     sim_and_write_to_file(outdir,
                           params_to_filename(pargrid[r, ]),
                           sim_run,
-                          par = pargrid[r, ])
+                          par = pargrid[r, ], verbose = T)
   }
 } else {
 
     # set up cluster
-    simId <- format(Sys.time(), "%a %b %d %X %Y")
-    cl <- makeCluster(nClusters, type = "SOCK", outfile = paste0(outdir, simId, ".out"))
+    simId <- format(Sys.time(), "%Y-%m-%d-%H-%m-%S")
+    cl <- makeCluster(args$nClusters, type = "SOCK", outfile = paste0(outdir, simId, ".out"))
     export <- ls(pattern = "sim_")
     clusterExport(cl, export)
     registerDoSNOW(cl)
-    onExit( stopCluster(cl))
+
 
     # run
     foreach (r = seq_len(nrow(pargrid))) %dopar% sim_and_write_to_file(dir_out = outdir,
                                                           params_to_filename(pargrid[r, ]),
                                                           sim_run,
-                                                          par = pargrid[r, ])
+                                                          par = pargrid[r, ],
+                                                          verbose = TRUE)
     stopCluster(cl)
 }

@@ -3,7 +3,7 @@ sim_load_bn <- function(par) {
     n <- par$n
     k <- par$k
     nlev <- rep(k, n)
-    rand_bn(n = par$n,
+    bida:::rand_bn(n = par$n,
             d = 4,
             type = "cat",
             nlev = nlev,

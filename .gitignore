@@ -2,3 +2,4 @@
 inst/doc
 inst/simulations/*/
 !inst/simulations/R/
+inst/simulations/simulations.Rmd
