@@ -1,6 +1,6 @@
 
-dir_MCMC <- "./inst/simulations/sim_bn/MCMCchains/"
-dir_bida <- "./inst/simulations/sim_bn/results/"
+dir_MCMC <- "./inst/simulations/sim_bn3/MCMCchains/"
+dir_bida <- "./inst/simulations/sim_bn3/results/"
 files <- list.files(dir_MCMC, ".rds")
 
 # check if parent sets greater than hardlimit ----
@@ -12,6 +12,20 @@ if (FALSE) {
     ps1 <- parent_support_from_dags(dags)
     ncols <- vapply(ps1$sets, ncol, integer(1))
     stopifnot(all(ncols <= par$hardlimit+1))
+  }
+}
+
+if (FALSE) {
+  files <- list.files(dir_MCMC, "asia.*ptree.*rds")
+
+  for (file in files) {
+    cat(file, "\n")
+    imp <- readRDS(paste0(dir_MCMC, file))
+    dags <- lapply(imp$MCMCchain$traceadd$incidence, as.matrix)
+    imp2 <- readRDS(paste0(gsub("sim_bn3","sim_bn2", dir_MCMC), file))
+    dags2 <- lapply(imp$MCMCchain$traceadd$incidence, as.matrix)
+    stopifnot(all.equal(dags, dags2))
+    ls.str(imp$lookup)
   }
 }
 

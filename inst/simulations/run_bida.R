@@ -39,12 +39,22 @@ outdir <- paste0("./inst/simulations/" , branch, "/results/")
 if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
-nClusters <- 4
-doTest <- FALSE
+# command args ----
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) == 0) {
+  args <- c(nClusters = 4,
+            "asia", "alarm")
+} else {
+  cat("Run script with arguments:", args)
+}
+
+
+doTest <- F
+nClusters <- as.numeric(args[1])
 
 sim_run <- function(indir, f, verbose = FALSE) {
   out <- list()
-
+  tic <- list(start = Sys.time())
   # read MCMC-results from file
   filepath <- paste0(indir, f)
   res <- readRDS(filepath)
@@ -60,17 +70,20 @@ sim_run <- function(indir, f, verbose = FALSE) {
   n    <- length(bn)
   dag <- bnlearn::amat(bn)
   dmat <- bida:::descendants(dag)
+  set.seed(r)
   pdo <- bida:::interv_probs_from_bn(bn, "bn")  # ground truth
   truetau <- matrix(vapply(pdo, bida:::JSD, numeric(1)), n, n)
   dindx <- diag(n) == 1
+  tic <- list("ground truth" = Sys.time())
 
   # draw data
   set.seed(N+r)
   data <- bida:::sample_data_from_bn(bn, N)
-  nlev <- sapply(bn, function(x) dim(x$prob)[1])
+  tic <- list("simulate data" = Sys.time())
 
   # compute support over unique dags
-  dags <- lapply(MCMCchain$traceadd$incidence, as.matrix)
+  burnin <- 1:200
+  dags <- lapply(MCMCchain$traceadd$incidence[-burnin], as.matrix)
   tmp <- unique(dags)
   support <- bida:::rowsum_fast(rep(1/length(dags), length(dags)), dags, tmp)
   dags <- tmp
@@ -78,6 +91,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
   # estimate intervention distributions ----
   ## compute support over parent sets
   ps <- bida::parent_support_from_dags(dags)
+  tic <- list("compute parent support" = Sys.time())
 
   get_size <- function(x) {
     dims <- x$counts$dim
@@ -123,6 +137,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
       parts[[x, y]]   <- tmp[2, ]
     }
   }
+  tic <- list("compute backdoor estimates" = Sys.time())
 
   out$mse_pdo <- colMeans(do.call(rbind, mse[!dindx]))
   out$mse_tau <- colMeans((do.call(rbind, tau[!dindx]) - truetau[!dindx])**2)
@@ -132,6 +147,7 @@ sim_run <- function(indir, f, verbose = FALSE) {
   # edge probs and ranking ---
   edgep <- Reduce("+", Map("*", dags, support))
   arp   <- Reduce("+", Map("*", lapply(dags, bida:::descendants), support))
+  taumat <- do.call(rbind, tau[!dindx])
 
   # compute average precision-recall
   compute_avgppv <- function(x, y) {
@@ -140,26 +156,33 @@ sim_run <- function(indir, f, verbose = FALSE) {
     pp <- seq_along(x)
     mean((tp/pp)[y[indx] == 1])
   }
-  out$rank <- c(arp = compute_avgppv(arp[!dindx], dmat[!dindx]),
-                apply(do.call(rbind, tau[!dindx]), 2, compute_avgppv, y = dmat[!dindx]))
+  eval_edge <- function(edgep, dag) {
+    rates <- rowsum(edgep, dag)/tabulate(dag+1, 2)
+    c(n = sum(edgep),
+      fpr = rates[1],
+      tpr = rates[2],
+      avgppv = compute_avgppv(edgep, dag))
+  }
+  out$edgep <- eval_edge(edgep[!dindx], dag[!dindx])
+  out$arp   <- eval_edge(arp[!dindx], dmat[!dindx])
+  out$postau  <- apply((taumat>0)*1, 2, eval_edge, dag = dmat[!dindx])
 
+  out$rank <- c(arp = compute_avgppv(arp[!dindx], dmat[!dindx]),
+                apply(taumat, 2, compute_avgppv, y = dmat[!dindx]))
   topmat <- truetau > quantile(truetau[!dindx & truetau > 0], .8)
   out$ranktop <- c(arp = compute_avgppv(arp[!dindx], topmat[!dindx]),
-                apply(do.call(rbind, tau[!dindx]), 2, compute_avgppv, y = topmat[!dindx]))
-  rates <- rowsum(edgep[!dindx], dag[!dindx])/tabulate(dag[!dindx]+1, 2)
-  out$edge <- c(n = sum(edgep[!dindx]),
-                fpr = rates[1],
-                tpr = rates[2],
-                avgppv = compute_avgppv(edgep[!dindx], dag[!dindx]))
+                apply(taumat, 2, compute_avgppv, y = topmat[!dindx]))
+  tic <- list("evaluate" = Sys.time())
 
   out$par <- par
+  out$tic <- diff(do.call(c, tic))
   out
 }
 
 # test ----
 if (doTest) {
   # test
-  filenames <- list.files(indir, ".rds")
+  filenames <- list.files(indir, "asia.*ptree.*.rds")
   filename <- filenames[1]
   file.remove(paste0(outdir, filename))
   sim_and_write_to_file(dir_out = outdir,
@@ -209,7 +232,9 @@ if (FALSE) {
 
 # run ----
 filenames <- list.files(indir, ".rds")
-filenames <- filenames[grepl("asia", filenames)]
+if (length(args) > 1) {
+  filenames <- filenames[grepl(paste(args[-1], collapse = "|"), filenames)]
+}
 filenames <- sample(filenames)
 
 
@@ -221,6 +246,7 @@ if (nClusters == 0) {
 
   stop()
 } else {
+
   # set up cluster
   cl <- makeCluster(nClusters, type = "SOCK", outfile = paste0(outdir, simId, ".out"))
   export <- ls(pattern = "sim_")

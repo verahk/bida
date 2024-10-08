@@ -35,7 +35,7 @@ sapply(list.files("./inst/simulations/R", ".R", full.names = T),
 # paths ----
 branch <- system("git branch --show-current", intern = TRUE)
 outdir <- paste0("./inst/simulations/", branch, "/MCMCchains/")
-if (!dir.exists(outdir)) dir.create(outdir)
+if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
 simId <- format(Sys.time(), "%Y%m%d_%H%M%S")   # name of log file
 
 
@@ -49,8 +49,8 @@ par <- list(local_struct = c("ptree", "none"),
             ess = 1,
             edgepf = c("2", "logN"),
             hardlimit = 4,
-            N = c(300, 1000, 3000),
-            bnname = c("asia"), #"sachs", "child", "insurance", "alarm"
+            N = c(100, 300, 1000, 3000),
+            bnname = c("asia", "sachs", "child", "insurance", "alarm"),
             r = 1:30)
 
 pargrid <- expand.grid(par, stringsAsFactors = FALSE)
