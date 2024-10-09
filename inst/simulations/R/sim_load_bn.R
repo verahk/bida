@@ -4,7 +4,7 @@ sim_load_bn <- function(par) {
     k <- par$k
     nlev <- rep(k, n)
     bida:::rand_bn(n = par$n,
-            d = 4,
+            d = 8,
             type = "cat",
             nlev = nlev,
             local_structure = "tree",
