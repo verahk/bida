@@ -32,9 +32,11 @@ subdir  <- switch(args$what, "MCMC" = "MCMCchains/")
 indir <- paste0("./inst/simulations/", branch, "/", subdir)
 if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
 
-# get params ----
-pargrid <- sim_load_params("syntethic", args$what, args$iterStart, args$iterSlutt)
-sim_run <- switch(args$what == "MCMC", get("sim_run_MCMC"))
+# source file with specific sim_run fcuntion
+filepath <- switch(args$what,
+                   "MCMC" =  "./inst/simulations/sim_run_MCMC.R",
+                   "bida" = "./inst/simulations/sim_run_bida.R")
+source(filepath)
 
 
 # run ----
