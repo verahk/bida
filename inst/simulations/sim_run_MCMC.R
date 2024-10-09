@@ -30,12 +30,12 @@ par <- list(local_struct = c("ptree", "none"),
             edgepf = c("2", "logN"),
             hardlimit = 4,
             N = c(300, 1000, 3000),
-            r = 15:30)
+            r = 1:15)
 
 # add params controlling random-cpt generation
 par$n <- c(20)
 par$k <- c(4)
-par$maxdepth <- c(0, .5, 1)
+par$maxdepth <- c(1)
 
 params_to_filename <<- function(par) {
   tmp <- sprintf("n%s_k%s_depth%s_%s_%s_%s_ess%s_epf%s_N%s_r%02.0f.rds",

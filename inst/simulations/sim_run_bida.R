@@ -1,7 +1,7 @@
 
 
 files <- list.files(indir, ".rds")
-#files <- files[grepl("depth50_pcskel_ptree", files)]
+files <- files[grepl("depth50_pcskel_ptree", files)]
 pargrid <- data.frame(file = files,
                       indir = indir)
 

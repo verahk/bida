@@ -3,7 +3,7 @@
 library(dplyr)
 library(ggplot2)
 
-do_print_tabs <- F
+do_print_tabs <- T
 
 branch  <- system("git branch --show-current", intern = TRUE)
 dir_in  <- paste0("./inst/simulations/", branch, "/results/")
@@ -60,7 +60,7 @@ res_from_file_to_df <- function(files, name) {
 
   # return grouped df - removing iter r
   df %>%
-    select(group_vars, everything()) %>%
+    select(any_of(group_vars), everything()) %>%
     group_by(across(any_of(group_vars)))
 }
 
@@ -71,31 +71,33 @@ res_from_file_to_df <- function(files, name) {
 if (do_print_tabs) {
 files <- list.files(dir_in, ".rds", full.names = T)
 files <- files[!grepl("none.*logN", files)]
-
-values_from <- c("fpr", "tpr", "avgppv")
-names_from  <- c("lstruct.epf", "maxdepth")
-row_group_by <- c("n", "k")
+n_sim_runs <- format(mean(table(gsub("r[0-9]+", "", files))), digits = 1)
 pretty_names <- c(edgep = "edge", arp = "ancestor relation")
 
 for (name in names(pretty_names)) {
 
-  df <- res_from_file_to_df(files, name)%>%
-        summarize(across(all_of(values_from), ~ mean(.x)),
-                  nr = n(),
-                  .groups = "keep")
+  values_from <- c("fpr", "tpr", "avgppv")
+  names_from  <- c("lstruct.epf", "maxdepth")
+  row_group_by <- c("n", "k")
+
 
   titles <- c(fpr = paste0("False positive rate of ", pretty_names[name], "s, averaged over all DAGs in the sample."),
               tpr = paste0("True positive rate of ", pretty_names[name], "s, averaged over all DAGs in the sample"),
               avgppv = paste0("Average precision using the posterior ", pretty_names[name], " probabilities."))
   titles <- paste(titles,
-                   "Averaged over", round(mean(df$nr)), "simulation runs.")
+                  "Averaged over", n_sim_runs, "simulation runs.")
   names(titles) <- c("fpr", "tpr", "avgppv")
+
+  df <- res_from_file_to_df(files, name)%>%
+        summarize(across(all_of(values_from), ~ mean(.x)), .groups = "drop") %>%
+        group_by(across(all_of(row_group_by))) %>%
+        arrange(N, .by_group = T)
+
+
   for (v in values_from) {
     file  <- paste0(dir_out, "slearn_", name, "_", v, ".tex")
     df %>%
-      select(all_of(c(row_group_by, "N", v))) %>%
-      group_by(across(all_of(row_group_by))) %>%
-      arrange(N, .by_group = T) %>% #-> df
+      select(all_of(c(row_group_by, names_from, "N", v))) %>%
       df_to_tex(values_from = v,
                 names_from = names_from,
                 caption = titles[v],
@@ -103,10 +105,9 @@ for (name in names(pretty_names)) {
                 label = paste0("tab:",substr(file, nchar(dir_out)+1, nchar(file)-4)))
 
     file  <- paste0(dir_out, "slearn_", name, "_", v, "_n20.tex")
-    df %>% filter(n == "20") %>%
-      select(all_of(c(row_group_by, "N", v))) %>%
-      group_by(across(all_of(row_group_by))) %>%
-      arrange(N, .by_group = T) %>% #-> df
+    df %>%
+      filter(n == "20") %>%
+      select(all_of(c(row_group_by, names_from,  "N", v))) %>%
       df_to_tex(values_from = v,
                 names_from = names_from,
                 caption = titles[v],
@@ -130,10 +131,22 @@ title <- paste0("Average parent set size in the sampled DAGs.",
                 " Averaged over ", n_sim_runs, " simulation runs.")
 file  <- paste0(dir_out, "parent_set_size_n20.tex")
 
+# Size of CPTs  ----
+files <- list.files(dir_in, ".rds", full.names = T)
+files <- files[grepl("n20", files)]
+files <- files[!grepl("none.*logN", files)]
 
-df <- res_from_file_to_df(files, "parents") %>%
-  filter(!(name == "reduced CPT" | slearn == "known parents")) %>%
-  summarize(value = mean(value), .groups = "drop") %>%
+n_sim_runs <- format(mean(table(gsub("r[0-9]+", "", files))), digits = 1)
+
+names_from  <- c("lstruct.epf", "maxdepth")
+row_group_by <- c("n", "k")
+title <- paste0("Average partition size for the local distribution $P(X_j|X_i, Pa(X_i))$.",
+                " Averaged over all cause-effect pairs in every sampled DAGs across ", n_sim_runs, " simulation runs.")
+file  <- paste0(dir_out, "number_of_parts_n20.tex")
+
+df <- res_from_file_to_df(files, "parts") %>%
+  filter((name == "reduced CPT") & slearn == "unknown parents") %>%
+  summarize(value = mean(value), .groups = "drop") %>% #
   select(-name, -slearn) %>%
   group_by(across(all_of(row_group_by))) %>%
   arrange(N, .by_group = T)
