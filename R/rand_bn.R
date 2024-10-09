@@ -75,7 +75,7 @@ custom_bn <- function(dag, dist, run_checks = TRUE) {
     bnlearn::custom.fit(g, dist)
   } else {
     # skip time-consuming checks of whether or not the dag is valid and so on
-    bnlearn:::custom.fit.backend(x = x, dist = dist, ordinal = character(0), debug = FALSE)
+    bnlearn:::custom.fit.backend(x = g, dist = dist, ordinal = character(0), debug = FALSE)
   }
 
 }

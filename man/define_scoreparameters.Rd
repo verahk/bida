@@ -35,27 +35,30 @@ DAGs with local structure.
 
 lookup <- rlang:::new_environment() # environment for storing scores and CPTs
 bn  <- readRDS("./data/asia.rds")
+nlev <- sapply(bn, function(x) dim(x$prob)[1])
 data <- sample_data_from_bn(bn, 10)
 
-par <- list(nlev = apply(data, 2, max)+1, ess = 1, edgepf = 2, regular = T)
+par <- list(nlev = nlev, ess = 1, edgepf = 2, regular = T)
 
-j <- 1
-parentnodes <- 2
+j <- 8
+parentnodes <- 5:6
 
 # no partitioning - use BiDAG-score
-scorepar_bdecat <- define_scoreparameters(data, "bdecat", par, lookup = lookup)
-score <- BiDAG:::DAGcorescore(j, parentnodes, ncol(data), scorepar_bdecat)
+scorepar <- define_scoreparameters(data, "bdecat", par, lookup = lookup)
+score <- BiDAG:::DAGcorescore(j, parentnodes, ncol(data), scorepar)
 score
 
 # user-specified function is assigned to BiDAG-namespace
-scorepar_tree <- define_scoreparameters(data, "tree", par, lookup = lookup)
+par$local_struct = "tree"
+scorepar <- define_scoreparameters(data, "bdecat", par, lookup = lookup)
 BiDAG:::usrDAGcorescore
-# with less than 2 parents, the partition space is not partitioned
-stopifnot(score == BiDAG:::DAGcorescore(j, parentnodes, ncol(data), scorepar_tree))
+
+# computes score with a call to BiDAG:::usrDAGcorescore
+score <- BiDAG:::DAGcorescore(j, parentnodes, ncol(data), scorepar)
+score
 
 # user-specified functions writes to lookup table
-ls.str(lookup)    # empty
-BiDAG:::usrDAGcorescore(1, 2:3, ncol(data), scorepar_tree)
 ls.str(lookup)    # updated
-lookup$tree[["1.2.3"]]
+lookup$tree[["8.5.6"]]
+
 }

@@ -30,11 +30,11 @@ par <- list(local_struct = c("ptree", "none"),
             edgepf = c("2", "logN"),
             hardlimit = 4,
             N = c(300, 1000, 3000),
-            r = seq.int(20, 30))
+            r = 15:30)
 
 # add params controlling random-cpt generation
-par$n <- c(10, 20)
-par$k <- c(2, 4, 6)
+par$n <- c(20)
+par$k <- c(4)
 par$maxdepth <- c(0, .5, 1)
 
 params_to_filename <<- function(par) {

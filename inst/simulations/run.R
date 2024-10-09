@@ -5,7 +5,7 @@ rm(list = ls())
 # args ----
 args <- as.list(commandArgs(trailingOnly = TRUE))
 if (length(args) == 0) {
-  args <- list("bida", 0, 6)
+  args <- list("MCMC", 1, 6)
 } else if (length(args) < 3) stop()
 names(args) <- c("what", "test_row", "nClusters")
 args[-1] <- lapply(args[-1], as.numeric)
@@ -33,13 +33,16 @@ filepath <- switch(args$what,
                    "bida" = "./inst/simulations/sim_run_bida.R")
 source(filepath)
 
+# profile ----
+if (FALSE) {
+  profvis::profvis(sim_load_bn(pargrid[1, ]))
+}
 
 if (args$test_row > 0) {
   # test ----
   par <- pargrid[args$test_row, ]
   file <- params_to_filename(par)
   path <- paste0(outdir, file)
-  sim_run(par, verbose = T)
 
   file.remove(path)
   sim_and_write_to_file(outdir, file, sim_run, par, verbose = TRUE)
