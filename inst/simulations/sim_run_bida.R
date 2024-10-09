@@ -1,10 +1,11 @@
 
 
+files <- list.files(indir, ".rds")
+#files <- files[grepl("depth50_pcskel_ptree", files)]
+pargrid <- data.frame(file = files,
+                      indir = indir)
 
-
-par <- data.frame(file = list.files(indir, ".rds"),
-                  indir = indir)
-
+params_to_filename <- function(par) par$file
 
 sim_run <- function(par, verbose = FALSE) {
 
@@ -23,9 +24,13 @@ sim_run <- function(par, verbose = FALSE) {
   N <- par$N
   r <- par$r
 
-  bn <- readRDS(paste0("inst/data/", par$bnname, ".rds"))
+  # import bn
+  set.seed(r)
+  bn <- sim_load_bn(par)
   nlev <- vapply(bn, function(x) dim(x$prob)[1], integer(1))
   n    <- length(bn)
+
+  # ground truth
   dag <- bnlearn::amat(bn)
   dmat <- bida:::descendants(dag)
   set.seed(r)

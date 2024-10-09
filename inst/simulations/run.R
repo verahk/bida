@@ -5,18 +5,13 @@ rm(list = ls())
 # args ----
 args <- as.list(commandArgs(trailingOnly = TRUE))
 if (length(args) == 0) {
-  args <- list(what = "MCMC",
-            test_row = 0,
-            nClusters = 4,
-            iterStart = 1,
-            iterSlutt = 30)
-}
-
-stopifnot(length(args) == 5)
-names(args) <- c("what", "test_row", "nClusters", "iterStart", "iterSlutt")
+  args <- list("bida", 0, 6)
+} else if (length(args) < 3) stop()
+names(args) <- c("what", "test_row", "nClusters")
 args[-1] <- lapply(args[-1], as.numeric)
 print(args)
 vapply(args, class, character(1))
+
 
 # load libraries ----
 library(doSNOW)
@@ -26,10 +21,10 @@ sapply(list.files("./inst/simulations/R", ".R", full.names = T),
 
 # paths ----
 branch  <- system("git branch --show-current", intern = TRUE)
-subdir  <- switch(args$what, "MCMC" = "MCMCchains/", "results")
-outdir <- paste0("./inst/simulations/", branch, "/", subdir)
-subdir  <- switch(args$what, "MCMC" = "MCMCchains/")
-indir <- paste0("./inst/simulations/", branch, "/", subdir)
+subdir  <- switch(args$what, "MCMC" = "MCMCchains", "bida" = "results")
+outdir <- paste0("./inst/simulations/", branch, "/", subdir, "/")
+subdir  <- switch(args$what, "bida" = "MCMCchains/")
+indir <- paste0("./inst/simulations/", branch, "/", subdir, "/")
 if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
 
 # source file with specific sim_run fcuntion
@@ -39,8 +34,8 @@ filepath <- switch(args$what,
 source(filepath)
 
 
-# run ----
 if (args$test_row > 0) {
+  # test ----
   par <- pargrid[args$test_row, ]
   file <- params_to_filename(par)
   path <- paste0(outdir, file)
@@ -51,6 +46,7 @@ if (args$test_row > 0) {
   res <- readRDS(path)
   ls.str(res)
 } else if (args$nClusters == 0) {
+  # run: for  ----
   for (r in seq_len(nrow(pargrid))) {
     cat(params_to_filename(pargrid[r, ]), "\n")
     sim_and_write_to_file(outdir,
@@ -59,7 +55,7 @@ if (args$test_row > 0) {
                           par = pargrid[r, ], verbose = T)
   }
 } else {
-
+  # run: foreach  ----
     # set up cluster
     simId <- format(Sys.time(), "%Y-%m-%d-%H-%m-%S")
     cl <- makeCluster(args$nClusters, type = "SOCK", outfile = paste0(outdir, simId, ".out"))
