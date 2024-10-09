@@ -35,16 +35,23 @@ source(filepath)
 
 # profile ----
 if (FALSE) {
+  f <- function(par) {
+    dag <- bida:::rand_dag(par$n, 8)
+
+  }
+
   profvis::profvis(sim_load_bn(pargrid[1, ]))
 }
 
 if (args$test_row > 0) {
   # test ----
   par <- pargrid[args$test_row, ]
+
   file <- params_to_filename(par)
   path <- paste0(outdir, file)
-
   file.remove(path)
+
+  cat("Run test for", path, "\n")
   sim_and_write_to_file(outdir, file, sim_run, par, verbose = TRUE)
   res <- readRDS(path)
   ls.str(res)
