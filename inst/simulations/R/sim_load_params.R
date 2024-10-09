@@ -15,7 +15,7 @@ sim_load_params <- function(which, what, iterStart, iterStop) {
     if (which == "syntethic") {
 
       # add params controlling random-cpt generation
-      par$n <- c(20)
+      par$n <- c(10, 20)
       par$k <- c(2, 4)
       par$maxdepth <- c(0, .5, 1)
 
