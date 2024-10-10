@@ -5,7 +5,7 @@ rm(list = ls())
 # args ----
 args <- as.list(commandArgs(trailingOnly = TRUE))
 if (length(args) == 0) {
-  args <- list("bida", 0, 6)
+  args <- list("bida", 1, 6)
 } else if (length(args) < 3) stop()
 names(args) <- c("what", "test_row", "nClusters")
 args[-1] <- lapply(args[-1], as.numeric)
@@ -35,11 +35,6 @@ source(filepath)
 
 # profile ----
 if (FALSE) {
-  f <- function(par) {
-    dag <- bida:::rand_dag(par$n, 8)
-
-  }
-
   profvis::profvis(sim_load_bn(pargrid[1, ]))
 }
 
