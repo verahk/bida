@@ -19,18 +19,19 @@ sim_run <- function(par, verbose = FALSE) {
   res <- readRDS(filepath)
   par <- res$par
   lookup <- res$lookup
-  MCMCchain <- res$MCMCchain
 
   N <- par$N
   r <- par$r
 
   # import bn
   set.seed(r)
+  if (verbose) cat("Load bn\n")
   bn <- sim_load_bn(par)
   nlev <- vapply(bn, function(x) dim(x$prob)[1], integer(1))
   n    <- length(bn)
 
-  # ground truth
+
+  if (verbose) cat("Compute ground truth bn\n")
   dag <- bnlearn::amat(bn)
   dmat <- bida:::descendants(dag)
   set.seed(r)
@@ -39,22 +40,21 @@ sim_run <- function(par, verbose = FALSE) {
   dindx <- diag(n) == 1
   tic <- list("ground truth" = Sys.time())
 
-  # draw data
+  if (verbose) cat("Simulate data\n")
   set.seed(N+r)
   data <- bida:::sample_data_from_bn(bn, N)
   tic <- list("simulate data" = Sys.time())
 
-  # compute support over unique dags
+  # estimate intervention distributions ----
+  ## compute support over parent sets
+  if (verbose) cat("Compute parent support\n")
+  MCMCchain <- res$MCMCchain
   burnin <- 1:200
   dags <- lapply(MCMCchain$traceadd$incidence[-burnin], as.matrix)
   tmp <- unique(dags)
   support <- bida:::rowsum_fast(rep(1/length(dags), length(dags)), dags, tmp)
   dags <- tmp
-
-  # estimate intervention distributions ----
-  ## compute support over parent sets
   ps <- bida::parent_support_from_dags(dags, support)
-
   tic <- list("compute parent support" = Sys.time())
 
   get_size <- function(x) {
@@ -69,6 +69,7 @@ sim_run <- function(par, verbose = FALSE) {
   cat("Start computing estimates for ", f, "\n")
   for (x in seq_len(n)) {
     cat(" Compute estimates for cause node x", x, "\n")
+
     for (y in seq_len(n)[-x]) {
       type <- ifelse(par$local_struct == "none", "cat", par$local_struct)
       pa   <- which(dag[, x] == 1) # true parents
