@@ -1,7 +1,22 @@
 
 
+
+files <- list.files(outdir, ".rds")
+indx <- grepl("n20_k4.*depth50.*ptree.*logN.*", files)
+print(sum(indx))
+#print(files[indx])
+
+
 files <- list.files(indir, ".rds")
-files <- files[grepl("depth50_pcskel_ptree", files)]
+files <- files[!grepl("r06|r07|r15|depth0", files)]
+files <- files[!file.exists(paste0(outdir, files))]
+print(files)
+files <- sample(files)
+indx <- grepl("n20_k4.*depth50.*ptree.*logN.*", files)
+print(sum(indx))
+#print(files[indx])
+
+
 pargrid <- data.frame(file = files,
                       indir = indir)
 
@@ -53,7 +68,7 @@ sim_run <- function(par, verbose = FALSE) {
 
   # estimate intervention distributions ----
   ## compute support over parent sets
-  ps <- bida::parent_support_from_dags(dags)
+  ps <- bida::parent_support_from_dags(dags, support)
   tic <- list("compute parent support" = Sys.time())
 
   get_size <- function(x) {
@@ -99,6 +114,8 @@ sim_run <- function(par, verbose = FALSE) {
       parents[[x, y]] <- tmp[1, ]
       parts[[x, y]]   <- tmp[2, ]
     }
+	gc()
+
   }
   tic <- list("compute backdoor estimates" = Sys.time())
 
