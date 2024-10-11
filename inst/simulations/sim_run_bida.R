@@ -45,6 +45,9 @@ sim_run <- function(par, verbose = FALSE) {
   data <- bida:::sample_data_from_bn(bn, N)
   tic <- list("simulate data" = Sys.time())
 
+  nlev <- rep(4, 20)
+  fit <- optimize_partition_from_data(data, x, which(dag[, 4] == 1), 1, nlev, "ptree")
+
   # estimate intervention distributions ----
   ## compute support over parent sets
   if (verbose) cat("Compute parent support\n")
