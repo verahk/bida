@@ -24,3 +24,22 @@ test_that("score function is score equivalent", {
   expect_equal(sc1, sc2)
   expect_equal(sc1, sc3)
 })
+
+test_that("famscore_bdeu_byrow correctly scorse sparse matrix", {
+
+  score_sparse_matrix <- function(n, ess, r, q, s) {
+    m <- matrix(0, length(s), r)
+    m[1] <- n
+    famscore_bdeu_byrow(m, ess, r, q, s)
+  }
+  r <- 4
+  q <- r**3
+  full <- score_sparse_matrix(1, 1, r, q, rep(1, q))
+  part <- score_sparse_matrix(1, 1, r, q, rep(q/r**2, r))
+  collapse <- score_sparse_matrix(1, 1, r, q, rep(q, 1))
+
+  expect_equal(sum(full), sum(part))
+  expect_equal(sum(full), sum(part))
+  expect_equal(sum(full), sum(collapse))
+  expect_equal(sum(full), famscore_bdeu_1row(c(1, rep(0, r-1)), 1, r))
+})

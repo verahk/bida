@@ -369,7 +369,7 @@ optimize_partition_from_data_tree <- function(data, ess, nlev, min_improv, prune
 
   # output ----
   to_string <- function(tree, prefix = "") {
-    if (is.null(tree$branches)) {
+    if (is_leaf(tree)) {
       sprintf("%s-- score: %1.2f size: %s\n", # counts: %s\n",
               prefix, tree$score, tree$size) # paste(tree$counts, collapse = " "))
     } else {
