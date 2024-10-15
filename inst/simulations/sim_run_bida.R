@@ -1,7 +1,13 @@
 
 
+
+files <- list.files(outdir, ".rds")
+indx <- grepl("n20_k4.*depth50.*ptree.*logN.*", files)
+print(sum(indx))
+#print(files[indx])
+
+
 files <- list.files(indir, ".rds")
-#files <- files[grepl("depth50_pcskel_ptree", files)]
 pargrid <- data.frame(file = files,
                       indir = indir)
 
@@ -29,7 +35,7 @@ sim_run <- function(par, verbose = FALSE) {
   bn <- sim_load_bn(par)
   nlev <- vapply(bn, function(x) dim(x$prob)[1], integer(1))
   n    <- length(bn)
-
+  tic[["load bn"]] <- Sys.time()
 
   if (verbose) cat("Compute ground truth bn\n")
   dag <- bnlearn::amat(bn)
@@ -38,12 +44,12 @@ sim_run <- function(par, verbose = FALSE) {
   pdo <- bida:::interv_probs_from_bn(bn, "bn")  # ground truth
   truetau <- matrix(vapply(pdo, bida:::JSD, numeric(1)), n, n)
   dindx <- diag(n) == 1
-  tic <- list("ground truth" = Sys.time())
+  tic[["ground truth"]] <- Sys.time()
 
   if (verbose) cat("Simulate data\n")
   set.seed(N+r)
   data <- bida:::sample_data_from_bn(bn, N)
-  tic <- list("simulate data" = Sys.time())
+  tic[["simulate data"]] <- Sys.time()
 
   nlev <- rep(4, 20)
   fit <- optimize_partition_from_data(data, x, which(dag[, 4] == 1), 1, nlev, "ptree")
@@ -57,8 +63,11 @@ sim_run <- function(par, verbose = FALSE) {
   tmp <- unique(dags)
   support <- bida:::rowsum_fast(rep(1/length(dags), length(dags)), dags, tmp)
   dags <- tmp
+
+  # estimate intervention distributions ----
+  ## compute support over parent sets
   ps <- bida::parent_support_from_dags(dags, support)
-  tic <- list("compute parent support" = Sys.time())
+  tic[["compute parent support"]] <- Sys.time()
 
   get_size <- function(x) {
     dims <- x$counts$dim
@@ -68,7 +77,8 @@ sim_run <- function(par, verbose = FALSE) {
 
   ## compute mse of point-estimates (mean) of intervention distribution
   set.seed(r)
-  mse <- tau <- parents <- parts <- matrix(list(), n, n)
+  mse <- tau <- parents <- parts <-  matrix(list(), n, n)
+  runtime_fit <- runtime_mean <- matrix(0, n, n)
   cat("Start computing estimates for ", f, "\n")
   for (x in seq_len(n)) {
     cat(" Compute estimates for cause node x", x, "\n")
@@ -77,7 +87,10 @@ sim_run <- function(par, verbose = FALSE) {
       type <- ifelse(par$local_struct == "none", "cat", par$local_struct)
       pa   <- which(dag[, x] == 1) # true parents
 
-      pairs <- list(
+      pairs <- list()
+      tmp <- Sys.time()
+
+      pairs$unknown <-
         unknown = bida::bida_pair(type, data, x, y,
                                   sets = ps$sets[[x]],
                                   support = ps$support[[x]],
@@ -98,12 +111,14 @@ sim_run <- function(par, verbose = FALSE) {
 
       # number of conditioning variables - x + parents
       tmp <- lapply(pairs,
-                    function(pair) do.call(rbind, lapply(pair$params, get_size)))
+                    function(pair) do.call(rbind, lapply(pair$params, get_size))*pair$support)
       tmp <- vapply(tmp, colMeans, numeric(2))
 
       parents[[x, y]] <- tmp[1, ]
       parts[[x, y]]   <- tmp[2, ]
     }
+	gc()
+
   }
   tic <- list("compute backdoor estimates" = Sys.time())
 

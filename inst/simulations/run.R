@@ -21,8 +21,9 @@ sapply(list.files("./inst/simulations/R", ".R", full.names = T),
 
 # paths ----
 branch  <- system("git branch --show-current", intern = TRUE)
-subdir  <- switch(args$what, "MCMC" = "MCMCchains", "bida" = "results")
+subdir  <- switch(args$what, "MCMC" = "MCMCchains", "results")
 outdir <- paste0("./inst/simulations/", branch, "/", subdir, "/")
+
 subdir  <- switch(args$what, "bida" = "MCMCchains/")
 indir <- paste0("./inst/simulations/", branch, "/", subdir, "/")
 if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
@@ -30,7 +31,8 @@ if (!dir.exists(outdir)) dir.create(outdir, recursive = TRUE)
 # source file with specific sim_run fcuntion
 filepath <- switch(args$what,
                    "MCMC" =  "./inst/simulations/sim_run_MCMC.R",
-                   "bida" = "./inst/simulations/sim_run_bida.R")
+                   "bida" = "./inst/simulations/sim_run_bida.R",
+                   "naive" = "/inst/simulations/sim_run_naive_ref.R")
 source(filepath)
 
 # profile ----

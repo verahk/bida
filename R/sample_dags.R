@@ -65,7 +65,6 @@ sample_dags <- function(scorepar, algo_init = "pcskel", algo_sample = "order", h
 
   # add time-tracking as an attribute
   attr(smpl, "toc") <- diff(tic)
-
   return(smpl)
 
 }
