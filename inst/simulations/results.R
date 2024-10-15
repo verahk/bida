@@ -13,6 +13,13 @@ files <- list.files("./inst/simulations/R", full.names = T)
 sapply(files, source, echo = T)
 
 res_from_file_to_df <- function(files, name) {
+
+  # only output of marg and cond references are mse_pdo and ranktop
+  if (!name %in% c("mse_pdo", "rank", "ranktop")) {
+    files <- files[!grepl("marg|cond", files)]
+  }
+  stopifnot(length(files) > 0)
+
   imp <- lapply(files,
                 function(f) do.call(c, readRDS(f)[c("par", name)]))
   rename <- function(x) {
@@ -27,7 +34,7 @@ res_from_file_to_df <- function(files, name) {
   }
   imp <- lapply(imp, rename)
   dfs <- lapply(imp, data.frame)
-  df  <- do.call(rbind, dfs)
+  df  <- dplyr::bind_rows(dfs)
   names(df) <- gsub(paste0(name, "\\."), "", names(df))
   names(df) <- gsub(paste0("par", "\\."), "", names(df))
 
@@ -47,13 +54,12 @@ res_from_file_to_df <- function(files, name) {
   df$maxdepth <- paste0("treedepth=", df$maxdepth)
   df$edgepf <- with(df, ifelse(edgepf == N, "N",
                                ifelse(edgepf == log(N), "logN",
-                                      ifelse(edgepf == 2, "2", NA))))
-  df$lstruct.epf <- with(df, interaction(local_struct, edgepf))
+                                      ifelse(edgepf == 2, "2", "NA"))))
+  df$lstruct.epf <- with(df, paste0(local_struct, ".", edgepf))
 
   for (v in c("n", "k", "N")) {
     df[[v]] <- with(df, factor(df[[v]], sort(unique(df[[v]]))))
   }
-
 
 
   # check that there are not more than 1 line per group

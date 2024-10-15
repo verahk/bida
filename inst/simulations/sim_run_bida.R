@@ -52,12 +52,12 @@ sim_run <- function(par, verbose = FALSE) {
   pdo <- bida:::interv_probs_from_bn(bn, "bn")  # ground truth
   truetau <- matrix(vapply(pdo, bida:::JSD, numeric(1)), n, n)
   dindx <- diag(n) == 1
-  tic <- list("ground truth" = Sys.time())
+  tic[["ground truth"]] <- Sys.time()
 
   # draw data
   set.seed(N+r)
   data <- bida:::sample_data_from_bn(bn, N)
-  tic <- list("simulate data" = Sys.time())
+  tic[["simulate data"]] <- Sys.time()
 
   # compute support over unique dags
   burnin <- 1:200
@@ -69,7 +69,7 @@ sim_run <- function(par, verbose = FALSE) {
   # estimate intervention distributions ----
   ## compute support over parent sets
   ps <- bida::parent_support_from_dags(dags, support)
-  tic <- list("compute parent support" = Sys.time())
+  tic[["compute parent support"]] <- Sys.time()
 
   get_size <- function(x) {
     dims <- x$counts$dim
@@ -79,7 +79,8 @@ sim_run <- function(par, verbose = FALSE) {
 
   ## compute mse of point-estimates (mean) of intervention distribution
   set.seed(r)
-  mse <- tau <- parents <- parts <- matrix(list(), n, n)
+  mse <- tau <- parents <- parts <-  matrix(list(), n, n)
+  runtime_fit <- runtime_mean <- matrix(0, n, n)
   cat("Start computing estimates for ", f, "\n")
   for (x in seq_len(n)) {
     cat(" Compute estimates for cause node x", x, "\n")
@@ -87,7 +88,10 @@ sim_run <- function(par, verbose = FALSE) {
       type <- ifelse(par$local_struct == "none", "cat", par$local_struct)
       pa   <- which(dag[, x] == 1) # true parents
 
-      pairs <- list(
+      pairs <- list()
+      tmp <- Sys.time()
+
+      pairs$unknown <-
         unknown = bida::bida_pair(type, data, x, y,
                                   sets = ps$sets[[x]],
                                   support = ps$support[[x]],
@@ -108,7 +112,7 @@ sim_run <- function(par, verbose = FALSE) {
 
       # number of conditioning variables - x + parents
       tmp <- lapply(pairs,
-                    function(pair) do.call(rbind, lapply(pair$params, get_size)))
+                    function(pair) do.call(rbind, lapply(pair$params, get_size))*pair$support)
       tmp <- vapply(tmp, colMeans, numeric(2))
 
       parents[[x, y]] <- tmp[1, ]
