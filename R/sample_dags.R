@@ -43,7 +43,14 @@
 #' smpl <- sample_dags(scorepar, "pcskel", "order", verbose = T)
 #' attributes(smpl)
 #' smpl
-sample_dags <- function(scorepar, algo_init = "pcskel", algo_sample = "order", hardlimit = 5, verbose = F) {
+sample_dags <- function(
+    scorepar,
+    algo_init = "pcskel",
+    algo_sample = "order",
+    hardlimit = 5,
+    return_startspace = FALSE,
+    verbose = F
+) {
 
   tic <- Sys.time()
 
@@ -63,8 +70,9 @@ sample_dags <- function(scorepar, algo_init = "pcskel", algo_sample = "order", h
   smpl <- BiDAG::sampleBN(scorepar, algo = algo_sample, hardlimit = hardlimit, scoretable = BiDAG::getSpace(iterfit), verbose = verbose)
   tic  <- c(tic, sample = Sys.time())
 
-  # add time-tracking as an attribute
-  attr(smpl, "toc") <- diff(tic)
+
+  attr(smpl, "toc") <- diff(tic)             # add time-tracking as an attribute
+  attr(smpl, "startspace") <- startspace     # add inferred start space as attribute
 
   return(smpl)
 
