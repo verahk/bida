@@ -5,7 +5,7 @@ rm(list = ls())
 # args ----
 args <- as.list(commandArgs(trailingOnly = TRUE))
 if (length(args) == 0) {
-  args <- list("MCMC", 1, 6)
+  args <- list("bida", 1, 6)
 } else if (length(args) < 3) stop()
 names(args) <- c("what", "test_row", "nClusters")
 args[-1] <- lapply(args[-1], as.numeric)
