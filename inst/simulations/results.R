@@ -105,6 +105,7 @@ for (name in names(pretty_names)) {
 # Causal-effect estimates ----
 for (bnname in bnnames) {
   files <- list.files(dir_in, ".rds", full.names = T)
+  files <- files[!grepl("N100_", files)]
   files <- files[grepl(bnname, files)]
   if (length(files) < 30) next
 
