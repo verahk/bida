@@ -3,7 +3,7 @@ sim_load_bn <- function(par) {
     n <- par$n
     k <- par$k
     nlev <- rep(k, n)
-    if (par$maxdepth < 1) {
+    if (TRUE) {
       bida:::rand_bn(n = par$n,
                      d = 6,
                      type = "cat",
