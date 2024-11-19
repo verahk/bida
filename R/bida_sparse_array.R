@@ -86,7 +86,7 @@ as.bida_sparse_array.array <- function(arr, default = 0) {
   # convert standard array to bida_sparse_array
   stopifnot(!is.null(dim(arr)))
   index <- which(!arr == default)
-  new_bida_sparse_array(c(arr[index]), index-1, dim(arr), dimnames(arr))
+  new_bida_sparse_array(c(arr[index]), index-1, dim(arr), dimnames(arr), default)
 }
 #' @rdname bida_sparse_array
 #' @export

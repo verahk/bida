@@ -4,20 +4,20 @@
 \alias{rand_bn}
 \title{Draw a random Bayesian network}
 \usage{
-rand_bn(dag, type = "cat", ...)
+rand_bn(n, d, type = "cat", attr_to_keep = character(0), ...)
 }
 \arguments{
-\item{dag}{(integer matrix) adjacency matrix.}
-
 \item{type}{(character) type of distribution.}
 
 \item{...}{}
+
+\item{dag}{(integer matrix) adjacency matrix.}
 }
 \value{
 a \code{bnlearn::bn.fit} object
 }
 \description{
-Given a DAG, draw a distribution over the DAG and store the BN as a \code{bnlearn::bn.fit} object.
+Draw a random DAG and a distribution over the DAG, and store the BN as a \code{bnlearn::bn.fit} object.
 }
 \examples{
 
@@ -25,13 +25,35 @@ n <- 3
 dag <- matrix(0, n, n)
 dag[upper.tri(dag)] <- 1
 
-# categorical distribution with local structure
-nlev <- rep(2, ncol(dag))
-partitions <- list(NULL, NULL, X3 = list(0:2, 1))
-rand_bn(dag, "cat", alpha = 1, nlev = rep(2, 3), partitions)
 
+# categorical ---
 
-partitions <- rand_partitions_cat(dag, nlev, 1, maxdepth = 2)
-rand_bn(dag, "cat", alpha = 1, nlev, partitions = partitions)
+# draw random CPT with local structure
+nlev <- c(2, 2, 2)
+cpt <- rand_cpt(nlev, c("y", "x", "z"), local_structure = "tree", prob = 1, maxdepth = .5)
+
+# draw random DAG
+set.seed(007)
+dag <- rand_dag(3, 2)
+dag
+
+# draw random distrib over DAG
+cpts <- rand_dist(
+  dag,
+  "cat",
+  nlev = nlev,
+  local_structure = "tree",
+  prob = 1,
+  maxdepth = .5
+)
+
+# create bn object
+bn <- custom_bn(dag, cpts)
+
+#
+set.seed(007)
+bn2 <- rand_bn(3, 2, "cat", nlev = nlev, local_structure = "tree", prob = 1, maxdepth = .5)
+stopifnot(all.equal(bn, bn2))
+
 }
 \keyword{internal}

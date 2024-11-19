@@ -6,25 +6,33 @@
 \alias{posterior_sample.bida}
 \title{Class: bida}
 \usage{
-bida(ps, data, type, params, lookup = NULL, pairs = NULL)
+bida(
+  type = "categorical",
+  dags,
+  data,
+  adjset = "pa",
+  hyperpar,
+  x = 1:ncol(data),
+  y = 1:ncol(data)
+)
 
 \method{posterior_mean}{bida}(x, ...)
 
 \method{posterior_sample}{bida}(x, n, ...)
 }
 \arguments{
+\item{data}{(matrix)}
+
+\item{x}{an object of class \link{bida}}
+
 \item{ps}{(list)
 Support over adjustment sets, stored in a list with two named elements \code{sets} and \code{support}.
 See \link{adjsets_support_from_dags} \link{parent_support_from_dags} \link{parent_support_exact}}
-
-\item{data}{(matrix)}
 
 \item{params}{additional params}
 
 \item{pairs}{(matrix) a n-by-n matrix indicating which pairs should be considered.
 If NULL (default), all pairs are considered and \code{pairs[i, j] = 1} for all but \code{i == j}.}
-
-\item{x}{an object of class \link{bida}}
 
 \item{samplesize}{(integer) samplesize}
 }

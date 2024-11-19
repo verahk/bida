@@ -14,19 +14,7 @@ descendants.matrix <- function(x) {
   n <- ncol(x)
   I <- diag(n)
 
-  dmat <- try(sign(round(solve(I-x), 1)), silent = TRUE)
-
-  if (inherits(dmat, "try-error")) {
-    old <- array(0, dim(x))
-    new <- x
-    while (!all(old == new)) {
-      old <- new
-      new <- sign(old%*%(I+x))
-    }
-    return(sign(I + new))
-  } else {
-    return(dmat)
-  }
+  sign(round(solve(I-x), 1))
 }
 
 
@@ -40,7 +28,7 @@ descendants.default <- function(x) {
 #' @export
 descendants.bn.fit <- function(x) {
   x <- bnlearn::amat(x)
-  NextMethod()
+  descendants.matrix(x)
 }
 
 # #profiling:

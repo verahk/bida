@@ -2,78 +2,41 @@
 % Please edit documentation in R/interv_probs.R
 \name{interv_probs}
 \alias{interv_probs}
-\alias{interv_probs_from_cpt_arrays}
-\alias{interv_probs_from_bn}
-\alias{interv_probs_x_exact}
-\title{Compute intervention probabilities}
+\title{Compute discrete intervention distributions}
 \usage{
-interv_probs(obj, dmat, method = c("exact", "bn"))
-
-interv_probs_from_cpt_arrays(cpts, method = c("exact", "bn"))
-
-interv_probs_from_bn(bn, method = c("exact", "bn"))
-
-interv_probs_x_exact(cpts, x, y, dmat)
+interv_probs(obj, method = "bnlearn")
 }
 \arguments{
-\item{obj}{a object defining the distribution.}
+\item{obj}{a object of class \code{bnlearn::bn.fit.dnet} of length \code{n} or
+a list of CPTs stored as arrays.}
 
-\item{method}{either \code{"exact"} or \code{"bn"}}
-
-\item{cpts}{a list of cpt_arrays of length \code{n}, where \code{names(dimnames(cpts[[i]]))} gives
-scope of the \code{i}th CPT.}
-
-\item{bn}{a object of class \code{bnlearn::bn.fit.dnet} of length \code{n}}
-
-\item{dag}{adjacency matrix of \code{obj}}
+\item{method}{either \code{"bnlearn"} (default) or \code{"exact"}.}
 }
 \value{
 a \code{n}-by-\code{n} matrix with intervention probabilities
-
-a list of \code{length(y)} with interventional cpts
 }
 \description{
-Compute intervention probabilities
-
-Compute exact intervention probabilities under interventions on \code{x}
-}
-\details{
-These functions computes interventional CPTs for every cause-effect pair.
-\itemize{
-\item If \code{method == "exact"} the exact intervention probabilities is computed.
-The \code{interv_probs_from_bn} function then first extract the cpt_arrays from
-the bn-network.
-\item If \code{method == "bn"}, the parameters are estimated using \link[bnlearn:cpquery]{bnlearn::cpdist}.
-The \code{interv_probs_from_cpt_arrays} then first construct a \code{bn.fit.dnet} object.
-\code{interv_probs} loops over every node, identifies the true descendants of
-the node and compute the intervention distributions. For non-descendants,
-the interventional CPTs are filled with the marginal distribution of the
-pre-intervention distribution.
-}
+For each variable in a discrete Bayesian network and every possible intervention
+on that variable, compute the marginal intervention distribution of all other
+variables in the network.
+The default version is based on \link[bnlearn:cpquery]{bnlearn::mutilated} and \link[bnlearn:cpquery]{bnlearn::cpdist},
+and estimates the interventional distributions by sampling from the network
+under all possible interventions.
+An exact version is via \link[SumProductVE:cpquery]{SumProductVE::cpquery} is applicable to smaller networks.
 }
 \examples{
+bn <- readRDS("./data/alarm.rds")
 
-bn <- readRDS("./data/asia.rds")
+pdo <- interv_probs(bn)
+pdo
 
-exact  <- interv_probs_from_bn(bn, method = "exact")
-approx <- interv_probs_from_bn(bn, method = "bn")
-plot(unlist(exact), unlist(approx))
+system.time(exact <- interv_probs(bn, method = "exact"))
+system.time(pdo2  <- interv_probs(bn))
+
+plot(unlist(pdo), unlist(exact))
 abline(a = 0, b = 1, col = "red")
 
-#' diff <- unlist(exact)-unlist(approx)
-plot(diff)
-stopifnot(max(abs(diff)) < 10e-2)
-
-# ointervention distribution from cpt_arrays
-cpts <- cpt_arrays_from_bn(bn)
-exact2 <- interv_probs_from_cpt_arrays(cpts, method = "exact")
-
-# for method = "exact", the results are reproducable
-stopifnot(all.equal(exact, exact2))
-
-# for method = "bn", slightly different estimates are given in different runs
-approx2 <- interv_probs_from_cpt_arrays(cpts, method = "bn")
-plot(unlist(approx), unlist(approx2))
+plot(unlist(pdo), unlist(pdo2))
 abline(a = 0, b = 1, col = "red")
 
 

@@ -16,11 +16,7 @@ adjsets_support_from_dags(
   checksize = NULL
 )
 
-parent_support_from_dags(
-  dags,
-  support = rep(1/length(dags), length(dags)),
-  checksize = NULL
-)
+parent_support_from_dags(dags, w = NULL, x = NULL, checksize = NULL)
 }
 \arguments{
 \item{adjsets}{(character vector)
