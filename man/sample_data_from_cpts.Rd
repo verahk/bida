@@ -15,6 +15,9 @@ and with named dimensions}
 
 \item{top_order}{}
 }
+\value{
+a matrix with integers representing samples of categorical data
+}
 \description{
 Sample categorical data
 }

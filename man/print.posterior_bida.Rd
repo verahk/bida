@@ -6,9 +6,6 @@
 \usage{
 \method{print}{posterior_bida}(obj)
 }
-\arguments{
-\item{obj}{}
-}
 \description{
 Methods for objects of class \code{posterior_bida}
 }

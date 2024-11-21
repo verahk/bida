@@ -21,7 +21,6 @@
 #'   `nlev[c(y, x)]`, with parameters of the posterior Dirichlet distributions.
 #' @export
 #'
-#' @examples
 bdeu_posterior <- function(data, y, x, ess, nlev, dx = NULL, sparse = TRUE) {
   nx <- length(x)
   if (nx == 0) {

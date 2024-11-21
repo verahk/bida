@@ -8,7 +8,7 @@
 #'  and with named dimensions
 #' @param top_order
 #'
-#' @return
+#' @return a matrix with integers representing samples of categorical data
 #' @export
 #' @details
 #' Note that the index of the categorical variables are 0-based in [sample_data_from_cpts()]

@@ -54,7 +54,6 @@ colnames(dag) <- rownames(dag) <- letters[1:3]
 dags <- list(dag, t(dag))
 
 # Categorical data
-
 nlev <- 2:4
 cpts <- rand_dist(dag, "cat", nlev = nlev)
 bn   <- custom_bn(dag, cpts)
@@ -63,7 +62,7 @@ head(data)
 
 
 params <- list(nlev = nlev, ess = 1)
-bida <- bida(list(dag, t(dag)), "cat", "pa", params)
+bida <- bida(list(dag, t(dag)), data, "cat", "pa", params)
 bida
 
 # posterior mean
