@@ -63,7 +63,7 @@ bida <- function(dags,
   # prep
   if (type == "categorical") {
     if (is.null(params$ess)) ess <- 1 else ess <- params$ess
-    if (is.null(params$nlev)) nlev <- apply(data, 2, max+1) else nlev <- nlev
+    if (is.null(params$nlev)) nlev <- apply(data, 2, max)+1 else nlev <- params$nlev
 
     tmp <- lapply(y, function(yy) bdeu_posterior(data, yy, integer(0), ess, nlev))
     ays <- replace(list(), y, tmp)
