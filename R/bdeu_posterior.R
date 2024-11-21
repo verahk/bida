@@ -107,6 +107,7 @@ backdoor_sample.bdeu_posterior <- function(Nyxz, n, ess, dim_yx, th = .999) {
   } else {
     kyx <- prod(dims[1:2])
     kz  <- prod(dims)/kyx
+
     p <- py.xz <- array(0, c(n, dims[1:2]))  # init array for storing samples
     seqx <- seq_len(dims[2])
     sample_py.xz <- function(ayxz) {

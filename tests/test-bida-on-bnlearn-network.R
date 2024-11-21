@@ -36,9 +36,13 @@ if (FALSE) {
       cat("iter =", r, "N = ", N, "\n")
       set.seed(r+N)
       data <- sample_data_from_bn(bn, N)
+      scorepar <- define_scoreparameters(data, "bdecat", list(ess = 1, edgepf = 1))
+      smpl <- BiDAG:::sampleBN(scorepar, "partition", hardlimit = 6, verbose = T)
+      dags <- smpl$traceadd$incidence[-seq_len(200)]
+
       params <- list(nlev = nlev, ess = 1)
-      fits <- list(pa = bida(list(dag), data, adjset = "pa", params = params),
-                   o  = bida(list(dag), data, adjset = "o", params = params),
+      fits <- list(pa = bida(dags, data, adjset = "pa", params = params),
+                   o  = bida(dags, data, adjset = "o", params = params),
                    marg = bida(list(dag0), data, adjset = "o", params = params),
                    cond = bida(list(dag0), data, adjset = "pa", params = params))
 

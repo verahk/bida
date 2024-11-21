@@ -245,14 +245,13 @@ posterior_sample.bida_posterior_cat <- function(obj, n, contrasts = list()) {
       # - if obj$zeroprob > 0 the first set of parameters are associated with a zero-effect
       out <- matrix(0, n, length(contrasts))
       colnames(out) <- names(contrasts)
-      if (nG[1] == n) {
-        return(out)
-      } else {
+      if (nG[1] < n) {
         obj$p[1] <- 0
         nPos <- n-nG[1]
         pdo  <- posterior_sample.bida_posterior_cat(obj, nPos, contrasts = NULL)
         out[seq_len(nPos), ] <- vapply(contrasts, function(f) f(pdo), numeric(nPos))
       }
+      return(out)
     } else {
       pdo  <- posterior_sample.bida_posterior_cat(obj, n, contrasts = NULL)
       vapply(contrasts, function(f) f(pdo), numeric(n))

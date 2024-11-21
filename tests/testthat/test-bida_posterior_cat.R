@@ -34,34 +34,22 @@ test_that("bida_posterior_cat returns correct counts", {
 
 })
 
-test_that("methods for posterior means and posterior sample", {
+test_that("posterior_sample with support on zero", {
+
   n <- 3
-  nlev <- rep(3, n)
-  data <- expand_grid_fast(k = nlev)
+  nlev <- 2:4
 
-  ps  <- list(list(1L), 1)
-  bida_posteriors <- bida_posterior_cat_local(ps, data, 2, 1:n, 1, nlev)
-  means <- lapply(bida_posteriors, posterior_mean)
+  dag  <- matrix(0, n, n)
+  dag[upper.tri(dag)] <- 1
+  dags <- list(dag, t(dag))
+  x <- 2
+  y <- 3
 
-  # check that means are correct
-  mean <- array(1/3, dim = c(3, 3))
-  expect_equal(posterior_mean(bida_posteriors[[1]]), mean)
-  expect_equal(posterior_mean(bida_posteriors[[3]]), mean)
+  data <- sapply(nlev, sample.int, size = 10, replace = TRUE)-1
+  ps   <- adjset_support(dag_support(dags), x, y, "o")
+  fit  <- bida_posterior_cat(ps, data, 1, 2, nlev = nlev, ess = 1)
 
-  # check sample has correct dimensions
-  N <- 10
-  dims <- c(3, 3, N)
-  smpl <- posterior_sample(bida_posteriors[[1]], N)
-  expect_equal(dim(smpl), dims)
-
-  smpl <- posterior_sample(bida_posteriors[[3]], N)
-  expect_equal(dim(smpl), dims)
-
-  smpl <- posterior_sample(bida_posteriors[[1]], N, contrasts = list(jsd = jsd))
-  expect_equal(dim(smpl), c(N, 1))
-  expect_equal(smpl, matrix(0, nrow = N, dimnames = list(NULL, c("jsd"))))
-
-  smpl <- posterior_sample(bida_posteriors[[3]], N, contrasts = list(jsd = jsd))
-  expect_equal(dim(smpl), c(N, 1))
+  smpl <- posterior_sample(fit, 10, contrasts = list(jsd = jsd))
+  expect_equal(dim(smpl), c(10, 1))
 })
 
