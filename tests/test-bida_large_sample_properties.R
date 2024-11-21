@@ -56,7 +56,9 @@ if (FALSE) {
 
   df %>%
     tidyr::pivot_longer(-any_of(c("r", "N", "var"))) %>%
-    ggplot(aes(N, value, fill = name)) +
+    ggplot(aes(N, sqrt(value), fill = name)) +
     facet_wrap(var~., scales = "free") +
-    geom_boxplot()
+    geom_boxplot() +
+    ylab("RMSE") +
+    xlab("sample size")
 }
