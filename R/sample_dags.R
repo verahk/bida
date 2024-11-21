@@ -80,34 +80,36 @@ sample_dags <- function(scorepar, algo_init = "pcskel", algo_sample = "order", h
 init_search_space <- function(scorepar, algo, hardlimit, maxp = hardlimit, alpha = .05, verbose) {
 
   if (algo == "hc") {
+    if (verbose) cat("Run bnlearn::hc\n")
     df <- data.frame(apply(scorepar$data, 2, factor, exclude = NULL, simplify = FALSE))
     fit  <- bnlearn:::hc(df, maxp = maxp)
     startspace <- bnlearn::amat(fit)
   } else if (algo == "hcskel") {
+    if (verbose) cat("Run bnlearn::hc\n")
     df <- data.frame(apply(scorepar$data, 2, factor, exclude = NULL, simplify = FALSE))
     fit  <- bnlearn:::hc(df, maxp = maxp)
     startspace <- bnlearn::amat(fit)
     startspace <- startspace + t(startspace)
   } else if (algo == "pc") {
+    if (verbose) cat("Run pcalg::pc\n")
     suffStat <- list(dm = scorepar$data, nlev = scorepar$Cvec, adaptDF = FALSE)
     fit <- pcalg::pc(suffStat, pcalg::disCItest, alpha = alpha,
-                     labels = colnames(scorepar$data), verbose = verbose)
+                     labels = colnames(scorepar$data), verbose = FALSE)
     startspace <- as(fit@graph, "matrix")
   } else if (algo == "pcskel") {
+    if (verbose) cat("Run pcalg::skeleton\n")
     suffStat <- list(dm = scorepar$data, nlev = scorepar$Cvec, adaptDF = FALSE)
     fit <- pcalg::skeleton(suffStat, pcalg::disCItest, alpha = alpha,
-                           labels = colnames(scorepar$data), verbose = verbose)
+                           labels = colnames(scorepar$data), verbose = FALSE)
     startspace <- as(fit@graph, "matrix")
   }
 
   if (! any(colSums(startspace) > hardlimit)) {
     return(startspace)
-  } else if (switch(substr(algo, 1, 2), "hc" = maxp > 1, "pc" = alpha > 10**-10)) {
+  } else if (switch(substr(algo, 1, 2), "hc" = maxp > 1, "pc" = alpha > .001)) {
     init_search_space(scorepar, algo, hardlimit, maxp = maxp-1, alpha = alpha/2, verbose)
   } else {
-    cat("\nCould not find startspace satisfying `hardlimit`. Edges are randomly removed from the startspace. \n")
-    cat(sprintf("algo: %s. hardlimit: %s. maxp: %s. alpha: %s. \n", algo, hardlimit, maxp, alpha))
-
+    warning("Could not find startspace satisfying `hardlimit`. Edges are randomly removed from the startspace.\n")
     npar <- colSums(startspace)
     nremove <- npar-hardlimit
     for (i in which(nremove > 0)) {

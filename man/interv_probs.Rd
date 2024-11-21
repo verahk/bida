@@ -30,8 +30,8 @@ bn <- readRDS("./data/alarm.rds")
 pdo <- interv_probs(bn)
 pdo
 
-system.time(exact <- interv_probs(bn, method = "exact"))
 system.time(pdo2  <- interv_probs(bn))
+system.time(exact <- interv_probs(bn, method = "exact"))
 
 plot(unlist(pdo), unlist(exact))
 abline(a = 0, b = 1, col = "red")
@@ -39,5 +39,11 @@ abline(a = 0, b = 1, col = "red")
 plot(unlist(pdo), unlist(pdo2))
 abline(a = 0, b = 1, col = "red")
 
-
+dag <- matrix(0, 3, 3)
+dag[upper.tri(dag)] <- 1
+cpts <- rand_dist(dag, "cat", nlev = rep(3, 3))
+pdo_bn <- interv_probs(cpts)
+pdo_exact <- interv_probs(cpts, method = "exact")
+plot(unlist(pdo_exact), unlist(pdo_bn))
+abline(a = 0, b = 1, col = "red")
 }

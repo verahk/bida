@@ -43,8 +43,8 @@ famscore_to_file_bdeu <- function(data, max_parent_size=ncol(data)-1, file_out, 
         parent_sets <- utils::combn(seq_len(d)[-x], size, simplify = FALSE)
       }
       for (pa in parent_sets) {
-        counts <- counts_from_data_matrix(data[, c(x, pa), drop = FALSE], nlev[c(x, pa)])
-        scr <- famscore_bdeu(matrix(counts, ncol = nlev[x], byrow = TRUE), ess)
+        counts <- counts_from_data_matrix(data[, c(pa, x), drop = FALSE], nlev[c(pa, x)])
+        scr <- famscore_bdeu(matrix(counts, ncol = nlev[x]), ess)
 
         writeLines(paste(trimws(format(round(scr, 6), nsmall=6)),
                          paste(c(size, pa), collapse = " "),

@@ -19,14 +19,15 @@ a list with distributions
 }
 \description{
 Draw a random distribution over a DAG.
-The distribution is represented in a format matching \link[bnlearn:bn.fit]{bnlearn::bn.fit} class,
-and is used to construct such objects.
+The function returns a list of CPTs (if `type = "categorical") stored
+in a format matching \link[bnlearn:bn.fit]{bnlearn::bn.fit} class and can be used to construct
+such objects.
 }
 \examples{
 
 dag  <- matrix(0, 3, 3, dimnames = list(c("Z", "X", "Y"), c("Z", "X", "Y")))
 dag[upper.tri(dag)] <- 1
-rand_dist(dag, "cat", nlev = rep(3, ncol(dag)))
+rand_dist(dag, "cat", nlev = rep(3, 3))
 
 }
 \seealso{
