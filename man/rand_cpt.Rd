@@ -4,17 +4,25 @@
 \alias{rand_cpt}
 \title{Draw a conditional probability table (CPT)}
 \usage{
-rand_cpt(dim, scope = NULL, alpha = 1, local_structure = "none", ...)
+rand_cpt(
+  nlev,
+  scope = names(nlev),
+  alpha = 1,
+  j = 1,
+  parentnodes = seq_along(nlev)[-1],
+  local_struct = "none",
+  ...
+)
 }
 \arguments{
-\item{dim}{(integer vector) of cardinality of the outcome variable and the
-parent variables.}
+\item{nlev}{(integer vector) of cardinality of the outcome variable and the
+parent variables (the dimensions of the CPT).}
 
-\item{scope}{(character vector) names of the variables.}
+\item{scope}{(character vector) names of the variables. Defaults to \code{names(nlev)}.}
 
 \item{alpha}{(integer)}
 
-\item{local_structure}{(character) name of algorithm to form a partitioning /
+\item{local_struct}{(character) name of algorithm to form a partitioning /
 produce parameter restrictions.
 Defaults to \code{"none"}, which returns a CPT with no parameter restrictions.}
 
@@ -26,20 +34,24 @@ an array with dimension \code{nlev} and dimension named by \code{scope}.
 \description{
 Construct a random conditional probability table (CPT) by sampling independently
 a vector of probabilities from a Dirichlet distribution for each parent configuration.
-The function returnes an array with named dimension, in the same format
-as \link[bnlearn:bn.fit.class]{bnlearn::bn.fit.dnode} store CPTs.
+If the scope of the CPT is specified, the function returns an array with
+named dimensions, in the same format as \link[bnlearn:bn.fit.class]{bnlearn::bn.fit.dnode} store CPTs.
 }
 \examples{
 
 # no parents
-dim <- c(2)
-scope <- c("Y")
-rand_cpt(dim, scope)
+cpt <- rand_cpt(nlev = 2, scope = "Y")
+cpt
+dimnames(cpt)
 
 # two parents
-dim <- c(2, 3, 4)
-scope <- c("Y", "X", "Z")
-rand_cpt(dim, scope)
+nlev <- c(Y = 2, X = 3, Z = 4)
+cpt <- rand_cpt(nlev)
+cpt
 
+# with local structure
+\dontrun{
+cpt <- rand_cpt(nlev, local_struct = "tree", prob = 1, maxdepth = .5)
+}
 }
 \keyword{internal}

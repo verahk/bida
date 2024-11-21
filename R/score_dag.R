@@ -1,7 +1,4 @@
-
-
-
-#' Compute Bayesian score of DAG
+#' Compute Bayesian score of a DAG
 #'
 #' @param data (matrix) data matrix
 #' @param j (integer) column position of node
@@ -11,7 +8,6 @@
 #' @return (numeric constant) the score of node `j` given `parentnodes`
 #' @param ess (integer) equivalent sample size
 #' @param nlev (integer vector) cardinality of each variable
-#' @param partitions (list) list with partitioning of the parent space of node `j`
 #' @export
 #'
 #' @examples
@@ -19,7 +15,6 @@
 #' n   <- 3
 #' dag <- matrix(0, n, n)
 #' dag[upper.tri(dag)] <- 1
-#'
 #'
 #' # Categorical data ---
 #' params <- list(nlev = 2:4, ess = 1)
@@ -33,74 +28,32 @@
 #' score2 <- score_dag(data, t(dag), type = "cat", params)
 #' stopifnot(score1 == score2)
 #'
-#'
-#' # labeled DAG - add list of partitions of each CPT
-#' params$partition <- list(NULL, NULL, list(c(0, 1), 2, 3))
-#' score_dag(data, dag, type = "cat", params)
-#'
-#'
 score_dag <- function(data, dag, type = "cat", params) {
   n <- ncol(dag)
   scores <- numeric(n)
 
   for (j in seq_len(n)) {
-    pa <- which(dag[, j] == 1)
-    scores[j] <- score_fam(data, j, pa, type, params)
+    parentnodes <- which(dag[, j] == 1)
+    scores[j] <- score_fam(data, j, parentnodes, type, params)
   }
   sum(scores)
 }
 
-
+#' @rdname score_dag
+#' @export
 score_fam <- function(data, j, parentnodes, type = c("cat"), params) {
-  type = match.arg(type)
+  type = match.arg(type, c("categorical"))
   switch(type,
-         "cat" = score_fam_cat(data, j, parentnodes, params))
+         "categorical" = score_fam_cat(data, j, parentnodes, params$ess, params$nlev))
 }
 
-score_partition_cat <- function(data, j, parentnodes, params) {
-
-  stopifnot(!is.null(params$partition))
-
-  # compute freq table
-  r <- params$nlev[j]
-  q <- prod(params$nlev[parentnodes])
-  counts <- counts_from_data_matrix(data[, c(parentnodes, j)], params$nlev, FALSE)
-  dim(counts) <- c(q, r)
-
-  # aggregate counts
-  agg <- rowsum_fast(counts, get_parts(params$partition), seq_along(params$partition))
-  sum(famscore_bdeu_byrow(agg, params$ess, r, q, s = lengths(params$partition)))
-
-}
-
-score_fam_cat <- function(data, j, parentnodes, params) {
-  ess  <- params$ess
-  nlev <- params$nlev
-
+#' @rdname score_dag
+#' @export
+score_fam_cat <- function(data, j, parentnodes, ess, nlev) {
   r <- nlev[j]
-  nparents <- length(parentnodes)
-  if (nparents == 0) {
-    tab <- tabulate(data[, j]+1, r)
-    return(famscore_bdeu_1row(tab, ess))
-  } else {
-
-    # enumerate joint outcomes
-    stride <- c(1, cumprod(nlev[parentnodes]))
-    joint  <- data[, c(parentnodes, j), drop = FALSE]%*%stride
-
-    # compute frequency table
-    q   <- stride[nparents+1]
-    tab <- matrix(tabulate(joint + 1, q*r), q, r, byrow = F)
-
-    if (nparents < 2 || is.null(params$local_structure)) {
-      return(famscore_bdeu(tab, ess, r, q))
-    } else {
-      opt <- optimize_partition(tab,
-                                levels = params$levels,
-                                ess = params$ess,
-                                local_structure = params$local_structure,
-                                regular = params$regular)
-      sum(opt$scores)
-    }
-  }
+  q <- prod(nlev[parentnodes])
+  subset <- c(parentnodes, j)
+  tab <- counts_from_data_matrix(data[, subset, drop = FALSE], nlev[subset])
+  dim(tab) <- c(q, r)
+  return(famscore_bdeu(tab, ess, r, q))
 }

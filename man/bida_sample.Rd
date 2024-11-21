@@ -14,13 +14,9 @@ bida_sample(
 )
 }
 \arguments{
-\item{data}{an n-by-d data matrix}
-
 \item{dags}{list of DAGs (adjacency matrices, obtained e.g. with BiDAG::partitionMCMC)}
 
 \item{support}{numeric vector of same length as \link{dags}. Support of each DAG. Default to \link{1/length(dags)}.}
-
-\item{type}{data type ("Categorical" or "Gaussian")}
 
 \item{adjset}{type of adjustment set to compute in each DAG.}
 }

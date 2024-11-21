@@ -94,11 +94,24 @@ expand_grid_fast <- function(x = NULL, k = NULL){
 
 
 
+frequency_table <- function(sample, w = rep(1/length(sample), length(sample))) {
+  # compute the relative frequencies of the observed values in a sample
+  u <- unique(sample)
+  list(value = u,
+       w = rowsum_fast(w, sample, u))
+}
 
 
+avgppv <- function(x, y, method = "noise") {
+  indx <- order(x, decreasing = TRUE)
+  dups <- duplicated(x[indx], fromLast = TRUE)
 
+  tp   <- cumsum(y[indx])[!dups]
+  pp   <- seq_along(x)[!dups]
 
-
+  w <- diff(c(0, tp))
+  sum(w*tp/pp)/tp[length(tp)]
+}
 
 
 

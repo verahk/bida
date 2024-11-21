@@ -6,11 +6,11 @@
 \alias{famscore_bdeu_1row}
 \title{Compute family score for categorical data (BDeu-score)}
 \usage{
-famscore_bdeu(m, ess = 1, r = ncol(m), q = nrow(m), digits = 15)
+famscore_bdeu(m, ess = 1, r = ncol(m), q = nrow(m), digits = 10)
 
-famscore_bdeu_byrow(m, ess, r = ncol(m), q = nrow(m), s = 1, digits = 15)
+famscore_bdeu_byrow(m, ess, r = ncol(m), q = nrow(m), s = 1, digits = 10)
 
-famscore_bdeu_1row(x, ess, r = length(x), q = 1, s = 1, digits = 15)
+famscore_bdeu_1row(x, ess, r = length(x), q = 1, s = 1, digits = 10)
 }
 \arguments{
 \item{m}{(matrix) a \code{q-by-r} matrix with counts (a frequency table)}

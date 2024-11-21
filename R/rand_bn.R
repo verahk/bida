@@ -19,36 +19,24 @@
 #'
 #'
 #' # categorical ---
-#'
-#' # draw random CPT with local structure
-#' nlev <- c(2, 2, 2)
-#' cpt <- rand_cpt(nlev, c("y", "x", "z"), local_structure = "tree", prob = 1, maxdepth = .5)
-#'
 #' # draw random DAG
 #' set.seed(007)
 #' dag <- rand_dag(3, 2)
 #' dag
 #'
 #' # draw random distrib over DAG
-#' cpts <- rand_dist(
-#'   dag,
-#'   "cat",
-#'   nlev = nlev,
-#'   local_structure = "tree",
-#'   prob = 1,
-#'   maxdepth = .5
-#' )
+#' cpts <- rand_dist(dag, "cat", nlev = nlev)
 #'
 #' # create bn object
 #' bn <- custom_bn(dag, cpts)
 #'
-#' #
+#' # replicate with rand_bn()
 #' set.seed(007)
-#' bn2 <- rand_bn(3, 2, "cat", nlev = nlev, local_structure = "tree", prob = 1, maxdepth = .5)
+#' bn2 <- rand_bn(3, 2, "cat", nlev = nlev)
 #' stopifnot(all.equal(bn, bn2))
 #'
 
-rand_bn <- function(n, d, type = "cat", attr_to_keep = character(0), ...) {
+rand_bn <- function(n, d, type = "cat", ..., attr_to_keep = character(0)) {
   dag <- rand_dag(n, d)
   dist <- rand_dist(dag, type, ...)
   bn <- custom_bn(dag, dist)

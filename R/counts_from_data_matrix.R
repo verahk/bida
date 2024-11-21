@@ -25,7 +25,6 @@ counts_from_data_matrix <- function (data, nlev, sparse = F) {
   group  <- c(data%*%c(1, cump[-n]))
 
   if (sparse) {
-
     # compute counts over observed groups
     ugroup <- unique(group)
     tmp <- tabulate(match(group, ugroup), length(ugroup))

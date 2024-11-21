@@ -2,7 +2,7 @@
 % Please edit documentation in R/sample_data_from_cpts.R
 \name{sample_data_from_cpts}
 \alias{sample_data_from_cpts}
-\title{Title}
+\title{Sample categorical data}
 \usage{
 sample_data_from_cpts(n, cpts, top_order = NULL)
 }
@@ -16,7 +16,11 @@ and with named dimensions}
 \item{top_order}{}
 }
 \description{
-Title
+Sample categorical data
+}
+\details{
+Note that the index of the categorical variables are 0-based in \code{\link[=sample_data_from_cpts]{sample_data_from_cpts()}}
+and 1-based in \code{\link[=sample_data_from_cpts]{sample_data_from_cpts()}}.
 }
 \examples{
 

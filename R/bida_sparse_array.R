@@ -51,18 +51,7 @@
 #' matplot(2**seq_len(nrow(obj_size)), obj_size, type = "l")
 #' plot(2**seq_len(nrow(obj_size)), obj_size[, 1]/obj_size[, 2], type = "l")
 #'
-
-
-#' @rdname bida_sparse_array
-#' @export
-bida_sparse_array <- function(value, index, dim, dimnames = NULL, default = 0) {
-  stopifnot(length(index) == length(value))
-  stopifnot(all(index%%1 == 0) && min(index) >= 0 && max(index) < prod(dim))
-  stopifnot(is.null(dimnames) || all(lengths(dimnames) == 0) || all(lengths(dimnames) == dim))
-  new_bida_sparse_array(value, index, dim, dimnames, default)
-}
-
-new_bida_sparse_array <- function(value, index, dim = NULL, dimnames = NULL, default = 0) {
+new_bida_sparse_array <- function(value, index, dim, dimnames, default) {
   structure(list(value = value,
                  index = index,
                  dim = dim,
@@ -70,34 +59,48 @@ new_bida_sparse_array <- function(value, index, dim = NULL, dimnames = NULL, def
                  default = default),
             class = "bida_sparse_array")
 }
-# new_bida_sparse_array <- function(value, index, dim, dimnames = NULL, default = 0) {
-#   structure(value,
-#             index = index,
-#             dims = dim,
-#             dimnames = dimnames,
-#             default = default,
-#             class = "bida_sparse_array")
-# }
-
 
 #' @rdname bida_sparse_array
 #' @export
-as.bida_sparse_array.array <- function(arr, default = 0) {
-  # convert standard array to bida_sparse_array
-  stopifnot(!is.null(dim(arr)))
-  index <- which(!arr == default)
-  new_bida_sparse_array(c(arr[index]), index-1, dim(arr), dimnames(arr), default)
+bida_sparse_array <- function(value, ..., default = 0) {
+  UseMethod("bida_sparse_array")
 }
+
 #' @rdname bida_sparse_array
 #' @export
-as.bida_sparse_array.bida_sparse_array <- function(x) x
+bida_sparse_array.array <- function(value, default = 0) {
+  index = seq_along(value)[!value == default]
+  new_bida_sparse_array(value = value[index],
+                        index = index-1,
+                        dim = dim(value),
+                        dimnames = dimnames(value),
+                        default = default)
+}
+
+#' @rdname bida_sparse_array
+#' @export
+bida_sparse_array.default <- function(value, index, dim, dimnames = NULL, default = 0) {
+  stopifnot(length(index) == length(value))
+  stopifnot(all(index%%1 == 0) && min(index) >= 0 && max(index) < prod(dim))
+  stopifnot(is.null(dimnames) || all(lengths(dimnames) == 0) || all(lengths(dimnames) == dim))
+  new_bida_sparse_array(value, index, dim, dimnames, default)
+}
+
+
+#' @rdname bida_sparse_array
+#' @export
+as.array.bida_sparse_array <- function(x) {
+  y <- array(x$default, x$dim, x$dimnames)
+  y[x$index+1] <- x$value
+  y
+}
+
 
 # Methods ----
 #' @rdname bida_sparse_array
 #' @export
 dim.bida_sparse_array <- function(x) {
   x$dim
-  #attr(x, "dims")
 }
 
 #' @rdname bida_sparse_array
@@ -124,14 +127,6 @@ dimnames.bida_sparse_array <- function(x) {
 
 #' @rdname bida_sparse_array
 #' @export
-as.array.bida_sparse_array <- function(x) {
-  y <- array(x$default, x$dim, x$dimnames)
-  y[x$index+1] <- x$value
-  return(y)
-}
-
-#' @rdname bida_sparse_array
-#' @export
 rep.bida_sparse_array <- function(x, times = 1, each = 1) {
   if (times == 1 && each == 1) return(x)
 
@@ -143,7 +138,7 @@ rep.bida_sparse_array <- function(x, times = 1, each = 1) {
   new_value   <- rep(x$value, each = each, times = times)
   new_index   <- each_index + each*rep_index + times_index
   new_dim     <- times*each*prod(x$dim)
-  new_bida_sparse_array(new_value, new_index, dim = new_dim, default = x$default)
+  new_bida_sparse_array(new_value, new_index, new_dim, NULL, x$default)
 }
 
 
@@ -158,7 +153,7 @@ aperm.bida_sparse_array <- function(x, perm) {
   if (n == 1) return(x)
 
   # map to new index
-  coord <- get_coordinates(x)
+  coord <- arrayInd(x$index+1, dims)-1
   stride <- c(1, cumprod(dims[perm[-n]]))
   x$index <- coord[, perm]%*%stride
 
@@ -167,54 +162,6 @@ aperm.bida_sparse_array <- function(x, perm) {
   return(x)
 }
 
-
-#' @rdname bida_sparse_array
-#' @export
-#' @examples
-#' x <- structure(list(value = c(10, 100, 10, 100, 10, 1000, 10, 1000),
-#'                    index = 0:7,
-#'                    dim = c(y = 2L, x = 2L, z = 2L),
-#'                    dimnames = list(y = 0:1, x = 0:1, z = 0:1),
-#'                    default = 0),
-#'                 class = "bida_sparse_array")
-#' asplit.bida_sparse_array(x, "x")
-asplit.bida_sparse_array <- function(x, MARGIN) {
-
-  if (is.character(MARGIN)) {
-    MARGIN <- match(MARGIN, names(x$dimnames), 0L)
-    if (any(MARGIN == 0)) stop("MARGIN does not match any names of x$dimnames")
-  }
-
-  dims <- dim(x)
-  keep <- seq_along(dims)[-MARGIN] # dimension to keep
-  coord <- get_coordinates(x)      # coordinates
-
-  # compute indicies to split by
-  if (length(MARGIN) > 1) {
-    stride <- c(1, cumprod(dims[MARGIN[-length(MARGIN)]]))
-    split_by <- coord[, MARGIN]%*%stride
-  } else {
-    split_by <- coord[, MARGIN]
-  }
-
-  # compute index of new array without dimension MARGIN
-  stride <- c(1, cumprod(dims[keep[-length(keep)]]))
-  new_index <- c(coord[, keep, drop = FALSE]%*%stride)
-  new_dims  <- dims[-MARGIN]
-  new_dimnames <- dimnames(x)[-MARGIN]
-
-  split <- function(y) {
-    indx = split_by == y
-    new_bida_sparse_array(
-      x$value[indx],
-      new_index[indx],
-      new_dims,
-      new_dimnames,
-      x$default
-    )
-  }
-  lapply(seq_len(prod(dims[MARGIN]))-1, split)
-}
 
 ## Arithmetics ----
 #' @rdname bida_sparse_array
@@ -340,54 +287,3 @@ colSums.bida_sparse_array <- function(x, na.rm = FALSE, dims = 1L){
   }
   new_bida_sparse_array(new_value, new_index, new_dim, new_dimnames, new_default)
 }
-
-
-get_stride <- function(x) {
-  c(1, cumprod(x$dim[-length(x$dim)]))
-}
-
-get_coordinates <- function(x, MARGIN = seq_along(x$dim), stride = get_stride(x)) {
-  if (is.null(MARGIN)) {
-    arrayInd(x$index+1, dim(x))-1
-  } else {
-    if (length(MARGIN) == 1) {
-      matrix(as.integer(x$index%/%stride[MARGIN]%%x$dim[MARGIN]), ncol = 1)
-    } else {
-      matrix(vapply(MARGIN,
-              function(i) as.integer(x$index%/%stride[i]%%x$dim[i]),
-              integer(length(x$index))), ncol = length(MARGIN))
-    }
-  }
-}
-
-
-get_index <- function(x, MARGIN, stride = get_stride(x)) {
-  coord <- get_coordinates(x, MARGIN, stride)
-  c(coord%*%c(1, cumprod(dim(x)[MARGIN[-length(MARGIN)]])))
-}
-
-function (ind, .dim, .dimnames = NULL, useNames = FALSE)
-{
-  m <- length(ind)
-  rank <- length(.dim)
-  wh1 <- ind - 1L
-  ind <- 1L + wh1%%.dim[1L]
-  dnms <- if (useNames) {
-    list(.dimnames[[1L]][ind], if (any(nzchar(nd <- names(.dimnames)))) nd else if (rank ==
-                                                                                    2L) c("row", "col") else paste0("dim",
-                                                                                                                    seq_len(rank)))
-  }
-  ind <- matrix(ind, nrow = m, ncol = rank, dimnames = dnms)
-  if (rank >= 2L) {
-    denom <- 1L
-    for (i in 2L:rank) {
-      denom <- denom * .dim[i - 1L]
-      nextd1 <- wh1%/%denom
-      ind[, i] <- 1L + nextd1%%.dim[i]
-    }
-  }
-  storage.mode(ind) <- "integer"
-  ind
-}
-
-

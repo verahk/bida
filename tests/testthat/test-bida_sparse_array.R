@@ -1,4 +1,4 @@
-test_that("multiplication works", {
+test_that("methods applied to standard and sparse arrays give same results", {
 
   x <- bida_sparse_array(1:9, 0:8, 9, default = 0)
   expect_equal(as.array(x), array(1:9, 9))
@@ -12,7 +12,7 @@ test_that("multiplication works", {
   expect_equal(dimnames(x), names)
 
   # as.sparse_array
-  y <- as.bida_sparse_array(as.array(x))
+  y <- bida_sparse_array(as.array(x))
   dimnames(y) <- lapply(dimnames(y), as.integer)  # array() convert all dimnames to character vectors..
   expect_equal(y, x)
 
@@ -38,11 +38,6 @@ test_that("multiplication works", {
   expect_equal(c(as.array(rep(x, times = 2))), rep(as.array(x), times = 2))
   expect_equal(c(as.array(rep(x, times = 2, each = 2))), rep(as.array(x), times = 2, each = 2))
 
-  # asplit
-  y <- as.array(x)
-  for (i in seq_len(dim(x)[2])) expect_equal(as.array(asplit(x, 2)[[i]]), asplit(y, 2)[[i]])
-  for (i in seq_len(prod(dim(x)[1:2]))) expect_equal(as.array(asplit(x, 1:2)[[i]]), asplit(y, 1:2)[[i]])
-
   # aperm
   expect_equal(as.array(aperm(x, 3:1)), aperm(as.array(x), 3:1))
 
@@ -54,13 +49,12 @@ test_that("multiplication works", {
 })
 
 test_that("aperm works", {
+
   # index of length 1
-  x <- structure(list(value = 10L, index = 14, dim = c(2, 3, 4), dimnames = NULL,
-                 default = 0), class = "bida_sparse_array")
+  x <- bida_sparse_array(10L, 3, dim = 1:3, default = 0)
   expect_equal(as.array(aperm(x, c(1, 3, 2))), aperm(as.array(x), c(1, 3, 2)))
 
-  x <- structure(list(value = 1:10, index = sample.int(prod(dim(x)), 10), dim = c(2, 3, 4), dimnames = NULL,
-                      default = 0), class = "bida_sparse_array")
+  # random index
+  x <- bida_sparse_array(1:prod(dim(x)), sample.int(prod(dim(x)))-1, dim = dim(x), default = 0)
   expect_equal(as.array(aperm(x, c(1, 3, 2))), aperm(as.array(x), c(1, 3, 2)))
-
 })

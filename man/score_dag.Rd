@@ -2,9 +2,15 @@
 % Please edit documentation in R/score_dag.R
 \name{score_dag}
 \alias{score_dag}
-\title{Compute Bayesian score of DAG}
+\alias{score_fam}
+\alias{score_fam_cat}
+\title{Compute Bayesian score of a DAG}
 \usage{
 score_dag(data, dag, type = "cat", params)
+
+score_fam(data, j, parentnodes, type = c("cat"), params)
+
+score_fam_cat(data, j, parentnodes, ess, nlev)
 }
 \arguments{
 \item{data}{(matrix) data matrix}
@@ -20,21 +26,18 @@ score_dag(data, dag, type = "cat", params)
 \item{ess}{(integer) equivalent sample size}
 
 \item{nlev}{(integer vector) cardinality of each variable}
-
-\item{partitions}{(list) list with partitioning of the parent space of node \code{j}}
 }
 \value{
 (numeric constant) the score of node \code{j} given \code{parentnodes}
 }
 \description{
-Compute Bayesian score of DAG
+Compute Bayesian score of a DAG
 }
 \examples{
 
 n   <- 3
 dag <- matrix(0, n, n)
 dag[upper.tri(dag)] <- 1
-
 
 # Categorical data ---
 params <- list(nlev = 2:4, ess = 1)
@@ -47,11 +50,5 @@ data <- sapply(params$nlev, sample, size = N, replace = T) -1
 score1 <- score_dag(data, dag, type = "cat", params)
 score2 <- score_dag(data, t(dag), type = "cat", params)
 stopifnot(score1 == score2)
-
-
-# labeled DAG - add list of partitions of each CPT
-params$partition <- list(NULL, NULL, list(c(0, 1), 2, 3))
-score_dag(data, dag, type = "cat", params)
-
 
 }

@@ -1,6 +1,6 @@
 
 
-#' Title
+#' Sample categorical data
 #'
 #' @param n (integer) sample size
 #' @param cpts (list of arrays) a list of array-CPTs, stored in the same format as
@@ -10,6 +10,9 @@
 #'
 #' @return
 #' @export
+#' @details
+#' Note that the index of the categorical variables are 0-based in [sample_data_from_cpts()]
+#' and 1-based in [sample_data_from_cpts()].
 #'
 #' @examples
 #'
@@ -50,7 +53,7 @@ sample_data_from_cpts <- function(n, cpts, top_order = NULL) {
       } else {
         pa_obs <- data[, pa]%*%c(1, cumprod(nlev[pa[-npa]]))
       }
-      data[, i] <- sample_from_cpt(cpts[[i]], pa_obs + 1)
+      data[, i] <- sample_data_from_cpt(cpts[[i]], pa_obs + 1)-1
     }
   }
   return(data)
@@ -80,8 +83,8 @@ top_order <- function(dag){
 #' Draw a categorical variable given its parents
 #'
 #' @param cpt (numeric array) a CPT
-#' @param parents (integer vector) parent configuration of each sample
-#' @return an array of length `NROW(parents)` sampled from the CPT
+#' @param parents (integer vector) parent configuration of each sample.
+#' @return an integer vector of length `NROW(parents)` sampled from the CPT
 #'
 #' @keywords internal
 #' @examples
@@ -101,21 +104,20 @@ top_order <- function(dag){
 #' # compare means
 #' tabulate(y + 1, r)/length(y)
 #' rowMeans(cpt)
-sample_from_cpt <- function(cpt, parents) {
+sample_data_from_cpt <- function(cpt, parents) {
   dims <- dim(cpt)
+  r <- dims[1]                    # cardinality of outcome
+  y <- integer(length(parents))   # init data vector
   if (length(dims) == 1) {
-    y <- sample.int(dims, NROW(parents), replace = T, prob = cpt)
+    y <- sample.int(r, NROW(parents), replace = T, prob = cpt)
   } else {
-    r <- dims[1]
     q <- prod(dims[-1])
     dim(cpt) <- c(r, q)
-
-    y <- integer(length(parents))
     for (k in unique(parents)) {
       indx <- parents == k
       y[indx] <- sample.int(r, sum(indx), replace = T, prob = cpt[, k])
     }
   }
-  return(y-1)
+  return(y)
 }
 
