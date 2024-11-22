@@ -1,6 +1,6 @@
 Package: bida
 Title: Bayesian IDA for estimation of intervention effects from observational data
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
     person("Vera", "Kvisgaard", , "verahk@uio.no", role = c("cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
