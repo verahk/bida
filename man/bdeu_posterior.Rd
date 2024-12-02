@@ -2,9 +2,27 @@
 % Please edit documentation in R/bdeu_posterior.R
 \name{bdeu_posterior}
 \alias{bdeu_posterior}
+\alias{posterior_mean.bdeu_posterior}
+\alias{posterior_moments.bdeu_posterior}
+\alias{posterior_sample.bdeu_posterior}
+\alias{backdoor_sample.bdeu_posterior}
+\alias{backdoor_mean.bdeu_posterior}
+\alias{backdoor_moments.bdeu_posterior}
 \title{Update BDeu-prior over a conditional probability table (CPT)}
 \usage{
 bdeu_posterior(data, y, x, ess, nlev, dx = NULL, sparse = TRUE)
+
+\method{posterior_mean}{bdeu_posterior}(Nyx, ess)
+
+posterior_moments.bdeu_posterior(Nyx, ess)
+
+\method{posterior_sample}{bdeu_posterior}(Nyx, n, ess)
+
+backdoor_sample.bdeu_posterior(Nyxz, n, ess, dim_yx)
+
+backdoor_mean.bdeu_posterior(Nyxz, ess, dim_yx, az = NULL)
+
+backdoor_moments.bdeu_posterior(Nyxz, ess, dim_yx)
 }
 \arguments{
 \item{data}{(integer matrix) data over a set of categorical variables}
@@ -25,15 +43,56 @@ If \code{NULL} the function computes the joint outcomes as needed (default).}
 \item{sparse}{(logical) If \code{TRUE}, the counts are stored in a \link{bida_sparse_array}
 object (default). Otherwise, the counts are stored in a standard array.
 Otherwise, the function returns an object of class \link[base:array]{base::array}}
-
-\item{`ayx`}{an array of}
 }
 \value{
 \itemize{
 \item \code{bdeu_posterior}: an \link{bida_sparse_array} or \link[base:array]{base::array} with dimensions
-\code{nlev[c(y, x)]}, with parameters of the posterior Dirichlet distributions.
+\code{nlev[c(y, x)]} with counts for the posterior Dirichlet distributions.
+}
+
+\itemize{
+\item \code{posterior_mean.bdeu_posterior}: posterior means of the CPT, stored in an array with dimensions \code{dim(Nyx)}
+}
+
+\itemize{
+\item \code{posterior_mean.bdeu_posterior}: posterior means of the CPT, stored in an array with dimensions \code{dim(Nyx)}
+}
+
+\itemize{
+\item \code{posterior_sample.bdeu_posterior}: posterior sample of the CPT, stored in an array with dimensions \code{c(dim(Nyx), n)}
+}
+
+\itemize{
+\item \code{backdoor_sample.bdeu_posterior}: posterior sample of the IPT, stored in an array with dimensions \code{c(nlev[c(y,x)], n)}
+}
+
+\itemize{
+\item \code{backdoor_mean.bdeu_posterior}: posterior mean of the IPT, stored in an array with dimensions \verb{c(nlev[c(y,x)]}
+}
+
+\itemize{
+\item \code{backdoor_moments.bdeu_posterior}: a list with the following elements:
+\itemize{
+\item \code{mean}: the posterior mean of the IPT
+\item \code{cov}: a matrix list where element $(x, x')$ is the covariance between
+the associated vector of intervention probabilities, $\pi_{Y|x}$ and $\pi_{Y|x'}$.
+}
 }
 }
 \description{
 Update BDeu-prior over a conditional probability table (CPT)
+}
+\examples{
+nlev <- c(3, 3, 3)
+dim_yx <- nlev[1:2]
+data <- sapply(nlev, sample.int, size = 10, replace = T)-1
+
+Nyxz  <- bdeu_posterior(data, 1, 2:3, 1, nlev)
+posterior_mean.bdeu_posterior(Nyxz, ess = 1)
+mom  <- posterior_moments.bdeu_posterior(Nyxz, ess = 1)
+
+Nyx <- bdeu_posterior(data, 1, 2, 1, nlev)
+py.dox <- backdoor_mean.bdeu_posterior(Nyx, ess = 1, dim_yx)
+all.equal(py.dox, posterior_mean.bdeu_posterior(Nyx, ess = 1))
+
 }
