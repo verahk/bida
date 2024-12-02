@@ -110,6 +110,8 @@ bida_posterior_cat <- function(ps, data, x, y, ess, nlev, Nys = NULL) {
 }
 
 
+
+
 #' @rdname bida_posterior_cat
 #' @param ys (integer vector) column position(s) of effect variable(s).
 #' @export
