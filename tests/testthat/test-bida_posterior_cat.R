@@ -35,7 +35,6 @@ test_that("bida_posterior_cat returns correct counts", {
 })
 
 test_that("posterior_sample with support on zero", {
-
   n <- 3
   nlev <- 2:4
 

@@ -1,6 +1,6 @@
 
 
-# WHAT: Small simulation study of large sample properties of BIDA method
+# WHAT: Small simulation study of large sample properties of BIDA implementation
 # WHY: See that implemented BIDA-functions works as expected - that the posterior
 #      means of the causal parameters converges towards zero given the true DAG.
 # HOW: Sample data sets from random networks for small-medium-large sample sizes
@@ -12,13 +12,16 @@ if (FALSE) {
   library(dplyr)
   library(ggplot2)
 
+  # categorical ----
   sim_run <- function(r, file = NULL) {
     set.seed(r)
     if (is.null(file)) {
+      # draw random netwok
       n <- 10
       nlev <- sample.int(3, n, TRUE)+1
       bn   <- rand_bn(n, d = 4, "cat", nlev = nlev)
     } else {
+      # read bn from file
       bn <- readRDS(file)
       nlev <- vapply(bn, function(x) dim(x$prob)[[1]], integer(1))
       n <- length(bn)
