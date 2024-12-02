@@ -13,13 +13,24 @@
 #' @param sparse (logical) If `TRUE`, the counts are stored in a [bida_sparse_array]
 #'  object (default). Otherwise, the counts are stored in a standard array.
 #'  Otherwise, the function returns an object of class [base::array]
-#' @param `ayx` an array of
-#'
 #'
 #' @return
 #' * `bdeu_posterior`: an [bida_sparse_array] or [base::array] with dimensions
-#'   `nlev[c(y, x)]`, with parameters of the posterior Dirichlet distributions.
+#'   `nlev[c(y, x)]` with counts for the posterior Dirichlet distributions.
 #' @export
+#'
+#' @examples
+#' nlev <- c(3, 3, 3)
+#' dim_yx <- nlev[1:2]
+#' data <- sapply(nlev, sample.int, size = 10, replace = T)-1
+#'
+#' Nyxz  <- bdeu_posterior(data, 1, 2:3, 1, nlev)
+#' posterior_mean.bdeu_posterior(Nyxz, ess = 1)
+#' mom  <- posterior_moments.bdeu_posterior(Nyxz, ess = 1)
+#'
+#' Nyx <- bdeu_posterior(data, 1, 2, 1, nlev)
+#' py.dox <- backdoor_mean.bdeu_posterior(Nyx, ess = 1, dim_yx)
+#' all.equal(py.dox, posterior_mean.bdeu_posterior(Nyx, ess = 1))
 #'
 bdeu_posterior <- function(data, y, x, ess, nlev, dx = NULL, sparse = TRUE) {
   nx <- length(x)
@@ -49,6 +60,10 @@ bdeu_posterior <- function(data, y, x, ess, nlev, dx = NULL, sparse = TRUE) {
   }
 }
 
+#' @rdname bdeu_posterior
+#' @return
+#' - `posterior_mean.bdeu_posterior`: posterior means of the CPT, stored in an array with dimensions `dim(Nyx)`
+#' @export
 posterior_mean.bdeu_posterior <- function(Nyx, ess) {
   dims <- dim(Nyx)
   if (length(dims) == 1) {
@@ -60,6 +75,28 @@ posterior_mean.bdeu_posterior <- function(Nyx, ess) {
   }
 }
 
+#' @rdname bdeu_posterior
+#' @return
+#' - `posterior_mean.bdeu_posterior`: posterior means of the CPT, stored in an array with dimensions `dim(Nyx)`
+#' @export
+posterior_moments.bdeu_posterior <- function(Nyx, ess) {
+  dims <- dim(Nyx)
+  my.x <- posterior_mean.bdeu_posterior(Nyx, ess)
+  if (length(dims) == 1) {
+    list(mean = my.x,
+         cov = (diag(my.x) - tcrossprod(m, m))/(sum(Nyx)+ess+1))
+  } else {
+    ax   <- as.array(colSums(Nyx))+ess/dims[2]
+    cov  <- lapply(seq.int(dims[2]),
+                   function(x) (diag(my.x[, x])-tcrossprod(my.x[, x]))/(ax[x]+1))
+    list(mean = my.x, cov = cov)
+  }
+}
+
+#' @rdname bdeu_posterior
+#' @return
+#' - `posterior_sample.bdeu_posterior`: posterior sample of the CPT, stored in an array with dimensions `c(dim(Nyx), n)`
+#' @export
 posterior_sample.bdeu_posterior <- function(Nyx, n, ess) {
   dims <- dim(Nyx)
   if (length(dims) == 1) {
@@ -95,26 +132,37 @@ posterior_sample.bdeu_posterior <- function(Nyx, n, ess) {
     return(p)
   }
 }
-
-backdoor_sample.bdeu_posterior <- function(Nyxz, n, ess, dim_yx, th = .999) {
+#' @rdname bdeu_posterior
+#' @return
+#' - `backdoor_sample.bdeu_posterior`: posterior sample of the IPT, stored in an array with dimensions `c(nlev[c(y,x)], n)`
+#' @export
+backdoor_sample.bdeu_posterior <- function(Nyxz, n, ess, dim_yx) {
   dims <- dim(Nyxz)
   if (length(dims) < 3) {
     p <- posterior_sample.bdeu_posterior(Nyxz, n, ess)
+
     if (length(dims) == 1) {
-      p <- array(rep(p, each = dim_yx[2]), c(dim_yx, n))
+      indx <- rep(seq.int(dim_yx[1]), n*dim_yx[2]) + dims[1]*rep(seq.int(n)-1, each = dims[1]*dim_yx[2])
+      p <- array(p[indx], c(dim_yx, n))
     }
     return(p)
   } else {
+    k   <- prod(dims)
     kyx <- prod(dims[1:2])
-    kz  <- prod(dims)/kyx
+    kz  <- k/kyx
+
+    if (log(kz*n, 2) < 20) Nyxz <- as.array(Nyxz) # sample from exact distribution
 
     p <- py.xz <- array(0, c(n, dims[1:2]))  # init array for storing samples
     seqx <- seq_len(dims[2])
-    sample_py.xz <- function(ayxz) {
+    sample_py.xz <- function(ayxz, py.xz = NULL) {
       # sample CPTs from a two-dimensional array with Dirichlet-counts
+      # ayxz: a r x q vector with dirichlet counts for each level of y and x
+      # py.xz: a r x q x n vector with samples to be re-used
       for (xx in seqx) {
-        py.xz[,, xx] <<- rDirichlet(n, ayxz[, xx], dims[1])
+        py.xz[,, xx] <- rDirichlet(n, ayxz[, xx], dims[1])
       }
+      return(py.xz)
     }
 
     if (inherits(Nyxz, "bida_sparse_array")) {
@@ -138,38 +186,27 @@ backdoor_sample.bdeu_posterior <- function(Nyxz, n, ess, dim_yx, th = .999) {
       ayxz  <- Nyxz$value + az0/kyx       # posterior counts for observed outcomes (y, x, z)
       for (zz in seq_along(uz)) {
         indx <- z == uz[zz]
-        sample_py.xz(replace(ayxz0, yx[indx], ayxz[indx]))
+        py.xz <- sample_py.xz(replace(ayxz0, yx[indx], ayxz[indx]), py.xz)
         p <- p + pz[, zz]*py.xz
       }
 
       if (!all_z_observed) {
-        # for each unobserved level of z, sample prob pz and cpts p(y|x,z) from prior,
-        # until cumulative prob over z reach threshold (for all samples i = 1, ..., n)
-        Fz   <- 1-pz[, ncol(pz)]
-        iter <- kz-length(uz) # number of elements not yet sampled
-        while (iter > 1 && any(Fz < th)) {
-          # sample marginal prob pz from conditional beta distrib
-          iter <- iter-1
-          tmp  <- rbeta(n, az0, iter*az0)
-          pz   <- (1-Fz)*tmp
-          Fz   <- Fz + pz
-          # update backdoor sums
-          sample_py.xz(ayxz0)
-          p <- p + pz*py.xz
+        # approximate sample by sampling from stick-breaking-process
+        pz <- round(pz[, ncol(pz)]*rstick(n, min(10**3, kz-length(uz)), ess), 15)
+        for (zz in seq_len(ncol(pz))[colSums(pz)>0]) {
+          py.xz <- sample_py.xz(ayxz0, py.xz)
+          p <- p + pz[, zz]*py.xz
         }
-        # ensure that distribution sums to 1
-        sample_py.xz(ayxz0)
-        p <- p + (1-Fz)*py.xz
       }
     } else {
-      dim(Nyxz) <- c(dims[1:2], prod(dims[-c(1, 2)]))
+
+      dim(Nyxz) <- c(dims[1:2], kz)
       az <- colSums(Nyxz, dims = 2) + ess/kz
       ayxz <- Nyxz + ess/(kz*kyx)
+      pz <- round(rDirichlet(n, az), 15)
 
-      pz <- round(rDirichlet(n, az), 10)
-      for (zz in seq_along(az)) {
-        if (!any(pz[, zz] > 0)) next
-        sample_py.xz(ayxz[,, zz])
+      for (zz in seq_along(az)[colSums(pz) > 0]) {
+        py.xz <- sample_py.xz(ayxz[,, zz], py.xz)
         p <- p + py.xz*pz[, zz]
       }
     }
@@ -177,6 +214,17 @@ backdoor_sample.bdeu_posterior <- function(Nyxz, n, ess, dim_yx, th = .999) {
   }
 }
 
+rstick <- function(n, m, alpha0) {
+  v <- matrix(c(rbeta(n*(m-1), 1, alpha0), rep(1, n)), n, m)
+  cbind(v[, 1],
+        exp(log(v[,-1])+t(apply(log(1-v[, -m]), 1, cumsum))))
+}
+
+
+#' @rdname bdeu_posterior
+#' @return
+#' - `backdoor_mean.bdeu_posterior`: posterior mean of the IPT, stored in an array with dimensions `c(nlev[c(y,x)]`
+#' @export
 backdoor_mean.bdeu_posterior <- function(Nyxz, ess, dim_yx, az = NULL) {
   dims <- dim(Nyxz)
   if (length(dims) < 3) {
@@ -192,8 +240,60 @@ backdoor_mean.bdeu_posterior <- function(Nyxz, ess, dim_yx, az = NULL) {
     axz  <- Nxz + ess/prod(dims[-1])
     az   <- Nz + ess/kz
 
-    px.z <- (axz)/rep(az, each = dims[2])
+    px.z <- axz/rep(az, each = dims[2])
     p <- rowSums(ayxz/rep(px.z, each = dims[1]), dims = 2)
     as.array(p)/sum(az)
   }
+}
+
+
+#' @rdname bdeu_posterior
+#' @return
+#' - `backdoor_moments.bdeu_posterior`: a list with the following elements:
+#'    - `mean`: the posterior mean of the IPT
+#'    - `cov`: a matrix list where element $(x, x')$ is the covariance between
+#'    the associated vector of intervention probabilities, $\pi_{Y|x}$ and $\pi_{Y|x'}$.
+#' @export
+backdoor_moments.bdeu_posterior <- function(Nyxz, ess, dim_yx) {
+  dims <- dim(Nyxz)
+  if (length(dims) < 3) {
+    tmp <- posterior_moments.bdeu_posterior(Nyxz, ess)
+    my.dox <- array(tmp$mean, dim_yx)
+    cov <- matrix(list(), dim_yx[2], dim_yx[2])
+    cov[diag(dim_yx[2]) == 1] <- tmp$cov
+  } else {
+    k <- prod(dims)
+    stopifnot(k < 2**20)
+    ayxz <- array(as.array(Nyxz+ess/k), c(dims[1:2], k/prod(dims[1:2])))
+
+    axz <- colSums(ayxz)
+    az  <- colSums(axz)
+    a   <- sum(az)
+
+    mz <- az/a
+    my.xz <- ayxz/rep(axz, each = dims[1])
+    my.dox  <- rowSums(my.xz*rep(mz, each = prod(dims[1:2])), dims = 2)
+
+    cov <- matrix(list(), dims[2], dims[2])
+    seqz <- seq_along(mz)
+    tmp0 <- tmp <- matrix(0, dims[1], dims[1])
+
+    for (x in seq_len(dims[2])) {
+      tmp <- tmp0
+      for (z in seqz) {
+        tmp <- tmp + mz[z]/(axz[x, z]+1)*((1+az[z])*diag(my.xz[, x, z])+(axz[x, z]-az[z])*tcrossprod(my.xz[ , x, z], my.xz[ , x, z]))
+      }
+      cov[[x, x]] <-  1/(a+1)*(tmp-tcrossprod(my.dox[, x], my.dox[, x]))
+      if (x == 1) next
+      for (xx in seq(1, x-1)) {
+        tmp <- tmp0
+        for (z in seqz) {
+          tmp <- tmp + mz[z]*tcrossprod(my.xz[ , x, z], my.xz[ , xx, z])
+        }
+        cov[[x, xx]] <- 1/(a+1)*(tmp-tcrossprod(my.dox[, x], my.dox[, xx]))
+      }
+    }
+    cov[upper.tri(cov)] <- cov[lower.tri(cov)]
+  }
+  list(mean = my.dox, cov = cov)
 }
