@@ -6,6 +6,7 @@
 \alias{get_rules}
 \alias{predict.partition}
 \alias{print.partition}
+\alias{summary.tree}
 \title{Optimize the local structure of a conditional probability table (CPT)}
 \usage{
 optimize_partition_from_data(
@@ -25,6 +26,8 @@ get_rules(obj, ...)
 \method{predict}{partition}(obj, newdata)
 
 \method{print}{partition}(obj)
+
+\method{summary}{tree}(obj)
 }
 \arguments{
 \item{data}{(numeric matrix) matrix with integers representing zero-based categorical variables.}
