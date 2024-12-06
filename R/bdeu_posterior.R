@@ -217,7 +217,7 @@ backdoor_sample.bdeu_posterior <- function(Nyxz, n, ess, dim_yx) {
 rstick <- function(n, m, alpha0) {
   v <- matrix(c(rbeta(n*(m-1), 1, alpha0), rep(1, n)), n, m)
   cbind(v[, 1],
-        exp(log(v[,-1])+t(apply(log(1-v[, -m]), 1, cumsum))))
+        exp(log(v[,-1])+t(apply(log(1-v[, -m, drop = FALSE]), 1, cumsum))))
 }
 
 
