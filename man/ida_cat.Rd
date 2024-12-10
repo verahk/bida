@@ -35,6 +35,14 @@ ida_cat(
 
 \item{verbose}{(logical) print output to follow progression.}
 }
+\value{
+a list with the following objects:
+\itemize{
+\item \code{ipts}: a matrix list with all pairwise intervention probability tables (IPTs).
+This is the average over the unique set of such tables.
+\item \code{tau}: a matrix list with averaged causal effects.
+}
+}
 \description{
 Title
 }
