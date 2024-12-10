@@ -60,7 +60,7 @@ bida <- function(dags,
   out <- matrix(list(), n, n)
   colnames(out) <- rownames(out) <- colnames(data)
 
-  # prep
+  # prep ----
   if (type == "categorical") {
     if (is.null(params$ess)) ess <- 1 else ess <- params$ess
     if (is.null(params$nlev)) {
@@ -69,13 +69,18 @@ bida <- function(dags,
       nlev <- params$nlev
     }
 
+    # pre-compute marginal counts for all zero-effects
     tmp <- lapply(y, function(yy) bdeu_posterior(data, yy, integer(0), ess, nlev))
-    ays <- replace(list(), y, tmp)
+    Nys <- replace(list(), y, tmp)
   }
 
+  # compute posteriors ----
+  # compute bida-posteiror for each pair (x, y)
   if (adjset == "pa") {
     tic <- c()
     tic[1] <- Sys.time()
+
+    # compute support over parent sets for all x
     if (missing(dags)) {
       stopifnot(adjset == "pa")
       stop("exact method for computing parent posterior is not available.")
@@ -86,8 +91,10 @@ bida <- function(dags,
                                                replace_large_adjset = replace_large_adjset))
     }
     tic["adjset"] <- Sys.time()
+
+    # compute posterior given parent support
     for (xx in x) {
-      out[xx, ] <- bida_posterior_cat_local(ps[[xx]], data, xx, y, ess, nlev, ays)
+      out[xx, ] <- bida_posterior_cat(ps[[xx]], data, xx, y, ess, nlev, Nys)
     }
     tic["params"] <- Sys.time()
     toc <- diff(tic)
@@ -104,7 +111,7 @@ bida <- function(dags,
         tic[[xx, yy, 2]] <- Sys.time()
 
         out[[xx, yy]] <- switch(type,
-                                "categorical" = bida_posterior_cat(ps, data, xx, yy, ess, nlev, ays))
+                                "categorical" = bida_posterior_cat(ps, data, xx, yy, ess, nlev, Nys)[[yy]])
         tic[[xx, yy, 3]] <- Sys.time()
       }
     }
@@ -112,7 +119,7 @@ bida <- function(dags,
 
   }
   structure(out,
-            toc   = toc,
+            toc = toc,
             type = type,
             class = c("bida"))
 }

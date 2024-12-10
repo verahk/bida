@@ -2,14 +2,11 @@
 % Please edit documentation in R/bida_posterior_cat.R
 \name{bida_posterior_cat}
 \alias{bida_posterior_cat}
-\alias{bida_posterior_cat_local}
 \alias{posterior_mean.bida_posterior_cat}
 \alias{posterior_sample.bida_posterior_cat}
 \title{Compute the BIDA posterior over categorical intervention distributions}
 \usage{
-bida_posterior_cat(ps, data, x, y, ess, nlev, Nys = NULL)
-
-bida_posterior_cat_local(ps, data, x, ys, ess, nlev, Nys = NULL)
+bida_posterior_cat(ps, data, x, ys, ess, nlev, Nys = NULL)
 
 \method{posterior_mean}{bida_posterior_cat}(obj, contrasts = list())
 
@@ -22,7 +19,7 @@ bida_posterior_cat_local(ps, data, x, ys, ess, nlev, Nys = NULL)
 
 \item{x}{(integer) column position of cause variable}
 
-\item{y}{(integer) column position of effect variable.}
+\item{ys}{(integer vector) column position(s) of effect variable(s).}
 
 \item{ess}{(numeric) imaginary sample size}
 
@@ -34,14 +31,14 @@ If \code{NULL} these parameters are computed as needed (default).
 When the function is called for each cause-effect pair,
 these can be pre-computed for speed and memory.}
 
-\item{ys}{(integer vector) column position(s) of effect variable(s).}
-
 \item{contrasts}{(list) a list of functions for contrasting IPTs and summarize
 the effect of interventions into a single value, such as \code{\link[=jsd]{jsd()}}.
 The functions are assumed to return 0 when the interventional distributions
 are identical.}
 
 \item{n}{sample size}
+
+\item{y}{(integer) column position of effect variable.}
 }
 \value{
 an object with class \code{posterior_bida} and
@@ -60,7 +57,11 @@ involving \code{x} and each adjustment set for each effect variable \code{y} in 
 
 \itemize{
 \item \code{posterior_mean()} returns the posterior mean IPT or the posterior mean
-causal effect if \code{contrasts} is specified.
+causal effect if \code{contrasts} is specified. Note that the contrasting functions
+are applied to the mean IPTs (before computing the weighted sum), which is
+only gives the exact posteiror mean for linear transformations.
+For non-linear transformations, a Monte-Carlo esimate can be computed using
+posterior_sample().
 }
 
 
@@ -74,10 +75,9 @@ is specified.
 \examples{
 
 data(bida_example_cat)
-attach(bida_example_cat)
 
 # compute dag posterior from sample of DAGs
-dags <- partitionMCMC$traceadd$incidence[-c(1:200)]
+dags <- bida_example$partitionMCMC$traceadd$incidence[-c(1:200)]
 dag_supp <- dag_support(dags)
 
 # compute adjset posterior
@@ -91,26 +91,6 @@ pb
 
 posterior_mean(pb)
 posterior_sample(pb, 10)
-
-
-
-
-\dontrun{
-# profile
-n    <- 20
-N    <- 1000
-dags <- replicate(100, rand_dag(n, 4), simplify = FALSE)
-nlev <- rep(3, n)
-data <- vapply(nlev, sample.int, size = N, replace = T, integer(N))-1
-ess  <- 1
-
-x <- 1
-ps  <- adjset_support(dag_support(dags), x, 0L, "pa")
-library(microbenchmark)
-microbenchmark(bida_posterior_cat_local(ps, data, x, 1:n, ess, nlev),
-               lapply(1:n, function(y) bida_posterior_cat(ps, data, x, y, ess, nlev)),
-               times = 10, check = "equivalent")
-}
 
 
 }

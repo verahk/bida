@@ -74,8 +74,8 @@ Otherwise, the function returns an object of class \link[base:array]{base::array
 \item \code{backdoor_moments.bdeu_posterior}: a list with the following elements:
 \itemize{
 \item \code{mean}: the posterior mean of the IPT
-\item \code{cov}: a matrix list where element $(x, x')$ is the covariance between
-the associated vector of intervention probabilities, $\pi_{Y|x}$ and $\pi_{Y|x'}$.
+\item \code{cov}: a matrix list where element \eqn{(x, x')} is the covariance between
+the associated vector of intervention probabilities, \eqn{\pi_{Y|x}} and \eqn{\pi_{Y|x'}}
 }
 }
 }
@@ -88,11 +88,11 @@ dim_yx <- nlev[1:2]
 data <- sapply(nlev, sample.int, size = 10, replace = T)-1
 
 Nyxz  <- bdeu_posterior(data, 1, 2:3, 1, nlev)
-posterior_mean.bdeu_posterior(Nyxz, ess = 1)
-mom  <- posterior_moments.bdeu_posterior(Nyxz, ess = 1)
+bida:::posterior_mean.bdeu_posterior(Nyxz, ess = 1)
+mom  <- bida:::posterior_moments.bdeu_posterior(Nyxz, ess = 1)
 
 Nyx <- bdeu_posterior(data, 1, 2, 1, nlev)
-py.dox <- backdoor_mean.bdeu_posterior(Nyx, ess = 1, dim_yx)
+py.dox <- bida:::backdoor_mean.bdeu_posterior(Nyx, ess = 1, dim_yx)
 all.equal(py.dox, posterior_mean.bdeu_posterior(Nyx, ess = 1))
 
 }

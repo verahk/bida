@@ -9,7 +9,7 @@
 #' @param dmats (optional) list of matrices representing the ancestral relationships
 #'  in each dag in `pdags[[1]]`. If not specified, [descendants()] is called for each
 #'  dag.
-#'
+#' @export
 #' @examples
 #'
 #' data(bida_example_cat)

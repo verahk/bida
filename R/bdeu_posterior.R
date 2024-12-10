@@ -25,11 +25,11 @@
 #' data <- sapply(nlev, sample.int, size = 10, replace = T)-1
 #'
 #' Nyxz  <- bdeu_posterior(data, 1, 2:3, 1, nlev)
-#' posterior_mean.bdeu_posterior(Nyxz, ess = 1)
-#' mom  <- posterior_moments.bdeu_posterior(Nyxz, ess = 1)
+#' bida:::posterior_mean.bdeu_posterior(Nyxz, ess = 1)
+#' mom  <- bida:::posterior_moments.bdeu_posterior(Nyxz, ess = 1)
 #'
 #' Nyx <- bdeu_posterior(data, 1, 2, 1, nlev)
-#' py.dox <- backdoor_mean.bdeu_posterior(Nyx, ess = 1, dim_yx)
+#' py.dox <- bida:::backdoor_mean.bdeu_posterior(Nyx, ess = 1, dim_yx)
 #' all.equal(py.dox, posterior_mean.bdeu_posterior(Nyx, ess = 1))
 #'
 bdeu_posterior <- function(data, y, x, ess, nlev, dx = NULL, sparse = TRUE) {
@@ -84,7 +84,7 @@ posterior_moments.bdeu_posterior <- function(Nyx, ess) {
   my.x <- posterior_mean.bdeu_posterior(Nyx, ess)
   if (length(dims) == 1) {
     list(mean = my.x,
-         cov = (diag(my.x) - tcrossprod(m, m))/(sum(Nyx)+ess+1))
+         cov = (diag(my.x) - tcrossprod(my.x))/(sum(Nyx)+ess+1))
   } else {
     ax   <- as.array(colSums(Nyx))+ess/dims[2]
     cov  <- lapply(seq.int(dims[2]),
@@ -110,7 +110,7 @@ posterior_sample.bdeu_posterior <- function(Nyx, n, ess) {
     if (inherits(Nyx, "array")) {
       ayx <- array(Nyx + ayx0, c(ky, kx))
       for (xx in seq_len(kx)) {
-        p[, xx, ] <- bida:::rDirichlet(n, ayx[, xx], ky)
+        p[, xx, ] <- rDirichlet(n, ayx[, xx], ky)
       }
     } else if (inherits(Nyx, "bida_sparse_array")) {
       y  <- Nyx$index%%ky +1
@@ -150,10 +150,7 @@ backdoor_sample.bdeu_posterior <- function(Nyxz, n, ess, dim_yx) {
     k   <- prod(dims)
     kyx <- prod(dims[1:2])
     kz  <- k/kyx
-
-    if (log(kz*n, 2) < 20) Nyxz <- as.array(Nyxz) # sample from exact distribution
-
-    p <- py.xz <- array(0, c(n, dims[1:2]))  # init array for storing samples
+    p <- py.xz <- array(0, c(n, dims[1:2]))   # init array for storing samples
     seqx <- seq_len(dims[2])
     sample_py.xz <- function(ayxz, py.xz = NULL) {
       # sample CPTs from a two-dimensional array with Dirichlet-counts
@@ -165,7 +162,7 @@ backdoor_sample.bdeu_posterior <- function(Nyxz, n, ess, dim_yx) {
       return(py.xz)
     }
 
-    if (inherits(Nyxz, "bida_sparse_array")) {
+    if (inherits(Nyxz, "bida_sparse_array") && log10(kz) > 4) {
       yx  <- Nyxz$index%%kyx +1   # observed joint outcomes of (y, x)
       z   <- Nyxz$index%/%kyx +1  # observed joint outcomes of (z)
       uz  <- unique(z)
@@ -193,21 +190,28 @@ backdoor_sample.bdeu_posterior <- function(Nyxz, n, ess, dim_yx) {
       if (!all_z_observed) {
         # approximate sample by sampling from stick-breaking-process
         pz <- round(pz[, ncol(pz)]*rstick(n, min(10**3, kz-length(uz)), ess), 15)
-        for (zz in seq_len(ncol(pz))[colSums(pz)>0]) {
+        for (zz in which(colSums(pz)>0)) {
           py.xz <- sample_py.xz(ayxz0, py.xz)
           p <- p + pz[, zz]*py.xz
         }
       }
     } else {
 
+      # collapse dimension of adjustment set, for indexing below
       dim(Nyxz) <- c(dims[1:2], kz)
-      az <- colSums(Nyxz, dims = 2) + ess/kz
-      ayxz <- Nyxz + ess/(kz*kyx)
-      pz <- round(rDirichlet(n, az), 15)
 
-      for (zz in seq_along(az)[colSums(pz) > 0]) {
-        py.xz <- sample_py.xz(ayxz[,, zz], py.xz)
-        p <- p + py.xz*pz[, zz]
+      # update counts
+      ayxz <- as.array(Nyxz) + ess/(kz * kyx)
+      az   <- as.array(colSums(Nyxz, dims = 2)) + ess/kz
+
+      # draw distributions over the adjustment set
+      pz <- round(rDirichlet(n, az), 15)
+      anyPos <- colSums(pz) > 0  # skip evaluation of probabilities equal to zero
+
+      # apply backdoor formula
+      for (zz in seq_along(az)[anyPos]) {
+        py.xz <- sample_py.xz(ayxz[, , zz], py.xz)
+        p <- p + pz[, zz]*py.xz
       }
     }
     aperm(p, c(2, 3, 1))
@@ -251,8 +255,8 @@ backdoor_mean.bdeu_posterior <- function(Nyxz, ess, dim_yx, az = NULL) {
 #' @return
 #' - `backdoor_moments.bdeu_posterior`: a list with the following elements:
 #'    - `mean`: the posterior mean of the IPT
-#'    - `cov`: a matrix list where element $(x, x')$ is the covariance between
-#'    the associated vector of intervention probabilities, $\pi_{Y|x}$ and $\pi_{Y|x'}$.
+#'    - `cov`: a matrix list where element \eqn{(x, x')} is the covariance between
+#'    the associated vector of intervention probabilities, \eqn{\pi_{Y|x}} and \eqn{\pi_{Y|x'}}
 #' @export
 backdoor_moments.bdeu_posterior <- function(Nyxz, ess, dim_yx) {
   dims <- dim(Nyxz)
@@ -260,10 +264,13 @@ backdoor_moments.bdeu_posterior <- function(Nyxz, ess, dim_yx) {
     tmp <- posterior_moments.bdeu_posterior(Nyxz, ess)
     my.dox <- array(tmp$mean, dim_yx)
     cov <- matrix(list(), dim_yx[2], dim_yx[2])
-    cov[diag(dim_yx[2]) == 1] <- tmp$cov
+    if (length(dims) == 2) {
+      cov[diag(dim_yx[2]) == 1] <- tmp$cov
+    } else {
+      cov[diag(dim_yx[2]) == 1] <- list(tmp$cov)
+    }
   } else {
     k <- prod(dims)
-    stopifnot(k < 2**20)
     ayxz <- array(as.array(Nyxz+ess/k), c(dims[1:2], k/prod(dims[1:2])))
 
     axz <- colSums(ayxz)

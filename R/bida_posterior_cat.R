@@ -27,10 +27,9 @@
 #' @examples
 #'
 #' data(bida_example_cat)
-#' attach(bida_example_cat)
 #'
 #' # compute dag posterior from sample of DAGs
-#' dags <- partitionMCMC$traceadd$incidence[-c(1:200)]
+#' dags <- bida_example$partitionMCMC$traceadd$incidence[-c(1:200)]
 #' dag_supp <- dag_support(dags)
 #'
 #' # compute adjset posterior
@@ -46,76 +45,13 @@
 #' posterior_sample(pb, 10)
 #'
 #'
-#'
-#'
-#' \dontrun{
-#' # profile
-#' n    <- 20
-#' N    <- 1000
-#' dags <- replicate(100, rand_dag(n, 4), simplify = FALSE)
-#' nlev <- rep(3, n)
-#' data <- vapply(nlev, sample.int, size = N, replace = T, integer(N))-1
-#' ess  <- 1
-#'
-#' x <- 1
-#' ps  <- adjset_support(dag_support(dags), x, 0L, "pa")
-#' library(microbenchmark)
-#' microbenchmark(bida_posterior_cat_local(ps, data, x, 1:n, ess, nlev),
-#'                lapply(1:n, function(y) bida_posterior_cat(ps, data, x, y, ess, nlev)),
-#'                times = 10, check = "equivalent")
-#' }
-#'
-#'
-
-bida_posterior_cat <- function(ps, data, x, y, ess, nlev, Nys = NULL) {
-  if (y == x) return(NULL)
-  mode(data) <- mode(nlev) <- "integer"
-  sets <- ps[[1]]
-  p    <- ps[[2]]
-  zeroprob <- ps$zeroprob
-  if (is.matrix(sets)) sets <- apply(sets, 1, function(z) z[!is.na(z)], simplify = FALSE)
-
-  # list all sets that implies a zero-effect
-  if (is.null(zeroprob)) {
-    isZeroEffect <- vapply(sets, function(z) any(z == y), logical(1))
-    if (any(isZeroEffect)) {
-      p <- c(sum(p[isZeroEffect]), p[!isZeroEffect])
-      sets <- c(list(y), sets[!isZeroEffect])
-      zeroprob <- p[1]
-    } else {
-      zeroprob <- 0
-    }
-  }
-
-  # init list for storing posterior bdeu-params for each adjustement set
-  params <- vector("list", length(sets))
-  if (zeroprob > 0) {
-    if (is.null(Nys[[y]])) {
-      # compute posterior bdeu-params over marginal distribution
-      params[[1]] <- bdeu_posterior(data, y, integer(0), ess, nlev)
-    } else {
-      params[[1]] <- Nys[[y]]
-    }
-  }
-  if (zeroprob < 1) {
-    # compute posterior bdeu-params for possible non-zero effects
-    for (l in seq.int(1+(zeroprob>0)*1, length(sets))) {
-      z <- sets[[l]]
-      params[[l]] <- bdeu_posterior(data, y, c(x, z), ess, nlev, sparse = T)
-    }
-  }
-
-  # return posterior_bida object
-  new_bida_posterior_cat(params, p, zeroprob, ess, nlev[c(y, x)])
-}
-
-
-
-
 #' @rdname bida_posterior_cat
 #' @param ys (integer vector) column position(s) of effect variable(s).
 #' @export
-bida_posterior_cat_local <- function(ps, data, x, ys, ess, nlev, Nys = NULL) {
+bida_posterior_cat <- function(ps, data, x, ys, ess, nlev, Nys = NULL) {
+
+  stopifnot(length(x) == 1)
+  if (length(ys) == 1 && ys == x) return(NULL)
 
   sets <- ps[[1]]
   p    <- ps[[2]]
@@ -135,11 +71,12 @@ bida_posterior_cat_local <- function(ps, data, x, ys, ess, nlev, Nys = NULL) {
     nz <- length(z)
 
     if (nz > 0) {
-      kz   <- prod(nlev[z])  # cardinality of adjustment set
-      axz0 <- ess/(kx*kz)    # concentration param of dirichlet prior over P(y|x,z)
+      dim_xz <- c(kx, nlev[z])
+      kz   <- prod(dim_xz[-1])  # cardinality of adjustment set
+      axz0 <- ess/(kx*kz)       # concentration param of dirichlet prior over P(y|x,z)
       dxz  <- data[, c(x, z)]%*%c(1, cumprod(c(kx, nlev[z[-nz]])))
     } else {
-      kz   <- integer(0)
+      dim_xz <- kx
       axz0 <- ess/kx
       dxz  <- data[, x]
     }
@@ -151,7 +88,7 @@ bida_posterior_cat_local <- function(ps, data, x, ys, ess, nlev, Nys = NULL) {
       uyxz <- c(unique(dyxz))     # unique outcomes
       Nyxz  <- new_bida_sparse_array(value = tabulate(match(dyxz, uyxz)),
                                      index = uyxz,
-                                     dim = c(ky, kx, nlev[z]),
+                                     dim = c(ky, dim_xz),
                                      dimnames = NULL,
                                      default = 0)
       params[[i, y]] <- Nyxz
@@ -180,7 +117,7 @@ bida_posterior_cat_local <- function(ps, data, x, ys, ess, nlev, Nys = NULL) {
                                           c(ky, kx))
     }
   }
-  return(out)
+  out
 }
 
 
@@ -197,7 +134,11 @@ new_bida_posterior_cat <- function(params, p, zeroprob, ess, dim) {
 #' @rdname bida_posterior_cat
 #' @section Methods:
 #' - `posterior_mean()` returns the posterior mean IPT or the posterior mean
-#'   causal effect if `contrasts` is specified.
+#'   causal effect if `contrasts` is specified. Note that the contrasting functions
+#'   are applied to the mean IPTs (before computing the weighted sum), which is
+#'   only gives the exact posteiror mean for linear transformations.
+#'   For non-linear transformations, a Monte-Carlo esimate can be computed using
+#'   posterior_sample().
 #' @param n (integer) sample size
 #' @param contrasts (list) a list of functions for contrasting IPTs and summarize
 #'  the effect of interventions into a single value, such as [jsd()].
@@ -205,13 +146,21 @@ new_bida_posterior_cat <- function(params, p, zeroprob, ess, dim) {
 #'  are identical.
 #' @export
 posterior_mean.bida_posterior_cat <- function(obj, contrasts = list()) {
+  means <- lapply(obj$params,
+                  backdoor_mean.bdeu_posterior, ess = obj$ess, dim_yx = obj$dim)
   if (length(contrasts) == 0) {
-    means <- lapply(obj$params,
-                    backdoor_mean.bdeu_posterior, ess = obj$ess, dim_yx = obj$dim)
     Reduce("+", Map("*", means, obj$p))
   } else {
-    smpl <- posterior_sample(obj, n = 10**3, contrasts = contrasts)
-    colMeans(smpl)
+    if (length(means) == 1) {
+      vapply(contrasts, function(f) f(means[[1]]), numeric(1))
+    } else {
+      # apply causal contrast to each ipt
+      taus <- vapply(contrasts,
+                     function(f) vapply(means, f, numeric(1)),
+                     numeric(length(means)))
+      # compute weighted average
+      colSums(taus*obj$p)
+    }
   }
 }
 

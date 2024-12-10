@@ -1,6 +1,6 @@
 
 
-# WHAT: Small simulation study of large sample properties of BIDA method
+# WHAT: Small simulation study of large sample properties of BIDA implementation
 # WHY: See that implemented BIDA-functions works as expected - that the posterior
 #      means of the causal parameters converges towards zero given the true DAG.
 # HOW: Sample data sets from random networks for small-medium-large sample sizes
@@ -12,13 +12,16 @@ if (FALSE) {
   library(dplyr)
   library(ggplot2)
 
+  # categorical ----
   sim_run <- function(r, file = NULL) {
     set.seed(r)
     if (is.null(file)) {
+      # draw random netwok
       n <- 10
       nlev <- sample.int(3, n, TRUE)+1
       bn   <- rand_bn(n, d = 4, "cat", nlev = nlev)
     } else {
+      # read bn from file
       bn <- readRDS(file)
       nlev <- vapply(bn, function(x) dim(x$prob)[[1]], integer(1))
       n <- length(bn)
@@ -36,13 +39,9 @@ if (FALSE) {
       cat("iter =", r, "N = ", N, "\n")
       set.seed(r+N)
       data <- sample_data_from_bn(bn, N)
-      scorepar <- define_scoreparameters(data, "bdecat", list(ess = 1, edgepf = 1))
-      smpl <- BiDAG:::sampleBN(scorepar, "partition", hardlimit = 6, verbose = T)
-      dags <- smpl$traceadd$incidence[-seq_len(200)]
-
       params <- list(nlev = nlev, ess = 1)
-      fits <- list(pa = bida(dags, data, adjset = "pa", params = params),
-                   o  = bida(dags, data, adjset = "o", params = params),
+      fits <- list(pa = bida(list(dag), data, adjset = "pa", params = params),
+                   o  = bida(list(dag), data, adjset = "o", params = params),
                    marg = bida(list(dag0), data, adjset = "o", params = params),
                    cond = bida(list(dag0), data, adjset = "pa", params = params))
 
@@ -66,7 +65,7 @@ if (FALSE) {
   }
 
   # random networks ----
-  dfs <- lapply(1:30, function(r) sim_run(r))
+  dfs <- lapply(1:10, function(r) sim_run(r))
   df  <- dplyr::bind_rows(dfs, .id = "r")
   df$N <- factor(df$N)
 
@@ -75,6 +74,7 @@ if (FALSE) {
     ggplot(aes(N, sqrt(value), fill = name)) +
     facet_wrap(var~., scales = "free") +
     geom_boxplot() +
+    theme_bida() +
     ylab("RMSE") +
     xlab("sample size")
 
