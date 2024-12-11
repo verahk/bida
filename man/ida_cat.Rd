@@ -31,17 +31,10 @@ ida_cat(
 
 \item{x, y}{(integer vector) position of cause and effect variables, respectively.}
 
-\item{contrasts}{(list) causal contrast, see \code{\link[=posterior_mean.bida_posterior]{posterior_mean.bida_posterior()}}.}
-
 \item{verbose}{(logical) print output to follow progression.}
 }
 \value{
-a list with the following objects:
-\itemize{
-\item \code{ipts}: a matrix list with all pairwise intervention probability tables (IPTs).
-This is the average over the unique set of such tables.
-\item \code{tau}: a matrix list with averaged causal effects.
-}
+a bida-object.
 }
 \description{
 Title
@@ -67,8 +60,8 @@ cpdag
 
 # estimate intervention probabilities
 params <- list(ess = 1, nlev = apply(data, 2, max)+1)
-res <- ida_cat(cpdag, data, "pa", params, contrasts = list(jsd = jsd))
-res
+fit <- ida_cat(cpdag, data, "pa", params, contrasts = list(jsd = jsd))
+posterior_mean()
 
 # optimal-IDA, set effects to zero exactly
 res <- ida_cat(cpdag, data, "o", params, contrasts = list(jsd = jsd))

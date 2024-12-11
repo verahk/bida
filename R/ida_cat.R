@@ -10,13 +10,9 @@
 #' @param adjset (character) which adjustment set to use in backdoor formula.
 #' @param params (list) list with hyperparameters for the local bdeu-priors.
 #' @param x,y (integer vector) position of cause and effect variables, respectively.
-#' @param contrasts (list) causal contrast, see [posterior_mean.bida_posterior()].
 #' @param verbose (logical) print output to follow progression.
 #'
-#' @return a list with the following objects:
-#' - `ipts`: a matrix list with all pairwise intervention probability tables (IPTs).
-#'    This is the average over the unique set of such tables.
-#' - `tau`: a matrix list with averaged causal effects.
+#' @return a bida-object.
 #' @export
 #'
 #' @examples
@@ -40,8 +36,8 @@
 #'
 #' # estimate intervention probabilities
 #' params <- list(ess = 1, nlev = apply(data, 2, max)+1)
-#' res <- ida_cat(cpdag, data, "pa", params, contrasts = list(jsd = jsd))
-#' res
+#' fit <- ida_cat(cpdag, data, "pa", params, contrasts = list(jsd = jsd))
+#' posterior_mean()
 #'
 #' # optimal-IDA, set effects to zero exactly
 #' res <- ida_cat(cpdag, data, "o", params, contrasts = list(jsd = jsd))
@@ -59,26 +55,23 @@ ida_cat <- function(cpdag,
   mode(data) <- mode(params$nlev) <- "integer"
 
   n <- ncol(data)
-  ipts <- tau <- matrix(list(), n, n)
+  out <- matrix(list(), n, n)
   for (xx in x) {
     if (verbose) cat("Estimating unique intervention distributions for cause", xx, "\n")
     tmp <- orient_siblings_in_cpdag(cpdag, xx)
     if (adjset == "pa") {
       ps <- list(tmp$parents, tmp$p)
-      posteriors <- bida_posterior_cat(ps, data, xx, y, ess = params$ess, nlev = params$nlev)
+      out[xx, ] <- bida_posterior_cat(ps, data, xx, y, ess = params$ess, nlev = params$nlev)
     } else {
       dag_supp <- dag_support(tmp$pdags)
       posteriors <- vector("list", ncol(data))
       for (yy in y[-match(xx, y)]) {
         ps <- adjset_support(dag_supp, xx, yy, adjset)
-        posteriors[[yy]] <- bida_posterior_cat(ps, data, xx, yy, ess = params$ess, nlev = params$nlev)[[yy]]
+        out[[xx, yy]] <- bida_posterior_cat(ps, data, xx, yy, ess = params$ess, nlev = params$nlev)[[yy]]
       }
     }
-
-    ipts[xx, ] <- lapply(posteriors, posterior_mean)
-    if (length(contrasts) > 0) tau[xx, ]  <- lapply(posteriors, posterior_mean, contrasts = contrasts)
   }
-  list(ipts = ipts, tau = tau)
+  out
 }
 
 orient_siblings_in_cpdag <- function(cpdag, x){
