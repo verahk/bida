@@ -76,7 +76,8 @@ ida_cat <- function(cpdag,
 
 orient_siblings_in_cpdag <- function(cpdag, x){
 
-  stopifnot(pcalg::isValidGraph(t(cpdag), type = "cpdag"))
+  tcpdag <- t(cpdag)
+  stopifnot(pcalg::isValidGraph(tcpdag, type = "pdag"))
 
   # find siblings of x
   posspa  <- which(cpdag[, x] == 1)
@@ -100,7 +101,6 @@ orient_siblings_in_cpdag <- function(cpdag, x){
 
     # make graphNEL-object for pcalg::addBgKnowledge
     colnames(cpdag) <- rownames(cpdag) <- seq_len(ncol(cpdag))
-    gcpdag <- as(cpdag, "graphNEL")
 
     isInvalid <- vector("logical", length = length(subsib))
     for (g in seq_along(subsib)){
@@ -109,12 +109,12 @@ orient_siblings_in_cpdag <- function(cpdag, x){
       ns   <- length(s)
       from <- c(s, rep(x, nsib-ns))
       to   <- c(rep(x, ns), setdiff(sib, s))
-      gprime <- pcalg::addBgKnowledge(gcpdag, from, to)
+      gprime <- pcalg::addBgKnowledge(tcpdag, from, to)
       if (is.null(gprime)) {
         isInvalid[g] <- TRUE
       } else {
         parents[[g]]  <- c(s, pa)
-        pdags[[g]] <- as(gprime, "matrix")
+        pdags[[g]] <- t(gprime)
       }
     }
     if (all(isInvalid)){
@@ -125,6 +125,6 @@ orient_siblings_in_cpdag <- function(cpdag, x){
     parents[isInvalid] <- NULL
     pdags[isInvalid] <- NULL
   }
-  return(list(pdags = pdags, parents  = parents, p = rep(1/(1+nsib), 1+nsib)))
+  return(list(pdags = pdags, parents  = parents, p = rep(1/length(parents), length(parents))))
 }
 
