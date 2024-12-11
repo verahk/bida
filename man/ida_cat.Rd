@@ -11,7 +11,6 @@ ida_cat(
   params,
   x = 1:ncol(data),
   y = 1:ncol(data),
-  contrasts = NULL,
   verbose = FALSE
 )
 }
@@ -60,10 +59,12 @@ cpdag
 
 # estimate intervention probabilities
 params <- list(ess = 1, nlev = apply(data, 2, max)+1)
-fit <- ida_cat(cpdag, data, "pa", params, contrasts = list(jsd = jsd))
-posterior_mean()
+fit <- ida_cat(cpdag, data, "pa", params)
+posterior_mean(fit)
+posterior_mean(fit, contrasts = list(jsd = jsd))
 
 # optimal-IDA, set effects to zero exactly
-res <- ida_cat(cpdag, data, "o", params, contrasts = list(jsd = jsd))
-res
+fit <- ida_cat(cpdag, data, "o", params)
+posterior_mean(fit)
+posterior_mean(fit, contrasts = list(jsd = jsd))
 }
