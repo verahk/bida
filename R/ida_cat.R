@@ -36,19 +36,20 @@
 #'
 #' # estimate intervention probabilities
 #' params <- list(ess = 1, nlev = apply(data, 2, max)+1)
-#' fit <- ida_cat(cpdag, data, "pa", params, contrasts = list(jsd = jsd))
-#' posterior_mean()
+#' fit <- ida_cat(cpdag, data, "pa", params)
+#' posterior_mean(fit)
+#' posterior_mean(fit, contrasts = list(jsd = jsd))
 #'
 #' # optimal-IDA, set effects to zero exactly
-#' res <- ida_cat(cpdag, data, "o", params, contrasts = list(jsd = jsd))
-#' res
+#' fit <- ida_cat(cpdag, data, "o", params)
+#' posterior_mean(fit)
+#' posterior_mean(fit, contrasts = list(jsd = jsd))
 ida_cat <- function(cpdag,
                 data,
                 adjset = c("pa", "o"),
                 params,
                 x = 1:ncol(data),
                 y = 1:ncol(data),
-                contrasts = NULL,
                 verbose = FALSE) {
 
   adjset <- match.arg(adjset, c("pa", "o"))
@@ -56,9 +57,13 @@ ida_cat <- function(cpdag,
 
   n <- ncol(data)
   out <- matrix(list(), n, n)
+  tic <- matrix(NA, n, 3)
+  colnames(tic) <- c("start", "adjset", "params")
   for (xx in x) {
+    tic[[xx, 1]] <- Sys.time()
     if (verbose) cat("Estimating unique intervention distributions for cause", xx, "\n")
     tmp <- orient_siblings_in_cpdag(cpdag, xx)
+    tic[[xx, 2]] <- Sys.time()
     if (adjset == "pa") {
       ps <- list(tmp$parents, tmp$p)
       out[xx, ] <- bida_posterior_cat(ps, data, xx, y, ess = params$ess, nlev = params$nlev)
@@ -70,12 +75,18 @@ ida_cat <- function(cpdag,
         out[[xx, yy]] <- bida_posterior_cat(ps, data, xx, yy, ess = params$ess, nlev = params$nlev)[[yy]]
       }
     }
+    tic[[xx, 3]] <- Sys.time()
   }
-  out
+  toc <- colSums(tic[, -1]-tic[, -3])
+  structure(out,
+            toc = toc,
+            type = "ida_cat",
+            class = c("bida"))
 }
 
 orient_siblings_in_cpdag <- function(cpdag, x){
 
+  colnames(cpdag) <- rownames(cpdag) <- 1:ncol(cpdag)
   tcpdag <- t(cpdag)
   stopifnot(pcalg::isValidGraph(tcpdag, type = "pdag"))
 
@@ -101,7 +112,6 @@ orient_siblings_in_cpdag <- function(cpdag, x){
 
     # make graphNEL-object for pcalg::addBgKnowledge
     colnames(cpdag) <- rownames(cpdag) <- seq_len(ncol(cpdag))
-
     isInvalid <- vector("logical", length = length(subsib))
     for (g in seq_along(subsib)){
       # direct edges of subset s of siblings
