@@ -1,0 +1,15 @@
+ size,Network, Nodes,Arcs,Params,mbsize,d,maxindegree
+small,Asia,8,8,18,2.5,2,2
+small,Sachs,11,17,178,3.09,3.09,3
+medium,Alarm,37,46,509,3.51,2.49,4
+small,Child,20,25,230,3,2.5,2
+large,Win95pts,76,112,574,5.92,2.95,7
+very large,Andes,223,338,1157,5.61,3.03,6
+large,Hailfinder,56,66,2656,3.54,2.36,4
+large,Hepar2,70,123,1453,4.51,3.51,6
+medium,Insurance,27,52,1008,5.19,3.85,3
+medium,Water2,32,66,10083,7.69,4.12,5
+medium,Water,32,66,10083,7.69,4.12,5
+medium,Mildew,35,46,540150,4.57,2.63,3
+medium,Barley,48,84,114005,5.25,3.5,4
+very large,Pathfinder,109,195,72079,3.82,3.58,5
